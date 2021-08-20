@@ -27,8 +27,9 @@ build() {
 
 package() {
   cd $srcdir/shaderc-$pkgver
-  mkdir -p $pkgdir/opt/lib
+  mkdir -p $pkgdir/opt/lib/pkgconfig
   cp -r libshaderc/include $pkgdir/opt
   cp -r libshaderc_util/include/libshaderc_util $pkgdir/opt/include
   cp build/libshaderc/libshaderc_combined.a $pkgdir/opt/lib
+  cp build/shaderc_combined.pc $pkgdir/opt/lib/pkgconfig
 }
