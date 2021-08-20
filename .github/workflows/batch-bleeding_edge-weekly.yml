@@ -76,6 +76,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: ffnvcodec*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -110,6 +112,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: freetype2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -145,6 +149,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: fribidi*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -180,6 +186,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: harfbuzz*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -215,6 +223,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: lame*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -249,6 +259,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: lcms2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -289,6 +301,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libass*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -326,6 +340,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libbluray*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -360,6 +376,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libdvdcss*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -398,6 +416,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libdvdnav*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -435,6 +455,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libdvdread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -469,6 +491,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libogg*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -509,6 +533,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libplacebo*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -546,6 +572,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: libvorbis_aotuv*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -580,12 +608,16 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: luajit*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -676,6 +708,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: opus*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -728,6 +762,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         assets: python-embed*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -764,6 +800,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: shaderc*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -799,6 +837,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: spirv-cross*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -823,12 +863,16 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: vapoursynth*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -872,6 +916,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
         assets: vulkan*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
