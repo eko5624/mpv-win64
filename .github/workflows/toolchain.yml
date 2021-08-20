@@ -41,6 +41,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         assets: mcfgthread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload
       if: steps.cache.outputs.cache-hit != 'true'
       uses: svenstaro/upload-release-action@v2
@@ -56,6 +58,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         assets: aria2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
     - name: Upload Aria2
       uses: svenstaro/upload-release-action@v2
       with:
