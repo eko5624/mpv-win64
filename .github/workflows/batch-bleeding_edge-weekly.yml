@@ -289,7 +289,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S nasm --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S nasm git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.11.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-2.9.0-1-x86_64.pkg.tar.zst
