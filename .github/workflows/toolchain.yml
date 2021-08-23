@@ -2,9 +2,7 @@ name: toolchain
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '25 0 * * 4'
-
+  
 jobs:
   build:
     runs-on: windows-latest
