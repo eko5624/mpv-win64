@@ -2,8 +2,6 @@ name: batch-bleeding_edge-weekly
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '1 1 * * 4'
 
 jobs:
   ffmpeg:
