@@ -52,30 +52,4 @@ jobs:
         overwrite: true
         file_glob: true
         
-  package:
-    needs: [mpv, python-embed]
-    runs-on: windows-latest
-    steps:
-    - name: Package
-      run: |
-        $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-4.5pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-54-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-git-0.34pre-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210809-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
-        7z a All-in-One-MPV-git-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-withoutPython-${date}.7z All-in-One-MPV-git-withoutPython-latest.7z
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.9.6-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: All*.7z
-        tag: bleeding_edge
-        overwrite: true
-        file_glob: true
+  
