@@ -2,7 +2,7 @@ import json
 from urllib import request
 import in_place
 
-resp = request.urlopen('https://github.com/nyfair/nginx-nosni/raw/master/old.json')
+resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
 mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
