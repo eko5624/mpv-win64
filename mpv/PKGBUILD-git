@@ -15,7 +15,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   python bootstrap.py
-  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
+  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav --enable-ffmpeg-strict-abi
   python waf build
 }
 
