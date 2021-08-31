@@ -128,7 +128,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210824-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-withoutPython-${date}.7z C:\msys64\opt\bin\*
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.9.6-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/python-embed-3.9.7-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/python* --noconfirm"
         7z a All-in-One-MPV-${date}.7z C:\msys64\opt\bin\*
         copy All-in-One-MPV-${date}.7z All-in-One-MPV-latest.7z
