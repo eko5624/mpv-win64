@@ -1,4 +1,4 @@
-name: batch-bleeding_edge-weekly
+name: dav1d
 
 on:
   workflow_dispatch:
