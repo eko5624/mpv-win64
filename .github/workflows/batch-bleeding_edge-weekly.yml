@@ -5,7 +5,7 @@ on:
 
 jobs:
   ffmpeg:
-    needs: [lame, libdav1d, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
+    needs: [lame, dav1d, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
