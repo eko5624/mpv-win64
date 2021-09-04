@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
-makedepends=('yasm' 'lame-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
+makedepends=('yasm' 'lame-dev' 'dav1d-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
@@ -21,7 +21,7 @@ package_ffmpeg-git-dev() {
   conflicts=('ffmpeg-dev')
   cd $srcdir/FFmpeg
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
-    --disable-mediafoundation --enable-libmp3lame --enable-libvorbis --enable-libopus \
+    --disable-mediafoundation --enable-libdav1d --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
     --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
   make DESTDIR=$pkgdir install
