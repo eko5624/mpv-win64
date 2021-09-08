@@ -6,19 +6,16 @@ pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
 url="https://github.com/google/shaderc/"
 license=('Apache')
-source=("https://github.com/google/shaderc/archive/v$pkgver.tar.gz"
-        "glslang.zip"::"https://github.com/KhronosGroup/glslang/archive/refs/heads/master.zip"
-        "spirv-headers.zip"::"https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/heads/master.zip"
-        "spirv-tools.zip"::"https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/heads/master.zip")
+source=("git+https://github.com/google/shaderc"
+        "git+https://github.com/KhronosGroup/glslang"
+        "git+https://github.com/KhronosGroup/SPIRV-Headers"
+        "git+https://github.com/KhronosGroup/SPIRV-Tools")
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir
-  mv glslang-master glslang
-  mv SPIRV-Headers-master spirv-headers
-  mv SPIRV-Tools-master spirv-tools
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
-  cd $srcdir/shaderc-$pkgver
+  cd $srcdir/shaderc
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
@@ -26,7 +23,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/shaderc-$pkgver
+  cd $srcdir/shaderc
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp -r libshaderc/include $pkgdir/opt
   cp -r libshaderc_util/include/libshaderc_util $pkgdir/opt/include
