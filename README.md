@@ -1,7 +1,7 @@
 # MPV Player Win64 Build
 
 ## Installation
-Grab and extract the All-in-One archive from <https://github.com/nyfair/mpv-win64/releases>  
+Grab and extract the All-in-One archive from <https://github.com/eko5624/mpv-win64/releases>  
 You can also manually install these pacman-based packages if you are using MSYS2  
 All my builds are portable and compiled with VapourSynth support, these plugins will have no effect if MPV can't find python environment
 
