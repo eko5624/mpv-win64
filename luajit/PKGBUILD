@@ -6,18 +6,18 @@ pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
 license=('MIT')
-source=("https://luajit.org/download/LuaJIT-${pkgver//_/-}.tar.gz")
+source=("git+https://github.com/LuaJIT/LuaJIT")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/LuaJIT-${pkgver//_/-}
+  cd $srcdir/LuaJIT
   sed -i 's/-shared/-shared -Wl,--out-implib,luajit-$\{ABIVER\}.dll.a/g' src/Makefile
   echo "int _dowildcard = 0;" >> src/luajit.c
   make amalg BUILDMODE=dynamic XCFLAGS=-DLUAJIT_ENABLE_GC64
 }
 
 package_luajit-dev() {
-  cd $srcdir/LuaJIT-${pkgver//_/-}
+  cd $srcdir/LuaJIT
   make DESTDIR=$pkgdir PREFIX=/opt install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
   mv src/lua*.a $pkgdir/opt/lib
@@ -25,7 +25,7 @@ package_luajit-dev() {
 
 package_luajit() {
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/LuaJIT-${pkgver//_/-}
+  cd $srcdir/LuaJIT
   mkdir -p $pkgdir/opt/bin
   mv src/lua*.exe $pkgdir/opt/bin
   mv src/lua*.dll $pkgdir/opt/bin
