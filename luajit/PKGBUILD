@@ -7,7 +7,7 @@ pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
 license=('MIT')
-source=("git+https://luajit.org/download/LuaJIT"
+source=("git+https://github.com/LuaJIT/LuaJIT"
         "luajit-0001-add-win32-utf-8-filesystem-functions.patch")
 md5sums=('SKIP')
 
