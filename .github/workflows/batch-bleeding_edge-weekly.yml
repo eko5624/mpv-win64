@@ -829,6 +829,7 @@ jobs:
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
       run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'mv /usr/bin/python* /tmp'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
