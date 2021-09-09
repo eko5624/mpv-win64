@@ -14,6 +14,8 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir
+  mv SPIRV-Headers spirv-headers
+  mv SPIRV-Tools spirv-tools
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
   cp spirv-headers/SPIRV-Headers.pc.in shaderc
   cd $srcdir/shaderc
