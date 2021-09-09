@@ -7,11 +7,11 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('lcms2-dev' 'vulkan-dev' 'shaderc-dev')
 license=('LGPL')
-source=("https://github.com/haasn/libplacebo/archive/v$pkgver.tar.gz")
+source=("git+https://github.com/haasn/libplacebo")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libplacebo-$pkgver
+  cd $srcdir/libplacebo
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
@@ -20,7 +20,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libplacebo-$pkgver/work
+  cd $srcdir/libplacebo/work
   DESTDIR=$pkgdir ninja install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
