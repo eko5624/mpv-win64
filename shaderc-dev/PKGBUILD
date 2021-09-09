@@ -15,6 +15,7 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 build() {
   cd $srcdir
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
+  cp spirv-headers/SPIRV-Headers.pc.in shaderc/
   cd $srcdir/shaderc
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
