@@ -1,0 +1,22 @@
+# Package information for LuaJIT to be used by pkg-config.
+majver=2
+minver=0
+relver=5
+version=${majver}.${minver}.${relver}
+abiver=5.1
+
+prefix=@MINGW_INSTALL_PREFIX@
+multilib=lib
+libdir=/opt/${multilib}
+libname=luajit-${abiver}
+includedir=/opt/include/luajit-${majver}.${minver}
+
+INSTALL_LMOD=/opt/share/lua/${abiver}
+INSTALL_CMOD=/opt/${multilib}/lua/${abiver}
+
+Name: LuaJIT
+Description: Just-in-time compiler for Lua
+URL: http://luajit.org
+Version: _ver
+Libs: -L${libdir} -l${libname}
+Cflags: -I${includedir}
