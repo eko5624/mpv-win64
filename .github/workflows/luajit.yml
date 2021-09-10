@@ -1,4 +1,4 @@
-name: luajit
+name: luajit-test
 
 on:
   workflow_dispatch:
