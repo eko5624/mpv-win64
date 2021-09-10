@@ -22,7 +22,7 @@ package_luajit-dev() {
 
 package_luajit() {
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/LuaJIT-${pkgver//_/-}
+  cd $srcdir/LuaJIT
   mkdir -p $pkgdir/opt/bin
   mv src/lua*.exe $pkgdir/opt/bin
   mv src/lua*.dll $pkgdir/opt/bin
