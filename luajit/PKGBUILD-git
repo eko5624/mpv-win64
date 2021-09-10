@@ -22,7 +22,6 @@ package_luajit-dev() {
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
   mv src/lua*.a $pkgdir/opt/lib
 }
-}
 
 package_luajit() {
   export PKGEXT='.pkg.tar.xz'
