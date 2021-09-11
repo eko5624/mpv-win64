@@ -11,7 +11,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/LuaJIT-${pkgver//_/-}
-  sed -i 's/-shared/-shared -Wl,--out-implib,luajit-$\{ABIVER\}.dll.a/g' src/Makefile
   echo "int _dowildcard = 0;" >> src/luajit.c
   make amalg BUILDMODE=dynamic XCFLAGS=-DLUAJIT_ENABLE_GC64
 }
