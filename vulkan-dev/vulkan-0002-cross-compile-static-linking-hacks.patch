@@ -95,3 +95,85 @@ index cfebfba..517b830 100644
  // Global variables used across files
 +#if defined(_WIN32) && !defined(LOADER_DYNAMIC_LIB)
 +extern LOADER_PLATFORM_THREAD_ONCE_DEFINITION(once_init);
++#endif
+ extern struct loader_struct loader;
+ extern loader_platform_thread_mutex loader_lock;
+ extern loader_platform_thread_mutex loader_json_lock;
+diff --git a/loader/loader.rc b/loader/loader.rc
+index f62a945..864453c 100755
+--- a/loader/loader.rc
++++ b/loader/loader.rc
+@@ -42,8 +42,11 @@
+ // End of customize section
+ ///////////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////////
+-
++#ifdef __MINGW64__
++#include <winresrc.h>
++#else // MSVC
+ #include "winres.h"
++#endif
+ 
+ #define VER_FILE_VERSION            VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_BUILDNO
+ 
+diff --git a/loader/loader_windows.c b/loader/loader_windows.c
+index 62f67f3..afd7c18 100644
+--- a/loader/loader_windows.c
++++ b/loader/loader_windows.c
+@@ -47,6 +47,8 @@
+ #include <strsafe.h>
+ #ifdef __MINGW32__
+ #undef strcpy  // fix error with redfined strcpy when building with MinGW-w64
++#define CM_GETIDLIST_FILTER_PRESENT            (0x00000100)
++#define CM_GETIDLIST_FILTER_CLASS              (0x00000200)
+ #endif
+ #include <dxgi1_6.h>
+ #include "adapters.h"
+@@ -86,6 +88,7 @@ void windows_initialization(void) {
+ #endif
+ }
+ 
++#if defined(LOADER_DYNAMIC_LIB)
+ BOOL WINAPI DllMain(HINSTANCE hinst, DWORD reason, LPVOID reserved) {
+     switch (reason) {
+         case DLL_PROCESS_ATTACH:
+@@ -102,6 +105,7 @@ BOOL WINAPI DllMain(HINSTANCE hinst, DWORD reason, LPVOID reserved) {
+     }
+     return TRUE;
+ }
++#endif
+ 
+ bool windows_add_json_entry(const struct loader_instance *inst,
+                             char **reg_data,    // list of JSON files
+diff --git a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
+index f603f19..a02e16e 100644
+--- a/loader/vk_loader_platform.h
++++ b/loader/vk_loader_platform.h
+@@ -424,9 +424,25 @@ typedef HANDLE loader_platform_thread;
+ // The once init functionality is not used when building a DLL on Windows. This is because there is no way to clean up the
+ // resources allocated by anything allocated by once init. This isn't a problem for static libraries, but it is for dynamic
+ // ones. When building a DLL, we use DllMain() instead to allow properly cleaning up resources.
++#if defined(LOADER_DYNAMIC_LIB)
+ #define LOADER_PLATFORM_THREAD_ONCE_DECLARATION(var)
+ #define LOADER_PLATFORM_THREAD_ONCE_DEFINITION(var)
+ #define LOADER_PLATFORM_THREAD_ONCE(ctl, func)
++#else
++#define LOADER_PLATFORM_THREAD_ONCE_DECLARATION(var) INIT_ONCE var = INIT_ONCE_STATIC_INIT;
++#define LOADER_PLATFORM_THREAD_ONCE_DEFINITION(var) INIT_ONCE var;
++#define LOADER_PLATFORM_THREAD_ONCE(ctl, func) loader_platform_thread_once_fn(ctl, func)
++static BOOL CALLBACK InitFuncWrapper(PINIT_ONCE InitOnce, PVOID Parameter, PVOID *Context) {
++    void (*func)(void) = (void (*)(void))Parameter;
++    func();
++    return TRUE;
++}
++static void loader_platform_thread_once_fn(void *ctl, void (*func)(void)) {
++    assert(func != NULL);
++    assert(ctl != NULL);
++    InitOnceExecuteOnce((PINIT_ONCE)ctl, InitFuncWrapper, (void *)func, NULL);
++}
++#endif
+ 
+ // Thread IDs:
+ typedef DWORD loader_platform_thread_id;
+-- 
+2.33.0
