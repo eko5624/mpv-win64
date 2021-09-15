@@ -1,0 +1,97 @@
+From 0d00d7d83af45bf96cb4b320bbf473ffd62928cb Mon Sep 17 00:00:00 2001
+From: shinchiro <shinchiro@users.noreply.github.com>
+Date: Sun, 12 Sep 2021 11:22:05 +0800
+Subject: [PATCH] loader: cross-compile & static linking hacks
+
+---
+ loader/CMakeLists.txt       | 21 +++++++--------------
+ loader/loader.h             |  3 +++
+ loader/loader.rc            |  5 ++++-
+ loader/loader_windows.c     |  4 ++++
+ loader/vk_loader_platform.h | 16 ++++++++++++++++
+ 5 files changed, 34 insertions(+), 15 deletions(-)
+
+diff --git a/loader/CMakeLists.txt b/loader/CMakeLists.txt
+index 20361b3..5d2b40e 100644
+--- a/loader/CMakeLists.txt
++++ b/loader/CMakeLists.txt
+@@ -75,7 +75,7 @@ set(CMAKE_C_FLAGS_DEBUG
+ set(CMAKE_CXX_FLAGS_DEBUG
+         "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG -DGIT_BRANCH_NAME=${GIT_BRANCH_NAME} -DGIT_TAG_INFO=${GIT_TAG_INFO}")
+ 
+-if(WIN32)
++if(WIN32 AND NOT MINGW)
+     if(MSVC)
+     # Use static MSVCRT libraries
+     foreach(configuration
+@@ -145,7 +145,7 @@ set(ASM_FAILURE_MSG "The build will fall back on building with C code\n")
+ set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG}Note that this may be unsafe, as the C code requires tail-call optimizations to remove")
+ set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} the stack frame for certain calls. If the compiler does not do this, then unknown device")
+ set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} extensions will suffer from a corrupted stack.")
+-if(WIN32)
++if(MSVC)
+     if(MINGW)
+         find_program(JWASM_FOUND jwasm)
+         if (JWASM_FOUND)
+@@ -214,7 +214,7 @@ else(UNIX AND NOT APPLE) # i.e.: Linux
+     endif()
+ endif()
+ 
+-if(WIN32)
++if(MSVC)
+     add_library(loader-norm OBJECT ${NORMAL_LOADER_SRCS} dirent_on_windows.c)
+     # target_compile_options(loader-norm PUBLIC "$<$<CONFIG:DEBUG>:${LOCAL_C_FLAGS_DBG}>")
+     target_compile_options(loader-norm PUBLIC ${MSVC_LOADER_COMPILE_OPTIONS})
+@@ -262,11 +262,7 @@ else()
+         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-typedef-redefinition")
+     endif()
+ 
+-    if(APPLE AND BUILD_STATIC_LOADER)
+-        add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
+-    else()
+-        add_library(vulkan SHARED ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
+-    endif()
++    add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
+     add_dependencies(vulkan loader_asm_gen_files)
+     # set version based on LOADER_GENERATED_HEADER_VERSION used to generate the code
+     set_target_properties(vulkan
+@@ -317,6 +313,7 @@ else()
+         # https://forums.developer.apple.com/thread/65963
+ 
+ # cmake-format: off
++        if (NOT ENABLE_STATIC_LOADER)
+         set_target_properties(vulkan-framework PROPERTIES
+             OUTPUT_NAME vulkan
+             FRAMEWORK TRUE
+@@ -330,6 +327,7 @@ else()
+             PUBLIC_HEADER DESTINATION vulkan
+             FRAMEWORK DESTINATION loader
+         )
++        endif()
+ # cmake-format: on
+     endif()
+ 
+@@ -342,12 +340,7 @@ endif()
+ include(FindPkgConfig QUIET)
+ if(PKG_CONFIG_FOUND)
+     set(VK_API_VERSION "${LOADER_GENERATED_HEADER_VERSION}")
+-    foreach(LIB ${CMAKE_CXX_IMPLICIT_LINK_LIBRARIES} ${PLATFORM_LIBS})
+-        set(PRIVATE_LIBS "${PRIVATE_LIBS} -l${LIB}")
+-    endforeach()
+-    if(WIN32)
+-        set(VULKAN_LIB_SUFFIX "-1")
+-    endif ()
++    set(PRIVATE_LIBS "${PRIVATE_LIBS} -lshlwapi -lcfgmgr32")
+     configure_file("vulkan.pc.in" "vulkan.pc" @ONLY)
+     install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+ endif()
+diff --git a/loader/loader.h b/loader/loader.h
+index cfebfba..517b830 100644
+--- a/loader/loader.h
++++ b/loader/loader.h
+@@ -65,6 +65,9 @@ static inline void loader_init_dispatch(void *obj, const void *data) {
+ }
+ 
+ // Global variables used across files
++#if defined(_WIN32) && !defined(LOADER_DYNAMIC_LIB)
++extern LOADER_PLATFORM_THREAD_ONCE_DEFINITION(once_init);
