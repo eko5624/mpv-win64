@@ -1,4 +1,4 @@
-name: luajit-test
+name: vulkan-test
 
 on:
   workflow_dispatch:
