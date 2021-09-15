@@ -8,7 +8,7 @@ url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
         "git+https://github.com/KhronosGroup/Vulkan-Loader"
-        "vulkan-0001-cross-compile-static-linking-hacks.patch")
+        "vulkan-0002-cross-compile-static-linking-hacks.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
