@@ -123,7 +123,7 @@ jobs:
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-54-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-55-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.33.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210907-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
