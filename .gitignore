@@ -9,5 +9,4 @@
 *.sig
 */src/
 */pkg/
-ffmpeg/FFmpeg
 mpv/mpv
