@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(ffmpeg-dev ffmpeg)
-pkgver=4.4
+pkgver=4.3
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
