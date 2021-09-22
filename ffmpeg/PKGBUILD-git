@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(ffmpeg-git-dev ffmpeg-git)
-pkgver=4.5pre
+pkgname=(ffmpeg-dev ffmpeg)
+pkgver=4.4
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
@@ -17,8 +17,7 @@ build() {
          --disable-pthreads --enable-w32threads"
 }
 
-package_ffmpeg-git-dev() {
-  conflicts=('ffmpeg-dev')
+package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libdav1d --enable-libmp3lame --enable-libvorbis --enable-libopus \
@@ -28,8 +27,7 @@ package_ffmpeg-git-dev() {
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
 
-package_ffmpeg-git() {
-  conflicts=('ffmpeg')
+package_ffmpeg() {
   depends=('vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
