@@ -50,6 +50,7 @@ jobs:
         tag: bleeding_edge
         overwrite: true
         file_glob: true
+        
   package:
     needs: [mpv, python-embed]
     runs-on: windows-latest
