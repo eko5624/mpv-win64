@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=mpv-git
+pkgname=mpv
 pkgver=0.34pre
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
@@ -20,7 +20,7 @@ build() {
 }
 
 package() {
-  depends=('ffmpeg-git' 'luajit' 'vapoursynth' 'mcfgthread')
+  depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/mpv/build
   mkdir -p $pkgdir/opt/bin/portable_config
