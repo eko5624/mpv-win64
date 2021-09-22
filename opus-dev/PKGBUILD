@@ -6,7 +6,7 @@ pkgdesc="Totally open, royalty-free, highly versatile audio codec"
 arch=('x86_64')
 url="https://www.opus-codec.org/"
 license=('BSD')
-source=("http://downloads.xiph.org/releases/opus/opus-$pkgver.tar.gz")
+source=("https://ftp.osuosl.org/pub/xiph/releases/opus/opus-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
