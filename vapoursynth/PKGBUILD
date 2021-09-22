@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  rm *7z* con* ms* vc* MANIFEST* setup.py vsrepo.py
+  rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll
   rm -rf doc
   rm vapoursynth64/plugins/.keep
 }
@@ -34,12 +34,9 @@ package_vapoursynth-plugin-core-extra() {
   cd $srcdir
   mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
   mv *.exe $pkgdir/opt/bin
+  mv vsrepo.py $pkgdir/opt/bin
   mv VSVFW.dll $pkgdir/opt/bin
-  mv vapoursynth64/coreplugins/avisource.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
   mv vapoursynth64/coreplugins/AvsCompat.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
-  mv vapoursynth64/coreplugins/libhistogram.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
-  mv vapoursynth64/coreplugins/libimwri.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
-  mv vapoursynth64/coreplugins/libsubtext.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
 }
 
 package_vapoursynth() {
