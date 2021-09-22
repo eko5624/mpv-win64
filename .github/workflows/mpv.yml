@@ -52,7 +52,7 @@ jobs:
         file_glob: true
         
   package:
-    needs: [mpv, python-embed]
+    needs: [mpv]
     runs-on: windows-latest
     steps:
     - name: Package
