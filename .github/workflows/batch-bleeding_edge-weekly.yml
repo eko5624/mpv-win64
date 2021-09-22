@@ -697,7 +697,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-git-dev-4.5pre-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-54-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-55-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.11.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-3.0.0-1-x86_64.pkg.tar.zst
