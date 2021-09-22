@@ -31,7 +31,7 @@ for p in pkgs:
 pkgs['luajit-dev'] = x['LuaJIT']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-dev'] = x['ffmpeg']
-for t in ['batch-stable.yml', 'batch-bleeding_edge-weekly.yml']:
+for t in ['batch-bleeding_edge-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
