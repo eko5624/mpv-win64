@@ -16,7 +16,6 @@ pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 # pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
-pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
