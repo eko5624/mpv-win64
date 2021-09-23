@@ -694,7 +694,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-dev-4.5pre-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-dev-4.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-55-1-x86_64.pkg.tar.zst
@@ -765,10 +765,10 @@ jobs:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-4.5pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-4.4-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-55-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-0.34pre-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-0.33-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20210907-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
@@ -781,33 +781,7 @@ jobs:
         tag: bleeding_edge
         overwrite: true
         file_glob: true
-
-  python-embed:
-    runs-on: windows-latest
-    steps:
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
-    - name: Build
-      run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/python-embed; makepkg'
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: python-embed*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: python-embed/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
-
+  
   shaderc:
     runs-on: windows-latest
     steps:
