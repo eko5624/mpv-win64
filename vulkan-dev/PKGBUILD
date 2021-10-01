@@ -23,10 +23,14 @@ build() {
   cd $srcdir/Vulkan-Loader
   sed -i '/string/d' loader/unknown_ext_chain_gas.S
   sed -i '/.data/d' loader/unknown_ext_chain_gas.S
-  patch -p1 -i $srcdir/vulkan-0002-cross-compile-static-linking-hacks.patch
+  sed -i '/corrupted stack/{n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
+  sed -i '/x86 GAS/{n;n;n;n;n;n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
+  sed -i 's/APPLE AND BUILD_STATIC_LOADER/MINGW/' loader/CMakeLists.txt
+  sed -i 's/@VULKAN_LIB_SUFFIX@/ -lshlwapi -lcfgmgr32/' loader/vulkan.pc.in
+  sed -i '/private/d' loader/vulkan.pc.in
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DENABLE_STATIC_LOADER=ON -DBUILD_TESTS=OFF
+    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF
   $CMAKE --build .
 }
 
@@ -35,6 +39,4 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  sed -i '/Libs:/d' $pkgdir/opt/lib/pkgconfig/*.pc
-  sed -i 's/Libs.private:/Libs: -L${libdir} -lvulkan/' $pkgdir/opt/lib/pkgconfig/*.pc
 }
