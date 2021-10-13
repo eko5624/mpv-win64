@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(vapoursynth-dev vapoursynth-plugin-core-extra vapoursynth)
-pkgver=56
+pkgver=57
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
