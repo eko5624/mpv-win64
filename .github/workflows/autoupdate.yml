@@ -3,7 +3,7 @@ name: autoupdate
 on:
   workflow_dispatch:
   schedule:
-  - cron: '0 0 * * *'
+  - cron: '10 0 * * *'
   
 jobs:
   version_check:
