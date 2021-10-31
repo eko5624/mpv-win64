@@ -40,7 +40,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*pkg*.xz
-        tag: bleeding_edge
+        tag: latest
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -48,7 +48,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*.zst
-        tag: bleeding_edge
+        tag: dev
         overwrite: true
         file_glob: true
 
@@ -720,7 +720,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
-        tag: bleeding_edge
+        tag: dev
         overwrite: true
         file_glob: true
 
@@ -780,7 +780,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: bleeding_edge
+        tag: dev
         overwrite: true
         file_glob: true
   
