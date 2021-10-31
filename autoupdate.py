@@ -16,7 +16,6 @@ pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 # pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
-pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
@@ -28,9 +27,9 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
-pkgs['luajit-dev'] = pkgs['luajit']
-pkgs['vapoursynth-dev'] = pkgs['vapoursynth']
-pkgs['ffmpeg-dev'] = pkgs['ffmpeg']
+pkgs['luajit-dev'] = x['LuaJIT']
+pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
+pkgs['ffmpeg-dev'] = x['ffmpeg']
 for t in ['build-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
