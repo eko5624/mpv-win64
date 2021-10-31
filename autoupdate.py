@@ -16,6 +16,7 @@ pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 # pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
+pkgs['python-embed'] = x['Python']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
@@ -27,10 +28,10 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
-pkgs['luajit-dev'] = x['LuaJIT']
-pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
-pkgs['ffmpeg-dev'] = x['ffmpeg']
-for t in ['build-weekly.yml']:
+pkgs['luajit-dev'] = pkgs['luajit']
+pkgs['vapoursynth-dev'] = pkgs['vapoursynth']
+pkgs['ffmpeg-dev'] = pkgs['ffmpeg']
+for t in ['batch-stable.yml', 'build-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
@@ -48,3 +49,27 @@ for t in ['build-weekly.yml']:
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       f.write(l)
+
+ffmpeg_git = pkgs['ffmpeg'].split('.')[:2]
+mpv_git = pkgs['mpv'].split('.')[:2]
+pkgs_git = {
+  'ffmpeg': '%s.%dpre' % (ffmpeg_git[0], int(ffmpeg_git[1])+1),
+  'mpv': '%s.%dpre' % (mpv_git[0], int(mpv_git[1])+1)
+}
+for p in pkgs_git:
+  with in_place.InPlace('%s/PKGBUILD-git' % p, newline='') as f:
+    for l in f:
+      if l.startswith('pkgver'):
+        l = 'pkgver=%s\n' % pkgs_git[p]
+      f.write(l)
+with in_place.InPlace('.github/workflows/build-weekly.yml', newline='') as f:
+  for l in f:
+    if (i:=l.find('/bleeding_edge/')) > -1:
+      r = l[i+15:]
+      if r.startswith('ffmpeg-git-dev'):
+        l = '%sffmpeg-git-dev-%s-1-x86_64.pkg.tar.zst\n' % (l[0:i+15], pkgs_git['ffmpeg'])
+      elif r.startswith('ffmpeg-git'):
+        l = '%sffmpeg-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['ffmpeg'])
+      elif r.startswith('mpv-git'):
+        l = '%smpv-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['mpv'])
+    f.write(l)
