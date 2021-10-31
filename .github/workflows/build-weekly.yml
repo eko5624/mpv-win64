@@ -1,4 +1,4 @@
-name: batch-bleeding_edge-weekly
+name: build-weekly
 
 on:
   workflow_dispatch:
