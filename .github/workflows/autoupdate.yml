@@ -11,10 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: ${{ github.repository }}
-        token: ${{ secrets.WORKFLOW_TOKEN }}
-        fetch-depth: '1'
-        
+        token: ${{ secrets.BOT }}
     - name: Check Latest Version
       run: |
         pip3 install in_place
