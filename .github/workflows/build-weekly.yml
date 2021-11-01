@@ -696,7 +696,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-dev-4.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-dev-4.4.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-57-1-x86_64.pkg.tar.zst
@@ -767,7 +767,7 @@ jobs:
     - name: Package
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-4.4-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/ffmpeg-4.4.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/bleeding_edge/mpv-0.33.1-1-x86_64.pkg.tar.xz
