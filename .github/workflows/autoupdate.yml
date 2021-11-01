@@ -11,8 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: 'eko5624/mpv-win64'
+        repository: ${{ github.repository }}
         token: ${{ github.token }}
+        fetch-depth: '1'
         
     - name: Check Latest Version
       run: |
