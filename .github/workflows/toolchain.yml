@@ -8,11 +8,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/cache@v2
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20211023_11.2.1_x64-ucrt
     - name: Setup Toolchain
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211023_11.2.1_x64-ucrt_c814daa6ac3be7c7e59f4cf692021dc7f5bc40ee.7z
@@ -21,11 +16,9 @@ jobs:
       run: git config --global core.autocrlf false
     - uses: actions/checkout@v2
     - name: Make Toolchain
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
-      if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
