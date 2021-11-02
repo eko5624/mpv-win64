@@ -49,26 +49,4 @@ for t in ['build-weekly.yml']:
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       f.write(l)
 
-ffmpeg_git = pkgs['ffmpeg'].split('.')[:2]
-mpv_git = pkgs['mpv'].split('.')[:2]
-pkgs_git = {
-  'ffmpeg': '%s.%dpre' % (ffmpeg_git[0], int(ffmpeg_git[1])+1),
-  'mpv': '%s.%dpre' % (mpv_git[0], int(mpv_git[1])+1)
-}
-for p in pkgs_git:
-  with in_place.InPlace('%s/PKGBUILD-git' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs_git[p]
-      f.write(l)
-with in_place.InPlace('.github/workflows/build-weekly.yml', newline='') as f:
-  for l in f:
-    if (i:=l.find('/latest/')) > -1:
-      r = l[i+15:]
-      if r.startswith('ffmpeg-git-dev'):
-        l = '%sffmpeg-git-dev-%s-1-x86_64.pkg.tar.zst\n' % (l[0:i+15], pkgs_git['ffmpeg'])
-      elif r.startswith('ffmpeg-git'):
-        l = '%sffmpeg-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['ffmpeg'])
-      elif r.startswith('mpv-git'):
-        l = '%smpv-git-%s-1-x86_64.pkg.tar.xz\n' % (l[0:i+15], pkgs_git['mpv'])
-    f.write(l)
+
