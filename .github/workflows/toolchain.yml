@@ -27,7 +27,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      if: steps.cache.outputs.cache-hit != 'true'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
