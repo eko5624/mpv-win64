@@ -71,7 +71,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: latest
+        tag: MPV-latest
         overwrite: true
         file_glob: true
         
