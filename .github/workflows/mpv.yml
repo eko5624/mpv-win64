@@ -55,9 +55,9 @@ jobs:
     needs: mpv
     runs-on: windows-latest
     steps:
-    - name: Package
-      run: |
-        $date = Get-Date -Format "yyyyMMdd"
+    - name: Package      
+      run: |        
+        $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
@@ -65,38 +65,19 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-    - name: Upload artifact
-      id: upload
-      uses: kittaakos/upload-artifact-as-is@master
+    - name: 'Get mpv latest commit sha'
+      id: get_sha
+      uses: mego22/actions-git-sha@main
       with:
-        path: All*.7z
-        
-  publish_release:
-    name: Publish release
-    needs: package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          path: artifacts
-          
-      - name: 'Get mpv latest commit sha'
-        id: get_sha
-        uses: mego22/actions-git-sha@main
-        with:
-          repo: "https://github.com/mpv-player/mpv.git"
-      - name: Get current time
-        run: |
-          echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV 
-      - name: Create release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "artifacts/*/*.7z"
-          name: ${{ env.short_time }}
-          body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
-          tag: "mpv-${{ env.short_time }}"        
-          token: ${{ secrets.GITHUB_TOKEN }}          
+        repo: "https://github.com/mpv-player/mpv.git"    
+    - name: Upload 
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+	      release_name: ${{ env.short_time }}	
+	      body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
+        tag: "mpv-${date}" 
+        overwrite: true
+        file_glob: true       
         
