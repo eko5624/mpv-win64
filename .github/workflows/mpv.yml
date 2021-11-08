@@ -89,9 +89,9 @@ jobs:
         with:
           artifacts: "artifacts/*/*.7z"
           commit: master
-          name: "MPV ${{ short_time }}"
-          body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
-          tag: ${{ env.short_time }}
+          name: ${{ short_time }}
+          body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
+          tag: "mpv-${{ env.short_time }}"
           allowUpdates: true
           prerelease: false          
           token: ${{ secrets.GITHUB_TOKEN }}          
