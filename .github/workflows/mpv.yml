@@ -52,7 +52,7 @@ jobs:
         file_glob: true
         
   package:
-    needs: [mpv]
+    needs: mpv
     runs-on: windows-latest
     steps:
     - name: Package
@@ -65,14 +65,34 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
+    - name: Upload artifact
+      id: upload
+      uses: kittaakos/upload-artifact-as-is@master
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: All*.7z
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
+        path: All*.7z
         
-        
+  publish_release:
+    name: Publish release
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Get mpv latest commit sha'
+        id: get_sha
+        uses: mego22/actions-git-sha@main
+        with:
+          repo: "https://github.com/mpv-player/mpv.git"
+      - name: Get current time
+        run: |
+          echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV 
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "artifacts/*/*.7z"
+          commit: master
+          name: "MPV ${{ short_time }}"
+          body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+          tag: ${{ env.short_time }}
+          allowUpdates: true
+          prerelease: false          
+          token: ${{ secrets.GITHUB_TOKEN }}          
         
