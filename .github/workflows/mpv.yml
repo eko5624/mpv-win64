@@ -88,11 +88,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "artifacts/*/*.7z"
-          commit: master
-          name: ${{ short_time }}
+          name: ${{ env.short_time }}"
           body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
-          tag: "mpv-${{ env.short_time }}"
-          allowUpdates: true
-          prerelease: false          
+          tag: "mpv-${{ env.short_time }}"        
           token: ${{ secrets.GITHUB_TOKEN }}          
         
