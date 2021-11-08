@@ -76,6 +76,13 @@ jobs:
     needs: package
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+          
       - name: 'Get mpv latest commit sha'
         id: get_sha
         uses: mego22/actions-git-sha@main
@@ -88,7 +95,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "artifacts/*/*.7z"
-          name: ${{ env.short_time }}"
+          name: ${{ env.short_time }}
           body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
           tag: "mpv-${{ env.short_time }}"        
           token: ${{ secrets.GITHUB_TOKEN }}          
