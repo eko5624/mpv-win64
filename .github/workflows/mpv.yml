@@ -49,11 +49,12 @@ jobs:
         file: mpv/*pkg*.xz
         tag: latest
         overwrite: true
-        file_glob: true
-
-  Prepare:
+        file_glob: true     
+   
+  package:
+    needs: mpv
     runs-on: windows-latest
-    steps:
+    steps:    
     - name: Checkout mpv-player/mpv
       uses: eko5624/checkout@v2
       with:
@@ -67,12 +68,7 @@ jobs:
       run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
     - name: Get current timestamp      
       id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"       
-   
-  package:
-    needs: [mpv, Prepare]
-    runs-on: windows-latest
-    steps:    
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
     - name: Package      
       run: |        
         $date = Get-Date -Format "yyyy-MM-dd"
@@ -88,7 +84,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: ${date}
+        tag: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
         overwrite: true
         file_glob: true  
