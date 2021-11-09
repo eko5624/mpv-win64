@@ -78,14 +78,14 @@ jobs:
     - name: Get mpv-player/mpv last commit SHA
       id: sha
       run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
-    - name: Get current time
-      run: |
-        echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV     
+    - name: Get current timestamp      
+      id: timestamp
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
     - name: Create Release      
       uses: eko5624/action-gh-release@v1
       with:
-        tag_name: ${{ env.short_time }}
-        name: ${{ env.short_time }}
+        tag_name: mpv-${{ steps.version.outputs.version }}
+        name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
         files: All*.7z
       env:
