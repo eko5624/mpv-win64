@@ -70,7 +70,7 @@ jobs:
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"       
    
   package:
-    needs: mpv
+    needs: [mpv, Prepare]
     runs-on: windows-latest
     steps:    
     - name: Package      
