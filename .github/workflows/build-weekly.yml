@@ -788,9 +788,23 @@ jobs:
     needs: mpv
     runs-on: windows-latest
     steps:
-    - name: Package
-      run: |
-        $date = Get-Date -Format "yyyyMMdd"
+    - name: Checkout mpv-player/mpv
+      uses: eko5624/checkout@v2
+      with:
+        repository: "mpv-player/mpv"
+        fetch-depth: 0
+    - name: Get mpv-player/mpv last version
+      id: version
+      run: echo "::set-output name=version::$(sh version.sh)"        
+    - name: Get mpv-player/mpv last commit SHA
+      id: sha
+      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+    - name: Get current timestamp      
+      id: timestamp
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
+    - name: Package      
+      run: |        
+        $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
@@ -798,15 +812,16 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-        copy All-in-One-MPV-git-${date}.7z All-in-One-MPV-git-latest.7z
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: MPV-latest
+        tag: mpv-${{ steps.version.outputs.version }}
+        release_name: ${{ steps.timestamp.outputs.date }}
+        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
         overwrite: true
-        file_glob: true
+        file_glob: true 
   
   shaderc:
     runs-on: windows-latest
