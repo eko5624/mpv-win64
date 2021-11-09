@@ -65,20 +65,26 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+  
+  publish_release:
+    name: Publish release
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
     - name: 'Get mpv latest commit sha'
-      id: sha
+      id: get_sha
       uses: mego22/actions-git-sha@main
       with:
-        repo: "https://github.com/mpv-player/mpv.git"    
-    - name: Get current timestamp      
-      id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"
+        repo: "https://github.com/mpv-player/mpv.git"
+    - name: Get current time
+      run: |
+        echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV     
     - name: Create Release      
       uses: eko5624/action-gh-release@v1
       with:
-        tag_name: mpv-${{ steps.timestamp.outputs.date }}
-        name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+        tag_name: ${{ env.short_time }}
+        name: ${{ env.short_time }}
+        body: Bump to mpv-player/mpv@${{ steps.get_sha.outputs.sha }}
         files: All*.7z
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
