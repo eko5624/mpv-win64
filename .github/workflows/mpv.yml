@@ -50,11 +50,29 @@ jobs:
         tag: latest
         overwrite: true
         file_glob: true
-        
+
+  Prepare:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout mpv-player/mpv
+      uses: eko5624/checkout@v2
+      with:
+        repository: "mpv-player/mpv"
+        fetch-depth: 0
+    - name: Get mpv-player/mpv last version
+      id: version
+      run: echo "::set-output name=version::$(sh version.sh)"        
+    - name: Get mpv-player/mpv last commit SHA
+      id: sha
+      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+    - name: Get current timestamp      
+      id: timestamp
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)"       
+   
   package:
     needs: mpv
     runs-on: windows-latest
-    steps:
+    steps:    
     - name: Package      
       run: |        
         $date = Get-Date -Format "yyyy-MM-dd"
@@ -65,29 +83,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211023-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
-  
-    - name: Checkout mpv-player/mpv
-      uses: eko5624/checkout@v2
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
       with:
-        repository: "mpv-player/mpv"
-        fetch-depth: 0
-
-    - name: Get mpv-player/mpv last version
-      id: version
-      run: echo "::set-output name=version::$(sh version.sh)"        
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
-    - name: Get current timestamp      
-      id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
-    - name: Create Release      
-      uses: eko5624/action-gh-release@v1
-      with:
-        tag_name: mpv-${{ steps.version.outputs.version }}
-        name: ${{ steps.timestamp.outputs.date }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: All*.7z
+        tag: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
-        files: All*.7z
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        overwrite: true
+        file_glob: true  
+ 
         
