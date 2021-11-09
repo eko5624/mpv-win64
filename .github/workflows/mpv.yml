@@ -73,14 +73,13 @@ jobs:
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"
-
     - name: Create Release      
       uses: eko5624/action-gh-release@v1
       with:
         tag_name: mpv-${{ steps.timestamp.outputs.date }}
         name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
-        files: build/mpv-${{ steps.version.outputs.version }}.zip
+        files: All*.7z
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
