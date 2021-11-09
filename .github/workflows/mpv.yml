@@ -66,18 +66,21 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
     - name: 'Get mpv latest commit sha'
-      id: get_sha
+      id: sha
       uses: mego22/actions-git-sha@main
       with:
         repo: "https://github.com/mpv-player/mpv.git"    
-    - name: Upload 
-      uses: svenstaro/upload-release-action@v2
+    - name: Get current timestamp      
+      id: timestamp
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)"
+
+    - name: Create Release      
+      uses: eko5624/action-gh-release@v1
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: All*.7z
-	release_name: ${{ env.short_time }}	
-	body: Bump to https://github.com/mpv-player/mpv/commit/${{ steps.get_sha.outputs.sha }}
-        tag: "mpv-${date}" 
-        overwrite: true
-        file_glob: true       
+        tag_name: mpv-${{ steps.timestamp.outputs.date }}
+        name: ${{ steps.timestamp.outputs.date }}
+        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+        files: build/mpv-${{ steps.version.outputs.version }}.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
