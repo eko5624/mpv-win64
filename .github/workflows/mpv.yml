@@ -66,16 +66,18 @@ jobs:
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
   
-  publish_release:
-    name: Publish release
-    needs: package
-    runs-on: ubuntu-latest
-    steps:
-    - name: 'Get mpv latest commit sha'
-      id: get_sha
-      uses: mego22/actions-git-sha@main
+    - name: Checkout mpv-player/mpv
+      uses: eko5624/checkout@v2
       with:
-        repo: "https://github.com/mpv-player/mpv.git"
+        repository: "mpv-player/mpv"
+        fetch-depth: 0
+
+    - name: Get mpv-player/mpv last version
+      id: version
+      run: echo "::set-output name=version::$(sh version.sh)"        
+    - name: Get mpv-player/mpv last commit SHA
+      id: sha
+      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
     - name: Get current time
       run: |
         echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV     
@@ -84,7 +86,7 @@ jobs:
       with:
         tag_name: ${{ env.short_time }}
         name: ${{ env.short_time }}
-        body: Bump to mpv-player/mpv@${{ steps.get_sha.outputs.sha }}
+        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
         files: All*.7z
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
