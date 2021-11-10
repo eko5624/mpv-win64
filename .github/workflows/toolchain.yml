@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Setup Toolchain
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211023_11.2.1_x64-ucrt_c814daa6ac3be7c7e59f4cf692021dc7f5bc40ee.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211109_11.2.1_x64-ucrt_04dbcd32429e4b5ddf38137eb47ef93f47c28871.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
