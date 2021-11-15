@@ -20,8 +20,8 @@ build() {
   $CMAKE --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-  sed -i '/string/d' loader/unknown_ext_chain_gas.S
-  sed -i '/.data/d' loader/unknown_ext_chain_gas.S
+  sed -i '/string/d' loader/unknown_ext_chain_gas_x86.S
+  sed -i '/.data/d' loader/unknown_ext_chain_gas_x86.S
   sed -i '/corrupted stack/{n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
   sed -i '/x86 GAS/{n;n;n;n;n;n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
   sed -i 's/APPLE AND BUILD_STATIC_LOADER/MINGW/' loader/CMakeLists.txt
