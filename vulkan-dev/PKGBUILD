@@ -6,22 +6,23 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader")
+source=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v$pkgver.zip"
+        "https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v$pkgver.tar.gz")
 md5sums=('SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
-  cd $srcdir/Vulkan-Headers
+  cd $srcdir/Vulkan-Headers-$pkgver
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
   $CMAKE --install . --prefix=$srcdir/opt
 
-  cd $srcdir/Vulkan-Loader
-  sed -i '/string/d' loader/unknown_ext_chain_gas_x86.S
-  sed -i '/.data/d' loader/unknown_ext_chain_gas_x86.S
+  cd $srcdir/Vulkan-Loader-$pkgver
+  sed -i '/string/d' loader/unknown_ext_chain_gas.S
+  sed -i '/.data/d' loader/unknown_ext_chain_gas.S
+  sed -i '/Git/d' CMakeLists.txt
   sed -i '/corrupted stack/{n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
   sed -i '/x86 GAS/{n;n;n;n;n;n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
   sed -i 's/APPLE AND BUILD_STATIC_LOADER/MINGW/' loader/CMakeLists.txt
@@ -34,8 +35,8 @@ build() {
 }
 
 package() {
-  cd $srcdir/Vulkan-Headers/build
+  cd $srcdir/Vulkan-Headers-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  cd $srcdir/Vulkan-Loader/build
+  cd $srcdir/Vulkan-Loader-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
