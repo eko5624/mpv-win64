@@ -1,4 +1,4 @@
-name: vulkan-test
+name: vulkan-git
 
 on:
   workflow_dispatch:
