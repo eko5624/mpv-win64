@@ -18,4 +18,5 @@ build() {
 package() {
   cd $srcdir/libdvdcss-$pkgver
   make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/share
 }
