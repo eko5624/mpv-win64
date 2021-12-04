@@ -7,7 +7,7 @@ url="https://github.com/anholt/libepoxy"
 license=('MIT')
 source=("git+https://github.com/anholt/libepoxy"
         "265.patch")
-md5sums=('SKIP')
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libepoxy
