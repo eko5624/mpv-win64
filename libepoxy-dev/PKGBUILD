@@ -6,12 +6,12 @@ arch=('x86_64')
 url="https://github.com/anholt/libepoxy"
 license=('MIT')
 source=("git+https://github.com/anholt/libepoxy"
-        "https://patch-diff.githubusercontent.com/raw/anholt/libepoxy/pull/265.patch")
+        "265.patch")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libepoxy
-  patch -p1 -i $srcdir/patch-diff.githubusercontent.com/raw/anholt/libepoxy/pull/265.patch 
+  patch -p1 -i $srcdir/265.patch 
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Dtests=false -Ddocs=false
