@@ -1,0 +1,27 @@
+pkgname=libepoxy-dev
+pkgver=2.12
+pkgrel=1
+pkgdesc='Epoxy is a library for handling OpenGL function pointer management for you'
+arch=('x86_64')
+url="https://github.com/anholt/libepoxy"
+license=('MIT')
+source=("git+https://github.com/anholt/libepoxy"
+        "https://patch-diff.githubusercontent.com/raw/anholt/libepoxy/pull/265.patch")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libepoxy
+  patch -p1 -i $srcdir/patch-diff.githubusercontent.com/raw/anholt/libepoxy/pull/265.patch 
+  mkdir work
+  meson . work --prefix=/opt --buildtype=release --default-library=static \
+    -Dtests=false -Ddocs=false
+  cd work
+  ninja
+}
+
+package() {
+  cd $srcdir/libepoxy/work
+  DESTDIR=$pkgdir ninja install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
