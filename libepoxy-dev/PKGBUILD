@@ -1,5 +1,5 @@
 pkgname=libepoxy-dev
-pkgver=2.12
+pkgver=1.5.9
 pkgrel=1
 pkgdesc='Epoxy is a library for handling OpenGL function pointer management for you'
 arch=('x86_64')
