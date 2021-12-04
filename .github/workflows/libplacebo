@@ -1,0 +1,49 @@
+name: libplacebo-git
+
+on:
+  workflow_dispatch:
+
+jobs:
+  libplacebo:
+    needs: [lcms2, libepoxy, vulkan, shaderc]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20211124_11.2.1_x64-ucrt
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v2
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        pip install meson ninja mako
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.9-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.201-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
+        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
+        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libplacebo*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libplacebo-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
