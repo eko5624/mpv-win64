@@ -6,12 +6,12 @@ pkgdesc='A tool and library for parsing and converting SPIR-V to other shader la
 arch=('x86_64')
 url="https://github.com/KhronosGroup/SPIRV-Cross/"
 license=('Apache')
-source=("https://github.com/KhronosGroup/SPIRV-Cross/archive/${pkgver//./-}.tar.gz"
+source=("git+https://github.com/KhronosGroup/SPIRV-Cross"
         "spirv-cross-0001-static-linking-hacks.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  cd $srcdir/SPIRV-Cross-${pkgver//./-}
+  cd $srcdir/SPIRV-Cross
   patch -p1 -i $srcdir/spirv-cross-0001-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO"
@@ -21,6 +21,6 @@ build() {
 }
 
 package() {
-  cd $srcdir/SPIRV-Cross-${pkgver//./-}/build
+  cd $srcdir/SPIRV-Cross/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
