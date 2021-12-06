@@ -6,17 +6,17 @@ pkgdesc='Small-footprint color management engine, version 2'
 arch=('x86_64')
 url="http://www.littlecms.com/"
 license=('MIT')
-source=("https://github.com/mm2/Little-CMS/archive/$pkgver.tar.gz")
+source=("git+https://github.com/mm2/Little-CMS")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/Little-CMS-$pkgver
+  cd $srcdir/Little-CMS
   ./configure prefix=/opt --disable-shared --without-zlib
   make
 }
 
 package() {
-  cd $srcdir/Little-CMS-$pkgver
+  cd $srcdir/Little-CMS
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
