@@ -9,8 +9,8 @@ All my builds are portable and compiled with VapourSynth support, these plugins 
 
 ## Requirements
 Microsoft Visual C++ Redistributable
-<https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170>
-![vc_redist.x64](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170
+Download vc_redist.x64 <https://aka.ms/vs/17/release/vc_redist.x64.exe>
 
 
 ## Main project site:
