@@ -7,6 +7,12 @@ Grab and extract the All-in-One archive from <https://github.com/eko5624/mpv-win
 You can also manually install these pacman-based packages if you are using MSYS2  
 All my builds are portable and compiled with VapourSynth support, these plugins will have no effect if MPV can't find python environment
 
+## Requirements
+Microsoft Visual C++ Redistributable
+<https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170>
+vc_redist.x64 ![downloads](https://aka.ms/vs/17/release/vc_redist.x64.exe)
+
+
 ## Main project site:
 <https://mpv.io/>
 
