@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
-makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev' 'lcms2-dev'
+makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 'libass-dev' 'lcms2-dev'
               'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
 conflicts=('mpv')
 license=('GPL3')
