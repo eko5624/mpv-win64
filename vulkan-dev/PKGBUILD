@@ -1,4 +1,3 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=vulkan-dev
 pkgver=1.2.202
 pkgrel=1
@@ -28,6 +27,28 @@ build() {
   sed -i 's/APPLE AND BUILD_STATIC_LOADER/MINGW/' loader/CMakeLists.txt
   sed -i 's/@VULKAN_LIB_SUFFIX@/ -lshlwapi -lcfgmgr32/' loader/vulkan.pc.in
   sed -i '/private/d' loader/vulkan.pc.in
+  sed -i '/DllMain/,+15d' loader/loader_windows.c
+  sed -i '/DllMain/,+4d' loader/vk_loader_platform.h
+  echo "
+extern LOADER_PLATFORM_THREAD_ONCE_DEFINITION(once_init);
+#define CM_GETIDLIST_FILTER_PRESENT (0x00000100)
+#define CM_GETIDLIST_FILTER_CLASS (0x00000200)
+  " >> loader/loader.h
+  echo "
+#define LOADER_PLATFORM_THREAD_ONCE_DECLARATION(var) INIT_ONCE var = INIT_ONCE_STATIC_INIT;
+#define LOADER_PLATFORM_THREAD_ONCE_DEFINITION(var) INIT_ONCE var;
+#define LOADER_PLATFORM_THREAD_ONCE(ctl, func) loader_platform_thread_once_fn(ctl, func)
+static BOOL CALLBACK InitFuncWrapper(PINIT_ONCE InitOnce, PVOID Parameter, PVOID *Context) {
+    void (*func)(void) = (void (*)(void))Parameter;
+    func();
+    return TRUE;
+}
+static void loader_platform_thread_once_fn(void *ctl, void (*func)(void)) {
+    assert(func != NULL);
+    assert(ctl != NULL);
+    InitOnceExecuteOnce((PINIT_ONCE)ctl, InitFuncWrapper, (void *)func, NULL);
+}
+  " >> loader/vk_loader_platform.h
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF
