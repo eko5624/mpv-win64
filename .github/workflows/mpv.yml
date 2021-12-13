@@ -22,7 +22,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S yasm nasm git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-4.4.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
