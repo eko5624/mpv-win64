@@ -307,7 +307,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -541,7 +541,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libepoxy-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -697,7 +697,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -882,7 +882,7 @@ jobs:
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'mv /usr/bin/python* /tmp'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
