@@ -24,6 +24,7 @@ jobs:
       run: |
         pip install meson ninja mako
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.9-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.202-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
