@@ -10,7 +10,9 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/SDL
-  ./configure prefix=/opt --disable-shared 
+  mkdir build
+  cd build
+  ../configure prefix=/opt --disable-shared 
   make
 }
 
