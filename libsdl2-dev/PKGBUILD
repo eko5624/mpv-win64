@@ -4,20 +4,20 @@ pkgrel=1
 pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
 arch=('x86_64')
 url="https://github.com/libsdl-org/SDL/"
-license=('zlib')
+license=('MIT')
 source=("git+https://github.com/libsdl-org/SDL")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/SDL
-  mkdir build
-  cd build
+  rm -rf build && mkdir build && cd build
+  ../autogen.sh
   ../configure prefix=/opt --disable-shared 
   make
 }
 
 package() {
-  cd $srcdir/SDL
+  cd $srcdir/SDL/build
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }  
