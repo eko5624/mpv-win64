@@ -1,0 +1,22 @@
+pkgname=openal-soft-dev
+pkgver=1.21.1
+pkgrel=1
+pkgdesc='Software implementation of the OpenAL 3D audio API'
+arch=('x86_64')
+url="https://github.com/kcat/openal-soft/"
+license=('Apache')
+source=("git+https://github.com/kcat/openal-soft")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/openal-soft
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DLIBTYPE=STATIC \
+    -DALSOFT_UTILS=OFF -DALSOFT_EXAMPLES=OFF -DALSOFT_TESTS=OFF -DALSOFT_BACKEND_PIPEWIRE=OFF 
+  $CMAKE --build . 
+}
+
+package() {
+  cd $srcdir/openal-soft/build
+  $CMAKE --install . --prefix=$pkgdir/opt
+}
