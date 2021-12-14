@@ -1,0 +1,22 @@
+pkgname=libass-dev
+pkgver=2.0.18
+pkgrel=1
+pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
+arch=('x86_64')
+url="https://github.com/libsdl-org/SDL/"
+license=('zlib')
+source=("git+https://github.com/libsdl-org/SDL")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/SDL
+  ./autogen.sh
+  ./configure prefix=/opt --disable-shared 
+  make
+}
+
+package() {
+  cd $srcdir/SDL
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+}  
