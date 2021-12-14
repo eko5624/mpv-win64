@@ -1,4 +1,4 @@
-pkgname=libass-dev
+pkgname=libsdl2-dev
 pkgver=2.0.18
 pkgrel=1
 pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
