@@ -11,7 +11,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv-config
-  rm -rf *.md .git
+  rm *.md 
+  rm -rf .git
 }
 
 package() {
