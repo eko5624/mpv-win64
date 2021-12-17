@@ -1,0 +1,31 @@
+name: MPV-config
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mpv-config:
+    runs-on: windows-latest
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv-config; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: mpv-config*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv-config/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true
