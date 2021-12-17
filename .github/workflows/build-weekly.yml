@@ -6,6 +6,33 @@ on:
     - cron: '0 1 * * MON'
     
 jobs:
+  config:
+    runs-on: windows-latest
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf false
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv-config; makepkg'
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: config*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: config/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true
+
   ffmpeg:
     needs: [lame, dav1d, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-latest
@@ -826,7 +853,7 @@ jobs:
         file_glob: true
 
   package:
-    needs: mpv
+    needs: [mpv, config]
     runs-on: windows-latest
     steps:
     - name: Checkout mpv-player/mpv
@@ -850,6 +877,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
