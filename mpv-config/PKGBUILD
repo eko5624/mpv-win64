@@ -1,4 +1,4 @@
-pkgname=mpv-conf
+pkgname=config
 pkgver=1.0
 pkgrel=1
 pkgdesc='MPV config files'
