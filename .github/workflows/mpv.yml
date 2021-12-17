@@ -78,8 +78,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-conf-1.0-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
-        C:\msys64\usr\bin\bash -lc "cp -r /d/a/mpv-win64/mpv-win64/dotfiles/* C:\msys64\opt\bin"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
