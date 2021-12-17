@@ -1,0 +1,20 @@
+pkgname=mpv-conf
+pkgver=1.0
+pkgrel=1
+pkgdesc='MPV config files'
+arch=('x86_64')
+url="https://github.com/eko5624/mpv-config/"
+license=('custom')
+source=(git+"https://github.com/eko5624/mpv-config")
+options=(!strip)
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/mpv-config
+}
+
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir $pkgdir/opt
+  mv $srcdir $pkgdir/opt/bin
+}
