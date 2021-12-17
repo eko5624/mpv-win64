@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv-config; makepkg'
     - name: Delete
       uses: mknejp/delete-release-assets@v1
