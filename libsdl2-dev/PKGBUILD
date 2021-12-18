@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
 arch=('x86_64')
 url="https://github.com/libsdl-org/SDL/"
-license=('MIT')
+license=('ZLIB')
 source=("git+https://github.com/libsdl-org/SDL")
 md5sums=('SKIP')
 
