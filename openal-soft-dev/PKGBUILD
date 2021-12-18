@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Software implementation of the OpenAL 3D audio API'
 arch=('x86_64')
 url="https://github.com/kcat/openal-soft/"
-license=('BSD')
+license=('GPL')
 source=("git+https://github.com/kcat/openal-soft")
 md5sums=('SKIP')
 
