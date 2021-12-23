@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  export PKG_CONFIG_PATH="/opt/lib/pkgconfig"
+  LDFLAGS="$LDFLAGS -lstdc++"
   meson build -Dbuildtype=release -Dprefix=/opt
   meson compile -C build
 }
