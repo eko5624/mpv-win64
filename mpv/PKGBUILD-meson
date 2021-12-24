@@ -15,7 +15,7 @@ build() {
   LDFLAGS="$LDFLAGS -lstdc++"
   CC=gcc.exe meson build
   meson configure -Dprefix=/opt
-  meson compile -C build -Dbuildtype=release -Ddebug=false 
+  meson compile -C build -Dbuildtype=release
 }
 
 package() {
