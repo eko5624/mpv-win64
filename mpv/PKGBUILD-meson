@@ -14,7 +14,7 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
   mkdir work
-  meson . work -Dbuildtype=custom -Ddebug=false --iconv=disable --libbluray=enable --dvdnav=enable
+  meson . work -Dbuildtype=custom -Ddebug=false 
   cd work
   ninja
   ls **/mpv*
@@ -22,7 +22,7 @@ build() {
 
 package() {
   depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
-  export PKGEXT='.pkg.tar.xz'
+  export PKGEXT='.pkg.tar.xz'  
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/work
   strip mpv.*
