@@ -13,8 +13,8 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
-  CC=gcc.exe meson build
-  meson compile -C build --buildtype=release
+  meson build
+  meson compile -C build -Dbuildtype=release
 }
 
 package() {
