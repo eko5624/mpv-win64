@@ -13,18 +13,16 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
-  mkdir work
-  meson . work -Dbuildtype=custom -Ddebug=false 
-  cd work
-  ninja
-  ls **/mpv*
+  CC=gcc.exe meson build
+  meson configure -Dprefix=/opt
+  meson compile -C build -Dbuildtype=release -Ddebug=false 
 }
 
 package() {
   depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'  
   mkdir -p $pkgdir/opt/bin  
-  cd $srcdir/mpv/work
+  cd $srcdir/mpv/build
   strip mpv.*
   mv mpv.* $pkgdir/opt/bin
 }
