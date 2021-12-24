@@ -16,6 +16,7 @@ build() {
   python bootstrap.py
   CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++" python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
+  ls /opt
 }
 
 package() {
