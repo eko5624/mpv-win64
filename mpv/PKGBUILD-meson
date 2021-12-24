@@ -14,7 +14,7 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
   mkdir work
-  meson . work -Dbuildtype=custom -Ddebug=false --Diconv=false -Dlibbluray=true -Ddvdnav=true
+  meson . work -Dbuildtype=custom -Ddebug=false --disable-iconv --enable-libbluray --enable-dvdnav
   cd work
   ninja
   ls **/mpv*
