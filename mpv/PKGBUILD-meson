@@ -14,7 +14,7 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
   meson build
-  meson compile -C build -Dbuildtype=release
+  meson compile -C build
 }
 
 package() {
