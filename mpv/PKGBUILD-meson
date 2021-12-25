@@ -14,7 +14,7 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
   meson build -Dbuildtype=release -Dprefix=/opt -Diconv=disabled -Dlibbluray=enabled -Ddvdnav=enabled
-  meson compile build 
+  meson compile -C build 
 }
 
 package() {
