@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
-makedepends=('yasm' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev' 'lcms2-dev'
+makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev' 'lcms2-dev'
               'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'libepoxy-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
 license=('GPL3')
 source=("git+https://github.com/mpv-player/mpv")
@@ -13,7 +13,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
-  CC=gcc.exe meson build -Dbuildtype=release -Dprefix=/opt -Diconv=disabled -Dlibbluray=enabled -Ddvdnav=enabled
+  meson build -Dbuildtype=release -Dprefix=/opt -Diconv=disabled -Dlibbluray=enabled -Ddvdnav=enabled
   meson compile -C build 
 }
 
