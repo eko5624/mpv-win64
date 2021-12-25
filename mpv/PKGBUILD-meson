@@ -14,15 +14,14 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
   mkdir work
-  meson . work -Dbuildtype=release -Dprefix=/opt -Diconv=disabled -Dlibbluray=enabled -Ddvdnav=enabled
+  meson . work --prefix=/opt --buildtype=release 
   cd work
   ninja
 }
 
 package() {
   depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread') 
-  export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/bin  
+  export PKGEXT='.pkg.tar.xz'  
   cd $srcdir/mpv/work
   DESTDIR=$pkgdir ninja install
   mv $pkgdir/msys64/* $pkgdir
