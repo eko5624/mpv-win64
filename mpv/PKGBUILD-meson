@@ -27,5 +27,5 @@ package() {
   cd $srcdir/mpv/work
   ls
   strip mpv.exe
-  mv mpv.* $pkgdir/opt/bin
+  mv mpv.exe $pkgdir/opt/bin
 }
