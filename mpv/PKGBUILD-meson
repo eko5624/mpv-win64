@@ -25,7 +25,7 @@ package() {
   depends=('ffmpeg' 'luajit' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'  
   mkdir -p $pkgdir/opt/bin  
-  cd $srcdir/work
+  cd $srcdir/mpv/work
   strip mpv.exe
   mv mpv.exe $pkgdir/opt/bin
 }
