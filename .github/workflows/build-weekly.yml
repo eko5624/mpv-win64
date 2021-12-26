@@ -760,7 +760,7 @@ jobs:
         file_glob: true
 
   mpv:
-    needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libplacebo, spirv-cross]
+    needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, spirv-cross]
     runs-on: windows-latest
     steps:
     - uses: actions/cache@v2
@@ -853,7 +853,7 @@ jobs:
         file_glob: true
 
   package:
-    needs: mpv
+    needs: [mpv, config]
     runs-on: windows-latest
     steps:
     - name: Checkout mpv-player/mpv
