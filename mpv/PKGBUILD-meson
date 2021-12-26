@@ -18,14 +18,13 @@ build() {
   meson . work --prefix=/opt --buildtype=release 
   cd work
   ninja
-  ls **/mpv*
 }
 
 package() {
-  depends=('ffmpeg' 'luajit' 'mcfgthread')
+  depends=('ffmpeg' 'luajit' 'mcfgthread') 
   export PKGEXT='.pkg.tar.xz'  
-  mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/work
-  strip mpv.exe
-  mv mpv.exe $pkgdir/opt/bin
+  DESTDIR=$pkgdir ninja install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
