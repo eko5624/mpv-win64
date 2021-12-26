@@ -18,5 +18,6 @@ build() {
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
+  cd $srcdir/mpv-config
   mv $srcdir/mpv-config $pkgdir/opt/bin
 }
