@@ -26,6 +26,6 @@ package() {
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/work
   ls
-  strip mpv.*
+  strip mpv.exe
   mv mpv.* $pkgdir/opt/bin
 }
