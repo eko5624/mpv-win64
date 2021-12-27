@@ -7,7 +7,7 @@ on:
     
 jobs:
   config:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -35,7 +35,7 @@ jobs:
 
   ffmpeg:
     needs: [lame, dav1d, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -96,7 +96,7 @@ jobs:
         file_glob: true
 
   dav1d:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -115,7 +115,7 @@ jobs:
       run: |
         pip install meson ninja
         C:\msys64\usr\bin\bash -lc 'pacman -S nasm git --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
@@ -134,7 +134,7 @@ jobs:
         file_glob: true
 
   ffnvcodec:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -170,7 +170,7 @@ jobs:
         file_glob: true
 
   freetype2:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -206,7 +206,7 @@ jobs:
         file_glob: true
 
   fribidi:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -224,7 +224,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
@@ -243,7 +243,7 @@ jobs:
         file_glob: true
 
   harfbuzz:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -261,7 +261,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         pip install meson ninja
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
@@ -280,7 +280,7 @@ jobs:
         file_glob: true
 
   lame:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -317,7 +317,7 @@ jobs:
         file_glob: true
 
   lcms2:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -355,7 +355,7 @@ jobs:
 
   libass:
     needs: [freetype2, fribidi, harfbuzz]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -397,7 +397,7 @@ jobs:
 
   libbluray:
     needs: [freetype2]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -435,7 +435,7 @@ jobs:
         file_glob: true
 
   libdvdcss:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -472,7 +472,7 @@ jobs:
 
   libdvdnav:
     needs: [libdvdread]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -512,7 +512,7 @@ jobs:
 
   libdvdread:
     needs: [libdvdcss]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -550,7 +550,7 @@ jobs:
         file_glob: true
         
   libepoxy:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -569,7 +569,7 @@ jobs:
       run: |
         pip install meson ninja
         C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libepoxy-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libepoxy-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
@@ -588,7 +588,7 @@ jobs:
         file_glob: true            
 
   libogg:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -625,7 +625,7 @@ jobs:
 
   libplacebo:
     needs: [lcms2, libepoxy, vulkan, shaderc]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -649,7 +649,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
         C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
@@ -669,7 +669,7 @@ jobs:
 
   libvorbis_aotuv:
     needs: [libogg]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -707,7 +707,7 @@ jobs:
         file_glob: true
 
   luajit:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -761,7 +761,7 @@ jobs:
 
   mpv:
     needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, spirv-cross]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -817,7 +817,7 @@ jobs:
         file_glob: true
 
   opus:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -854,7 +854,7 @@ jobs:
 
   package:
     needs: [mpv, config]
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - name: Checkout mpv-player/mpv
       uses: eko5624/checkout@v2
@@ -893,7 +893,7 @@ jobs:
         file_glob: true 
   
   shaderc:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -932,7 +932,7 @@ jobs:
         file_glob: true
 
   spirv-cross:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
@@ -969,7 +969,7 @@ jobs:
         file_glob: true
 
   vapoursynth:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -1011,7 +1011,7 @@ jobs:
         file_glob: true
 
   vulkan:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: eko5624/cache@v2
       id: cache
