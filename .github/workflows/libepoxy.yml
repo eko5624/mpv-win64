@@ -14,13 +14,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt        
-    - name: Setup MSYS2
-      uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >-
-          base-devel     
+        key: mcf_20211207_11.2.1_x64-ucrt           
     - name: Prepare
       run: git config --global core.autocrlf false     
     - uses: actions/checkout@v2
