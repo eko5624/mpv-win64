@@ -5,7 +5,10 @@ on:
 
 jobs:
   libepoxy:
-    runs-on: windows-latest
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: msys2 {0}    
     steps:
     - uses: actions/cache@v2
       id: cache
@@ -14,6 +17,11 @@ jobs:
         key: mcf_20211124_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          base-devel      
     - uses: actions/checkout@v2
     - name: Build
       env:
