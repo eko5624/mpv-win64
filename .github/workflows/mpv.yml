@@ -7,6 +7,10 @@ jobs:
   mpv:
     runs-on: windows-latest
     steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        release: false
+        install: base-devel autotools yasm git    
     - uses: actions/cache@v2
       id: cache
       with:
@@ -21,8 +25,8 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+      shell: msys2 {0}
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-4.4.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
@@ -41,8 +45,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.157.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
+        cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -53,9 +57,12 @@ jobs:
         file_glob: true     
    
   package:
-    needs: mpv
-    runs-on: windows-latest
-    steps:    
+    needs: [mpv]
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        release: false
     - name: Checkout mpv-player/mpv
       uses: eko5624/checkout@v2
       with:
@@ -70,19 +77,22 @@ jobs:
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
-    - name: Package      
+    - name: Setup Packages      
+      shell: msys2 {0}
       run: |        
-        $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211231-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211231-1-x86_64.pkg.tar.xz
+        pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
+    - name: Zip Packages    
+      run: | 
+        $date = Get-Date -Format "yyyy-MM-dd"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
@@ -90,6 +100,6 @@ jobs:
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
         overwrite: true
-        file_glob: true  
+        file_glob: true 
  
         
