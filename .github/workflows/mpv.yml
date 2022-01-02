@@ -17,7 +17,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
     - uses: actions/checkout@v2
     - name: Build
       env:
