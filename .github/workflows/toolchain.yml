@@ -36,8 +36,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-${{ github.event.inputs.cache_id }}
+        key: mcf_20211207_11.2.1_x64-${{ steps.timestamp.outputs.date }}-${{ github.event.inputs.cache_id }}
         restore-keys: |
+          mcf_20211207_11.2.1_x64-${{ steps.timestamp.outputs.date }}
           mcf_20211207_11.2.1_x64-ucrt
     - name: Delete
       uses: mknejp/delete-release-assets@v1
