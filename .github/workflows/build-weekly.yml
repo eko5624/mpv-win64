@@ -14,8 +14,8 @@ jobs:
         release: input
         install: base-devel autotools git   
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       shell: msys2 {0}
@@ -52,8 +52,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -120,8 +120,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -162,8 +162,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -204,8 +204,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -248,8 +248,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -292,8 +292,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -334,8 +334,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -376,8 +376,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -419,8 +419,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -466,8 +466,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -510,8 +510,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -553,8 +553,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -599,8 +599,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -645,8 +645,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -687,8 +687,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -732,8 +732,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -780,8 +780,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -824,8 +824,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -883,8 +883,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -944,8 +944,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -1034,8 +1034,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -1078,8 +1078,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
@@ -1116,8 +1116,8 @@ jobs:
         release: input
         install: base-devel autotools     
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       shell: msys2 {0}
@@ -1169,8 +1169,8 @@ jobs:
         path: D:\ucrt64
         key: mcf_20211207_11.2.1_x64-ucrt
     - name: Prepare
-       run: git config --global core.autocrlf input
-       shell: bash
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: eko5624/checkout@v2
     - name: Build
       env:
