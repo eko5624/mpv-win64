@@ -17,7 +17,6 @@ jobs:
         release: false
         install: base-devel autotools    
     - name: Setup Toolchain
-      shell: powershell  
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211207_11.2.1_x64-ucrt_ace16bf691e6fe9567bded60d0e3fe3edd2a210e.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
@@ -28,6 +27,11 @@ jobs:
     - name: Make Toolchain
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20211207_11.2.1_x64-ucrt    
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
