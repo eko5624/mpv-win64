@@ -28,16 +28,15 @@ jobs:
       shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg    
-    - name: Get current time
-      run: |
-        echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV
+    - name: Get current timestamp      
+      id: timestamp
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)" 
     
     - name: Cache
       uses: actions/cache@v2
-      id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt-${{ env.short_time }}-${{ github.event.inputs.cache_id }}
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.timestamp.outputs.date }}-${{ github.event.inputs.cache_id }}
         restore-keys: |
           mcf_20211207_11.2.1_x64-ucrt
     - name: Delete
