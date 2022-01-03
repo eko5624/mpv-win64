@@ -20,6 +20,7 @@ jobs:
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v2     
     - name: Make Toolchain
+      shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - uses: actions/cache@v2
