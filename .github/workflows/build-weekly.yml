@@ -41,7 +41,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -102,7 +102,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -140,7 +140,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -177,7 +177,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -214,7 +214,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -252,7 +252,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -290,7 +290,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -327,7 +327,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -365,7 +365,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -407,7 +407,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -446,7 +446,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -484,7 +484,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -525,7 +525,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -564,7 +564,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -602,7 +602,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -640,7 +640,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -684,7 +684,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -723,7 +723,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -777,7 +777,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -833,7 +833,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -889,7 +889,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211231-1-x86_64.pkg.tar.xz
         C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
     - name: Upload
@@ -910,7 +910,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -949,7 +949,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
@@ -1029,7 +1029,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211231_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf false
     - uses: eko5624/checkout@v2
