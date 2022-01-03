@@ -7,20 +7,25 @@ on:
 jobs:
   build:
     runs-on: windows-2022
+    defaults:
+      run:
+        shell: msys2 {0}
+        
     steps:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
         install: base-devel autotools    
     - name: Setup Toolchain
+      shell: powershell  
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211207_11.2.1_x64-ucrt_ace16bf691e6fe9567bded60d0e3fe3edd2a210e.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
+      shell: bash
     - uses: actions/checkout@v2   
     - name: Make Toolchain
-      shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
