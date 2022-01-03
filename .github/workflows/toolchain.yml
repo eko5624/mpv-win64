@@ -6,11 +6,11 @@ on:
     - cron: '15 0 * * MON'  
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
     - name: Setup Toolchain
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211231_11.2.1_x64-ucrt_bc8249a4d66c72b1641b95849914681ebe87e507.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211207_11.2.1_x64-ucrt_ace16bf691e6fe9567bded60d0e3fe3edd2a210e.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
@@ -18,20 +18,11 @@ jobs:
     - name: Make Toolchain
       run: |
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
-    - name: Test Building Aria2
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S base-devel --noconfirm'        
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/aria2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - uses: actions/cache@v2
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211231_11.2.1_x64-ucrt        
+        key: mcf_20211231_11.2.1_x64-ucrt    
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -39,28 +30,12 @@ jobs:
         tag: latest
         assets: mcfgthread*
         fail-if-no-assets: false
-        fail-if-no-release: false        
+        fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mcfgthread/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
-    - name: Delete Aria2
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: aria2*
-        fail-if-no-assets: false
-        fail-if-no-release: false        
-    - name: Upload Aria2
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: aria2/*pkg*.xz
         tag: latest
         overwrite: true
         file_glob: true
