@@ -2,6 +2,11 @@ name: toolchain
 
 on:
   workflow_dispatch:
+    inputs:
+      cache_id:
+        description: 'input cache_id if you want to renew cache'
+        required: false
+
   schedule:
     - cron: '15 0 * * MON'  
 jobs:
@@ -11,12 +16,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools 
-    - uses: actions/cache@v2
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt        
+        install: base-devel autotools        
     - name: Setup Toolchain
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20211207_11.2.1_x64-ucrt_ace16bf691e6fe9567bded60d0e3fe3edd2a210e.7z
@@ -28,6 +28,18 @@ jobs:
       shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg    
+    - name: Get current time
+      run: |
+        echo "short_time=$(date "+%Y-%m-%d")" >> $GITHUB_ENV
+    
+    - name: Cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20211207_11.2.1_x64-ucrt
+        restore-keys: |
+          mcf_20211207_11.2.1_x64-ucrt   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
