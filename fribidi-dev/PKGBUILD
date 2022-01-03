@@ -22,6 +22,6 @@ build() {
 package() {
   cd $srcdir/fribidi-$pkgver/work
   DESTDIR=$pkgdir ninja install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  mv $pkgdir/_temp/msys64/* $pkgdir
+  rm -rf $pkgdir/_temp/msys64
 }
