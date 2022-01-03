@@ -23,6 +23,15 @@ jobs:
     - name: Make Toolchain
       run: |
         C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+    - name: Test Building Aria2
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      run: |
+        C:\msys64\usr\bin\bash -lc 'pacman -S base-devel --noconfirm'        
+        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/aria2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Delete
       if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1
@@ -38,6 +47,22 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mcfgthread/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true
+    - name: Delete Aria2
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: aria2*
+        fail-if-no-assets: false
+        fail-if-no-release: false        
+    - name: Upload Aria2
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: aria2/*pkg*.xz
         tag: latest
         overwrite: true
         file_glob: true
