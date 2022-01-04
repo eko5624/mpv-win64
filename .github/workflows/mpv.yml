@@ -10,6 +10,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
+        install: base-devel autotools yasm git
     - uses: actions/cache@v2
       id: cache
       with:
@@ -62,7 +63,6 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools
     - name: Checkout mpv-player/mpv
       uses: eko5624/checkout@v2
       with:
