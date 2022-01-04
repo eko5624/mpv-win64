@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       cache_id:
-        description: 'Invalidate GitHub Action cache'
+        description: 'input cache_id if you want to renew cache'
         required: false
         default: 'false'
 
@@ -29,6 +29,7 @@ jobs:
       shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg    
+    
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)" 
@@ -38,12 +39,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
-          
-    - name: Invalidate cache
-      if: ${{ github.event.inputs.invalidate_cache != 'false' && steps.cache-libs.outputs.cache-hit == 'true' }}
-      run: |
-        rm -rf D:\ucrt64  
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ secrets.BOT }}
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
