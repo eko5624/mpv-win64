@@ -50,7 +50,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -118,7 +118,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -160,7 +160,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -202,7 +202,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -246,7 +246,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -290,7 +290,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -332,7 +332,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -374,7 +374,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -417,7 +417,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -464,7 +464,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -508,7 +508,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -551,7 +551,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -597,7 +597,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -643,7 +643,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -685,7 +685,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -730,7 +730,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -778,7 +778,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -822,7 +822,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -881,7 +881,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -942,7 +942,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1032,7 +1032,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1076,7 +1076,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1167,7 +1167,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
