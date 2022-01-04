@@ -2,11 +2,6 @@ name: toolchain
 
 on:
   workflow_dispatch:
-    inputs:
-      cache_id:
-        description: 'input cache_id if you want to renew cache'
-        required: false
-        default: 'false'
 
   schedule:
     - cron: '15 0 * * MON'  
@@ -29,10 +24,6 @@ jobs:
       shell: msys2 {0}
       run: |
         cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg    
-    
-    - name: Get current timestamp      
-      id: long_time
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)" 
     
     - name: Cache
       id: cache
