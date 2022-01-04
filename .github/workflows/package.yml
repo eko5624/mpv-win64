@@ -35,7 +35,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211231-1-x86_64.pkg.tar.xz
         pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
     - name: Zip Packages    
-      shell: pwsh
+      shell: bash
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
