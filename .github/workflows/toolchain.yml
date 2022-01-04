@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       cache_id:
-        description: 'input cache_id if you want to renew cache'
+        description: 'Invalidate GitHub Action cache'
         required: false
+        default: 'false'
 
   schedule:
     - cron: '15 0 * * MON'  
@@ -33,13 +34,19 @@ jobs:
       run: echo "::set-output name=date::$(date +%Y-%m-%d)" 
     
     - name: Cache
+      id: cache
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-${{ steps.timestamp.outputs.date }}-${{ github.event.inputs.cache_id }}
+        key: mcf_20211207_11.2.1_x64
         restore-keys: |
-          mcf_20211207_11.2.1_x64-${{ steps.timestamp.outputs.date }}
-          mcf_20211207_11.2.1_x64-ucrt
+          mcf_
+          
+    - name: Invalidate cache
+      if: ${{ github.event.inputs.invalidate_cache != 'false' && steps.cache-libs.outputs.cache-hit == 'true' }}
+      run: |
+        rm -rf D:\ucrt64  
+  
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
