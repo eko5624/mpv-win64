@@ -32,14 +32,14 @@ jobs:
     
     - name: Get current timestamp      
       id: long_time
-      run: echo "::set-output name=date::$(date +%Y-%m-%d %H-%M)" 
+      run: echo "::set-output name=date::$(date +%Y-%m-%d)" 
     
     - name: Cache
       id: cache
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt-${{ steps.long_time.outputs.date }}
+        key: mcf_20211207_11.2.1_x64-ucrt-${{ secrets.BOT }}
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
