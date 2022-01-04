@@ -38,9 +38,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64
-        restore-keys: |
-          mcf_
+        key: mcf_20211207_11.2.1_x64-ucrt
           
     - name: Invalidate cache
       if: ${{ github.event.inputs.invalidate_cache != 'false' && steps.cache-libs.outputs.cache-hit == 'true' }}
