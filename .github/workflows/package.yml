@@ -1,4 +1,4 @@
-name: mpv-git
+name: package-git
 
 on:
   workflow_dispatch:
