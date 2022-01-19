@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt-${{ secrets.BOT }}
+        key: mcf_20211207_11.2.1_x64-ucrt
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
