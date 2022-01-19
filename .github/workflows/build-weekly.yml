@@ -107,11 +107,13 @@ jobs:
 
   dav1d:
     runs-on: windows-2022
-    steps:   
+    steps:
+    - run: |
+        pip install meson ninja    
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools nasm git meson ninja              
+        install: base-devel autotools nasm git              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -237,7 +239,9 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools meson ninja             
+        install: base-devel autotools
+    - run: |
+        pip install meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -279,7 +283,9 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools meson ninja              
+        install: base-devel autotools
+    - run: |
+        pip install meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -630,7 +636,9 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git meson ninja              
+        install: base-devel autotools git
+    - run: |
+        pip install meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -715,7 +723,9 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git meson ninja python-mako           
+        install: base-devel autotools git
+    - run: |
+        pip install meson ninja mako            
     - uses: actions/cache@v2
       id: cache
       with:
@@ -1036,7 +1046,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
-        mv /usr/bin/python* /tmp
+        mv /usr/bin/python* /tmp 
         cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: eko5624/delete-release-assets@v1
