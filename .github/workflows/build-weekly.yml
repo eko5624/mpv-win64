@@ -111,7 +111,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools nasm git mingw-w64-x86_64-meson mingw-w64-x86_64-ninja              
+        install: base-devel autotools nasm git meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -237,7 +237,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools mingw-w64-x86_64-meson mingw-w64-x86_64-ninja             
+        install: base-devel autotools meson ninja             
     - uses: actions/cache@v2
       id: cache
       with:
@@ -279,7 +279,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools mingw-w64-x86_64-meson mingw-w64-x86_64-ninja              
+        install: base-devel autotools meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -630,7 +630,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git mingw-w64-x86_64-meson mingw-w64-x86_64-ninja              
+        install: base-devel autotools git meson ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -715,7 +715,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git mingw-w64-x86_64-meson mingw-w64-x86_64-ninja mingw-w64-x86_64-python-mako           
+        install: base-devel autotools git meson ninja python-mako           
     - uses: actions/cache@v2
       id: cache
       with:
@@ -1036,6 +1036,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
+        mv /usr/bin/python* /tmp
         cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: eko5624/delete-release-assets@v1
