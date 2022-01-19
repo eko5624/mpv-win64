@@ -107,13 +107,11 @@ jobs:
 
   dav1d:
     runs-on: windows-2022
-    steps:
-    - run: |
-        pip install meson ninja    
+    steps:   
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools nasm git              
+        install: base-devel autotools nasm git mingw-w64-meson mingw-w64-ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -239,9 +237,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools
-    - run: |
-        pip install meson ninja              
+        install: base-devel autotools mingw-w64-meson mingw-w64-ninja             
     - uses: actions/cache@v2
       id: cache
       with:
@@ -283,9 +279,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools
-    - run: |
-        pip install meson ninja              
+        install: base-devel autotools mingw-w64-meson mingw-w64-ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -636,9 +630,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git
-    - run: |
-        pip install meson ninja              
+        install: base-devel autotools git mingw-w64-meson mingw-w64-ninja              
     - uses: actions/cache@v2
       id: cache
       with:
@@ -723,9 +715,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         release: false
-        install: base-devel autotools git
-    - run: |
-        pip install meson ninja mako            
+        install: base-devel autotools git mingw-w64-meson mingw-w64-ninja mingw-w64-python-mako           
     - uses: actions/cache@v2
       id: cache
       with:
