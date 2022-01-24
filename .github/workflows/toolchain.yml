@@ -3,7 +3,7 @@ name: toolchain
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 0 * * MON'  
+    - cron: '35 0 * * MON'  
 jobs:
   build:
     runs-on: windows-2022
