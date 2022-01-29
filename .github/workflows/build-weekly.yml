@@ -1009,7 +1009,7 @@ jobs:
       shell: pwsh
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
