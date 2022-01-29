@@ -50,7 +50,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -118,7 +118,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -160,7 +160,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -202,7 +202,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -246,7 +246,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -290,7 +290,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -332,7 +332,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -374,7 +374,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -417,7 +417,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -464,7 +464,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -508,7 +508,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -551,7 +551,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -597,7 +597,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -643,7 +643,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -685,7 +685,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -730,7 +730,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -745,8 +745,8 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.9-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.203-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.204-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.0-1-x86_64.pkg.tar.zst
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
@@ -778,7 +778,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -822,7 +822,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -881,7 +881,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -908,10 +908,10 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.9-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.203-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.204-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.157.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.192.0-1-x86_64.pkg.tar.zst
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.9/x64:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
@@ -942,7 +942,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1003,7 +1003,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220125-1-x86_64.pkg.tar.xz
         pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
     - name: Zip Packages    
       shell: pwsh
@@ -1032,7 +1032,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1075,7 +1075,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1166,7 +1166,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211207_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
