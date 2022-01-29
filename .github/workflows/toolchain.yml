@@ -11,7 +11,7 @@ jobs:
     steps: 
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools        
     - name: Setup Toolchain
       run: |
