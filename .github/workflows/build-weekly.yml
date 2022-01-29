@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git   
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -28,7 +28,7 @@ jobs:
         tag: latest
         assets: config*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -44,7 +44,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools nasm git      
     - uses: actions/cache@v2
       id: cache
@@ -79,7 +79,7 @@ jobs:
         tag: latest
         assets: ffmpeg*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Delete Dev
       uses: eko5624/delete-release-assets@v1
       with:
@@ -87,7 +87,7 @@ jobs:
         tag: dev
         assets: ffmpeg*
         fail-if-no-assets: false
-        fail-if-no-release: false    
+        fail-if-no-location: D:\    
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -112,7 +112,7 @@ jobs:
         pip install meson ninja    
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools nasm git              
     - uses: actions/cache@v2
       id: cache
@@ -139,7 +139,7 @@ jobs:
         tag: dev
         assets: dav1d*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -154,7 +154,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -181,7 +181,7 @@ jobs:
         tag: dev
         assets: ffnvcodec*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -196,7 +196,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -223,7 +223,7 @@ jobs:
         tag: dev
         assets: freetype2*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -238,7 +238,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools
     - run: |
         pip install meson ninja              
@@ -267,7 +267,7 @@ jobs:
         tag: dev
         assets: fribidi*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -282,7 +282,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools
     - run: |
         pip install meson ninja              
@@ -311,7 +311,7 @@ jobs:
         tag: dev
         assets: harfbuzz*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -326,7 +326,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools nasm      
     - uses: actions/cache@v2
       id: cache
@@ -353,7 +353,7 @@ jobs:
         tag: dev
         assets: lame*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -368,7 +368,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git      
     - uses: actions/cache@v2
       id: cache
@@ -395,7 +395,7 @@ jobs:
         tag: dev
         assets: lcms2*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -411,7 +411,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools nasm git      
     - uses: actions/cache@v2
       id: cache
@@ -442,7 +442,7 @@ jobs:
         tag: dev
         assets: libass*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -458,7 +458,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -487,7 +487,7 @@ jobs:
         tag: dev
         assets: libbluray*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -502,7 +502,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -529,7 +529,7 @@ jobs:
         tag: dev
         assets: libdvdcss*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -545,7 +545,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -575,7 +575,7 @@ jobs:
         tag: dev
         assets: libdvdnav*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -591,7 +591,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -620,7 +620,7 @@ jobs:
         tag: dev
         assets: libdvdread*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -635,7 +635,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git
     - run: |
         pip install meson ninja              
@@ -664,7 +664,7 @@ jobs:
         tag: dev
         assets: libepoxy*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -679,7 +679,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -706,7 +706,7 @@ jobs:
         tag: dev
         assets: libogg*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -722,7 +722,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git
     - run: |
         pip install meson ninja mako            
@@ -756,7 +756,7 @@ jobs:
         tag: dev
         assets: libplacebo*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -772,7 +772,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -801,7 +801,7 @@ jobs:
         tag: dev
         assets: libvorbis_aotuv*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -816,7 +816,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git      
     - uses: actions/cache@v2
       id: cache
@@ -843,7 +843,7 @@ jobs:
         tag: latest
         assets: luajit*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Delete Dev
       uses: eko5624/delete-release-assets@v1
       with:
@@ -851,7 +851,7 @@ jobs:
         tag: dev
         assets: luajit*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -875,7 +875,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools yasm git      
     - uses: actions/cache@v2
       id: cache
@@ -921,7 +921,7 @@ jobs:
         tag: latest
         assets: mpv*
         fail-if-no-assets: false
-        fail-if-no-release: false    
+        fail-if-no-location: D:\    
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -936,7 +936,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools      
     - uses: actions/cache@v2
       id: cache
@@ -963,7 +963,7 @@ jobs:
         tag: dev
         assets: opus*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -979,7 +979,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel
     - name: Checkout mpv-player/mpv
       uses: eko5624/checkout@v2
@@ -1009,7 +1009,7 @@ jobs:
       shell: pwsh
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -1026,7 +1026,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools git mingw-w64-x86_64-cmake     
     - uses: actions/cache@v2
       id: cache
@@ -1054,7 +1054,7 @@ jobs:
         tag: dev
         assets: shaderc*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -1069,7 +1069,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools mingw-w64-x86_64-cmake      
     - uses: actions/cache@v2
       id: cache
@@ -1097,7 +1097,7 @@ jobs:
         tag: dev
         assets: spirv-cross*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -1112,7 +1112,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools     
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -1129,7 +1129,7 @@ jobs:
         tag: latest
         assets: vapoursynth*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Delete Dev
       uses: eko5624/delete-release-assets@v1
       with:
@@ -1137,7 +1137,7 @@ jobs:
         tag: dev
         assets: vapoursynth*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -1160,7 +1160,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
+        location: D:\
         install: base-devel autotools mingw-w64-x86_64-cmake      
     - uses: actions/cache@v2
       id: cache
@@ -1188,7 +1188,7 @@ jobs:
         tag: dev
         assets: vulkan*
         fail-if-no-assets: false
-        fail-if-no-release: false
+        fail-if-no-location: D:\
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
