@@ -9,14 +9,10 @@ source=(git+"https://github.com/eko5624/mpv-config")
 options=(!strip)
 md5sums=('SKIP')
 
-build() {
-  cd $srcdir/mpv-config
-  rm *.md 
-  rm -rf .git
-}
-
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
-  mv $srcdir/mpv-config/* $pkgdir/opt/bin
+  mv $srcdir/mpv-config/portable_config $pkgdir/opt/bin
+  mv $srcdir/mpv-config/installer $pkgdir/opt/bin
+  mv $srcdir/mpv-config/tclsh.exe $pkgdir/opt/bin
 }
