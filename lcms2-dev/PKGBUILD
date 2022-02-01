@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=lcms2-dev
-pkgver=2.12
+pkgver=2.13
 pkgrel=1
 pkgdesc='Small-footprint color management engine, version 2'
 arch=('x86_64')
