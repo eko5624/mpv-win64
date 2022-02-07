@@ -3,7 +3,7 @@ name: build-weekly
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1 * * MON'
+    - cron: '45 0 * * MON'
     
 jobs:
   config:
