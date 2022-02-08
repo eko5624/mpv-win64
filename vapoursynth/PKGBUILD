@@ -11,17 +11,17 @@ options=(!strip)
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/VapourSynth64-Portable-R$pkgver
+  cd $srcdir
   rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll
   rm -rf doc
   rm vapoursynth64/plugins/.keep
 }
 
 package_vapoursynth-dev() {
-  cd $srcdir/VapourSynth64-Portable-R$pkgver
+  cd $srcdir
   mkdir -p $pkgdir/opt
   mv sdk/include $pkgdir/opt
-  mv sdk/lib64/* $pkgdir/opt/lib
+  mv sdk/lib64 $pkgdir/opt/lib
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
@@ -31,7 +31,7 @@ package_vapoursynth-dev() {
 package_vapoursynth-plugin-core-extra() {
   depends=('vapoursynth')
   export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/VapourSynth64-Portable-R$pkgver
+  cd $srcdir
   mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
   mv *.exe $pkgdir/opt/bin
   mv vsrepo.py $pkgdir/opt/bin
@@ -41,7 +41,7 @@ package_vapoursynth-plugin-core-extra() {
 
 package_vapoursynth() {
   optdepends=('python-embed>=3.9')
-  rm -rf $srcdir/VapourSynth64-Portable-R$pkgver/sdk
+  rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
-  mv $srcdir/VapourSynth64-Portable-R$pkgver $pkgdir/opt/bin
+  mv $srcdir $pkgdir/opt/bin
 }
