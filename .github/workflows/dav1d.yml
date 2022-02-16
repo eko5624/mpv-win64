@@ -26,10 +26,12 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        PATH: 
       shell: msys2 {0}
       run: | 
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin
         pip install meson ninja
-        cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: eko5624/delete-release-assets@v1
       with:
