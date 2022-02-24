@@ -15,7 +15,7 @@ jobs:
         install: base-devel autotools        
     - name: Setup Toolchain
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220223_11.2.1_x64-ucrt_da859b1fd0cf16700642f0e21d7130bbb176af38.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220125_11.2.1_x64-ucrt_94be48a5b7ed975cdab9eafb1373b61550d15d82.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: D:\ucrt64
-        key: mcf_20220223_11.2.1_x64-ucrt
+        key: mcf_20220125_11.2.1_x64-ucrt
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
