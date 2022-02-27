@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mcfgthread
-pkgver=20220125
+pkgver=20220223
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
@@ -16,39 +16,143 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  mkdir include2
-  mkdir lib2
+  rm -rf lib/*.dll.a
+  rm -rf include/pkg*
+  rm -rf lib/pkg*
+  rm -rf lib/cmake*
+
+  rm bin/autopoint
+  rm bin/envsubst.exe
+  rm bin/iconv.exe
+  rm bin/msg*
+  rm bin/recode-sr-latin.exe
+  rm include/autosprintf.h
+  rm include/gettext-po.h
+  rm include/libintl.h
+  rm -rf lib/gettext
+  rm lib/libasprintf*
+  rm lib/libgettext*
+  rm lib/libintl*
+
+  rm bin/b2.exe
+  rm bin/bjam.exe
+  rm bin/libboost*
+  rm -rf include/boost
+  rm lib/libboost*
+
+  rm bin/bunzip2.exe
+  rm include/bzlib.h
+  rm lib/libbz2*
+
+  rm bin/libexpat*
+  rm bin/xmlwf.exe
+  rm include/expat*
+  rm lib/libexpat*
+
+  rm bin/derb.exe
+  rm bin/gen*
+  rm bin/*icu*
+  rm bin/makeconv.exe
+  rm bin/uconv.exe
+  rm -rf include/unicode
+  rm -rf lib/*icu*
+
+  rm include/iconv.h
+  rm include/libcharset.h
+  rm include/localcharset.h
+  rm lib/libcharset*
+  rm lib/libiconv*
+
+  rm bin/*lua*
+  rm include/lauxlib.h
+  rm include/*lua*
+  rm -rf lib/*lua*
+
+  rm bin/ncursesw6-config
+  rm bin/x86_64-w64-mingw32-captoinfo.exe
+  rm bin/x86_64-w64-mingw32-clear.exe
+  rm bin/x86_64-w64-mingw32-infocmp.exe
+  rm bin/x86_64-w64-mingw32-infotocap.exe
+  rm bin/x86_64-w64-mingw32-reset.exe
+  rm bin/x86_64-w64-mingw32-tabs.exe
+  rm bin/x86_64-w64-mingw32-tic.exe
+  rm bin/x86_64-w64-mingw32-toe.exe
+  rm bin/x86_64-w64-mingw32-tput.exe
+  rm bin/x86_64-w64-mingw32-tset.exe
+  rm -rf include/ncur*
+  rm lib/libform*
+  rm lib/libmenu*
+  rm lib/libncur*
+  rm lib/libpanel*
+  rm -rf lib/terminfo
+
+  rm bin/libcrypto*
+  rm bin/libssl*
+  rm bin/openssl.exe
+  rm bin/update-ca-trust
+  rm bin/*p11*
+  rm bin/trust.exe
+  rm -rf include/openssl
+  rm -rf include/p11*
+  rm -rf lib/engines*
+  rm lib/libcrypto*
+  rm lib/libssl*
+  rm -rf lib/*p11*
+  rm -rf lib/pkcs11*
+
+  rm bin/*pcre*
+  rm include/pcre2*
+  rm lib/*pcre*
+
   rm bin/2to3*
   rm bin/idle*
+  rm bin/libpython*
+  rm bin/gdb*
   rm bin/py*
-  rm -rf x86_64-w64-mingw32/lib/*.dll.a
+  rm -rf include/python*
+  rm -rf lib/python*
 
-  mv include/c++ include2
-  mv include/gdb include2
-  mv include/binutils/* include2
-  mv include/gnu* include2
-  mv include/zconf* include2
-  mv include/zlib* include2
-  mv include/mcfgthread include2
+  rm bin/dbhash.exe
+  rm bin/*sql*
+  rm include/*sql*
+  rm -rf lib/*sql*
 
-  mv lib/gcc lib2
-  mv lib/binutils/* lib2
-  mv lib/libatomic.a lib2
-  mv lib/libquadmath.a lib2
-  mv lib/libssp.a lib2
-  mv lib/libssp_nonshared.a lib2
-  mv lib/libstdc++.a lib2
-  mv lib/libstdc++fs.a lib2
-  mv lib/libstdc++.dll.a-gdb.py lib2
-  mv lib/libsupc++.a lib2
-  mv lib/libz.a lib2
-  mv lib/libgcc_s.a lib2
-  mv lib/libmcfgthread.a lib2
+  rm bin/tcl*
+  rm bin/tk*
+  rm bin/wish*
+  rm include/itcl*
+  rm include/*Stubs*
+  rm -rf include/tcl*
+  rm -rf include/tdb*
+  rm -rf include/X11
+  rm -rf include/tk*
+  rm -rf lib/dde*
+  rm -rf lib/*tcl*
+  rm -rf lib/*tk*
+  rm -rf lib/reg*
+  rm -rf lib/tdb*
+  rm -rf lib/thread*
 
-  rm -rf include
-  rm -rf lib
-  mv include2 include
-  mv lib2 lib
+  rm bin/libtermcap*
+  rm include/termcap.h
+  rm lib/libtermcap*
+
+  rm bin/edit*
+  rm -rf include/editline
+  rm lib/libedit*
+
+  rm bin/*xxh*.exe
+  rm include/xxh*
+
+  rm bin/*lzma*
+  rm bin/*xz*
+  rm -rf include/lzma*
+  rm lib/liblzma*
+
+  rm bin/*zstd*.exe
+  rm include/zdict.h
+  rm include/zstd*
+  rm lib/libzstd*
 }
 
 package() {
