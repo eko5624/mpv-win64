@@ -19,7 +19,7 @@ jobs:
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@v2     
+    - uses: actions/checkout@v3     
     - name: Make Toolchain
       shell: msys2 {0}
       run: |
