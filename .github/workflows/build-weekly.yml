@@ -16,7 +16,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       shell: msys2 {0}
       run: |
@@ -54,7 +54,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -122,7 +122,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -164,7 +164,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -206,7 +206,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -250,7 +250,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -294,7 +294,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -336,7 +336,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -378,7 +378,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -421,7 +421,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -468,7 +468,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -512,7 +512,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -555,7 +555,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -601,7 +601,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -647,7 +647,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -689,7 +689,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -734,7 +734,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -783,7 +783,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -827,7 +827,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -886,7 +886,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -947,7 +947,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -983,7 +983,7 @@ jobs:
         location: D:\
         install: base-devel
     - name: Checkout mpv-player/mpv
-      uses: eko5624/checkout@v3
+      uses: actions/checkout@v3
       with:
         repository: "mpv-player/mpv"
         fetch-depth: 0
@@ -1038,7 +1038,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1081,7 +1081,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1119,7 +1119,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       shell: msys2 {0}
       run: |
@@ -1172,7 +1172,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v3
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
