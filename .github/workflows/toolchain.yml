@@ -15,7 +15,7 @@ jobs:
         install: base-devel autotools        
     - name: Setup Toolchain
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220223_11.2.1_x64-ucrt_da859b1fd0cf16700642f0e21d7130bbb176af38.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220308_11.2.1_x64-ucrt_a1ad2b93ca57565028f87affded138e6f0bfe8bd.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf input
