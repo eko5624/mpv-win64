@@ -57,7 +57,7 @@ jobs:
     runs-on: windows-latest
     steps:    
     - name: Checkout mpv-player/mpv
-      uses: eko5624/checkout@v2
+      uses: eko5624/checkout@v3
       with:
         repository: "mpv-player/mpv"
         fetch-depth: 0
