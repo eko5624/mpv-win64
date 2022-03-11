@@ -12,7 +12,7 @@ jobs:
         release: false
         install: base-devel 
     - name: Checkout mpv-player/mpv
-      uses: eko5624/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: "mpv-player/mpv"
         fetch-depth: 0
@@ -36,7 +36,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
         pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
     - name: Zip Packages    
-      shell: pwsh
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
         7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
