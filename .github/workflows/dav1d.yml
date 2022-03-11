@@ -19,7 +19,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: eko5624/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
