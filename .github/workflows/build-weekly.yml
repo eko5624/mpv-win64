@@ -22,7 +22,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/mpv-config; makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -30,7 +30,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv-config/*pkg*.xz
@@ -73,7 +73,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -81,7 +81,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -89,7 +89,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*pkg*.xz
@@ -97,7 +97,7 @@ jobs:
         overwrite: true
         file_glob: true
     - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*.zst
@@ -133,7 +133,7 @@ jobs:
       run: | 
         cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -141,7 +141,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: dav1d-dev/*.zst
@@ -175,7 +175,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -183,7 +183,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffnvcodec-dev/*.zst
@@ -217,7 +217,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -225,7 +225,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: freetype2-dev/*.zst
@@ -261,7 +261,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/fribidi-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -269,7 +269,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: fribidi-dev/*.zst
@@ -305,7 +305,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/harfbuzz-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -313,7 +313,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: harfbuzz-dev/*.zst
@@ -347,7 +347,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -355,7 +355,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: lame-dev/*.zst
@@ -389,7 +389,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -397,7 +397,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: lcms2-dev/*.zst
@@ -436,7 +436,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm 
         cd /d/a/mpv-win64/mpv-win64/libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete      
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -444,7 +444,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libass-dev/*.zst
@@ -481,7 +481,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -489,7 +489,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libbluray-dev/*.zst
@@ -523,7 +523,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -531,7 +531,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdcss-dev/*.zst
@@ -569,7 +569,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -577,7 +577,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdnav-dev/*.zst
@@ -614,7 +614,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -622,7 +622,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libdvdread-dev/*.zst
@@ -658,7 +658,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/libepoxy-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -666,7 +666,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libepoxy-dev/*.zst
@@ -700,7 +700,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -708,7 +708,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libogg-dev/*.zst
@@ -751,7 +751,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libplacebo-dev; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -759,7 +759,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libplacebo-dev/*.zst
@@ -796,7 +796,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -804,7 +804,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: libvorbis_aotuv-dev/*.zst
@@ -838,7 +838,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -846,7 +846,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -854,7 +854,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: luajit/*pkg*.xz
@@ -862,7 +862,7 @@ jobs:
         overwrite: true
         file_glob: true
     - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: luajit/*.zst
@@ -916,7 +916,7 @@ jobs:
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
         cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -924,7 +924,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
@@ -958,7 +958,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -966,7 +966,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: opus-dev/*.zst
@@ -1012,7 +1012,7 @@ jobs:
         $date = Get-Date -Format "yyyy-MM-dd"
         7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
@@ -1049,7 +1049,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -1057,7 +1057,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: shaderc-dev/*.zst
@@ -1092,7 +1092,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -1100,7 +1100,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: spirv-cross-dev/*.zst
@@ -1124,7 +1124,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/vapoursynth; makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -1132,7 +1132,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -1140,7 +1140,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vapoursynth/*pkg*.xz
@@ -1148,7 +1148,7 @@ jobs:
         overwrite: true
         file_glob: true
     - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vapoursynth/*.zst
@@ -1183,7 +1183,7 @@ jobs:
       run: |
         cd /d/a/mpv-win64/mpv-win64/vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -1191,7 +1191,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vulkan-dev/*.zst
