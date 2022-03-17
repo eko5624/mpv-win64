@@ -14,10 +14,10 @@ jobs:
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Make Toolchain
       run: |
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        C:\msys64\usr\bin\bash -lc 'cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - uses: actions/cache@v2
       id: cache
       with:
