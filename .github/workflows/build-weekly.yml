@@ -982,17 +982,21 @@ jobs:
       with:
         location: D:\
         install: base-devel
-    - name: Checkout mpv-player/mpv
-      uses: actions/checkout@v3
+    
+    - name: Get mpv latest commit sha
+      id: get_sha
+      uses: actions/github-script@v6
       with:
-        repository: "mpv-player/mpv"
-        fetch-depth: 0
-    - name: Get mpv-player/mpv last version
-      id: version
-      run: echo "::set-output name=version::$(sh version.sh)"        
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+        script: |
+          const commit = await github.rest.repos.getCommit({
+            owner: 'mpv-player',
+            repo: 'mpv',
+            ref: `master`
+          })
+          core.setOutput('sha', String(commit.data.sha)) 
+    - name: Add SHORT_SHA env 
+      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV          
+          
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -1016,9 +1020,9 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.version.outputs.version }}
+        tag: mpv-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
         file_glob: true 
   
