@@ -996,7 +996,7 @@ jobs:
           core.setOutput('sha', String(commit.data.sha)) 
     
     - name: Add SHORT_SHA env 
-      run: echo "SHORT_SHA=`echo f871294204529374dd3056f7b616381400233036| cut -c1-7`"          
+      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV          
       shell: bash
       
     - name: Get current timestamp      
