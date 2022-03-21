@@ -867,17 +867,22 @@ jobs:
     needs: [mpv, config]
     runs-on: windows-2022
     steps:
-    - name: Checkout mpv-player/mpv
-      uses: actions/checkout@v3
+    - name: Get mpv latest commit sha
+      id: get_sha
+      uses: actions/github-script@v6
       with:
-        repository: "mpv-player/mpv"
-        fetch-depth: 0
-    - name: Get mpv-player/mpv last version
-      id: version
-      run: echo "::set-output name=version::$(sh version.sh)"        
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+        script: |
+          const commit = await github.rest.repos.getCommit({
+            owner: 'mpv-player',
+            repo: 'mpv',
+            ref: `master`
+          })
+          core.setOutput('sha', String(commit.data.sha)) 
+    
+    - name: Add SHORT_SHA env 
+      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV          
+      shell: bash
+      
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
