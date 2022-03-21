@@ -9,43 +9,48 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
-        install: base-devel 
-    - name: Checkout mpv-player/mpv
-      uses: actions/checkout@v3
+        location: D:\
+        install: base-devel
+    
+    - name: Get mpv latest commit sha
+      id: get_sha
+      uses: actions/github-script@v6
       with:
-        repository: "mpv-player/mpv"
-        fetch-depth: 0
-    - name: Get mpv-player/mpv last version
-      id: version
-      run: echo "::set-output name=version::$(sh version.sh)"        
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+        script: |
+          const commit = await github.rest.repos.getCommit({
+            owner: 'mpv-player',
+            repo: 'mpv',
+            ref: `master`
+          })
+          core.setOutput('sha', String(commit.data.sha)) 
+    - name: Add SHORT_SHA env 
+      run: echo "SHORT_SHA=echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7" >> $GITHUB_ENV          
+          
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-4.4.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-5.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-57-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20211207-1-x86_64.pkg.tar.xz
-        pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220308-1-x86_64.pkg.tar.xz
+        pacman -U *.xz --noconfirm       
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.version.outputs.version }}
+        tag: mpv-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
-        file_glob: true 
+        file_glob: true
