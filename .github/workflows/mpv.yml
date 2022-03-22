@@ -11,7 +11,7 @@ jobs:
       with:
         release: false
         install: base-devel autotools yasm git    
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
