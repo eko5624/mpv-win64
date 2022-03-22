@@ -27,7 +27,7 @@ jobs:
     
     - name: Cache
       id: cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: D:\ucrt64
         key: mcf_20220308_11.2.1_x64-ucrt

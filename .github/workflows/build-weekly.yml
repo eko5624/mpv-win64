@@ -46,7 +46,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools nasm git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -114,7 +114,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools nasm git              
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -156,7 +156,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -198,7 +198,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -242,7 +242,7 @@ jobs:
         install: base-devel autotools
     - run: |
         pip install meson ninja              
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -286,7 +286,7 @@ jobs:
         install: base-devel autotools
     - run: |
         pip install meson ninja              
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -328,7 +328,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools nasm      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -370,7 +370,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -413,7 +413,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools nasm git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -460,7 +460,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -504,7 +504,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -547,7 +547,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -593,7 +593,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -639,7 +639,7 @@ jobs:
         install: base-devel autotools git
     - run: |
         pip install meson ninja              
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -681,7 +681,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -726,7 +726,7 @@ jobs:
         install: base-devel autotools git
     - run: |
         pip install meson ninja mako            
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -775,7 +775,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -819,7 +819,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -878,7 +878,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools yasm git      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -939,7 +939,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -1035,7 +1035,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools git mingw-w64-x86_64-cmake     
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -1078,7 +1078,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools mingw-w64-x86_64-cmake      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
@@ -1169,7 +1169,7 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools mingw-w64-x86_64-cmake      
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
