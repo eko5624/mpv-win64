@@ -29,7 +29,7 @@ jobs:
 
     - name: Get mpv-player/mpv last commit SHA
       id: sha
-      run: echo "::set-output name=sha::$(curl -s "https://api.github.com/repos/mpv-player/mpv/commits" | jq -r '.sha' | cut -c1-7)"
+      run: echo "::set-output name=sha::$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/mpv-player/mpv/commits | jq -r '.sha' | cut -c1-7)"
       shell: bash
       
     - name: Get current timestamp      
