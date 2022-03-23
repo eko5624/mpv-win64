@@ -31,7 +31,8 @@ jobs:
       id: sha
       env:
         GH_TOKEN: ${{ secrets.BOT }}      
-      run: echo "::set-output name=sha::$(curl -u eko5624:$GH_TOKEN -s -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/mpv-player/mpv/commits -d '{"sha"}' | jq -r '.sha' | cut -c1-7)"
+      run: |
+        get_sha=$(curl -u eko5624:$GH_TOKEN -s -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/mpv-player/mpv/commits | jq -r '.sha' | cut -c1-7)"
       shell: bash
       
     - name: Get current timestamp      
