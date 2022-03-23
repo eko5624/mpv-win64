@@ -26,14 +26,6 @@ jobs:
     - name: Add SHORT_SHA env 
       run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
-
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      env:
-        GH_TOKEN: ${{ secrets.BOT }}      
-      run: |
-        get_sha=$(curl -u eko5624:$GH_TOKEN -s -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/mpv-player/mpv/commits | jq -r '.sha' | cut -c1-7)"
-      shell: bash
       
     - name: Get current timestamp      
       id: timestamp
@@ -58,7 +50,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-$get-sha
+        tag: mpv-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
