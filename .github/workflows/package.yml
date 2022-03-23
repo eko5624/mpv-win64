@@ -58,7 +58,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.sha.outputs.sha }}
+        tag: mpv-$get-sha
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
