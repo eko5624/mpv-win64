@@ -30,7 +30,7 @@ jobs:
     - name: Get mpv-player/mpv last commit SHA
       id: sha
       env:
-        GH_TOKEN: ${{ secrets.GIT_TOKEN }}      
+        GH_TOKEN: ${{ secrets.BOT }}      
       run: echo "::set-output name=sha::$(curl -u eko5624:$GH_TOKEN -s -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/mpv-player/mpv/commits | jq -r '.sha' | cut -c1-7)"
       shell: bash
       
