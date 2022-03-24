@@ -32,7 +32,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |    
-          const release = await github.request('GET /repos/{owner}/{repo}/releases/latest', {
+          const release = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
             owner: 'mpv-player',
             repo: 'mpv'
           })
