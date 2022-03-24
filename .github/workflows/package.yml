@@ -32,11 +32,11 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |    
-          const latest_release = await github.request('GET /repos/{owner}/{repo}/releases/latest', {
+          const release = await github.request('GET /repos/{owner}/{repo}/releases/latest', {
             owner: 'mpv-player',
             repo: 'mpv'
           })
-          core.setOutput('version', String(latest_release.data.tag_name))         
+          core.setOutput('version', String(release.data.tag_name))         
         
     - name: Get current timestamp      
       id: timestamp
@@ -61,7 +61,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.version.outputs.latest_release }}
+        tag: mpv-${{ steps.version.outputs.version }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
