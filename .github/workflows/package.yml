@@ -26,7 +26,18 @@ jobs:
     - name: Add SHORT_SHA env 
       run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
-      
+    
+    - name: Get mpv latest release
+      id: version    
+      uses: actions/github-script@v6
+      with:
+        script: |    
+          const latest_release = await github.request('GET /repos/{owner}/{repo}/releases/latest', {
+            owner: 'mpv-player',
+            repo: 'mpv'
+          })
+          core.setOutput('version', String(latest_release.data.tag_name))         
+        
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -50,7 +61,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ env.SHORT_SHA }}
+        tag: mpv-${{ steps.version.outputs.latest_release }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
