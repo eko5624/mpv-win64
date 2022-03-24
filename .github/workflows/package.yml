@@ -32,12 +32,23 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |    
-          const release = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
+          const release = await github.request('GET /repos/{owner}/{repo}/releases/latest', {
             owner: 'mpv-player',
             repo: 'mpv'
           })
-          core.setOutput('version', String(release.data.tag_name))         
-        
+          core.setOutput('version', String(release.data.tag_name)) 
+          
+    - name: Get mpv latest commit_sha
+      id: commit_sha
+      uses: actions/github-script@v6
+      with:
+        script: |          
+          const commit_sha = await github.request('GET /repos/{owner}/{repo}/commits', {
+            owner: 'mpv-player',
+            repo: 'mpv'
+          })
+          core.setOutput('commit_sha', String(commit_sha.data.sha)) 
+            
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -61,7 +72,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.version.outputs.version }}
+        tag: mpv-${{ steps.commit_sha.outputs.commit_sha }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
