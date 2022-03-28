@@ -993,12 +993,25 @@ jobs:
             repo: 'mpv',
             ref: `master`
           })
-          core.setOutput('sha', String(commit.data.sha)) 
-    
+          core.setOutput('sha', String(commit.data.sha))    
     - name: Add SHORT_SHA env 
       run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV          
       shell: bash
-      
+
+    - name: Get mpv latest release
+      id: version    
+      uses: actions/github-script@v6
+      with:
+        script: |    
+          const release = await github.rest.repos.getLatestRelease({
+            owner: 'mpv-player',
+            repo: 'mpv'
+          })
+          core.setOutput('version', String(release.data.tag_name)) 
+    - name: Add GET_VERSION env 
+      run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+      shell: bash 
+
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -1022,7 +1035,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ env.SHORT_SHA }}
+        tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
