@@ -29,7 +29,7 @@ pkgs['luajit'] = x['LuaJIT']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
-for p in ['ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'lame', 'lcms2', 'libass', 'libbluray', 'libdvdcss', 'libdvdnav', 'libogg', 'libplacebo', 'opus', 'libepoxy', 'shaderc', 'spirv-cross', 'vulkan']:
+for p in ['dav1d', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'lame', 'lcms2', 'libass', 'libbluray', 'libdvdcss', 'libdvdnav', 'libogg', 'libplacebo', 'opus', 'libepoxy', 'shaderc', 'spirv-cross', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
