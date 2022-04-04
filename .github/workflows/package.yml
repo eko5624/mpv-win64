@@ -40,7 +40,18 @@ jobs:
     - name: Add GET_VERSION env 
       run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
       shell: bash 
-            
+
+    - name: Get yt-dlp latest release
+      id: dlp_tag    
+      uses: actions/github-script@v6
+      with:
+        script: |    
+          const release = await github.rest.repos.getLatestRelease({
+            owner: 'yt-dlp',
+            repo: 'yt-dlp'
+          })
+          core.setOutput('dlp_tag', String(release.data.tag_name)) 
+
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -54,10 +65,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220308-1-x86_64.pkg.tar.xz
-        pacman -U *.xz --noconfirm       
+        pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
+        mv yt-dlp.exe D:\msys64\opt\bin
         7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
