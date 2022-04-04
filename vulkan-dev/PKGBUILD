@@ -51,7 +51,7 @@ static void loader_platform_thread_once_fn(void *ctl, void (*func)(void)) {
   " >> loader/vk_loader_platform.h
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF
+    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF
   $CMAKE --build .
 }
 
