@@ -3,7 +3,39 @@ name: mpv-git
 on:
   workflow_dispatch:
 
-jobs:
+jobs: 
+  config:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git   
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Build
+      shell: msys2 {0}
+      run: |
+        cd mpv-config; makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: config*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mpv-config/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true  
+  
   mpv:
     runs-on: windows-2022
     steps:
@@ -57,24 +89,53 @@ jobs:
         file_glob: true     
 
   package:
-    needs: [mpv]
+    needs: [config, mpv]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
-        install: base-devel autotools
-    - name: Checkout mpv-player/mpv
-      uses: eko5624/checkout@v2
+        location: D:\
+        install: base-devel
+    
+    - name: Get mpv latest commit sha
+      id: get_sha
+      uses: actions/github-script@v6
       with:
-        repository: "mpv-player/mpv"
-        fetch-depth: 0
-    - name: Get mpv-player/mpv last version
-      id: version
-      run: echo "::set-output name=version::$(sh version.sh)"        
-    - name: Get mpv-player/mpv last commit SHA
-      id: sha
-      run: echo "::set-output name=sha::$(git log -n1 --format="%h")"    
+        script: |
+          const commit = await github.rest.repos.getCommit({
+            owner: 'mpv-player',
+            repo: 'mpv',
+            ref: `master`
+          })
+          core.setOutput('sha', String(commit.data.sha)) 
+    - name: Add SHORT_SHA env 
+      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+      shell: bash 
+    
+    - name: Get mpv latest release
+      id: version    
+      uses: actions/github-script@v6
+      with:
+        script: |    
+          const release = await github.rest.repos.getLatestRelease({
+            owner: 'mpv-player',
+            repo: 'mpv'
+          })
+          core.setOutput('version', String(release.data.tag_name)) 
+    - name: Add GET_VERSION env 
+      run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+      shell: bash 
+
+    - name: Get yt-dlp latest release
+      id: dlp_tag    
+      uses: actions/github-script@v6
+      with:
+        script: |    
+          const release = await github.rest.repos.getLatestRelease({
+            owner: 'yt-dlp',
+            repo: 'yt-dlp'
+          })
+          core.setOutput('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -84,21 +145,24 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-5.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220323-1-x86_64.pkg.tar.xz
-        pacman -U /d/a/mpv-win64/mpv-win64/*.xz --noconfirm       
+        pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
-        7z a All-in-One-MPV-git-${date}.7z C:\msys64\opt\bin\*
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
+        mv yt-dlp.exe D:\msys64\opt\bin
+        7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: All*.7z
-        tag: mpv-${{ steps.version.outputs.version }}
+        tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ steps.sha.outputs.sha }}
+        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
-        file_glob: true 
+        file_glob: true
