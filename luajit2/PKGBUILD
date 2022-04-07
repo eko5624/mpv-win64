@@ -19,7 +19,7 @@ package_luajit2-dev() {
   cd $srcdir/luajit2
   make DESTDIR=$pkgdir PREFIX=/opt install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
-  mv src/lua*.a $pkgdir/opt/lib
+  mv src/liblua*.a $pkgdir/opt/lib
 }
 
 package_luajit2() {
