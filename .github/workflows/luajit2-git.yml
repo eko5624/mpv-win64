@@ -10,7 +10,12 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git   
+        install: base-devel autotools git 
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220323_11.2.1_x64-ucrt        
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
