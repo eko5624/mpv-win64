@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(luajit2-dev luajit2)
-pkgver=2.1-20220310
+pkgver=2.1
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
