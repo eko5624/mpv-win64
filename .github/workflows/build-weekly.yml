@@ -812,7 +812,7 @@ jobs:
         overwrite: true
         file_glob: true
 
-  luajit:
+  luajit2:
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -836,13 +836,13 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd luajit; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-git
+        cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
-        assets: luajit*
+        assets: luajit2*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Delete Dev
@@ -850,14 +850,14 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: luajit*
+        assets: luajit2*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: luajit/*pkg*.xz
+        file: luajit2/*pkg*.xz
         tag: latest
         overwrite: true
         file_glob: true
@@ -865,13 +865,13 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: luajit/*.zst
+        file: luajit2/*.zst
         tag: dev
         overwrite: true
         file_glob: true
 
   mpv:
-    needs: [ffmpeg, luajit, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, spirv-cross]
+    needs: [ffmpeg, luajit2, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, spirv-cross]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -896,7 +896,7 @@ jobs:
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.0.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-57-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.12.0-1-x86_64.pkg.tar.zst
@@ -1029,7 +1029,7 @@ jobs:
       shell: msys2 {0}
       run: |        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-5.0.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1.0_beta3-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit-2.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
