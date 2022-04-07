@@ -39,6 +39,7 @@ for p in pkgs:
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
 pkgs['luajit-dev'] = x['LuaJIT']
+pkgs['luajit2-dev'] = x['luajit2']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-dev'] = x['ffmpeg']
 for t in ['mpv.yml', 'build-weekly.yml', 'vulkan.yml', 'libplacebo.yml', 'package.yml']:
