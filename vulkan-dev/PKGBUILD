@@ -13,6 +13,9 @@ build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
+  curl -OL https://www.japheth.de/Download/JWasm/JWasm211bw.zip
+  bsdtar -C /d/ucrt64/bin -xvf JWasm211bw.zip '*.EXE'
+
   cd $srcdir/Vulkan-Headers-$pkgver
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
