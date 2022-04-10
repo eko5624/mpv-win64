@@ -23,6 +23,7 @@ build() {
   cd $srcdir/Vulkan-Loader
   sed -i '/string/d' loader/unknown_ext_chain_gas_x86.S
   sed -i '/.data/d' loader/unknown_ext_chain_gas_x86.S
+  sed -i '/Git/d' CMakeLists.txt
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
