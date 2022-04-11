@@ -15,7 +15,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220410_11.2.1_x64-ucrt
+        key: mcf_20220323_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash

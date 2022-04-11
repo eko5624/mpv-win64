@@ -47,7 +47,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220410_11.2.1_x64-ucrt
+        key: mcf_20220323_11.2.1_x64-ucrt
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3
@@ -148,7 +148,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-plugin-core-extra-57-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220410-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220323-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
