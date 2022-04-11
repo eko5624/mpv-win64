@@ -158,6 +158,6 @@ build() {
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
-  cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
+  cp /d/ucrt64/bin/mcfgthread* $pkgdir/opt/bin/
   strip $pkgdir/opt/bin/*
 }
