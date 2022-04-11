@@ -38,5 +38,4 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  rm -rf $pkgdir/opt/bin
 }
