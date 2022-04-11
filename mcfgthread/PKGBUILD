@@ -16,7 +16,9 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
+  cp lib/libmcfgthread.dll.a ./
   rm -rf lib/*.dll.a
+  cp ./libmcfgthread.dll.a lib/
   rm -rf include/pkg*
   rm -rf lib/pkg*
   rm -rf lib/cmake*
@@ -158,6 +160,6 @@ build() {
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin
-  cp /d/ucrt64/bin/mcfgthread* $pkgdir/opt/bin/
+  cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
   strip $pkgdir/opt/bin/*
 }
