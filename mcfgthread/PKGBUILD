@@ -16,9 +16,9 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  cp lib/libmcfgthread.dll.a ./
+  mv lib/libmcfgthread.dll.a ./
   rm -rf lib/*.dll.a
-  cp ./libmcfgthread.dll.a lib/
+  mv ./libmcfgthread.dll.a lib/
   rm -rf include/pkg*
   rm -rf lib/pkg*
   rm -rf lib/cmake*
