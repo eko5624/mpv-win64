@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: D:\ucrt64
-        key: gcc-mcf-${{ secrets.BOT }}   
+        key: ${{ secrets.BOT }}   
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
