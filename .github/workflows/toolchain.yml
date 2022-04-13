@@ -3,12 +3,12 @@ name: toolchain
 on:
   workflow_run:
     workflows: [rebuild-toolchain]
-    types:
-      - completed
+    types: [completed]
  
 jobs:
-  build:
+  on-success:
     runs-on: windows-2022
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps: 
     - uses: msys2/setup-msys2@v2
       with:
