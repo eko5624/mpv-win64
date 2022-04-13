@@ -5,15 +5,20 @@ on:
 
 jobs:
   libsdl2:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git     
     - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20211124_11.2.1_x64-ucrt
+        key: ${{ github.sha }}
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@v3
     - name: Build
       env:
@@ -21,9 +26,9 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+      shell: msys2 {0}
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -S git --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'  
+        cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg' 
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
