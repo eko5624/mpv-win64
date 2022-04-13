@@ -1,4 +1,4 @@
-name: rebuild toolchain
+name: rebuild-toolchain
 
 on:
   workflow_dispatch:
