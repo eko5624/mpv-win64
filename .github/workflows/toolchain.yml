@@ -5,9 +5,7 @@ on:
     workflows: [autogreen]
     types:
       - completed
-
-  schedule:
-    - cron: '10 0 * * MON'  
+ 
 jobs:
   build:
     runs-on: windows-2022
