@@ -2,7 +2,7 @@ name: toolchain
 
 on:
   workflow_run:
-    workflows: [rebuild toolchain]
+    workflows: [rebuild-toolchain]
     types:
       - completed
  
