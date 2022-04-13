@@ -47,7 +47,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220413_11.2.1_x64-ucrt
+        key: ${{ github.sha }}
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3
