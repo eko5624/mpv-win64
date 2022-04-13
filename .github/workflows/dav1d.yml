@@ -15,7 +15,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220125_11.2.1_x64-ucrt
+        key: ${{ github.sha }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -26,14 +26,13 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        PATH: 
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.9.10/x64:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.9.10/x64/scripts:/usr/bin:/opt/bin
         pip install meson ninja
-        cd /d/a/mpv-win64/mpv-win64/dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -41,7 +40,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: dav1d-dev/*.zst
