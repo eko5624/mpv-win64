@@ -1,4 +1,4 @@
-name: toolchain
+name: autogreen
 
 on:
   workflow_dispatch:
