@@ -2,7 +2,7 @@ name: toolchain
 
 on:
   workflow_run:
-    workflows: [autogreen]
+    workflows: [rebuild toolchain]
     types:
       - completed
  
