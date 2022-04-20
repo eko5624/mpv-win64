@@ -20,7 +20,7 @@ build() {
 }
 
 package() {
-  depends=('ffmpeg' 'luajit2' 'vulkan' 'vapoursynth' 'mcfgthread')
+  depends=('ffmpeg' 'luajit2' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
