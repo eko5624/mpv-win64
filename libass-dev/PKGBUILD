@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://github.com/libass/libass/"
 makedepends=('nasm' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev')
 license=('BSD')
-source=("git+https://github.com/eko5624/libass")
+source=("git+https://github.com/libass/libass")
 md5sums=('SKIP')
 
 build() {
