@@ -38,4 +38,5 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
+  mv $pkgdir/opt/bin/libvulkan-1.dll $pkgdir/opt/bin/vulkan-1.dll  
 }
