@@ -1,5 +1,5 @@
 pkgname=vulkan-dev
-pkgver=1.3.211
+pkgver=1.3.212
 pkgrel=1
 pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
