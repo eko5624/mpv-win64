@@ -4,38 +4,6 @@ on:
   workflow_dispatch:
 
 jobs: 
-  config:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autotools git   
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@v3
-    - name: Build
-      shell: msys2 {0}
-      run: |
-        cd mpv-config; makepkg
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: config*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mpv-config/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true  
-  
   mpv:
     runs-on: windows-2022
     steps:
@@ -47,7 +15,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: ${{ github.sha }}
+        key: mcf_202586_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3
@@ -89,7 +57,7 @@ jobs:
         file_glob: true     
 
   package:
-    needs: [config, mpv]
+    needs: [mpv]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
