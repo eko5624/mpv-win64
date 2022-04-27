@@ -10,7 +10,17 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake      
+        install: >-
+          base-devel
+          autotools 
+          git 
+          mingw-w64-x86_64-toolchain 
+          mingw-w64-x86_64-cmake 
+          mingw-w64-x86_64-ninja 
+          mingw-w64-x86_64-gtest 
+          mingw-w64-x86_64-giflib
+          mingw-w64-x86_64-libpng 
+          mingw-w64-x86_64-libjpeg-turbo
     - uses: actions/cache@v3
       id: cache
       with:
