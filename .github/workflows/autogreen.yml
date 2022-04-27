@@ -2,9 +2,7 @@ name: rebuild-toolchain
 
 on:
   workflow_dispatch:
-
-  schedule:
-    - cron: '5 0 * * MON'      
+     
 jobs:
   autogreen:
     runs-on: ubuntu-latest
