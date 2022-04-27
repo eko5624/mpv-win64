@@ -1,12 +1,11 @@
 name: toolchain
 
 on:
-  workflow_run:
-    workflows: [rebuild-toolchain]
-    types: [completed]
+  schedule:
+    - cron: '10 0 * * MON'  
  
 jobs:
-  on-success:
+  build:
     runs-on: windows-2022
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps: 
