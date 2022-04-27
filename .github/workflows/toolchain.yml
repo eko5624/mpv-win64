@@ -3,12 +3,11 @@ name: toolchain
 on:
   workflow_dispatch:  
   schedule:
-    - cron: '10 0 * * MON'  
+  - cron: '10 0 * * MON'  
  
 jobs:
   build:
     runs-on: windows-2022
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps: 
     - uses: msys2/setup-msys2@v2
       with:
