@@ -31,7 +31,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: D:\ucrt64
-        key: mcf_20220422_11.3.1_x64-ucrt${{ secrets.MCF }}   
+        key: mcf_20220422_11.3.1_x64-ucrt-${{ secrets.MCF }}
   
     - name: Delete
       uses: mknejp/delete-release-assets@v1
