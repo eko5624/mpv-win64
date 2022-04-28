@@ -6,37 +6,42 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl"
-        "git+https://github.com/google/brotli"
-        "git+https://github.com/gflags/gflags"
-        "git+https://github.com/google/googletest"
-        "git+https://github.com/google/highway"
-        "git+https://github.com/mm2/Little-CMS"
-        "git+https://github.com/glennrp/libpng.git"
+        "git+https://github.com/lvandeve/lodepng.git"
         "git+https://github.com/webmproject/sjpeg.git"
-        "git+https://skia.googlesource.com/skcms"
-        "git+https://github.com/libjxl/testdata"
-        "git+https://github.com/madler/zlib.git")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+        "git+https://skia.googlesource.com/skcms.git"
+        "git+https://github.com/google/highway.git")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+
+prepare() {
+  cd $srcdir/libjxl
+  git submodule init
+  git config --local submodule.third_party/lodepng.url "${srcdir}/lodepng"
+  git config --local submodule.third_party/sjpeg.url "${srcdir}/sjpeg"
+  git config --local submodule.third_party/skcms.url "${srcdir}/skcms"
+  git config --local submodule.third_party/highway.url "${srcdir}/highway"
+  
+  git submodule update third_party/lodepng
+  git submodule update third_party/sjpeg
+  git submodule update third_party/skcms
+  git submodule update third_party/highway  
 
 build() {
-  cd $srcdir
-  mv brotli libjxl/third_party
-  mv gflags libjxl/third_party
-  mv googletest libjxl/third_party
-  mv highway libjxl/third_party
-  mv Little-CMS libjxl/third_party
-  mv libpng libjxl/third_party
-  mv sjpeg libjxl/third_party
-  mv skcms libjxl/third_party
-  mv testdata libjxl/third_party
-  mv zlib libjxl/third_party
   cd $srcdir/libjxl
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=OFF \
-    -DJPEGXL_ENABLE_BENCHMARK=OFF -DJPEGXL_ENABLE_PLUGINS=OFF \
-    -DJPEGXL_ENABLE_MANPAGES=OFF -DJPEGXL_FORCE_SYSTEM_BROTLI=OFF \
-    -DJPEGXL_FORCE_SYSTEM_GTEST=OFF 
+  CFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \
+  CXXFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \
+  $CMAKE .. -G "Ninja" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DJPEGXL_ENABLE_PLUGINS=OFF \
+    -DBUILD_TESTING=OFF \
+    -DJPEGXL_WARNINGS_AS_ERRORS=OFF \
+    -DJPEGXL_ENABLE_BENCHMARK=OFF \
+    -DJPEGXL_ENABLE_EXAMPLES=OFF \
+    -DJPEGXL_ENABLE_MANPAGES=OFF \
+    -DJPEGXL_FORCE_SYSTEM_BROTLI=ON \
+    -DJPEGXL_FORCE_SYSTEM_HWY=OFF \
+    -DJPEGXL_ENABLE_JNI=OFF \
+    -DJPEGXL_ENABLE_TCMALLOC=OFF \
+    -DJPEGXL_ENABLE_OPENEXR=OFF \ 
   $CMAKE --build .
 }
 
