@@ -15,14 +15,6 @@ jobs:
           autotools 
           git 
           mingw-w64-x86_64-cmake            
-          mingw-w64-x86_64-gflags
-          mingw-w64-x86_64-giflib
-          mingw-w64-x86_64-gtest
-          mingw-w64-x86_64-libavif
-          mingw-w64-x86_64-libjpeg-turbo
-          mingw-w64-x86_64-libpng 
-          mingw-w64-x86_64-libjpeg
-          mingw-w64-x86_64-libwebp
           mingw-w64-x86_64-ninja
     - uses: actions/cache@v3
       id: cache
