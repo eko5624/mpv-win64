@@ -5,6 +5,7 @@ pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 license=('BSD')
+conflicts=("mingw-w64-x86_64-highway")
 source=("git+https://github.com/libjxl/libjxl"
         "git+https://github.com/lvandeve/lodepng.git"
         "git+https://github.com/webmproject/sjpeg.git"
@@ -24,6 +25,7 @@ prepare() {
   git submodule update third_party/sjpeg
   git submodule update third_party/skcms
   git submodule update third_party/highway  
+}  
 
 build() {
   cd $srcdir/libjxl
