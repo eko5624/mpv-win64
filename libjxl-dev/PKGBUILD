@@ -1,7 +1,7 @@
 pkgname=libjxl-dev
 pkgver=0.6.1
 pkgrel=1
-pkgdesc='implementation of JPEG XL'
+pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 license=('BSD')
