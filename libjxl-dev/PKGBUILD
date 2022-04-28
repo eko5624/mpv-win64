@@ -43,6 +43,9 @@ prepare() {
   git submodule update third_party/skcms
   git submodule update third_party/testdata
   git submodule update third_party/zlib 
+  
+  git cherry-pick 4b7a944f65bea99139140c77ccd4568b9f04caae
+  git cherry-pick 88fe3fff3dc70c72405f57c69feffd9823930034
 }  
 
 build() {
