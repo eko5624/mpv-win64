@@ -21,6 +21,7 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' '
 
 prepare() {
   cd $srcdir/libjxl
+  mv ${srcdir}/Little-CMS ${srcdir}/lcms
   git submodule init
   git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
