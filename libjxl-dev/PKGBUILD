@@ -20,7 +20,7 @@ source=("git+https://github.com/libjxl/libjxl.git#tag=v${pkgver}"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 prepare() {
-  cd libjxl
+  cd $srcdir/libjxl
   git submodule init
   git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
