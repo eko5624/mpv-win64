@@ -26,7 +26,7 @@ prepare() {
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
   git config --local submodule.third_party/googletest.url "${srcdir}/googletest"
   git config --local submodule.third_party/highway.url "${srcdir}/highway"
-  git config --local submodule.third_party/lcms.url "${srcdir}/Little-CMS"
+  git config --local submodule.third_party/lcms.url "${srcdir}/lcms"
   git config --local submodule.third_party/libpng.url "${srcdir}/libpng"
   git config --local submodule.third_party/sjpeg.url "${srcdir}/sjpeg"
   git config --local submodule.third_party/skcms.url "${srcdir}/skcms"
