@@ -20,7 +20,7 @@ source=("git+https://github.com/libjxl/libjxl.git#tag=v${pkgver}"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 prepare() {
-  cd $srcdir/libjxl
+  cd $srcdir/libjxl-$pkgver
   git submodule init
   git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
@@ -51,7 +51,7 @@ prepare() {
 }  
 
 build() {
-  cd $srcdir/libjxl
+  cd $srcdir/libjxl-$pkgver
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DJPEGXL_ENABLE_PLUGINS=OFF \
@@ -69,6 +69,6 @@ build() {
 }
 
 package() {
-  cd $srcdir/libjxl/build
+  cd $srcdir/libjxl-$pkgver/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
