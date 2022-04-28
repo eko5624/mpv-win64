@@ -33,8 +33,7 @@ prepare() {
 }  
 
 build() {
-  cd $srcdir/libjxl
-  rm -rf build && mkdir build && cd build  
+  mkdir -p $srcdir/build64 && cd $srcdir/build64  
   $CMAKE \
     -G"Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
@@ -50,12 +49,12 @@ build() {
     -DJPEGXL_ENABLE_JNI=OFF \
     -DJPEGXL_ENABLE_TCMALLOC=OFF \
     -DJPEGXL_ENABLE_OPENEXR=OFF \ 
-    ..
+    ../libjxl
   $CMAKE --build .
 }
 
 package() {
-  cd $srcdir/libjxl/build
+  cd $srcdir/build64
   $CMAKE --install . --prefix=$pkgdir/opt
   install -Dm644 libjxl/LICENSE "${pkgdir}/opt/share/licenses/libjxl/LICENSE"
 }
