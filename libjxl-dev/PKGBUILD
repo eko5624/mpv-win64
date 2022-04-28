@@ -21,13 +21,12 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' '
 
 prepare() {
   cd $srcdir/libjxl
-  mv ${srcdir}/Little-CMS ${srcdir}/lcms
   git submodule init
   git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
   git config --local submodule.third_party/googletest.url "${srcdir}/googletest"
   git config --local submodule.third_party/highway.url "${srcdir}/highway"
-  git config --local submodule.third_party/lcms.url "${srcdir}/lcms"
+  git config --local submodule.third_party/lcms.url "${srcdir}/Little-CMS"
   git config --local submodule.third_party/libpng.url "${srcdir}/libpng"
   git config --local submodule.third_party/sjpeg.url "${srcdir}/sjpeg"
   git config --local submodule.third_party/skcms.url "${srcdir}/skcms"
@@ -38,7 +37,7 @@ prepare() {
   git submodule update third_party/gflags
   git submodule update third_party/googletest
   git submodule update third_party/highway
-  git submodule update third_party/Little-CMS
+  git submodule update third_party/lcms
   git submodule update third_party/libpng
   git submodule update third_party/sjpeg
   git submodule update third_party/skcms
