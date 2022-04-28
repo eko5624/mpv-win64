@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 license=('BSD')
 conflicts=("mingw-w64-x86_64-highway" "mingw-w64-x86_64-zlib" "mingw-w64-x86_64-brotli")
-source=("git+https://github.com/libjxl/libjxl"
+source=("git+https://github.com/libjxl/libjxl.git#tag=v${pkgver}"
         "git+https://github.com/google/brotli"
         "git+https://github.com/gflags/gflags"
         "git+https://github.com/google/googletest"
@@ -20,7 +20,7 @@ source=("git+https://github.com/libjxl/libjxl"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 prepare() {
-  cd $srcdir/libjxl
+  cd libjxl
   git submodule init
   git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
   git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
