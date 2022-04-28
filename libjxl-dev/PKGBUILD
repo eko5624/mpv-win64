@@ -35,11 +35,8 @@ prepare() {
 build() {
   [[ -d "${srcdir}/build" ]] && rm -rf "${srcdir}/build"
   mkdir -p "${srcdir}/build" && cd "${srcdir}/build"
-  
-  # Workaround for AVX related crashes
-  CFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \
-  CXXFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \  
-  $CMAKE -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+   
+  $CMAKE -G"Ninja" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DJPEGXL_ENABLE_PLUGINS=OFF \
     -DBUILD_TESTING=OFF \
     -DJPEGXL_WARNINGS_AS_ERRORS=OFF \
