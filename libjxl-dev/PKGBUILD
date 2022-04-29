@@ -5,7 +5,6 @@ pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 license=('BSD')
-conflicts=("mingw-w64-x86_64-highway")
 source=("git+https://github.com/libjxl/libjxl.git#tag=v${pkgver}"
         'git+https://github.com/lvandeve/lodepng.git'
         'git+https://github.com/webmproject/sjpeg.git'
