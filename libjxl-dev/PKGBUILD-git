@@ -19,33 +19,19 @@ source=("git+https://github.com/libjxl/libjxl"
         "git+https://github.com/madler/zlib.git")
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
-prepare() {
-  cd $srcdir/libjxl
-  git submodule init
-  git config --local submodule.third_party/brotli.url "${srcdir}/brotli"
-  git config --local submodule.third_party/gflags.url "${srcdir}/gflags"
-  git config --local submodule.third_party/googletest.url "${srcdir}/googletest"
-  git config --local submodule.third_party/highway.url "${srcdir}/highway"
-  git config --local submodule.third_party/lcms.url "${srcdir}/Little-CMS"
-  git config --local submodule.third_party/libpng.url "${srcdir}/libpng"
-  git config --local submodule.third_party/sjpeg.url "${srcdir}/sjpeg"
-  git config --local submodule.third_party/skcms.url "${srcdir}/skcms"
-  git config --local submodule.third_party/testdata.url "${srcdir}/testdata"
-  git config --local submodule.third_party/zlib.url "${srcdir}/zlib"
-  
-  git submodule update third_party/brotli
-  git submodule update third_party/gflags
-  git submodule update third_party/googletest
-  git submodule update third_party/highway
-  git submodule update third_party/lcms
-  git submodule update third_party/libpng
-  git submodule update third_party/sjpeg
-  git submodule update third_party/skcms
-  git submodule update third_party/testdata
-  git submodule update third_party/zlib 
-}  
-
 build() {
+  cd $srcdir
+  mv Little-CMS lcms
+  mv brotli libjxl/third_party
+  mv gflags libjxl/third_party
+  mv googletest libjxl/third_party
+  mv highway libjxl/third_party
+  mv lcms libjxl/third_party
+  mv libpng libjxl/third_party
+  mv sjpeg libjxl/third_party
+  mv skcms libjxl/third_party
+  mv testdata libjxl/third_party
+  mv zlib libjxl/third_party
   cd $srcdir/libjxl
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "Ninja" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
