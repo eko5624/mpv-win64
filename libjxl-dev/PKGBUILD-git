@@ -34,7 +34,7 @@ build() {
   mv zlib libjxl/third_party
   cd $srcdir/libjxl
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "Ninja" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  $CMAKE .. -G"Ninja" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DJPEGXL_ENABLE_PLUGINS=OFF \
     -DBUILD_TESTING=OFF \
     -DJPEGXL_WARNINGS_AS_ERRORS=OFF \
