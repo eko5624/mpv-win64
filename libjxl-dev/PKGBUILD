@@ -34,12 +34,7 @@ prepare() {
 
 build() {
   cd $srcdir/libjxl
-  rm -rf build && mkdir build && cd build  
-  
-  # Workaround for AVX related crashes
-  CFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \
-  CXXFLAGS+=" -DHWY_COMPILE_ONLY_SCALAR" \
-  MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \    
+  rm -rf build && mkdir build && cd build     
   $CMAKE .. -G"Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
