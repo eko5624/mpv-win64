@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='C++ library that provides portable SIMD/vector intrinsics'
 arch=('x86_64')
 url="https://github.com/google/highway/"
-license=('CUSTOM')
+license=('Apache-2.0')
 source=("git+https://github.com/google/highway")
 md5sums=('SKIP')
 
