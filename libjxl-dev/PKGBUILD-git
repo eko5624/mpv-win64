@@ -4,29 +4,20 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
-makedepends=('BSD')
+makedepends=('brotli-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl"
         "git+https://github.com/google/highway"
         "git+https://skia.googlesource.com/skcms"
-md5sums=('SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir
-  mv Little-CMS lcms
-  mv brotli libjxl/third_party
-  mv gflags libjxl/third_party
-  mv googletest libjxl/third_party
   mv highway libjxl/third_party
-  mv lcms libjxl/third_party
-  mv libpng libjxl/third_party
-  mv sjpeg libjxl/third_party
   mv skcms libjxl/third_party
-  mv testdata libjxl/third_party
-  mv zlib libjxl/third_party
   cd $srcdir/libjxl
   rm -rf build && mkdir build && cd build
-  $CMAKE -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DBUILD_SHARED_LIBS=OFF \ 
     -DJPEGXL_STATIC=ON \
@@ -43,12 +34,17 @@ build() {
     -DJPEGXL_ENABLE_BENCHMARK=OFF \ 
     -DJPEGXL_BUNDLE_LIBPNG=OFF \ 
     -DJPEGXL_ENABLE_SJPEG=OFF \ 
-    -DJPEGXL_FORCE_SYSTEM_BROTLI=ON ..
+    -DJPEGXL_FORCE_SYSTEM_BROTLI=ON 
   $CMAKE --build .
 }
 
 package() {
   cd $srcdir/libjxl/build
   $CMAKE --install . --prefix=$pkgdir/opt
+  echo "Cflags.private: -DJXL_STATIC_DEFINE=1" >> $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
+  echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
+  mv $pkgdir/opt/lib/libjxl-static.a $pkgdir/opt/lib/libjxl.a
+  mv $pkgdir/opt/lib/libjxl_dec-static.a $pkgdir/opt/lib/libjxl_dec.a
+  mv $pkgdir/opt/lib/libjxl_threads-static.a $pkgdir/opt/lib/libjxl_threads.a
   
 }
