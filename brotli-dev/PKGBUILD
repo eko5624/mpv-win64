@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Generic-purpose lossless compression algorithm'
 arch=('x86_64')
 url="https://github.com/google/brotli/"
-license=('BSD')
+license=('MIT')
 source=("git+https://github.com/google/brotli")
 md5sums=('SKIP')
 
@@ -15,6 +15,6 @@ build() {
   $CMAKE --build .
   
 package() {
-  cd $srcdir/brotli
+  cd $srcdir/brotli/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }  
