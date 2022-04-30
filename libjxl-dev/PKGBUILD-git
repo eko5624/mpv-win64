@@ -41,6 +41,8 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   $CMAKE --install . --prefix=$pkgdir/opt
+  echo "Cflags.private: -DJXL_STATIC_DEFINE=1" >> $pkgdir/opt/lib/pkgconfig/libjxl.pc
+  echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/libjxl.pc  
   echo "Cflags.private: -DJXL_STATIC_DEFINE=1" >> $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
   echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
   mv $pkgdir/opt/lib/libjxl-static.a $pkgdir/opt/lib/libjxl.a
