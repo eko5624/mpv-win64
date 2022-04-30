@@ -6,20 +6,17 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 makedepends=('brotli-dev')
 license=('BSD')
-source=("git+https://github.com/libjxl/libjxl"
-        "git+https://github.com/google/highway"
-        "git+https://skia.googlesource.com/skcms")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+source=("git+https://github.com/libjxl/libjxl")
+md5sums=('SKIP')
 
 build() {
-  cd $srcdir
-  mv highway libjxl/third_party
-  mv skcms libjxl/third_party
   cd $srcdir/libjxl
+  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{highway,skcms}
+  rm- rf third_party/brotli
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    -DBUILD_SHARED_LIBS=OFF \ 
+    -DBUILD_SHARED_LIBS=OFF -DLIBJXL_THIRD_PARTY_ROOT_DIR="${srcdir}"\ 
     -DJPEGXL_STATIC=ON \
     -DJPEGXL_ENABLE_TOOLS=OFF \ 
     -DJPEGXL_ENABLE_VIEWERS=OFF \ 
@@ -32,7 +29,7 @@ build() {
     -DJPEGXL_ENABLE_PLUGINS=OFF \
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \ 
     -DJPEGXL_ENABLE_BENCHMARK=OFF \ 
-    -DJPEGXL_BUNDLE_LIBPNG=OFF \ 
+    -DJPEGXL_BUNDLE_LIBPNG=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF \ 
     -DJPEGXL_FORCE_SYSTEM_BROTLI=ON 
   $CMAKE --build .
