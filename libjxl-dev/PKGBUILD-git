@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
-makedepends=('brotli-dev' 'highway-dev')
+makedepends=('brotli-dev' 'highway-dev' 'lcms2-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl")
 md5sums=('SKIP')
@@ -32,6 +32,7 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF
+    -DJPEGXL_ENABLE_SZLIB=OFF
   $CMAKE --build .
 }
 
