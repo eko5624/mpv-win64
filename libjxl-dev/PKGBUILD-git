@@ -8,7 +8,7 @@ makedepends=('brotli-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl"
         "git+https://github.com/google/highway"
-        "git+https://skia.googlesource.com/skcms"
+        "git+https://skia.googlesource.com/skcms")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
