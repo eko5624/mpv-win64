@@ -9,11 +9,17 @@ jobs:
   build:
     runs-on: windows-2022
     steps: 
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
         install: base-devel autotools        
     - name: Setup Toolchain
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220429_12.0.1_x64-ucrt_13f0746dd680e1df89ab23a964c7b8ade13bb59f.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
@@ -21,18 +27,13 @@ jobs:
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3     
     - name: Make Toolchain
+      if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
         cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg    
-    
-    - name: Cache
-      id: cache
-      uses: actions/cache@v3
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
   
     - name: Delete
+      if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -41,6 +42,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false        
     - name: Upload
+      if: steps.cache.outputs.cache-hit != 'true'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
