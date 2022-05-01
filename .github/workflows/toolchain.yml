@@ -13,7 +13,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
@@ -21,7 +21,7 @@ jobs:
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220429_12.0.1_x64-ucrt_13f0746dd680e1df89ab23a964c7b8ade13bb59f.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220428_11.3.1_x64-ucrt_c81030d99f10442ecd51b72746d4a7e1e1125cc1.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Prepare
       run: git config --global core.autocrlf input

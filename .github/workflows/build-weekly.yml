@@ -50,7 +50,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -119,7 +119,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -162,7 +162,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -206,7 +206,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -248,7 +248,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -290,7 +290,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -334,7 +334,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -378,7 +378,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -421,7 +421,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -463,7 +463,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -506,7 +506,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -553,7 +553,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -597,7 +597,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -640,7 +640,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -686,7 +686,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -730,7 +730,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -775,7 +775,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -822,7 +822,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -865,7 +865,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -916,7 +916,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -960,7 +960,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1019,7 +1019,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1080,7 +1080,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1170,7 +1170,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-58-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220429-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220428-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.212-1-x86_64.pkg.tar.zst
         pacman -U *.xz *.zst --noconfirm
     - name: Zip Packages    
@@ -1201,7 +1201,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1244,7 +1244,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1335,7 +1335,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
