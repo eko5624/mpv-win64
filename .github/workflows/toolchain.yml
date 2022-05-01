@@ -20,7 +20,7 @@ jobs:
     - name: Install additional packages     
       shell: msys2 {0} 
       run: |
-        pacman -noconfirm -Sy base-devel autotools
+        pacman -Sy base-devel autotools --noconfirm
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
