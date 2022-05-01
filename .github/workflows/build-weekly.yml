@@ -12,7 +12,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git   
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -45,7 +48,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools nasm git      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -114,7 +120,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -157,7 +166,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git              
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools nasm git              
     - uses: actions/cache@v3
       id: cache
       with:
@@ -201,7 +213,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -243,7 +258,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -285,7 +303,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools              
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools              
     - uses: actions/cache@v3
       id: cache
       with:
@@ -329,7 +350,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools             
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools             
     - uses: actions/cache@v3
       id: cache
       with:
@@ -373,7 +397,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -416,7 +443,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools nasm      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -458,7 +488,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -501,7 +534,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools nasm git      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -548,7 +584,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -592,7 +631,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -635,7 +677,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -681,7 +726,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -725,7 +773,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git             
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git             
     - uses: actions/cache@v3
       id: cache
       with:
@@ -770,7 +821,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake            
     - uses: actions/cache@v3
       id: cache
       with:
@@ -817,7 +871,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -860,7 +917,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git           
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git           
     - uses: actions/cache@v3
       id: cache
       with:
@@ -911,7 +971,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -955,7 +1018,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -1014,7 +1080,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools yasm git      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools yasm git      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -1075,7 +1144,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -1118,7 +1190,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel
     
     - name: Get mpv latest commit sha
       id: get_sha
@@ -1196,7 +1271,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake     
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake     
     - uses: actions/cache@v3
       id: cache
       with:
@@ -1239,7 +1317,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake      
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake      
     - uses: actions/cache@v3
       id: cache
       with:
@@ -1282,7 +1363,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools     
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1330,7 +1414,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake git     
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake git     
     - uses: actions/cache@v3
       id: cache
       with:
