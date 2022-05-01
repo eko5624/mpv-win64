@@ -13,7 +13,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220422_11.3.1_x64-ucrt-${{ secrets.MCF }}
+        key: mcf_20220422_11.3.1_x64-ucrt-${{ secrets.MCF }}-1
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\   
