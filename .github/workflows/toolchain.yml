@@ -16,8 +16,11 @@ jobs:
         key: mcf_20220428_11.3.1_x64-ucrt-${{ secrets.MCF }}
     - uses: msys2/setup-msys2@v2
       with:
-        location: D:\
-        install: base-devel autotools        
+        location: D:\   
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman -noconfirm -Sy base-devel autotools
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
