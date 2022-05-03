@@ -9,8 +9,11 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
-        release: false
-        install: base-devel autotools yasm git    
+        location: D:\
+    - name: Install additional packages     
+      shell: msys2 {0} 
+      run: |
+        pacman --noconfirm -Sy base-devel autotools yasm git   
     - uses: actions/cache@v3
       id: cache
       with:
