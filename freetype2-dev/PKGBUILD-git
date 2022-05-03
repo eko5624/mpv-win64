@@ -1,0 +1,23 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=freetype2-dev
+pkgver=2.12.1
+pkgrel=1
+pkgdesc='Font rasterization library'
+arch=('x86_64')
+url="https://www.freetype.org/"
+license=('GPL')
+source=("git+https://github.com/freetype/freetype.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/freetype
+  ./autogen.sh
+  ./configure prefix=/opt --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/freetype
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/share
+}
