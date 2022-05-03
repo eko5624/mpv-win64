@@ -49,7 +49,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.192.1-1-x86_64.pkg.tar.zst
         pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm
-        cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
