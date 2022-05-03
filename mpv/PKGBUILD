@@ -14,7 +14,6 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   python bootstrap.py
-  CFLAGS='-DWINPTHREAD_STATIC'  
   LDFLAGS="$LDFLAGS -lstdc++"
   CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
   python waf build
