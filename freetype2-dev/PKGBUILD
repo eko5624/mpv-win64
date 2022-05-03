@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/freetype-$pkgver
-  ./configure prefix=/opt --disable-shared
+  ./configure prefix=/opt --with-brotli=no --disable-shared
   make
 }
 
