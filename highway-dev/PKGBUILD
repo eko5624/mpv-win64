@@ -12,16 +12,13 @@ build() {
   cd $srcdir/highway
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_GMOCK=OFF \
     -DBUILD_TESTING=OFF \
     -DCMAKE_GNUtoMS=OFF \
     -DHWY_CMAKE_ARM7=OFF \
     -DHWY_ENABLE_CONTRIB=OFF \
     -DHWY_ENABLE_EXAMPLES=OFF \
     -DHWY_ENABLE_INSTALL=ON \
-    -DHWY_SYSTEM_GTEST=OFF \
-    -DHWY_WARNINGS_ARE_ERRORS=OFF \
-    -DINSTALL_GTEST=OFF
+    -DHWY_WARNINGS_ARE_ERRORS=OFF 
   $CMAKE --build .
 }  
   
