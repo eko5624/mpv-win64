@@ -20,6 +20,4 @@ build() {
 package() {
   cd $srcdir/libass
   make DESTDIR=$pkgdir install
-  sed -i '/Requires:/d' $pkgdir/opt/lib/pkgconfig/*.pc
-  sed -i 's/Requires.private/Requires/' $pkgdir/opt/lib/pkgconfig/*.pc
 }
