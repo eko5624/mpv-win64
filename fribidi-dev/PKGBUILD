@@ -13,6 +13,7 @@ build() {
   cd $srcdir/fribidi-$pkgver
   sed -i "s/libfribidi/libfribidi,extra_cflags:'-DFRIBIDI_LIB_STATIC'/" meson.build
   mkdir work
+  CFLAGS=-DWINPTHREAD_STATIC
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Dcpp_args='-DFRIBIDI_LIB_STATIC' -Ddocs=false -Dbin=false -Dtests=false
   cd work
