@@ -12,7 +12,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/freetype-$pkgver
   CFLAGS=-DWINPTHREAD_STATIC
-  ./configure prefix=/opt --with-brotli=no --disable-shared
+  ./configure prefix=/opt --disable-shared
   make
 }
 
