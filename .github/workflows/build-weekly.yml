@@ -52,15 +52,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools nasm git      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -121,15 +125,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools nasm git              
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -168,15 +176,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -213,15 +225,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -258,15 +274,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools              
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -305,15 +325,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools             
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -352,15 +376,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools nasm      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -397,15 +425,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools git      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -443,15 +475,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools nasm git      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -493,15 +529,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -540,15 +580,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -586,15 +630,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -635,15 +683,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -682,15 +734,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools git             
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -729,15 +785,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -775,15 +835,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools git           
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -829,15 +893,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -876,15 +944,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools git      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -938,15 +1010,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools yasm git      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1002,15 +1078,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1129,15 +1209,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake     
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1175,15 +1259,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake      
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1272,15 +1360,19 @@ jobs:
       shell: msys2 {0} 
       run: |
         pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake git     
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
+    - name: Get HASH ENV
+        run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+        shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220429_12.0.1_x64-ucrt-${{ env.random_hash }}   
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
