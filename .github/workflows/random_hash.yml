@@ -1,0 +1,29 @@
+name: RANDOM_HASH
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install git
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install git
+    - name: Set env
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    - name: Get random hash
+      run: |
+        git checkout setup-msys2
+        random_hash=$(echo $RANDOM | md5sum | head -c 20)" 
+        echo $random_hash > HASH
+        git add HASH
+        git commit HASH -m "Random-hash-setting"
+        git push 
