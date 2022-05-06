@@ -13,7 +13,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20220429_12.0.1_x64-ucrt${{ secrets.MCF }}
     - name: Prepare
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
     - uses: actions/checkout@v2
     - name: Build
       env:
