@@ -22,7 +22,7 @@ jobs:
     - name: Get random hash
       run: |
         git checkout setup-msys2
-        random_hash=$(echo $RANDOM | md5sum | head -c 20)" 
+        random_hash=$(echo $RANDOM | md5sum | head -c 20)
         echo $random_hash > HASH
         git add HASH
         git commit HASH -m "Random-hash-setting"
