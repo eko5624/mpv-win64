@@ -32,7 +32,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220429_12.0.1_x64-ucrt_13f0746dd680e1df89ab23a964c7b8ade13bb59f.7z
-        &'C:\Program Files\7-Zip\7z.exe' x -y *.7z -o'D:'    
+        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'    
     - name: Make Toolchain
       shell: msys2 {0}
       if: steps.cache.outputs.cache-hit != 'true'
