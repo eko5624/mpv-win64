@@ -11,11 +11,8 @@ jobs:
     steps: 
     - uses: msys2/setup-msys2@v2
       with:
-        location: D:\   
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman -Sy base-devel autotools --noconfirm
+        location: D:\
+        install: base-devel autotools 
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3     
