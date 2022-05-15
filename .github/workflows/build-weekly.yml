@@ -12,10 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git   
+        install: base-devel autotools git   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -48,10 +45,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools nasm git      
+        install: base-devel autotools nasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -120,10 +114,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools nasm git              
+        install: base-devel autotools nasm git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -170,10 +161,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -218,10 +206,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -266,10 +251,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools              
+        install: base-devel autotools              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -316,10 +298,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools             
+        install: base-devel autotools             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -366,10 +345,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools nasm      
+        install: base-devel autotools nasm      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -414,10 +390,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git      
+        install: base-devel autotools git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -463,10 +436,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools nasm git      
+        install: base-devel autotools nasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -516,10 +486,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -566,10 +533,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -615,10 +579,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -667,10 +628,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -717,10 +675,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git             
+        install: base-devel autotools git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -767,10 +722,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -816,10 +768,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git           
+        install: base-devel autotools git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -873,10 +822,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -923,10 +869,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git      
+        install: base-devel autotools git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -988,10 +931,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools yasm git      
+        install: base-devel autotools yasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1055,10 +995,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools      
+        install: base-devel autotools      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1104,10 +1041,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel
+        install: base-devel
     
     - name: Get mpv latest commit sha
       id: get_sha
@@ -1185,10 +1119,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools git mingw-w64-x86_64-cmake     
+        install: base-devel autotools git mingw-w64-x86_64-cmake     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1234,10 +1165,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake      
+        install: base-devel autotools mingw-w64-x86_64-cmake      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1283,10 +1211,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools     
+        install: base-devel autotools     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1334,10 +1259,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-    - name: Install additional packages     
-      shell: msys2 {0} 
-      run: |
-        pacman --noconfirm -Sy base-devel autotools mingw-w64-x86_64-cmake git     
+        install: base-devel autotools mingw-w64-x86_64-cmake git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
