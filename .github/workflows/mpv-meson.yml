@@ -71,7 +71,7 @@ jobs:
         file_glob: true    
    
   package:
-    needs: [mpv, config]
+    needs: [mpv]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
