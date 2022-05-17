@@ -15,7 +15,6 @@ build() {
   cd $srcdir/mpv
   meson build --buildtype=release --Diconv=disable -Dlibbluray=enabled -Ddvdnav=enabled
   meson compile -C build 
-  python waf build
 }
 
 package() {
