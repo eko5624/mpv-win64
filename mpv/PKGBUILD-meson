@@ -13,7 +13,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  meson build --buildtype=release --Diconv=disable -Dlibbluray=enabled -Ddvdnav=enabled
+  meson build --buildtype=release 
   meson compile -C build 
 }
 
