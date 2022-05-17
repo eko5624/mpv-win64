@@ -33,6 +33,7 @@ jobs:
       run: |
         PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
         pip3 install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
+        pip3 install ninja
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20220411-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
