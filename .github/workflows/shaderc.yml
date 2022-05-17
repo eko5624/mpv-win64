@@ -5,16 +5,24 @@ on:
 
 jobs:
   shaderc:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake     
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
     - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220429_12.0.1_x64-ucrt-${{ secrets.MCF }}
-    - name: Prepare
-      run: git config --global core.autocrlf input
-    - uses: actions/checkout@v3
+        key: mcf_20220510_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -22,9 +30,9 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
       run: |
-        C:\msys64\usr\bin\bash -lc 'pacman -Sy git --noconfirm'
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
