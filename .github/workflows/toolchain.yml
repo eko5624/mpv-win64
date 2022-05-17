@@ -23,12 +23,12 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220506_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220510_12.1.1_x64-ucrt-${{ env.random_hash }}
     
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220506_12.1.1_x64-ucrt_bfd5759d233f0a1210d2511170cd594ee0cd66b8.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20220510_12.1.1_x64-ucrt_0941c0becb4ddccec7583812ea35edd7670ac75d.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'    
     - name: Make Toolchain
       shell: msys2 {0}
