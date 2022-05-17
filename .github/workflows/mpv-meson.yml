@@ -5,44 +5,62 @@ on:
 
 jobs:
   mpv:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools yasm git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
     - uses: actions/cache@v3
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220422_11.3.1_x64-ucrt-${{ secrets.MCF }}
-    - name: Prepare
-      run: git config --global core.autocrlf false
-    - uses: actions/checkout@v3
+        key: mcf_20220506_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+      shell: msys2 {0}
       run: |
-        pip install meson ninja mako
-        C:\msys64\usr\bin\bash -lc 'pacman -S yasm git --noconfirm'
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-4.4.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit-dev-2.1.0_beta3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.11.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.11-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-3.2.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.15.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.12-1-x86_64.pkg.tar.zst
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/usr/bin:/opt/bin
+        pip3 install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.0.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20220411-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-58-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.12.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-4.2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.16.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.9-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.2.203-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2021.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.10-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.213-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.157.0-1-x86_64.pkg.tar.zst
-        C:\msys64\usr\bin\bash -lc "pacman -U /d/a/mpv-win64/mpv-win64/*.zst --noconfirm"
-        C:\msys64\usr\bin\bash -lc 'cd /d/a/mpv-win64/mpv-win64/mpv; PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson'
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.192.1-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: mpv*
+        fail-if-no-assets: false
+        fail-if-no-release: false    
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -50,7 +68,7 @@ jobs:
         file: mpv/*pkg*.xz
         tag: latest
         overwrite: true
-        file_glob: true     
+        file_glob: true    
    
   package:
     needs: mpv
