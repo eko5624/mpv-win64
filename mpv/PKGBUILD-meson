@@ -1,0 +1,28 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=mpv
+pkgver=0.34.1
+pkgrel=1
+pkgdesc='a free, open source, and cross-platform media player'
+arch=('x86_64')
+url='https://mpv.io/'
+makedepends=('yasm' 'vapoursynth-dev' 'ffmpeg-dev' 'luajit2-dev' 'ffnvcodec-dev' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libass-dev' 'lcms2-dev'
+              'libbluray-dev' 'libdvdcss-dev' 'libdvdread-dev' 'libdvdnav-dev' 'libepoxy-dev' 'shaderc-dev' 'spirv-cross-dev' 'vulkan-dev' 'libplacebo-dev')
+license=('GPL3')
+source=("git+https://github.com/mpv-player/mpv")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/mpv
+  meson build --buildtype=release --Diconv=disable -Dlibbluray=enabled -Ddvdnav=enabled
+  meson compile -C build 
+  python waf build
+}
+
+package() {
+  depends=('ffmpeg' 'luajit2' 'vapoursynth' 'mcfgthread')
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/bin  
+  cd $srcdir/mpv/build
+  strip mpv.*
+  mv mpv.* $pkgdir/opt/bin
+}
