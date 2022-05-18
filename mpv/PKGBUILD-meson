@@ -22,7 +22,7 @@ package() {
   depends=('ffmpeg' 'luajit2' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
-  cd $srcdir/mpv/build
+  cd $srcdir/mpv
   meson install -C build
   strip mpv.*
   mv mpv.exe $pkgdir/opt/bin
