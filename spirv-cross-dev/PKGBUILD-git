@@ -23,5 +23,4 @@ build() {
 package() {
   cd $srcdir/SPIRV-Cross/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  mv $pkgdir/opt/lib/pkgconfig/spirv-cross-c-shared.pc $pkgdir/opt/lib/pkgconfig/spirv-cross.pc
 }
