@@ -23,5 +23,7 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
+  meson install -C build
+  strip mpv.*
   mv mpv.exe $pkgdir/opt/bin
 }
