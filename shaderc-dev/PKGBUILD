@@ -13,6 +13,7 @@ source=("git+https://github.com/google/shaderc"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
+  export CXX_FLAGS="${CXX_FLAGS} -std=c++11"  
   cd $srcdir
   mv SPIRV-Headers spirv-headers
   mv SPIRV-Tools spirv-tools
