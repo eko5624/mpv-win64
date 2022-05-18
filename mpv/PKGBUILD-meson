@@ -14,7 +14,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -lstdc++"
-  meson build --buildtype=release 
+  meson build --buildtype=release --default-library=shared -Dlua=enabled
   meson compile -C build 
 }
 
@@ -22,8 +22,6 @@ package() {
   depends=('ffmpeg' 'luajit2' 'vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
-  cd $srcdir/mpv
-  meson install -C build
-  strip mpv.*
+  cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/bin
 }
