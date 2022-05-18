@@ -23,6 +23,5 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
-  strip mpv.*
-  mv mpv.* $pkgdir/opt/bin
+  mv mpv.exe $pkgdir/opt/bin
 }
