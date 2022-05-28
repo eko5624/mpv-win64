@@ -62,7 +62,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-58-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220520-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220528-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.215-1-x86_64.pkg.tar.zst
         pacman -U *.xz *.zst --noconfirm
     - name: Zip Packages    
