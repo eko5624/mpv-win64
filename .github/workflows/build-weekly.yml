@@ -1191,14 +1191,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220528-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.215-1-x86_64.pkg.tar.zst
-        pacman -U *.xz *.zst --noconfirm
+        pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
-        7z a All-in-One-MPV-git-libjxl-${date}.7z D:\msys64\opt\bin\*
+        7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
