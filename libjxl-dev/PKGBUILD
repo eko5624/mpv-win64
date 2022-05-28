@@ -15,7 +15,7 @@ build() {
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
-  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/highway 
+  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{highway,skcms}  
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
@@ -42,5 +42,7 @@ package() {
   cd $srcdir/libjxl/build
   $CMAKE --install . --prefix=$pkgdir/opt
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
-  sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc   
+  sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
+  mkdir -p $pkgdir/opt/bin
+  cp /d/ucrt64/bin/libgcc_s_seh-1.dll $pkgdir/opt/bin
 }
