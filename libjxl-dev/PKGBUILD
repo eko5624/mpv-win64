@@ -10,7 +10,7 @@ source=("git+https://github.com/libjxl/libjxl")
 md5sums=('SKIP')
 
 build() {
-  # Workaround for AVX related crashes
+  # Fix AVX2 related crash due to unaligned stack memory
   export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
