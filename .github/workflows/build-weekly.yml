@@ -1142,7 +1142,13 @@ jobs:
       with:
         location: D:\
         install: base-devel
-    
+
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@v6
