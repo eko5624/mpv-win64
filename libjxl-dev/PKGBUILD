@@ -43,5 +43,4 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc
-  mkdir -p $pkgdir/opt/bin
 }
