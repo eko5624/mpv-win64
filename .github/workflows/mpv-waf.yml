@@ -1,4 +1,4 @@
-name: mpv-git
+name: mpv-waf
 
 on:
   workflow_dispatch:
