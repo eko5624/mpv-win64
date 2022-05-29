@@ -57,7 +57,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -128,7 +128,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -174,7 +174,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -221,7 +221,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -266,7 +266,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -311,7 +311,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -358,7 +358,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -405,7 +405,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -450,7 +450,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -496,7 +496,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -546,7 +546,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -593,7 +593,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -639,7 +639,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -688,7 +688,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -735,7 +735,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -783,7 +783,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -831,7 +831,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -877,7 +877,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -931,7 +931,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -978,7 +978,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1040,7 +1040,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1107,7 +1107,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1147,7 +1147,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
 
     - name: Get mpv latest commit sha
       id: get_sha
@@ -1199,7 +1199,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-58-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220528-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220529-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
@@ -1237,7 +1237,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1283,7 +1283,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1377,7 +1377,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220528_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220529_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
