@@ -19,7 +19,7 @@ build() {
 
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
-  ./configure prefix=/opt $CARGS --extra-libs="-lssp -lgcc_eh" \
+  ./configure prefix=/opt $CARGS \
     --disable-mediafoundation --enable-libdav1d --enable-libjxl --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
     --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
