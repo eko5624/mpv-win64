@@ -11,8 +11,8 @@ md5sums=('SKIP')
 
 build() {
   # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
+  # export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
+  # export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{highway,skcms}  
