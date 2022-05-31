@@ -39,7 +39,7 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  cd $srcdir/libjxl/third_party
+  cd third_party
   mv brotli/*.pc $pkgdir/opt/lib/pkgconfig
   mv brotli/libbrotlienc-static.a $pkgdir/opt/lib/libbrotlienc.a
   mv brotli/libbrotlidec-static.a $pkgdir/opt/lib/libbrotlidec.a
