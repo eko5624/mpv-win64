@@ -19,7 +19,6 @@ build() {
 
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
-  LDFLAGS="$LDFLAGS -lstdc++"
   ./configure prefix=/opt $CARGS --extra-libs="-lssp" \
     --disable-mediafoundation --enable-libdav1d --enable-libjxl --enable-libmp3lame --enable-libvorbis --enable-libopus \
     --disable-decoder=libvorbis --disable-decoder=libopus \
