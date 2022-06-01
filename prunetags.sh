@@ -7,7 +7,7 @@
 
 set -e
 git fetch --tags
-TAGS=( $(git tag | sort -r) )
+TAGS=( $(git tag -l "mpv-*" | sort -r) )
 
 KEEP_LATEST=12
 KEEP_MONTHLY=12
