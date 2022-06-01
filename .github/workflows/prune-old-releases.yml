@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Prune old releases
+        env:
+          GITHUB_TOKEN: ${{ github.token }}        
         shell: bash
         run: |
+          git checkout main
           bash prunetags.sh
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
