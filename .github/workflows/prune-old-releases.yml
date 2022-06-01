@@ -1,4 +1,4 @@
-name: rebuild-toolchain
+name: Prune old releases
 
 on:
   workflow_dispatch:
