@@ -6,6 +6,9 @@ on:
 jobs:
   prune:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.BOT }}
+      CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5 --retry-all-errors"    
     steps:
       - uses: actions/checkout@v3
       - name: Pruning tags
