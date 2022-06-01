@@ -13,5 +13,4 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}        
         shell: bash
         run: |
-          git checkout main
           bash prunetags.sh
