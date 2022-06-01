@@ -12,6 +12,5 @@ jobs:
         with:
           keep_latest: 10
           delete_tags: true
-          delete_tag_pattern: mpv-*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
