@@ -8,9 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Prune old releases
-        env:
-          GITHUB_TOKEN: ${{ github.token }}        
-        shell: bash
+      - name: Pruning tags
+        id: prune_tags
+        continue-on-error: true
         run: |
-          bash prunetags.sh
+          # Keep latest 30 tags/releases
+          git fetch --tags
+          tag_list=( $(git tag -l "mpv-*" | sort -r) )
+          old=${tag_list[@]:30}
+          for tag in ${old[@]}; do
+            id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES -s -X GET -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/eko5624/mpv-win64/releases/tags/$tag | jq -r '.id')
+            curl -u eko5624:$GH_TOKEN $CURL_RETRIES -s -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/eko5624/mpv-win64/releases/$id
+            git tag -d $tag
+          done
+          git push --tags --prune https://eko5624:$GH_TOKEN@github.com/eko5624/mpv-win64
