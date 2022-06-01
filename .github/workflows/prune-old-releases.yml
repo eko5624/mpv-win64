@@ -1,0 +1,15 @@
+name: rebuild-toolchain
+
+on:
+  workflow_dispatch:
+     
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prune old releases
+        shell: bash
+        run: prunetags.sh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
