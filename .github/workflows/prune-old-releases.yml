@@ -12,7 +12,7 @@ jobs:
         id: prune_tags
         continue-on-error: true
         run: |
-          # Keep latest 30 tags/releases
+          # Keep latest 10 tags/releases
           git fetch --tags
           tag_list=( $(git tag -l "mpv-*" | sort -r) )
           old=${tag_list[@]:30}
