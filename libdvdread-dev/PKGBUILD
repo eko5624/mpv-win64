@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=libdvdread-dev
-pkgver=6.1.2
+pkgver=6.1.3
 pkgrel=1
 pkgdesc='Provides a simple foundation for reading DVD video disks'
 arch=('x86_64')
