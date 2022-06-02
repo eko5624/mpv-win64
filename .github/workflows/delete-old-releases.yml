@@ -12,6 +12,6 @@ jobs:
         with:
           keep_latest: 0
           delete_tags: true
-          delete_tag_pattern: mpv-*
+          delete_tag_pattern: late*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
