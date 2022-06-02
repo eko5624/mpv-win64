@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: freenet-actions/delete-old-releases@v1
         with:
-          prefix: '20'  # Delete all releases starting with "develop-".
-          max-age: 'P3M'      # Delete all releases older than one week.
+          prefix: '20'  # Delete all releases starting with "20".
+          max-age: 'P3M'      # Delete all releases older than 3 months.
           delete-tags: true
           token: '${{ github.token }}'
