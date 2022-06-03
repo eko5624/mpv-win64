@@ -1,14 +1,9 @@
 name: autoupdate
 
 on:
-  #schedule:
-  #- cron: '0 0 * * *'
+  schedule:
+  - cron: '09 14 * * *'
   workflow_dispatch:
-  
-  # Allows external webhook trigger
-  repository_dispatch:
-    types:
-      - webhook  
       
 jobs:
   version_check:
