@@ -3,7 +3,7 @@ name: toolchain
 on:
   workflow_dispatch:  
   #schedule:
-  #- cron: '05 0 * * SUN'  
+  #- cron: '05 0 * * MON'  
  
 jobs:
   build:
