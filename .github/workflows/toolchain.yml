@@ -2,8 +2,8 @@ name: toolchain
 
 on:
   workflow_dispatch:  
-  schedule:
-  - cron: '19 14 * * SUN'  
+  #schedule:
+  #- cron: '05 0 * * SUN'  
  
 jobs:
   build:
