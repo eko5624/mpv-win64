@@ -2,8 +2,8 @@ name: build-weekly
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '29 14 * * SUN'
+  #schedule:
+  #- cron: '30 0 * * MON'
     
 jobs:
   config:
