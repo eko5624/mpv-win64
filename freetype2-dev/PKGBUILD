@@ -6,7 +6,7 @@ pkgdesc='Font rasterization library'
 arch=('x86_64')
 url="https://www.freetype.org/"
 license=('GPL')
-source=("git+https://github.com/freetype/freetype.git#tag=VER-$pkgver")
+source=("git+https://github.com/freetype/freetype.git#tag=VER-${pkgver//_/-}")
 md5sums=('SKIP')
 
 build() {
