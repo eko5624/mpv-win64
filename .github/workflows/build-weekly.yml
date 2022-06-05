@@ -162,7 +162,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autotools git       
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -252,7 +252,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools              
+        install: base-devel autotools git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -299,7 +299,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools             
+        install: base-devel autotools git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1214,7 +1214,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake      
+        install: base-devel autotools git mingw-w64-x86_64-cmake      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
