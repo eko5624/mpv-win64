@@ -6,11 +6,11 @@ pkgdesc='Font rasterization library'
 arch=('x86_64')
 url="https://www.freetype.org/"
 license=('GPL')
-source=("https://download.savannah.gnu.org/releases/freetype/freetype-$pkgver.tar.gz")
+source=("git+https://github.com/freetype/freetype.git#tag=VER-$pkgver")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/freetype-$pkgver
+  cd $srcdir/freetype
   ./configure prefix=/opt --disable-shared
   make
 }
