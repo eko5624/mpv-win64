@@ -17,7 +17,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/freetype-$pkgver
+  cd $srcdir/freetype
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share
 }
