@@ -5,8 +5,8 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v$pkgver.zip"
-        "https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v$pkgver.tar.gz")
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=v$pkgver"
+        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=v$pkgver")
 md5sums=('SKIP' 'SKIP')
 
 build() {
@@ -16,12 +16,12 @@ build() {
   curl -OL https://www.japheth.de/Download/JWasm/JWasm211bw.zip
   bsdtar -C /d/ucrt64/bin -xvf JWasm211bw.zip '*.EXE'
 
-  cd $srcdir/Vulkan-Headers-$pkgver
+  cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
   $CMAKE --install . --prefix=$srcdir/opt
 
-  cd $srcdir/Vulkan-Loader-$pkgver
+  cd $srcdir/Vulkan-Loader
   # skip rc info and use vulkan-1.dll from your graphic driver
   sed -i '/Git/d' CMakeLists.txt
   sed -i '/loader.rc/d' loader/CMakeLists.txt
@@ -34,9 +34,9 @@ build() {
 }
 
 package() {
-  cd $srcdir/Vulkan-Headers-$pkgver/build
+  cd $srcdir/Vulkan-Headers/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  cd $srcdir/Vulkan-Loader-$pkgver/build
+  cd $srcdir/Vulkan-Loader/build
   $CMAKE --install . --prefix=$pkgdir/opt
   mv $pkgdir/opt/bin/libvulkan-1.dll $pkgdir/opt/bin/vulkan-1.dll  
 }
