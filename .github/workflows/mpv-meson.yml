@@ -142,8 +142,7 @@ jobs:
       run: | 
         $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
-        mv yt-dlp.exe D:\msys64\opt\bin
-        cp D:\ucrt64\bin\libmcfgthread* D:\msys64\opt\bin 
+        mv yt-dlp.exe D:\msys64\opt\bin 
         7z a All-in-One-MPV-git-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
