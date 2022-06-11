@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(luajit2-dev luajit2)
+pkgname=luajit2-dev 
 pkgver=2.1_20220411
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
@@ -9,23 +9,16 @@ license=('MIT')
 source=("git+https://github.com/openresty/luajit2")
 md5sums=('SKIP')
 
-build() {
+build() {   
+  CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE'
+  XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT -DLUAJIT_ENABLE_GC64'  
   cd $srcdir/luajit2
-  echo "int _dowildcard = 0;" >> src/luajit.c
-  make amalg BUILDMODE=dynamic XCFLAGS=-DLUAJIT_ENABLE_GC64
+  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
+  make amalg BUILDMODE=static PREFIX=/opt 
 }
 
-package_luajit2-dev() {
+package() {
   cd $srcdir/luajit2
   make DESTDIR=$pkgdir PREFIX=/opt install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
-  mv src/liblua*.a $pkgdir/opt/lib
-}
-
-package_luajit2() {
-  export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/luajit2
-  mkdir -p $pkgdir/opt/bin
-  mv src/lua*.exe $pkgdir/opt/bin
-  mv src/lua*.dll $pkgdir/opt/bin
 }
