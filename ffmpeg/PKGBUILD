@@ -1,23 +1,22 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(ffmpeg-dev ffmpeg)
+pkgname=ffmpeg-dev
 pkgver=5.0.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
-makedepends=('nasm' 'lame-dev' 'libjxl-dev' 'dav1d-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
+makedepends=('nasm' 'lame-dev' 'libjxl-dev' 'brotli-dev' 'highway-dev' 'dav1d-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 build() {
   CARGS="--target-os=mingw32 --arch=x86_64 --disable-debug --disable-doc \
-         --enable-gpl --enable-version3 --enable-nonfree --enable-zlib --pkg-config-flags=--static \
-         --disable-ffplay --disable-ffprobe --disable-avdevice --enable-shared \
+         --enable-gpl --enable-version3 --enable-nonfree --enable-zlib --enable-pic --pkg-config-flags=--static \
+         --disable-ffplay --disable-ffprobe --disable-avdevice --enable-static --disable-shared \
          --disable-pthreads --enable-w32threads"
 }
 
-package_ffmpeg-dev() {
+package() {
   cd $srcdir/FFmpeg
   ./configure prefix=/opt $CARGS --extra-libs="-lssp -lstdc++" --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation --enable-libdav1d --enable-libjxl --enable-libmp3lame --enable-libvorbis --enable-libopus \
@@ -25,13 +24,4 @@ package_ffmpeg-dev() {
     --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
-}
-
-package_ffmpeg() {
-  depends=('vapoursynth' 'mcfgthread')
-  export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/FFmpeg
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
-  strip $pkgdir/opt/bin/*
 }
