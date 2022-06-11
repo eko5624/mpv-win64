@@ -20,9 +20,8 @@ build() {
 package() {
   cd $srcdir
   set -x
-  chmod 755 ../generate_def.sh
-  ../generate_def.sh VSScript
-  ../generate_def.sh VapourSynth
+  gendef VSScript.dll
+  gendef VapourSynth.dll
   dlltool -d VSScript.def -y libvsscript.a -U
   dlltool -d VapourSynth.def -y libvapoursynth.a -U 
   mkdir -p $pkgdir/opt/lib/pkgconfig
