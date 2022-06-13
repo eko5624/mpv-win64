@@ -8,7 +8,6 @@ url="http://www.vapoursynth.com/"
 license=('LGPL')
 source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z"
         "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip")
-options=(!strip)
 md5sums=('SKIP' 'SKIP')
 
 build() {
