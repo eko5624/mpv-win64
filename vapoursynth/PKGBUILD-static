@@ -7,7 +7,7 @@ arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
 source=("git+https://github.com/vapoursynth/vapoursynth#tag=R$pkgver"
-        "git+https://github.com/sekrit-twc/zimg#tag=v$pkgver"
+        "git+https://github.com/sekrit-twc/zimg"
         "vapoursynth-0001-statically-link.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
