@@ -21,8 +21,8 @@ package() {
   set -x
   gendef VSScript.dll
   gendef VapourSynth.dll
-  dlltool -d VSScript.def -y libvsscript.a -U
-  dlltool -d VapourSynth.def -y libvapoursynth.a -U 
+  dlltool -d VSScript.def -y libvsscript.a 
+  dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include
   mv sdk/include/VapourSynth.h $pkgdir/opt/include
