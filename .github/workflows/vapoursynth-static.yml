@@ -23,11 +23,14 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}         
+        
     - name: Build
       shell: msys2 {0}
       run: |
-        cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-static 
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
+        pip3 install cython
+        cd vapoursynth; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-static 
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
