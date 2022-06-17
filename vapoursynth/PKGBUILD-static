@@ -6,10 +6,16 @@ pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("git+https://github.com/vapoursynth/vapoursynth#tag=R$pkgver")
-md5sums=('SKIP')
+source=("git+https://github.com/vapoursynth/vapoursynth#tag=R$pkgver"
+        "git+https://github.com/sekrit-twc/zimg")
+md5sums=('SKIP' 'SKIP')
 
 build() {
+  cd $srcdir/zimg
+  ./autogen.sh
+  ./configure --prefix=/opt --disable-shared
+  make install
+
   cd $srcdir/vapoursynth
   sed -i '/private/d' pc/*.pc.in
   sed -i 's/Cflags: -I${includedir}/Cflags: -I${includedir} -DVS_CORE_EXPORTS/' pc/*.pc.in
