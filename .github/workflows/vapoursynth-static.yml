@@ -41,7 +41,10 @@ jobs:
     - name: Build
       shell: msys2 {0}
       run: |
-        cd vapoursynth; PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig:${{ env.PKG_CONFIG_PATH }} makepkg -p PKGBUILD-static 
+        export PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin 
+        export PKG_CONFIG_PATH=/opt/lib/pkgconfig:${{ env.PKG_CONFIG_PATH }} 
+        cd vapoursynth         
+        makepkg -p PKGBUILD-static 
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
       with:
