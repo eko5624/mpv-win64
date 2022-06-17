@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/vapoursynth
-  sed -i '/private/d' pc/*.pc
+  sed -i '/private/d' pc/*.pc.in
   sed -i 's/Cflags: -I${includedir}/Cflags: -I${includedir} -DVS_CORE_EXPORTS/' pc/*.pc.in
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared
