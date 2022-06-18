@@ -26,4 +26,5 @@ build() {
 package() {
   cd $srcdir/vapoursynth
   make DESTDIR=$pkgdir install
+  pip install .
 }
