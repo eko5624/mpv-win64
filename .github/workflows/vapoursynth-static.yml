@@ -33,10 +33,7 @@ jobs:
     - name: Install cython
       run: |
         python -m pip install --upgrade pip
-        pip install cython            
-        
-    - name: Set PKG_CONFIG_PATH
-      run: echo "PKG_CONFIG_PATH=$pythonLocation/lib/pkgconfig" >> $GITHUB_ENV      
+        pip install cython                 
 
     - name: Build
       env:
@@ -48,6 +45,7 @@ jobs:
       run: | 
         export PATH="/c/hostedtoolcache/windows/Python/3.10.5/x64:/c/hostedtoolcache/windows/Python/3.10.5/x64/scripts:/usr/bin:/opt/bin:/d/ucrt64/bin:$PATH"
         export PKG_CONFIG_PATH="/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
+        export PKG_CONFIG_PATH="/c/hostedtoolcache/windows/Python/3.10.5/x64/lib/pkgconfig:$PKG_CONFIG_PATH"
         cd vapoursynth; makepkg -p PKGBUILD-static 
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
