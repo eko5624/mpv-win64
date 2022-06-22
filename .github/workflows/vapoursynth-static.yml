@@ -45,7 +45,7 @@ jobs:
       shell: msys2 {0}
       run: | 
         PATH=/c/hostedtoolcache/windows/Python/3.7.9/x64:/c/hostedtoolcache/windows/Python/3.7.9/x64/scripts:/usr/bin:/opt/bin:/d/ucrt64/bin
-        pip install cython
+        pip3 install cython
         PKG_CONFIG_PATH=/opt/lib/pkgconfig
         cd vapoursynth; makepkg -p PKGBUILD-static 
     - name: Delete Dev
