@@ -25,16 +25,16 @@ jobs:
         path: D:\ucrt64
         key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}         
  
-    - name: Setup Python 3.10
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        architecture: 'x64'
+    #- name: Setup Python 3.10
+    #  uses: actions/setup-python@v4
+    #  with:
+    #    python-version: '3.10'
+    #    architecture: 'x64'
         
-    - name: Install cython
-      run: |
-        python -m pip install --upgrade pip
-        pip install cython                 
+    #- name: Install cython
+    #  run: |
+    #    python -m pip install --upgrade pip
+    #    pip install cython                 
 
     - name: Build
       env:
@@ -44,9 +44,9 @@ jobs:
         MSYSTEM: UCRT64    
       shell: msys2 {0}
       run: | 
-        export PATH="/c/hostedtoolcache/windows/Python/3.10.5/x64:/c/hostedtoolcache/windows/Python/3.10.5/x64/scripts:/usr/bin:/opt/bin:/d/ucrt64/bin:$PATH"
-        export PKG_CONFIG_PATH="/opt/lib/pkgconfig:$PKG_CONFIG_PATH"
-        export PKG_CONFIG_PATH="/c/hostedtoolcache/windows/Python/3.10.5/x64/lib/pkgconfig:$PKG_CONFIG_PATH"
+        PATH=/c/hostedtoolcache/windows/Python/3.7.9/x64:/c/hostedtoolcache/windows/Python/3.7.9/x64/scripts:/usr/bin:/opt/bin:/d/ucrt64/bin
+        pip install cython
+        PKG_CONFIG_PATH=/opt/lib/pkgconfig
         cd vapoursynth; makepkg -p PKGBUILD-static 
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
