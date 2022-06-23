@@ -1,3 +1,5 @@
+name: build-weekly
+
 on:
   workflow_dispatch:
   #schedule:
