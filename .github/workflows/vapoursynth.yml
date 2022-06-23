@@ -1,4 +1,4 @@
-name: build-weekly
+name: vapoursynth
 
 on:
   workflow_dispatch:
