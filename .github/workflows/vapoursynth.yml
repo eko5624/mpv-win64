@@ -39,6 +39,13 @@ jobs:
     #- name: Set PKG_CONFIG_PATH
     #  run: echo "PKG_CONFIG_PATH=$pythonLocation/lib/pkgconfig" >> $GITHUB_ENV
 
+    - name: Patch Python 3.10 Include Paths
+      run: |
+        $py_include_path = ((Split-Path -Path (Get-Command python.exe).Path) + "\include" )
+        $py_binary_path = ((Split-Path -Path (Get-Command python.exe).Path) + "\libs" )
+        cp $py_binary_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\libs
+        cp $py_include_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\include
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
