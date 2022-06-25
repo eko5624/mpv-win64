@@ -43,8 +43,8 @@ jobs:
       run: |
         $py_include_path = ((Split-Path -Path (Get-Command python.exe).Path) + "\include" )
         $py_binary_path = ((Split-Path -Path (Get-Command python.exe).Path) + "\libs" )
-        cp -f $py_binary_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\libs
-        cp -f $py_include_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\include
+        cp -Force $py_binary_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\libs
+        cp -Force $py_include_path\* C:\hostedtoolcache\windows\python\3.10.5\x64\include
 
     - name: Build
       env:
