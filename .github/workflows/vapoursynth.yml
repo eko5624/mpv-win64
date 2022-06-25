@@ -31,27 +31,25 @@ jobs:
         python-version: '3.10-dev'
         architecture: 'x64'
         
-    - name: Install cython
-      run: |
-        python -m pip install --upgrade pip
-        pip install python-dev-tools --user --upgrade
-        pip install cython                 
+    #- name: Install cython
+    #  run: |
+    #    python -m pip install --upgrade pip
+    #    pip install cython                 
     
     #- name: Set PKG_CONFIG_PATH
     #  run: echo "PKG_CONFIG_PATH=$pythonLocation/lib/pkgconfig" >> $GITHUB_ENV
 
     - name: Build
       env:
-        ZIMG_CFLAGS_PATH: /opt/include
-        ZIMG_LIBS_PATH: /opt/lib
-        PYTHON3_CFLAGS_PATH: $pythonLocation/include  
-        PYTHON3_LIBS_CFLAGS_PATH: $pythonLocation/lib
-        PKG_CONFIG_PATH: $pythonLocation/lib/pkgconfig
-        MSYSTEM: UCRT64    
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64   
       shell: msys2 {0}
       run: | 
-        export PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:$PATH
-        export PKG_CONFIG_PATH=/opt/lib/pkgconfig:$PKG_CONFIG_PATH
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.10.5/x64:/c/hostedtoolcache/windows/python/3.10.5/x64/scripts:/usr/bin:/opt/bin
+        pip3 install cython
+        PKG_CONFIG_PATH=/opt/lib/pkgconfig:/c/hostedtoolcache/windows/python/3.10.5/x64//lib/pkgconfig:$PKG_CONFIG_PATH
         cd vapoursynth; makepkg -p PKGBUILD-static 
     - name: Delete Dev
       uses: mknejp/delete-release-assets@v1
