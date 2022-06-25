@@ -18,7 +18,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220623_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@v3
@@ -81,7 +81,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220623_12.1.1_x64-ucrt-${{ env.random_hash }}
 
     - name: Get mpv latest commit sha
       id: get_sha
