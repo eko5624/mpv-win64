@@ -25,11 +25,11 @@ jobs:
         path: D:\ucrt64
         key: mcf_20220606_12.1.1_x64-ucrt-${{ env.random_hash }}         
  
-    - name: Setup Python 3.10
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10-dev'
-        architecture: 'x64'
+    #- name: Setup Python 3.10
+    #  uses: actions/setup-python@v4
+    #  with:
+    #    python-version: '3.10-dev'
+    #    architecture: 'x64'
         
     #- name: Install cython
     #  run: |
