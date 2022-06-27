@@ -47,7 +47,7 @@ jobs:
         MSYSTEM: UCRT64   
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin
         pip3 install cython
         PKG_CONFIG_PATH=/opt/lib/pkgconfig:${{ env.pythonLocation }}/lib/pkgconfig:$PKG_CONFIG_PATH
         cd vapoursynth; makepkg -p PKGBUILD-static 
