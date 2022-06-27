@@ -18,8 +18,9 @@ build() {
 
   cd $srcdir/vapoursynth
   sed -i 's/Cflags: -I${includedir}/Cflags: -I${includedir} -DVS_CORE_EXPORTS/' pc/*.pc.in
-  mkdir -p $pythonLocation/lib/pkgconfig 
-  cp ../python3.pc $pythonLocation/lib/pkgconfig
+  cd $srcdir
+  mkdir -p /c/hostedtoolcache/windows/Python/3.10.5/x64/lib/pkgconfig 
+  cp ../python3.pc /c/hostedtoolcache/windows/Python/3.10.5/x64//lib/pkgconfig
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared
   make 
