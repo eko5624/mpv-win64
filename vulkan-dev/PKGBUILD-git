@@ -8,13 +8,20 @@ url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
         "git+https://github.com/KhronosGroup/Vulkan-Loader"
+        "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip"
         "vulkan-0001-cross-compile-static-linking-hacks.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0603 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0603 -Wno-unused-function"  
+  
+  #Add appmodel.h and minappmodel.h temporarily
+  cd $srcdir/mingw-w64-master
+  cp mingw-w64-headers/include/appmodel.h /d/ucrt64/include
+  cp mingw-w64-headers/include/minappmodel.h /d/ucrt64/include  
+  
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
