@@ -12,9 +12,6 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
@@ -24,7 +21,9 @@ build() {
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF
+    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF \
+    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0603 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE' \
+    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0603'
   $CMAKE --build .
 }
 
