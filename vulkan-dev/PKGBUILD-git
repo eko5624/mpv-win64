@@ -12,18 +12,14 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
+  export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0603 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE"
+  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0603"
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
   $CMAKE --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-  sed -i '/string/d' loader/unknown_ext_chain_gas_x86.S
-  sed -i '/.data/d' loader/unknown_ext_chain_gas_x86.S
-  sed -i '/Git/d' CMakeLists.txt
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
