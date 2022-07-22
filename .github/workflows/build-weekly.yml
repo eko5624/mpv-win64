@@ -39,7 +39,7 @@ jobs:
         file_glob: true
 
   ffmpeg:
-    needs: [dav1d, lame, lcms2, libjxl, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
+    needs: [dav1d, lame, libjxl, libvorbis_aotuv, opus, ffnvcodec, vapoursynth]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
