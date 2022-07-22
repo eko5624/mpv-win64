@@ -7,9 +7,7 @@ arch=('x86_64')
 url='https://mpv.io/'
 makedepends=("yasm"  
              "lame-dev" 
-             "libjxl-dev" 
-             "brotli-dev" 
-             "highway-dev" 
+             "libjxl-dev"  
              "dav1d-dev" 
              "libvorbis_aotuv-dev" 
              "opus-dev" 
