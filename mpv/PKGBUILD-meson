@@ -8,8 +8,6 @@ url='https://mpv.io/'
 makedepends=("yasm"  
              "lame-dev" 
              "libjxl-dev" 
-             "brotli-dev" 
-             "highway-dev" 
              "dav1d-dev" 
              "libvorbis_aotuv-dev" 
              "opus-dev" 
