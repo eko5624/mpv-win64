@@ -1,0 +1,31 @@
+pkgname=libvpx-dev
+pkgver=1.12.0
+pkgrel=1
+pkgdesc='WebM VP8/VP9 Codec SDK'
+arch=('x86_64')
+url="https://chromium.googlesource.com/webm/libvpx/"
+license=('spdx:BSD-3-Clause')
+source=("git+https://chromium.googlesource.com/webm/libvpx.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libvpx
+  rm -rf build && mkdir build && cd build
+  cd build
+  ./configure --prefix=/opt \
+    --extra-cflags='-fno-asynchronous-unwind-tables' \        
+    --disable-examples \
+    --disable-docs \
+    --disable-tools \
+    --disable-unit-tests \
+    --disable-decode-perf-tests \
+    --disable-encode-perf-tests \
+    --as=yasm
+  make
+}
+
+package() {
+  cd $srcdir/libvpx/build
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+}
