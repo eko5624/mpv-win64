@@ -1,5 +1,5 @@
-pkgname=libsdl2-dev
-pkgver=2.0.18
+pkgname=libmfx-dev
+pkgver=1.35.1
 pkgrel=1
 pkgdesc='Intel Media SDK dispatcher library'
 arch=('x86_64')
