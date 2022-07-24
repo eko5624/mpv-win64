@@ -18,8 +18,6 @@ build() {
 package() {
   cd $srcdir/xvidcore/build/generic
   make DESTDIR=$pkgdir install
-  mkdir -p $pkgdir/opt/include
-  mkdir -p $pkgdir/opt/lib
   cp ../../src/xvid.h $pkgdir/opt/include
-  cp build/xvidcore.a $pkgdir/opt/lib/libxvidcore.a 
+  mv $pkgdir/opt/lib/xvidcore.a $pkgdir/opt/lib/libxvidcore.a 
 }
