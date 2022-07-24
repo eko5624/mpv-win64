@@ -5,7 +5,7 @@ pkgdesc='Scaling, colorspace conversion, and dithering library'
 arch=('x86_64')
 url="https://github.com/sekrit-twc/"
 license=('LGPL')
-source=("git+https://github.com/sekrit-twc/zimg#tag=v$pkgver")
+source=("git+https://github.com/sekrit-twc/zimg.git#tag=release-$pkgver")
 md5sums=('SKIP')
 
 build() {
