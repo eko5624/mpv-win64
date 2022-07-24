@@ -10,8 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libvpx
-  rm -rf build && mkdir build && cd build
-  ../configure --prefix=/opt \
+  ./configure --prefix=/opt \
     --extra-cflags='-fno-asynchronous-unwind-tables' \        
     --disable-examples \
     --disable-docs \
@@ -24,7 +23,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libvpx/build
+  cd $srcdir/libvpx
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
