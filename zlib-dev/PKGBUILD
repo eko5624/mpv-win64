@@ -1,0 +1,20 @@
+pkgname=zlib-dev
+pkgver=1.2.12
+pkgrel=1
+pkgdesc='Compression library implementing the deflate compression method found in gzip and PKZIP'
+arch=('x86_64')
+url="https://github.com/madler/zlib/"
+license=('ZLIB')
+source=("git+https://github.com/madler/zlib.git#tag=v1.2.12")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/zlib
+  ./configure --prefix=/opt --static
+  make
+}
+
+package() {
+  cd $srcdir/zlib
+  make DESTDIR=$pkgdir install
+}
