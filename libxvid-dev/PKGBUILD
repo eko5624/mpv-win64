@@ -9,14 +9,14 @@ source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/build/generic
+  cd $srcdir/xvidcore/build/generic
   sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
   ./configure --prefix=/opt 
   make 
 }
 
 package() {
-  cd $srcdir/build/generic
+  cd $srcdir/xvidcore/build/generic
   mkdir -p $pkgdir/opt/include
   mkdir -p $pkgdir/opt/lib
   cp ../../src/xvid.h $pkgdir/opt/include
