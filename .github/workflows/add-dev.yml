@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autotools mingw-w64-x86_64-cmake git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -31,6 +31,7 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -602,6 +603,6 @@ jobs:
         tag: dev
         overwrite: true
         file_glob: true
-        
+
 
 
