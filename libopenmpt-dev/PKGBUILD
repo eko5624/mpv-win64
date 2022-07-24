@@ -10,7 +10,7 @@ source=("https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$pkgver+release
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir
+  cd $srcdir/libopenmpt-0.6.4+release.autotools
   ./configure --prefix=/opt \
     --disable-shared \
     --disable-openmpt123 \
@@ -24,6 +24,6 @@ build() {
 }
 
 package() {
-  cd $srcdir
+  cd $srcdir/libopenmpt-0.6.4+release.autotools
   make DESTDIR=$pkgdir install
 }
