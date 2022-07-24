@@ -13,9 +13,9 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0603 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Wno-unused-function"
+  export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0600 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0603 -Wno-unused-function"  
+  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600 -Wno-unused-function"  
   
   #Add appmodel.h and minappmodel.h temporarily
   cd $srcdir/mingw-w64-master
