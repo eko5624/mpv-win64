@@ -9,8 +9,7 @@ source=("git+https://chromium.googlesource.com/webm/libvpx.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libvpx
-  mkdir work && cd work 
+  cd $srcdir/libvpx/build
   ../configure --prefix=/opt \
     --extra-cflags='-fno-asynchronous-unwind-tables' \        
     --disable-examples \
@@ -24,7 +23,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libvpx/work
+  cd $srcdir/libvpx/build
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
