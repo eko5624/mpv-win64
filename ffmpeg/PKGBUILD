@@ -18,10 +18,29 @@ build() {
 
 package() {
   cd $srcdir/FFmpeg
-  ./configure prefix=/opt $CARGS --extra-libs="-lssp -lstdc++" --extra-ldflags="-static-libgcc" \
-    --disable-mediafoundation --enable-libdav1d --enable-libjxl --enable-libmp3lame --enable-libvorbis --enable-libopus \
-    --disable-decoder=libvorbis --disable-decoder=libopus \
-    --disable-encoder=opus --disable-encoder=vorbis --enable-vapoursynth
+  ./configure \
+    --prefix=/opt \
+    $CARGS \
+    --extra-libs="-lssp -lstdc++" \
+    --extra-ldflags="-static-libgcc" \
+    --disable-mediafoundation \
+    --enable-libdav1d \
+    --enable-libjxl \
+    --enable-libmfx \
+    --enable-libmp3lame \
+    --enable-libopenmpt \
+    --enable-libspeex \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libwebp \
+    --enable-libxvid \
+    --enable-libzimg \
+    --enable-libopus \
+    --disable-decoder=libvorbis \
+    --disable-decoder=libopus \
+    --disable-encoder=opus \
+    --disable-encoder=vorbis \
+    --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
