@@ -12,14 +12,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libvpx/build
   CFLAGS="$EXTRA_CFLAGS $CFLAGS -fno-asynchronous-unwind-tables"
-  ../configure --prefix=/opt \       
-    --disable-examples \
-    --disable-docs \
-    --disable-tools \
-    --disable-unit-tests \
-    --disable-decode-perf-tests \
-    --disable-encode-perf-tests \
-    --as=yasm
+  ../configure --prefix=/opt --disable-examples --disable-docs --disable-tools --disable-unit-tests --disable-decode-perf-tests --disable-encode-perf-tests --as=yasm
   make
 }
 
