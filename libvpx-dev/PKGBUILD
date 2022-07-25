@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='WebM VP8/VP9 Codec SDK'
 arch=('x86_64')
 url="https://chromium.googlesource.com/webm/libvpx/"
+makedepends=("yasm")
 license=('BSD')
 source=("git+https://chromium.googlesource.com/webm/libvpx.git")
 md5sums=('SKIP')
