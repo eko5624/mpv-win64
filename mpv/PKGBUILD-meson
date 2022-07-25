@@ -6,10 +6,13 @@ pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
 makedepends=("yasm"  
-             "lame-dev" 
+             "lame-dev"
+             "libjpeg-dev"
              "libjxl-dev"
              "libmfx-dev"
-             "libogg-dev"             
+             "libogg-dev"
+             "libopenmpt-dev"
+             "libpng-dev"
              "dav1d-dev"
              "libsdl2-dev"
              "libspeex-dev"             
