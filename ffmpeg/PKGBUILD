@@ -4,7 +4,23 @@ pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
-makedepends=('nasm' 'lame-dev' 'libjxl-dev' 'dav1d-dev' 'libvorbis_aotuv-dev' 'opus-dev' 'ffnvcodec-dev' 'vapoursynth-dev')
+makedepends=("nasm" 
+             "lame-dev" 
+             "libjxl-dev"
+             "libmfx-dev"
+             "libogg-dev"
+             "dav1d-dev"
+             "libsdl2-dev"
+             "libspeex-dev"
+             "libvorbis_aotuv-dev"
+             "libvpx-dev"
+             "libwebp-dev"
+             "libxvid-dev"
+             "libzimg-dev"
+             "opus-dev" 
+             "ffnvcodec-dev" 
+             "vapoursynth-dev"
+             "zlib-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
