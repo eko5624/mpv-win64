@@ -1,4 +1,4 @@
-name: build-weekly
+name: test
 
 on:
   workflow_dispatch:
