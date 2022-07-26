@@ -1,0 +1,24 @@
+pkgname=rubberband-dev
+pkgver=3.0.0
+pkgrel=1
+pkgdesc='High quality software library for audio time-stretching and pitch-shifting'
+arch=('x86_64')
+url="https://breakfastquay.com/rubberband/"
+license=('GPL')
+source=("git+https://github.com/breakfastquay/rubberband.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/rubberband
+  mkdir work
+  meson . work --prefix=/opt --libdir=/opt/lib --buildtype=release --default-library=static -Dfft=builtin -Dresampler=builtin
+  cd work
+  ninja
+}
+
+package() {
+  cd $srcdir/rubberband/work
+  DESTDIR=$pkgdir ninja install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
