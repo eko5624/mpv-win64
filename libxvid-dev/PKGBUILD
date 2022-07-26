@@ -8,16 +8,12 @@ license=('GPL')
 source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2")
 md5sums=('SKIP')
 
-build() {
-  cd $srcdir/xvidcore/build/generic
-  sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
-  ./configure --prefix=/opt 
-  make 
-}
-
 package() {
   cd $srcdir/xvidcore/build/generic
-  make DESTDIR=$pkgdir install
+  set -x
+  sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
+  ./configure --prefix=/opt 
+  make -C build/generic BUILD_DIR=build SHARED_LIB= 
   cp ../../src/xvid.h $pkgdir/opt/include
-  mv =build/xvidcore.a $pkgdir/opt/lib/libxvidcore.a 
+  mv =build/xvidcore.a $pkgdir/opt/lib/libxvidcore.a   
 }
