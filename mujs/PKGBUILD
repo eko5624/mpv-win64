@@ -5,8 +5,9 @@ pkgdesc='An embeddable Javascript interpreter in C'
 arch=('x86_64')
 url="http://mujs.com/"
 license=('ISC')
-source=("git+https://github.com/ccxvii/mujs.git")
-md5sums=('SKIP')
+source=("git+https://github.com/ccxvii/mujs.git"
+        "mujs-0001-add-exe-to-binary-name.patch")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/mujs
