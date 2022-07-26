@@ -1,0 +1,28 @@
+pkgname=libxml2-dev
+pkgver=2.9.14
+pkgrel=1
+pkgdesc='XML parsing library, version 2'
+arch=('x86_64')
+url="http://www.xmlsoft.org/"
+license=('spdx:MIT')
+source=("git+https://gitlab.gnome.org/GNOME/libxml2.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libxml2
+  ./autogen.sh
+  ./configure \
+    --prefix=/opt \
+    --disable-shared \
+    --enable-static \
+    --with-minimum \
+    --with-threads \
+    --with-tree \
+    --without-lzma
+  make
+}
+
+package() {
+  cd $srcdir/libxml2
+  make DESTDIR=$pkgdir install
+}
