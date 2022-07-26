@@ -8,7 +8,7 @@ license=('GPL')
 source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2")
 md5sums=('SKIP')
 
-package() {
+build() {
   cd $srcdir/xvidcore/build/generic
   set -x
   sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
