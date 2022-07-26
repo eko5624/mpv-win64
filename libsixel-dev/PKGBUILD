@@ -1,0 +1,29 @@
+pkgname=libsixel-dev
+pkgver=0.16.0
+pkgrel=1
+pkgdesc='A portable library for SSA/ASS subtitles rendering'
+arch=('x86_64')
+url="https://github.com/saitoha/sixel"
+makedepends=('libjpeg-dev' 'libpng-dev')
+license=('BSD')
+source=("git+https://github.com/saitoha/libsixel.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libsixel
+  ./configure \
+    --prefix=/opt \
+    --with-jpeg \
+    --with-png \
+    --disable-img2sixel \
+    --disable-sixel2png \
+    --disable-python \
+    --enable-static \
+    --disable-shared \   
+  make
+}
+
+package() {
+  cd $srcdir/libsixel
+  make DESTDIR=$pkgdir install
+}
