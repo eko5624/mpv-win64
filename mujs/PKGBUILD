@@ -1,0 +1,20 @@
+pkgname=mujs-dev
+pkgver=1.2.0
+pkgrel=1
+pkgdesc='An embeddable Javascript interpreter in C'
+arch=('x86_64')
+url="http://mujs.com/"
+license=('ISC')
+source=("git+https://github.com/ccxvii/mujs.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/mujs
+  patch -p1 -i $srcdir/mujs-0001-add-exe-to-binary-name.patch
+  make release
+}
+
+package() {
+  cd $srcdir/mujs
+  make DESTDIR=/opt install
+}
