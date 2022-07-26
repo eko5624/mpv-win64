@@ -1,0 +1,28 @@
+pkgname=libsrt-dev
+pkgver=1.5.0
+pkgrel=1
+pkgdesc='A transport protocol for ultra low (sub-second) latency live video and audio streaming'
+arch=('x86_64')
+url="https://www.srtalliance.org/"
+makedepends=('mbedtls-dev')
+license=('MPL')
+source=("git+https://github.com/Haivision/srt.git"
+        "libsrt-0001-avoid-name-collision.patch")
+md5sums=('SKIP' 'SKIP')
+
+build() { 
+  cd $srcdir/srt
+  patch -p1 -i $srcdir/libsrt-0001-avoid-name-collision.patch
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DENABLE_STDCXX_SYNC=ON
+    -DENABLE_APPS=OFF
+    -DENABLE_SHARED=OFF
+    -DUSE_ENCLIB=mbedtls
+  $CMAKE --build .
+}
+
+package() {
+  cd $srcdir/srt/build
+  $CMAKE --install . --prefix=$pkgdir/opt
+}
