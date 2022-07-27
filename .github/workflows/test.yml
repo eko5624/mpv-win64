@@ -286,6 +286,51 @@ jobs:
         overwrite: true
         file_glob: true
 
+  gmp:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd gmp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: gmp*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: gmp-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true        
+
   harfbuzz:
     runs-on: windows-2022
     steps:
@@ -474,7 +519,7 @@ jobs:
         file_glob: true
 
   libbluray:
-    needs: [freetype2]
+    needs: [freetype2, libudfread]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -502,6 +547,7 @@ jobs:
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
@@ -519,7 +565,52 @@ jobs:
         file: libbluray-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true
+        file_glob: true 
+
+  libbs2b:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd libbs2b-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libbs2b*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libbs2b-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true         
 
   libdvdcss:
     runs-on: windows-2022
@@ -845,7 +936,101 @@ jobs:
         file: libmfx-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true           
+        file_glob: true
+
+  libmodplug:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd libmodplug-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libmodplug*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libmodplug-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true 
+
+  libmysofa:
+    needs: [zlib]
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: | 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst      
+        pacman -U *.zst --noconfirm                   
+        cd libmysofa-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libmysofa*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libmysofa-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true                           
 
   libogg:
     runs-on: windows-2022
@@ -1088,7 +1273,102 @@ jobs:
         file: libsdl2-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true     
+        file_glob: true 
+
+  libsixel:
+    needs: [libjpeg, libpng]
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst     
+        pacman -U *.zst --noconfirm         
+        cd libsixel-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libsixel*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libsixel-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
+
+  libsoxr:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: |                  
+        cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libsoxr*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libsoxr-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true                    
 
   libspeex:
     runs-on: windows-2022
@@ -1133,7 +1413,151 @@ jobs:
         file: libspeex-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true         
+        file_glob: true 
+
+  libsrt:
+    needs: [mbedtls]
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: | 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.1.0-1-x86_64.pkg.tar.zst      
+        pacman -U *.zst --noconfirm                   
+        cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libsrt*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libsrt-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true  
+
+  libssh:
+    needs: [mbedtls, zlib]
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: | 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.1.0-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst     
+        pacman -U *.zst --noconfirm                   
+        cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libssh*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libssh-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
+
+  libudfread:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |        
+        cd libudfread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libudfread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libudfread-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true                        
 
   libvorbis_aotuv:
     needs: [libogg]
@@ -1271,7 +1695,52 @@ jobs:
         file: libwebp-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true  
+        file_glob: true
+
+  libxml2:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd libxml2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libxml2*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libxml2-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true          
         
   libxvid:
     runs-on: windows-2022
@@ -1408,8 +1877,54 @@ jobs:
         overwrite: true
         file_glob: true
 
+  mbedtls:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: |                  
+        cd mbedtls-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: mbedtls*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mbedtls-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true                 
+
   mpv:
-    needs: [dav1d, lame, libjpeg, libjxl, libmfx, libopenmpt, libpng, libspeex, libvorbis_aotuv, libvpx, libwebp, libxvid, libzimg, opus, ffnvcodec, ffmpeg, luajit2, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, spirv-cross, vulkan]
+    needs: [dav1d, lame, libjpeg, libjxl, libmfx, libopenmpt, libpng, libsixel, libspeex, libvorbis_aotuv, libvpx, libwebp, libxvid, libzimg, opus, ffnvcodec, ffmpeg, luajit2, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -1493,6 +2008,97 @@ jobs:
         tag: latest
         overwrite: true
         file_glob: true
+
+  mujs:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd mujs-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: mujs*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mujs-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
+
+  openal-soft:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: |            
+        cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-test 
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: openal-soft*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: openal-soft-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true                
 
   opus:
     runs-on: windows-2022
@@ -1612,6 +2218,53 @@ jobs:
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
         file_glob: true
+
+  rubberband:
+    runs-on: windows-2022
+    steps:   
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools nasm git              
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: | 
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
+        pip3 install meson ninja
+        cd rubberband-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: rubberband*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: rubberband-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true         
   
   shaderc:
     runs-on: windows-2022
