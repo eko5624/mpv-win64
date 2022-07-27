@@ -15,9 +15,9 @@ build() {
   patch -p1 -i $srcdir/libsrt-0001-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DENABLE_STDCXX_SYNC=ON
-    -DENABLE_APPS=OFF
-    -DENABLE_SHARED=OFF
+    -DENABLE_STDCXX_SYNC=ON \
+    -DENABLE_APPS=OFF \
+    -DENABLE_SHARED=OFF \
     -DUSE_ENCLIB=mbedtls
   $CMAKE --build .
 }
