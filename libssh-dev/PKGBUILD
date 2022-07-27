@@ -18,7 +18,7 @@ build() {
     -DWITH_ZLIB=ON \
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_SHARED_LIBS=OFF 
   $CMAKE --build .
 }
 
