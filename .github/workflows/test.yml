@@ -2069,7 +2069,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mujs-dev/*.zst
+        file: mujs/*.zst
         tag: dev
         overwrite: true
         file_glob: true
@@ -2281,7 +2281,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: rubberband-dev/*.zst
+        file: rubberband/*.zst
         tag: dev
         overwrite: true
         file_glob: true         
