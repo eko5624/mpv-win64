@@ -1882,7 +1882,7 @@ jobs:
         file_glob: true                 
 
   mpv:
-    needs: [dav1d, lame, libjpeg, libjxl, libmfx, libopenmpt, libpng, libsdl2, libsixel, libspeex, libvorbis_aotuv, libvpx, libwebp, libxvid, libzimg, opus, openal-soft, ffnvcodec, ffmpeg, luajit2, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, mujs, rubberband, spirv-cross, vulkan]
+    needs: [dav1d, lame, libjpeg, libjxl, libmfx, libopenmpt, libpng, libsdl2, libspeex, libvorbis_aotuv, libvpx, libwebp, libxvid, libzimg, opus, openal-soft, ffnvcodec, ffmpeg, luajit2, libass, lcms2, libbluray, libdvdnav, libepoxy, libplacebo, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
