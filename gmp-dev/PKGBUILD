@@ -9,13 +9,13 @@ source=("https://gmplib.org/download/gmp/gmp-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/gmp
+  cd $srcdir/gmp-$pkgver
   ./configure CC_FOR_BUILD=cc prefix=/opt --enable-static --disable-shared
   make
 }
 
 package() {
-  cd $srcdir/gmp
+  cd $srcdir/gmp-$pkgver
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
