@@ -1,5 +1,5 @@
 pkgname=libsixel-dev
-pkgver=20141206
+pkgver=1.8.6
 pkgrel=1
 pkgdesc='Encoder/decoder implementation for DEC SIXEL graphics'
 arch=('x86_64')
@@ -11,19 +11,15 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
-  ./configure \
-    --prefix=/opt \
-    --with-jpeg \
-    --with-png \
-    --disable-img2sixel \
-    --disable-sixel2png \
-    --disable-python \
-    --enable-static \
-    --disable-shared    
-  make
+  mkdir work
+  meson . work --prefix=/opt --buildtype=release --prefer-static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
+  cd work
+  ninja
 }
 
 package() {
-  cd $srcdir/libsixel
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libsixel/work
+  DESTDIR=$pkgdir ninja install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
