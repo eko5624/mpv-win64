@@ -17,8 +17,6 @@ build() {
   patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER_WORKS=1 \
-    -DCMAKE_CXX_COMPILER_WORKS=1 \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
     -DMBEDTLS_INCLUDE_DIR=/opt/include \
