@@ -5,11 +5,13 @@ pkgdesc='Compression library implementing the deflate compression method found i
 arch=('x86_64')
 url="https://github.com/madler/zlib/"
 license=('ZLIB')
-source=("git+https://github.com/madler/zlib.git#tag=v1.2.12")
-md5sums=('SKIP')
+source=("git+https://github.com/madler/zlib.git#tag=v1.2.12"
+        "zlib-1-win32-static.patch")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zlib
+  patch -p1 -i $srcdir/zlib-1-win32-static.patch
   ./configure --prefix=/opt --static
   make
 }
