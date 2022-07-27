@@ -19,7 +19,7 @@ build() {
     --disable-sixel2png \
     --disable-python \
     --enable-static \
-    --disable-shared \   
+    --disable-shared    
   make
 }
 
