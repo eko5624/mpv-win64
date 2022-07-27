@@ -40,18 +40,27 @@ package() {
     --extra-libs="-lssp -lstdc++" \
     --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
+    --enable-gmp \
+    --enable-libbs2b \
     --enable-libdav1d \
     --enable-libjxl \
     --enable-libmfx \
+    --enable-libmodplug \
     --enable-libmp3lame \
+    --enable-libmysofa \
     --enable-libopenmpt \
+    --enable-libsoxr \
     --enable-libspeex \
+    --enable-libsrt \
+    --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
+    --enable-libxml2 \
     --enable-libxvid \
     --enable-libzimg \
     --enable-libopus \
+    --enable-mbedtls \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
