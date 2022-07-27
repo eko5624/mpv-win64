@@ -10,6 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libudfread
+  autoreconf -ivf
   ./configure prefix=/opt --disable-shared 
   make
 }
