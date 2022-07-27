@@ -11,6 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libpng
+  ./autogen.sh
   ./configure \
     CFLAGS='-fno-asynchronous-unwind-tables' \
     --prefix=/opt \
