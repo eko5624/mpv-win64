@@ -20,5 +20,5 @@ build() {
 package() {
   cd $srcdir/code/build
   DESTDIR=$pkgdir $CMAKE --install .  
-  mv $pkgdir/msys64/* $pkgdir
+  mv $pkgdir/msys64 $pkgdir
 }
