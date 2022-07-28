@@ -19,5 +19,5 @@ build() {
 
 package() {
   cd $srcdir/code/build
-  $CMAKE --install .  
+  DESTDIR=$pkgdir/opt $CMAKE --install .  
 }
