@@ -5,21 +5,18 @@ pkgdesc='The SoX Resampler library that aims to give fast and high quality resul
 arch=('x86_64')
 url="https://sourceforge.net/p/soxr/wiki/Home/"
 license=('LGPL')
-source=("git+https://git.code.sf.net/p/soxr/code#commit=945b592b70470e29f917f4de89b4281fbbd540c0"
-        "0001-libsoxr-fix-pc-file-installation.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://git.code.sf.net/p/soxr/code#commit=945b592b70470e29f917f4de89b4281fbbd540c0")
+md5sums=('SKIP')
 
 build() { 
   cd $srcdir/code
-  patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
+  #patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -Wno-dev -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF 
-  $CMAKE --build .
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF 
+  make
 }
 
 package() {
   cd $srcdir/code/build
-  DESTDIR=$pkgdir $CMAKE --install .  
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  make DESTDIR=$pkgdir install  
 }
