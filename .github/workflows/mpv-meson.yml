@@ -37,7 +37,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.6.1-1-x86_64.pkg.tar.zst     
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/brotli-dev-1.0.9-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-0.17.0-1-x86_64.pkg.tar.zst          
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-1.0.0-1-x86_64.pkg.tar.zst          
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
