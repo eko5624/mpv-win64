@@ -5,11 +5,11 @@ pkgdesc='The SoX Resampler library that aims to give fast and high quality resul
 arch=('x86_64')
 url="https://sourceforge.net/p/soxr/wiki/Home/"
 license=('LGPL')
-source=("git+https://git.code.sf.net/p/soxr/code")
+source=("git+https://gitlab.com/shinchiro/soxr.git")
 md5sums=('SKIP')
 
 build() { 
-  cd $srcdir/code
+  cd $srcdir/soxr
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
@@ -19,6 +19,6 @@ build() {
 }
 
 package() {
-  cd $srcdir/code/build
+  cd $srcdir/soxr/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
