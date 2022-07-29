@@ -47,7 +47,7 @@ package() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-lssp -lstdc++" \
+    --extra-libs="-lssp -lz -lstdc++" \
     --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-gmp \
@@ -59,7 +59,7 @@ package() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --enable-libspeex \    
+    --enable-libspeex \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
