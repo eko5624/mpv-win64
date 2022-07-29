@@ -49,7 +49,6 @@ package() {
     $CARGS \
     --extra-libs="-lssp -lz -lstdc++" \
     --extra-ldflags="-static-libgcc" \
-    --extra-cflags="-DLIBSSH_STATIC" \
     --disable-mediafoundation \
     --enable-gmp \
     --enable-libbs2b \
@@ -62,7 +61,6 @@ package() {
     --enable-libopenmpt \
     --enable-libspeex \
     --enable-libsrt \
-    --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
