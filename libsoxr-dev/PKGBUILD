@@ -20,5 +20,6 @@ package() {
   cd $srcdir/code/build
   DESTDIR=$pkgdir $CMAKE --install .  
   mv $pkgdir/msys64/* $pkgdir
+  cp ../../*.pc $pkgdir/opt/lib/pkgconfig
   rm -rf $pkgdir/msys64
 }
