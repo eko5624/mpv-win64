@@ -25,4 +25,5 @@ build() {
 package() {
   cd $srcdir/srt/build
   $CMAKE --install . --prefix=$pkgdir/opt
+  sed -i 's/Libs: -L${libdir} -lsrt/Libs: -L${libdir} -lsrt -lstdc++ -lm/' $pkgdir/opt/lib/pkgconfig/srt.pc 
 }
