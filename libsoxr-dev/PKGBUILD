@@ -20,7 +20,7 @@ package() {
   cd $srcdir/code/build
   $CMAKE --install . --prefix=$pkgdir/opt  
   # mv $pkgdir/msys64/* $pkgdir
-  mkdir -p $pkgdir/lib/pkgconfig 
+  mkdir -p $pkgdir/opt/lib/pkgconfig 
   cp ../../../*.pc $pkgdir/opt/lib/pkgconfig
   # rm -rf $pkgdir/msys64
 }
