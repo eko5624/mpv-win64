@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=vulkan-dev
-pkgver=1.3.222
+pkgver=1.3.223
 pkgrel=1
 pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
