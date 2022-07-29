@@ -60,7 +60,6 @@ package() {
     --enable-libmysofa \
     --enable-libopenmpt \
     --enable-libspeex \
-    --enable-libsrt \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
