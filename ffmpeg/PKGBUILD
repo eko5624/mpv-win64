@@ -49,6 +49,7 @@ package() {
     $CARGS \
     --extra-libs="-lssp -lz -lstdc++" \
     --extra-ldflags="-static-libgcc" \
+    --extra-cflags="-DLIBSSH_STATIC" \
     --disable-mediafoundation \
     --enable-gmp \
     --enable-libbs2b \
