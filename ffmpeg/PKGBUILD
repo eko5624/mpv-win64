@@ -47,7 +47,7 @@ package() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-lssp -lz -lstdc++" \
+    --extra-libs="-lssp -lsrt -lssl -lz -lstdc++" \
     --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-gmp \
