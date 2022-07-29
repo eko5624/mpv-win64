@@ -7,7 +7,6 @@ on:
     
 jobs:  
   libsrt:
-    needs: [mbedtls]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
