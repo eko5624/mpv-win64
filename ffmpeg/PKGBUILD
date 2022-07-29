@@ -59,7 +59,6 @@ package() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
     --enable-libssh \
