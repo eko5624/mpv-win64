@@ -59,8 +59,7 @@ package() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --enable-libspeex \
-    --enable-libsrt \    
+    --enable-libspeex \    
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
