@@ -6,13 +6,13 @@ arch=('x86_64')
 url="https://github.com/saitoha/sixel"
 makedepends=('libjpeg-dev' 'libpng-dev')
 license=('BSD')
-source=("git+https://github.com/saitoha/libsixel.git")
+source=("git+https://github.com/libsixel/libsixel.git")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
   mkdir work
-  meson . work --prefix=/opt --buildtype=release --prefer-static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
+  meson . work --prefix=/opt --buildtype=plain --prefer-static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
   cd work
   ninja
 }
