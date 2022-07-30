@@ -11,15 +11,13 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
-  mkdir work
-  meson . work --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled 
-  cd work
-  ninja
+  meson build --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled 
+  meson compile -C build
 }
 
 package() {
-  cd $srcdir/libsixel/work
-  DESTDIR=$pkgdir ninja install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cd $srcdir/libsixel
+  meson install -C build --destdir $pkgdir
+  # mv $pkgdir/msys64/* $pkgdir
+  # rm -rf $pkgdir/msys64
 }
