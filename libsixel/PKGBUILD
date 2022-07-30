@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/saitoha/sixel"
 makedepends=('libjpeg-dev' 'libpng-dev')
 license=('BSD')
-source=("git+https://github.com/libsixel/libsixel.git")
+source=("git+https://github.com/libsixel/libsixel.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
