@@ -1,5 +1,5 @@
 pkgname=libsixel-dev
-pkgver=1.8.6
+pkgver=1.10.3
 pkgrel=1
 pkgdesc='Encoder/decoder implementation for DEC SIXEL graphics'
 arch=('x86_64')
@@ -12,7 +12,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libsixel
   mkdir work
-  meson . work --prefix=/opt --buildtype=plain --prefer-static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
+  meson . work --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dlibcurl=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
   cd work
   ninja
 }
