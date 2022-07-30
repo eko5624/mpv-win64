@@ -12,7 +12,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libsixel
   mkdir work
-  meson . work --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dlibcurl=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython=disabled  
+  meson . work --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled -Dpython3=disabled  
   cd work
   ninja
 }
