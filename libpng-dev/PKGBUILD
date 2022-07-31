@@ -21,6 +21,6 @@ build() {
 package() {
   cd $srcdir/libpng
   make DESTDIR=$pkgdir install
-  sed -i '/Libs.private/d' $pkgdir/opt/lib/pkgconfig/libpng.pc
-  sed -i 's/Libs: -L${libdir} -lpng16/Libs: -L${libdir} -lpng16 -lz/' $pkgdir/opt/lib/pkgconfig/libpng.pc
+  sed -i '/Libs.private/d' $pkgdir/opt/lib/pkgconfig/libpng*.pc
+  sed -i 's/Libs: -L${libdir} -lpng16/Libs: -L${libdir} -lpng16 -lz/' $pkgdir/opt/lib/pkgconfig/libpng*.pc
 }
