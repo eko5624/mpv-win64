@@ -14,8 +14,7 @@ md5sums=('SKIP' 'SKIP')
 build() {
   cd $srcdir/libplacebo
   git config submodule.3rdparty/glad.url "$srcdir/glad"
-  git submodule update --init \
-      3rdparty/glad  
+  git submodule update --init 3rdparty/glad  
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
