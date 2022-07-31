@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo
-  git submodule update --init --recursive --depth 1 --recommend-shallow 3rd_party/glad
+  git submodule update --init --recursive --depth 1 --recommend-shallow 3rdparty/glad
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
