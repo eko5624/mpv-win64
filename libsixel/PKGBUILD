@@ -13,6 +13,7 @@ build() {
   cd $srcdir/libsixel
   sed -i '/sys\/select.h/d' meson.build
   sed -i '/sys\/signal.h/d' meson.build
+  sed -i '/termios.h/d' meson.build
   meson build --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled 
   meson compile -C build
 }
