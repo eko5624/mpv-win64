@@ -6,12 +6,15 @@ arch=('x86_64')
 url="http://www.libpng.org/pub/png/libpng.html"
 makedepends=('zlib')
 license=('custom')
-source=("git+https://github.com/glennrp/libpng.git")
-md5sums=('SKIP')
+source=("git+https://github.com/glennrp/libpng.git"
+        "https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$pkgver-apng.patch.gz")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libpng
-  ./configure --prefix=/opt --disable-shared
+  patch -p1 -i $srcdir/libpng-$pkgver-apng.patch
+  autoreconf -fiv
+  ./configure --prefix=/opt --disable-shared --enable-static
   make
 }
 
