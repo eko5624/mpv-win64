@@ -14,7 +14,7 @@ build() {
   cd $srcdir/libpng
   patch -p1 -i $srcdir/libpng-$pkgver-apng.patch
   autoreconf -fiv
-  ./configure --prefix=/opt --disable-shared --enable-static
+  ./configure CFLAGS='-fno-asynchronous-unwind-tables' --prefix=/opt --disable-shared --enable-static
   make
 }
 
