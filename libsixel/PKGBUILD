@@ -6,22 +6,24 @@ arch=('x86_64')
 url="https://github.com/saitoha/sixel"
 makedepends=('libjpeg-dev' 'libpng-dev')
 license=('BSD')
-source=("git+https://github.com/libsixel/libsixel.git#tag=v$pkgver")
+source=("git+https://github.com/saitoha/libsixel.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
-  #sed -i '/sys\/select.h/d' meson.build
-  #sed -i '/sys\/signal.h/d' meson.build
-  #sed -i '/termios.h/d' meson.build
-  #sed -i '/sys\/ioctl.h/d' meson.build
-  meson build --prefix=/opt --buildtype=release --default-library=static -Dtests=disabled 
-  meson compile -C build
+  ./configure \
+    --prefix=/opt
+    --with-jpeg
+    --with-png
+    --disable-img2sixel
+    --disable-sixel2png
+    --disable-python
+    --enable-static
+    --disable-shared
+  make 
 }
 
 package() {
   cd $srcdir/libsixel
-  meson install -C build --destdir $pkgdir
-  # mv $pkgdir/msys64/* $pkgdir
-  # rm -rf $pkgdir/msys64
+  make DESTDIR=$pkgdir install
 }
