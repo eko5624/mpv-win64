@@ -11,6 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
+  sed -i '/select.h/d' meson.build
   meson build --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled 
   meson compile -C build
 }
