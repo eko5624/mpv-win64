@@ -12,13 +12,13 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libsixel
   ./configure \
-    --prefix=/opt
-    --with-jpeg
-    --with-png
-    --disable-img2sixel
-    --disable-sixel2png
-    --disable-python
-    --enable-static
+    --prefix=/opt \
+    --with-jpeg \
+    --with-png \
+    --disable-img2sixel \
+    --disable-sixel2png \
+    --disable-python \
+    --enable-static \
     --disable-shared
   make 
 }
