@@ -11,11 +11,11 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
-  sed -i '/sys\/select.h/d' meson.build
-  sed -i '/sys\/signal.h/d' meson.build
-  sed -i '/termios.h/d' meson.build
-  sed -i '/sys\/ioctl.h/d' meson.build
-  meson build --prefix=/opt --buildtype=plain --default-library=static -Dtests=disabled -Dimg2sixel=disabled -Dsixel2png=disabled 
+  #sed -i '/sys\/select.h/d' meson.build
+  #sed -i '/sys\/signal.h/d' meson.build
+  #sed -i '/termios.h/d' meson.build
+  #sed -i '/sys\/ioctl.h/d' meson.build
+  meson build --prefix=/opt --buildtype=release --default-library=static -Dtests=disabled 
   meson compile -C build
 }
 
