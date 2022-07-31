@@ -7,13 +7,11 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo"
-        "git+https://github.com/Dav1dde/glad.git#branch=glad2")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/haasn/libplacebo")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo
-  git config submodule.3rdparty/glad.url "$srcdir/glad"
   git submodule update --init 3rdparty/glad  
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
