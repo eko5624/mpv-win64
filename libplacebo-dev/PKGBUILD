@@ -13,6 +13,7 @@ md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libplacebo
+  git submodule update --init
   rm -rf 3rdparty/glad
   mv $srcdir/glad 3rdparty 
   mkdir work
