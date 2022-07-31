@@ -11,10 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libpng
-  ./configure \
-    CFLAGS='-fno-asynchronous-unwind-tables' \
-    --prefix=/opt \
-    --disable-shared
+  ./configure --prefix=/opt --disable-shared
   make
 }
 
