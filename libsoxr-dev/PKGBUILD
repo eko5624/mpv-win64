@@ -13,7 +13,12 @@ build() {
   cd $srcdir/code
   patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -Wno-dev -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF 
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTS=OFF \
+    -DWITH_LSR_BINDINGS=OFF \
+    -DWITH_OPENMP=OFF \
+    -DBUILD_EXAMPLES=OFF 
   $CMAKE --build .
 }
 
