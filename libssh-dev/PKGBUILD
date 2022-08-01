@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Library for accessing ssh client services through C libraries'
 arch=('x86_64')
 url="https://www.libssh.org/"
-makedepends=('Zlib-dev' 'mbedtls-dev')
+makedepends=('zlib-dev' 'mbedtls-dev')
 license=('LGPL')
 source=("git+https://git.libssh.org/projects/libssh.git"
         "libssh-0001-install-modified-pc-file.patch"
