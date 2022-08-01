@@ -13,8 +13,8 @@ build() {
   cd $srcdir/libsixel
   ./configure \
     --prefix=/opt \
-    LIBPNG_CFLAGS = -I/opt/include \
-    LIBPNG_LIBS = -L/opt/lib \
+    LIBPNG_CFLAGS='-I/opt/include' \
+    LIBPNG_LIBS='-L/opt/lib -lpng16' \
     --with-jpeg \
     --with-png \
     --disable-img2sixel \
