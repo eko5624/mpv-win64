@@ -17,7 +17,7 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
     -DWITH_LSR_BINDINGS=OFF \
-    -DWITH_OPENMP=OFF \
+    -DWITH_OPENMP=ON \
     -DBUILD_EXAMPLES=OFF 
   $CMAKE --build .
 }
