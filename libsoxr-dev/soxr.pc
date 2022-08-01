@@ -4,5 +4,5 @@ includedir=/opt/include
 Name: soxr-lsr
 Description: High quality, one-dimensional sample-rate conversion library (with libsamplerate-like bindings)
 Version: 0.1.3
-Libs: -L${libdir} -lsoxr-lsr
+Libs: -L${libdir} -lsoxr
 Cflags: -I${includedir}
