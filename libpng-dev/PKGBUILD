@@ -6,21 +6,17 @@ arch=('x86_64')
 url="http://www.libpng.org/pub/png/libpng.html"
 makedepends=('zlib')
 license=('custom')
-source=("git+https://github.com/glennrp/libpng.git"
-        "https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-$pkgver-apng.patch.gz")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/glennrp/libpng.git")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/libpng
-  patch -p1 -i $srcdir/libpng-$pkgver-apng.patch
-  autoreconf -fiv
-  ./configure CFLAGS='-fno-asynchronous-unwind-tables' --prefix=/opt --disable-shared --enable-static
+  autoreconf -ivf
+  ./configure --prefix=/opt --disable-shared --enable-static
   make
 }
 
 package() {
   cd $srcdir/libpng
   make DESTDIR=$pkgdir install
-  sed -i '/Libs.private/d' $pkgdir/opt/lib/pkgconfig/libpng*.pc
-  sed -i 's/Libs: -L${libdir} -lpng16/Libs: -L${libdir} -lpng16 -lz/' $pkgdir/opt/lib/pkgconfig/libpng*.pc
 }
