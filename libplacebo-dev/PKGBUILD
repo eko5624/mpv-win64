@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo
-  git submodule update --init 
+  git submodule update --init --recursive
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
