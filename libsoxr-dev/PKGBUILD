@@ -21,7 +21,7 @@ package() {
   cd $srcdir/code/build
   DESTDIR=$pkgdir $CMAKE --install .   
   mv $pkgdir/msys64/* $pkgdir
-  sed -i 's/\/msys64\//\//' $pkgdir/opt/lib/pkgconfig/soxr*.pc
+  sed -i 's/D:\/msys64\//\//' $pkgdir/opt/lib/pkgconfig/soxr*.pc
   #mkdir -p $pkgdir/opt/lib/pkgconfig 
   #cp ../../../*.pc $pkgdir/opt/lib/pkgconfig
   rm -rf $pkgdir/msys64
