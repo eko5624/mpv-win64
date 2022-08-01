@@ -10,6 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/zimg
+  git submodule update --init --recursive
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared
   make 
