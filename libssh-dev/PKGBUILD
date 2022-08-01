@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Library for accessing ssh client services through C libraries'
 arch=('x86_64')
 url="https://www.libssh.org/"
-makedepends=('zlib-dev')
+makedepends=('Zlib-dev' 'mbedtls-dev')
 license=('LGPL')
 source=("git+https://git.libssh.org/projects/libssh.git"
         "libssh-0002-avoid-name-collision.patch")
@@ -15,7 +15,10 @@ build() {
   patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    --extra-cflags='-DLIBSSH_STATIC' \
+    --extra-ldflags='-Wl,--allow-multiple-definition' \
     -DWITH_ZLIB=ON \
+    -DWITH_MBEDTLS=ON \
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF 
