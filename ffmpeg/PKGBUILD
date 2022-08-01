@@ -48,7 +48,8 @@ package() {
     --prefix=/opt \
     $CARGS \
     --extra-libs="-lssp -lstdc++" \
-    --extra-ldflags="-static-libgcc" \
+    --extra-cflags="-I/opt/include"
+    --extra-ldflags="-static-libgcc" "-L/opt/lib" \
     --disable-mediafoundation \
     --enable-gmp \
     --enable-libbs2b \
