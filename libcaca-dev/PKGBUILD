@@ -5,7 +5,7 @@ pkgdesc='Color AsCii Art library'
 arch=('x86_64')
 url="https://github.com/cacalabs/libcaca"
 license=('LGPL')
-source=("git+https://github.com/cacalabs/libcaca.git#tag=v$pkgver"
+source=("git+https://github.com/cacalabs/libcaca.git"
         "0001-win32-is-not-msvc-it-could-be.mingw.patch"
         "0002-correct-installation-order.mingw.patch"
         "0006-no-undefined.all.patch")
@@ -13,10 +13,10 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libcaca
-  patch -p1 -i $srcdir/0001-win32-is-not-msvc-it-could-be.mingw.patch
-  patch -p1 -i $srcdir/0002-correct-installation-order.mingw.patch
-  patch -p1 -i $srcdir/0006-no-undefined.all.patch
-  autoreconf -fi
+  #patch -p1 -i $srcdir/0001-win32-is-not-msvc-it-could-be.mingw.patch
+  #patch -p1 -i $srcdir/0002-correct-installation-order.mingw.patch
+  #patch -p1 -i $srcdir/0006-no-undefined.all.patch
+  ./bootstrap
   ./configure \
     --build=x86_64-w64-mingw32 \
     --prefix=/opt \
