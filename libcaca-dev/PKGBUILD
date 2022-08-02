@@ -13,6 +13,9 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libcaca
+  patch -p1 -i $srcdir/001-win32-is-not-msvc-it-could-be.mingw.patch
+  patch -p1 -i $srcdir/002-correct-installation-order.mingw.patch
+  patch -p1 -i $srcdir/0006-no-undefined.all.patch
   autoreconf -fi
   ./configure \
     --build=x86_64 \
