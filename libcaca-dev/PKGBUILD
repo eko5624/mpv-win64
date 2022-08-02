@@ -12,7 +12,8 @@ build() {
   cd $srcdir/libcaca
   ./bootstrap
   autoreconf -ivf
-  ./configure \ 
+  ./configure \
+    --build \
     --prefix=/opt \
     --disable-shared \
     --enable-static \
