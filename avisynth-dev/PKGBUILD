@@ -16,5 +16,5 @@ package() {
     -DCMAKE_BUILD_TYPE=Release \
     -DHEADERS_ONLY=ON 
   $CMAKE --build ./build
-  $CMAKE --install ./build
+  $CMAKE --install ./build --prefix=$pkgdir/opt
 }
