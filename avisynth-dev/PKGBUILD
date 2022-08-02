@@ -16,5 +16,5 @@ build() {
 
 package() {
   cd $srcdir/AviSynthPlus/build 
-  make DESTDIR=$pkgdir install
+  /usr/bin/make.exe VersionGen DESTDIR=$pkgdir install
 }
