@@ -15,9 +15,9 @@ build() {
   cd $srcdir/libcaca
   export ac_cv_func_sprintf_s=yes
   export ac_cv_func_vsnprintf_s=yes
-  #patch -p1 -i $srcdir/0001-win32-is-not-msvc-it-could-be.mingw.patch
-  #patch -p1 -i $srcdir/0002-correct-installation-order.mingw.patch
-  #patch -p1 -i $srcdir/0006-no-undefined.all.patch
+  patch -p1 -i $srcdir/0001-win32-is-not-msvc-it-could-be.mingw.patch
+  patch -p1 -i $srcdir/0002-correct-installation-order.mingw.patch
+  patch -p1 -i $srcdir/0006-no-undefined.all.patch
   ./bootstrap
   ./configure \
     --prefix=/opt \
