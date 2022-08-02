@@ -17,5 +17,5 @@ build() {
 
 package() {
   cd $srcdir/AviSynthPlus/build 
-  DESTDIR=$pkgdir $CMAKE --install ./VersionGen 
+  DESTDIR=$pkgdir make VersionGen install
 }
