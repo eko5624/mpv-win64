@@ -18,12 +18,10 @@ build() {
   #patch -p1 -i $srcdir/0006-no-undefined.all.patch
   ./bootstrap
   ./configure \
-    --build=x86_64-w64-mingw32 \
     --prefix=/opt \
     --disable-shared \
     --enable-static \
     --disable-csharp \
-    --disable-cxx \
     --disable-doc \
     --disable-gl \
     --disable-ncurses \
