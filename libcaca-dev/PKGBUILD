@@ -4,7 +4,6 @@ pkgrel=1
 pkgdesc='Color AsCii Art library'
 arch=('x86_64')
 url="https://github.com/cacalabs/libcaca"
-makedepends=('nasm' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev')
 license=('LGPL')
 source=("git+https://github.com/cacalabs/libcaca.git#tag=v$pkgver")
 md5sums=('SKIP')
@@ -15,6 +14,7 @@ build() {
     --prefix=/opt \
     --disable-shared \
     --enable-static \
+    --enable-win32 \
     --disable-csharp \
     --disable-doc \
     --disable-ncurses \
