@@ -10,10 +10,10 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libcaca
+  ./bootstrap
   autoreconf -ivf
   ./configure \ 
     --prefix=/opt \
-    --build=BUILD \
     --disable-shared \
     --enable-static \
     --disable-csharp \
