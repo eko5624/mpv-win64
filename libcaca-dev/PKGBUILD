@@ -18,7 +18,7 @@ build() {
   patch -p1 -i $srcdir/0006-no-undefined.all.patch
   autoreconf -fi
   ./configure \
-    --build=x86_64 \
+    --build=x86_64-w64-mingw32 \
     --prefix=/opt \
     --disable-shared \
     --enable-static \
