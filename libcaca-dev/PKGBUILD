@@ -16,7 +16,12 @@ build() {
     --build=BUILD \
     --disable-shared \
     --enable-static \
-    --disable-doc 
+    --disable-csharp \
+    --disable-cxx \
+    --disable-doc \
+    --disable-gl \
+    --disable-python \
+    --disable-slang    
   make
 }
 
