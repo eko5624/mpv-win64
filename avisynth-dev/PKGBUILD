@@ -15,5 +15,6 @@ package() {
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DHEADERS_ONLY=ON 
-  $make VersionGen install
+  $CMAKE --build ./build
+  $CMAKE --install ./build
 }
