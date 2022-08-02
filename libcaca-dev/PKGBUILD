@@ -13,13 +13,10 @@ build() {
   autoreconf -ivf
   ./configure \ 
     --prefix=/opt \
+    --build=BUILD \
     --disable-shared \
     --enable-static \
-    --enable-win32 \
-    --disable-csharp \
-    --disable-doc \
-    --disable-ncurses \
-    --disable-ruby 
+    --disable-doc 
   make
 }
 
