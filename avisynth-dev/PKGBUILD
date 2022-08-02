@@ -8,13 +8,9 @@ license=('custom')
 source=("git+https://github.com/AviSynth/AviSynthPlus.git")
 md5sums=('SKIP')
 
-build() {
+package() {
   cd $srcdir/AviSynthPlus
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release -DHEADERS_ONLY=ON 
-}
-
-package() {
-  cd $srcdir/AviSynthPlus/build 
-  $make VersionGen DESTDIR=$pkgdir install
+  $make VersionGen install
 }
