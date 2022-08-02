@@ -8,13 +8,18 @@ license=('custom')
 source=("git+https://github.com/AviSynth/AviSynthPlus.git")
 md5sums=('SKIP')
 
-package() {
+build() {
   cd $srcdir/AviSynthPlus
   git submodule update --init --recursive
-  $CMAKE -B build -S . -G "MinGW Makefiles" \
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DHEADERS_ONLY=ON 
-  $CMAKE --build ./build
-  $CMAKE --install ./build --prefix=$pkgdir/opt
+  $CMAKE --build .
 }
+
+package() {
+  cd $srcdir/libjxl/build
+  $CMAKE --install . --prefix=$pkgdir/opt
+} 
