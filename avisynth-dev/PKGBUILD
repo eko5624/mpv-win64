@@ -20,5 +20,6 @@ build() {
 
 package() {
   cd $srcdir/AviSynthPlus/build
+  cp /mingw64/bin/cmake /usr/bin
   make VersionGen install 
 } 
