@@ -15,13 +15,10 @@ build() {
   $CMAKE .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
-    -DENABLE_SHARED=OFF \
-    -DENABLE_STATIC=ON \
     -DHEADERS_ONLY=ON 
-  $CMAKE --build .
 }
 
 package() {
   cd $srcdir/AviSynthPlus/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  make VersionGen install 
 } 
