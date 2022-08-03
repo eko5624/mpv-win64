@@ -32,6 +32,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /usr/bin/make
       shell: msys2 {0}
       run: |  
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst     
