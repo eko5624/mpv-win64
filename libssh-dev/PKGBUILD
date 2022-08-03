@@ -13,8 +13,8 @@ md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libssh
-  patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
-  patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
+  #patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
+  #patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
@@ -22,7 +22,6 @@ build() {
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
-    -DCMAKE_C_FLAGS='-DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD'
   $CMAKE --build .
 }
 
