@@ -34,5 +34,5 @@ build() {
 
 package() {
   cd $srcdir/libssh/build
-  $MAKE VersionGen install 
+  $CMAKE --install . --prefix=$pkgdir/opt
 }
