@@ -19,13 +19,13 @@ build() {
   patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
   patch -p1 -i $srcdir/libssh-0003-install-static-lib.patch
   patch -p1 -i $srcdir/libssh-0004-lld.patch
-  sed -i "9a SET (CMAKE_C_COMPILER_WORKS 1)\nSET (CMAKE_CXX_COMPILER_WORKS 1)\n" CMakeLists.txt
+  #sed -i "9a SET (CMAKE_C_COMPILER_WORKS 1)\nSET (CMAKE_CXX_COMPILER_WORKS 1)\n" CMakeLists.txt
   rm -rf build && mkdir build && cd build
-  MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX="
+  #MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX="
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
     -DMBEDTLS_ROOT_DIR='/opt/lib \
-    -DMBEDTLS_INCLUDE_DIR='/opt/includes \
+    -DMBEDTLS_INCLUDE_DIR='/opt/include \
     -DWITH_MBEDTLS=ON \
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
