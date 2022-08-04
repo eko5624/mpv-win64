@@ -26,7 +26,6 @@ build() {
     -DWITH_ZLIB=ON \
     -DMBEDTLS_ROOT_DIR='/opt' \
     -DMBEDTLS_INCLUDE_DIR='/opt/include/mbedtls' \
-    -DMBEDTLS_USE_STATIC_LIBS=ON \ 
     -DWITH_MBEDTLS=ON \
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
