@@ -24,7 +24,7 @@ build() {
   MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX="
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
-    -DMBEDTLS_ROOT_DIR='/opt/lib' \
+    -DMBEDTLS_ROOT_DIR='/opt' \
     -DMBEDTLS_INCLUDE_DIR='/opt/include/mbedtls' \
     -DMBEDTLS_USE_STATIC_LIBS=ON \ 
     -DWITH_MBEDTLS=ON \
