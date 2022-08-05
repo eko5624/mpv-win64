@@ -30,7 +30,7 @@ pkgs['luajit2'] = x['luajit2']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
 pkgs['mpv'] = x['mpv']
-for p in ['brotli', 'dav1d', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'highway', 'lame', 'lcms2', 'libass', 'libbluray', 'libdvdcss', 'libdvdnav', 'libdvdread', 'libogg', 'libjxl', 'libplacebo', 'opus', 'libepoxy', 'shaderc', 'spirv-cross', 'vulkan']:
+for p in ['brotli', 'dav1d', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'highway', 'lame', 'lcms2', 'libass', 'libbluray', 'libbs2b', 'libcaca', 'libdvdcss', 'libdvdnav', 'libdvdread', 'libjpeg', 'libjxl', 'libmfx', 'libmodplug', 'libmysofa', 'libogg', 'libopenmpt', 'libplacebo', 'libpng', 'libsdl2', 'libspeex', 'libssh', 'libsrt', 'libwebp', 'libxml2', 'libxvid', 'libzimg', 'mbedtls', 'mujs', 'openal-soft', 'opus', 'rubberband', 'shaderc', 'spirv-cross', 'vulkan', 'zlib']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
