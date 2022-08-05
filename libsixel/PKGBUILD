@@ -14,7 +14,7 @@ build() {
   ./configure \
     --prefix=/opt \
     LIBPNG_CFLAGS='-I/opt/include' \
-    LIBPNG_LIBS='-L/opt/lib -lpng16' \
+    LIBPNG_LIBS='-L/opt/lib -lpng' \
     --with-jpeg \
     --with-png \
     --disable-img2sixel \
