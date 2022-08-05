@@ -1,6 +1,6 @@
-diff -Naur libssh-0.8.1.orig/CMakeLists.txt libssh-0.8.1/CMakeLists.txt
---- libssh-0.8.1.orig/CMakeLists.txt	2018-08-21 08:30:18.377098700 -0400
-+++ libssh-0.8.1/CMakeLists.txt	2018-08-21 08:37:16.760077700 -0400
+diff -Naur libssh/CMakeLists.txt libssh/CMakeLists.txt
+--- libssh/CMakeLists.txt	2018-08-21 08:30:18.377098700 -0400
++++ libssh/CMakeLists.txt	2018-08-21 08:37:16.760077700 -0400
 @@ -117,8 +117,8 @@
  add_subdirectory(src)
  
