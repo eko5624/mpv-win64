@@ -5,6 +5,7 @@ pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("nasm"
+             "avisynth-dev"
              "gmp-dev"
              "lame-dev"
              "libbs2b-dev"
@@ -50,6 +51,7 @@ package() {
     --extra-libs="-lssp -lstdc++" \
     --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
+    --enable-avisynth \
     --enable-gmp \
     --enable-libbs2b \
     --enable-libdav1d \
@@ -61,6 +63,7 @@ package() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
+    --enable-libsrt \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
