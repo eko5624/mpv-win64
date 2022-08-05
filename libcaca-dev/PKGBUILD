@@ -1,5 +1,5 @@
 pkgname=libcaca-dev
-pkgver=0.99.beta20 
+pkgver=0.99.beta20
 pkgrel=1
 pkgdesc='Color AsCii Art library'
 arch=('x86_64')

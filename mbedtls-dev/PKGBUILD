@@ -1,5 +1,5 @@
 pkgname=mbedtls-dev
-pkgver=3.1.0
+pkgver=3.2.1
 pkgrel=1
 pkgdesc='Portable cryptographic and SSL/TLS library, aka polarssl'
 arch=('x86_64')
