@@ -8,27 +8,24 @@ makedepends=('zlib-dev' 'mbedtls-dev')
 license=('LGPL')
 options=('staticlibs' 'strip')
 source=("git+https://git.libssh.org/projects/libssh.git"
-        "libssh-0002-mingw-as-unix.patch"
-        "libssh-0003-install-static-lib.patch"
-        "libssh-0004-lld.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+        "libssh-0001-install-modified-pc-file.patch"
+        "libssh-0002-avoid-name-collision.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libssh
-  patch -p1 -i $srcdir/libssh-0002-mingw-as-unix.patch
-  patch -p1 -i $srcdir/libssh-0003-install-static-lib.patch
-  patch -p1 -i $srcdir/libssh-0004-lld.patch
+  patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
+  patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
   #sed -i "9a SET (CMAKE_C_COMPILER_WORKS 1)\nSET (CMAKE_CXX_COMPILER_WORKS 1)\n" CMakeLists.txt
   rm -rf build && mkdir build && cd build
-  MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX="
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
-    -DMBEDTLS_ROOT_DIR='/opt' \
-    -DMBEDTLS_INCLUDE_DIR='/opt/include/mbedtls' \
     -DWITH_MBEDTLS=ON \
     -DBUILD_STATIC_LIB=ON \
+    -DMBEDTLS_INCLUDE_DIR='/opt/include/mbedtls' \    
     -DWITH_EXAMPLES=OFF \
-    -DBUILD_SHARED_LIBS=OFF 
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD'
   $CMAKE --build .
 }
 
