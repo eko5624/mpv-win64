@@ -34,7 +34,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |                  
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.10.5/x64/scripts:/usr/bin:/opt/bin
         pip3 install Jinja2        
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
