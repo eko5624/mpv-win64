@@ -35,7 +35,7 @@ jobs:
       shell: msys2 {0}
       run: |                  
         PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install meson ninja        
+        pip3 install Jinja2        
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
       uses: mknejp/delete-release-assets@v1
