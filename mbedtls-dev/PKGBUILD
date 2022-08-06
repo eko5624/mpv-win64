@@ -5,7 +5,7 @@ pkgdesc='Portable cryptographic and SSL/TLS library, aka polarssl'
 arch=('x86_64')
 url="https://tls.mbed.org/"
 license=('Apache')
-source=("git+https://github.com/Mbed-TLS/mbedtls.git#tag=v$pkgver")
+source=("git+https://github.com/Mbed-TLS/mbedtls.git")
 md5sums=('SKIP')
 
 build() { 
