@@ -9,13 +9,17 @@ license=('LGPL')
 options=('staticlibs' 'strip')
 source=("git+https://git.libssh.org/projects/libssh.git"
         "libssh-0001-install-modified-pc-file.patch"
-        "libssh-0002-avoid-name-collision.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "libssh-0002-avoid-name-collision.patch"
+        "001-install-static-lib.patch"
+        "010-lld.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libssh
   patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
   patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
+  patch -p1 -i $srcdir/001-install-static-lib.patch
+  patch -p1 -i $srcdir/010-lld.patch
   rm -rf build && mkdir build && cd build
   MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
