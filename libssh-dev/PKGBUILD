@@ -20,6 +20,7 @@ build() {
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
+    -DMBEDTLS_ROOT_DIR='/opt' \
     -DMBEDTLS_INCLUDE_DIR='/opt/include' \
     -DBUILD_STATIC_LIB=ON \
     -DWITH_EXAMPLES=OFF \
