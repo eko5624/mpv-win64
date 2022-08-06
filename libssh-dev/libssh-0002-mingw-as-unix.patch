@@ -1,7 +1,6 @@
 --- a/CMakeLists.txt	2018-08-21 08:30:18.377098700 -0400
 +++ b/CMakeLists.txt	2018-08-21 08:37:16.760077700 -0400
-@@ -117,8 +117,8 @@
- add_subdirectory(src)
+@@ -117,7 +117,7 @@ add_subdirectory(src)
  
  # pkg-config file
 -if (UNIX)
@@ -24,16 +23,17 @@
 +++ b/libssh.pc.cmake	2018-08-21 08:37:17.353829600 -0400
 @@ -1,6 +1,11 @@
 -Name: ${PROJECT_NAME}
-+prefix=@CMAKE_INSTALL_PREFIX@
-+exec_prefix=${prefix}/bin
-+libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
-+includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
-+
-+Name: @PROJECT_NAME@
- Description: The SSH Library
+-Description: The SSH Library
 -Version: ${PROJECT_VERSION}
 -Libs: -L${CMAKE_INSTALL_FULL_LIBDIR} -lssh
 -Cflags: -I${CMAKE_INSTALL_FULL_INCLUDEDIR}
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include/libssh
+
++Name: @PROJECT_NAME@
++Description: The SSH Library
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lssh
 +Cflags: -I${includedir}
