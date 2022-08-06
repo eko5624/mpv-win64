@@ -9,31 +9,20 @@
  install(
    FILES
      ${CMAKE_CURRENT_BINARY_DIR}/libssh.pc
-@@ -127,7 +127,7 @@
-   COMPONENT
-     pkgconfig
- )
--endif (UNIX)
-+endif (UNIX OR MINGW)
- 
- # CMake config files
- include(CMakePackageConfigHelpers)
 --- a/libssh.pc.cmake	2018-08-21 08:30:18.361515500 -0400
 +++ b/libssh.pc.cmake	2018-08-21 08:37:17.353829600 -0400
 @@ -1,6 +1,11 @@
 -Name: ${PROJECT_NAME}
--Description: The SSH Library
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}/bin
++libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
++
++Name: @PROJECT_NAME@
+ Description: The SSH Library
 -Version: ${PROJECT_VERSION}
 -Libs: -L${CMAKE_INSTALL_FULL_LIBDIR} -lssh
 -Cflags: -I${CMAKE_INSTALL_FULL_INCLUDEDIR}
-+prefix=@CMAKE_INSTALL_PREFIX@
-+exec_prefix=${prefix}
-+libdir=${exec_prefix}/lib
-+includedir=${prefix}/include/libssh
-
-+Name: @PROJECT_NAME@
-+Description: The SSH Library
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lssh
 +Cflags: -I${includedir}
--- 
