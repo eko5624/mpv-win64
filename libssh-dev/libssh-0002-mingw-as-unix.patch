@@ -1,6 +1,5 @@
-diff -Naur libssh-0.8.1.orig/CMakeLists.txt libssh-0.8.1/CMakeLists.txt
---- libssh-0.8.1.orig/CMakeLists.txt	2018-08-21 08:30:18.377098700 -0400
-+++ libssh-0.8.1/CMakeLists.txt	2018-08-21 08:37:16.760077700 -0400
+--- a/CMakeLists.txt	2018-08-21 08:30:18.377098700 -0400
++++ b/CMakeLists.txt	2018-08-21 08:37:16.760077700 -0400
 @@ -117,8 +117,8 @@
  add_subdirectory(src)
  
@@ -21,9 +20,8 @@ diff -Naur libssh-0.8.1.orig/CMakeLists.txt libssh-0.8.1/CMakeLists.txt
  
  # CMake config files
  include(CMakePackageConfigHelpers)
-diff -Naur libssh-0.8.1.orig/libssh.pc.cmake libssh-0.8.1/libssh.pc.cmake
---- libssh-0.8.1.orig/libssh.pc.cmake	2018-08-21 08:30:18.361515500 -0400
-+++ libssh-0.8.1/libssh.pc.cmake	2018-08-21 08:37:17.353829600 -0400
+--- a/libssh.pc.cmake	2018-08-21 08:30:18.361515500 -0400
++++ b/libssh.pc.cmake	2018-08-21 08:37:17.353829600 -0400
 @@ -1,6 +1,11 @@
 -Name: ${PROJECT_NAME}
 +prefix=@CMAKE_INSTALL_PREFIX@
