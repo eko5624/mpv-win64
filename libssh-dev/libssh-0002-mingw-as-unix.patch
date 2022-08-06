@@ -36,3 +36,4 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lssh
 +Cflags: -I${includedir}
+-- 
