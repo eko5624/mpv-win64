@@ -41,7 +41,7 @@ index b37cb3f..a4e1b2b 100644
 +Description: The SSH Library
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lssh
-+Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lmcfgthread
++Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lws2_32 -lpthread
 +Cflags: -I${includedir}
 +Cflags.private: -DLIBSSH_STATIC
 -- 
