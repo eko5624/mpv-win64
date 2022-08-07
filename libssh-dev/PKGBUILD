@@ -18,8 +18,8 @@ build() {
   cd $srcdir/libssh
   patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
   patch -p1 -i $srcdir/libssh-0002-avoid-name-collision.patch
-  patch -p1 -i $srcdir/001-install-static-lib.patch
-  patch -p1 -i $srcdir/010-lld.patch
+  #patch -p1 -i $srcdir/001-install-static-lib.patch
+  #patch -p1 -i $srcdir/010-lld.patch
   rm -rf build && mkdir build && cd build
   #MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
@@ -27,8 +27,6 @@ build() {
     -DWITH_MBEDTLS=ON \
     -DMBEDTLS_INCLUDE_DIR='/opt/include' \
     -DBUILD_STATIC_LIB=ON \
-    -DWITH_GSSAPI=OFF \
-    -DWITH_SERVER=OFF \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_STATIC_LIB=ON \
