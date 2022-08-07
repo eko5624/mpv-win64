@@ -21,7 +21,7 @@ build() {
   patch -p1 -i $srcdir/001-install-static-lib.patch
   patch -p1 -i $srcdir/010-lld.patch
   rm -rf build && mkdir build && cd build
-  MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \
+  #MSYS2_ARG_CONV_EXCL="-DCMAKE_INSTALL_PREFIX=" \
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
