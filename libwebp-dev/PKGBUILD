@@ -1,5 +1,5 @@
 pkgname=libwebp-dev
-pkgver=1.2.3
+pkgver=1.2.4
 pkgrel=1
 pkgdesc='A library to encode and decode images in WebP format'
 arch=('x86_64')
