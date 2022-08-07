@@ -5,11 +5,13 @@ pkgdesc='Scaling, colorspace conversion, and dithering library'
 arch=('x86_64')
 url="https://github.com/sekrit-twc/"
 license=('LGPL')
-source=("git+https://github.com/sekrit-twc/zimg.git")
-md5sums=('SKIP')
+source=("git+https://github.com/sekrit-twc/zimg.git"
+        "0001-libm_wrapper-define.patch")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zimg
+  patch -p1 -i $srcdir/0001-libm_wrapper-define.patch
   git submodule update --init --recursive --depth=1
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared --enable-static --with-pic
