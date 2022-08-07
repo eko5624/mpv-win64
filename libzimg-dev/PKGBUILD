@@ -10,8 +10,9 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/zimg
+  git submodule update --init --recursive --depth=1
   ./autogen.sh
-  ./configure --prefix=/opt --disable-shared
+  ./configure --prefix=/opt --disable-shared --enable-static --with-pic
   make 
 }
 
