@@ -6,11 +6,14 @@ arch=('x86_64')
 url="https://github.com/sekrit-twc/"
 license=('LGPL')
 source=("git+https://github.com/sekrit-twc/zimg.git"
+        "https://github.com/sekrit-twc/graphengine.git"
         "0001-libm_wrapper-define.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zimg
+  rm -rf graphengine 
+  mv $srcdir/graphengine ./
   patch -p1 -i $srcdir/0001-libm_wrapper-define.patch
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared --enable-static --with-pic
