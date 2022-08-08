@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/sekrit-twc/"
 license=('LGPL')
 source=("git+https://github.com/sekrit-twc/zimg.git"
-        "https://github.com/sekrit-twc/graphengine.git"
+        "git+https://github.com/sekrit-twc/graphengine.git"
         "0001-libm_wrapper-define.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
