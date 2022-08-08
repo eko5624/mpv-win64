@@ -33,12 +33,14 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF 
-  $CMAKE --build .
+  /d/msys64/mingw64/bin/mingw32-make.exe
 }
 
 package() {
   cd $srcdir/libjxl/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
   cd third_party
   mv brotli/*.pc $pkgdir/opt/lib/pkgconfig
   mv brotli/libbrotlienc-static.a $pkgdir/opt/lib/libbrotlienc.a
