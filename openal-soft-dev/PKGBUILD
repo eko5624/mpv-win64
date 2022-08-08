@@ -11,8 +11,12 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/openal-soft
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DLIBTYPE=STATIC \
-    -DALSOFT_UTILS=OFF -DALSOFT_EXAMPLES=OFF -DALSOFT_TESTS=OFF -DALSOFT_BACKEND_PIPEWIRE=OFF 
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DLIBTYPE=STATIC \
+    -DALSOFT_UTILS=OFF \
+    -DALSOFT_EXAMPLES=OFF \
+    -DALSOFT_TESTS=OFF \
+    -DALSOFT_BACKEND_PIPEWIRE=OFF 
   $CMAKE --build . 
 }
 
