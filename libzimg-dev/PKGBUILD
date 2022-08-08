@@ -8,7 +8,7 @@ license=('LGPL')
 source=("git+https://github.com/sekrit-twc/zimg.git"
         "https://github.com/sekrit-twc/graphengine.git"
         "0001-libm_wrapper-define.patch")
-md5sums=('SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zimg
