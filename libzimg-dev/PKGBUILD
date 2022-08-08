@@ -12,7 +12,6 @@ md5sums=('SKIP' 'SKIP')
 build() {
   cd $srcdir/zimg
   patch -p1 -i $srcdir/0001-libm_wrapper-define.patch
-  git submodule update --init --recursive --depth=1
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared --enable-static --with-pic
   make 
