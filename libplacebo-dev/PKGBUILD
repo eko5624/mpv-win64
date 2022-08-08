@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
-makedepends=('libepoxy-dev' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
+makedepends=('lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
 source=("git+https://github.com/haasn/libplacebo"
         "git+https://github.com/Dav1dde/glad.git#branch=glad2")
@@ -18,7 +18,7 @@ build() {
   mv $srcdir/glad 3rdparty 
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static \
-    -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
+    -Ddemos=false -Dopengl-loader=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
   cd work
   ninja
 }
