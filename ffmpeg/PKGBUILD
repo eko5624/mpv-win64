@@ -49,7 +49,7 @@ package() {
     --prefix=/opt \
     $CARGS \
     --extra-libs="-lssp -lstdc++" \
-    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
+    --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-avisynth \
     --enable-gmp \
