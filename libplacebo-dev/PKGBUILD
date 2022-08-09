@@ -17,8 +17,8 @@ build() {
   rm -rf 3rdparty/glad
   mv $srcdir/glad 3rdparty 
   mkdir work
-  meson . work --prefix=/opt --buildtype=release --default-library=static \
-    -Ddemos=false -Dopengl-loader=true -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
+  meson . work --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
+    -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
   cd work
   ninja
 }
