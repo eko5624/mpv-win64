@@ -55,6 +55,7 @@ package() {
     --enable-gmp \
     --enable-libbs2b \
     --enable-libdav1d \
+    --enable-libjxl \
     --enable-libmfx \
     --enable-libmodplug \
     --enable-libmp3lame \
