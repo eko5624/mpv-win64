@@ -14,7 +14,7 @@ md5sums=('SKIP' 'SKIP')
 build() {
   cd $srcdir/libplacebo
   rm -rf 3rdparty/glad
-  mv $srcdir/glad 3rdparty   
+  ln -s $srcdir/glad 3rdparty/glad   
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
