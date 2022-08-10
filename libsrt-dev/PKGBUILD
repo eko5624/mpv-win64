@@ -18,10 +18,11 @@ build() {
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DENABLE_STDCXX_SYNC=ON \
-    -DENABLE_CXX_DEPS=OFF \
     -DUSE_STATIC_LIBSTDCXX=ON \
     -DUSE_ENCLIB=mbedtls \
-    -DENABLE_APPS=OFF
+    -DENABLE_APPS=OFF \
+    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -static-libgcc -static-libstdc++' \
+    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++' \
   $CMAKE --build .
 }
 
