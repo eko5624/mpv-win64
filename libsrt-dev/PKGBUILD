@@ -18,6 +18,8 @@ build() {
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DENABLE_STDCXX_SYNC=ON \
+    -DENABLE_CXX_DEPS=ON \
+    -DUSE_STATIC_LIBSTDCXX=ON \
     -DUSE_ENCLIB=mbedtls \
     -DENABLE_APPS=OFF
   $CMAKE --build .
