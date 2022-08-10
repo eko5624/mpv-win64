@@ -17,9 +17,8 @@ build() {
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
-    -DENABLE_CXX_DEPS=ON \
+    -DENABLE_STDCXX_SYNC=ON \
     -DUSE_ENCLIB=mbedtls \
-    -DUSE_STATIC_LIBSTDCXX=ON \
     -DENABLE_APPS=OFF
   $CMAKE --build .
 }
@@ -27,5 +26,5 @@ build() {
 package() {
   cd $srcdir/srt/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/srt.pc 
+  #echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/srt.pc 
 }
