@@ -30,8 +30,7 @@ makedepends=("nasm"
              "mbedtls-dev"
              "opus-dev" 
              "ffnvcodec-dev" 
-             "vapoursynth-dev"
-             "zlib-dev")
+             "vapoursynth-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
