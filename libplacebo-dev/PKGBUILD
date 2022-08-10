@@ -16,6 +16,7 @@ build() {
   git submodule update --init --recursive
   rm -rf 3rdparty/glad
   mv $srcdir/glad 3rdparty 
+  meson --wipe
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
