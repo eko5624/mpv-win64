@@ -7,16 +7,13 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo"
-        "git+https://github.com/Dav1dde/glad.git#branch=glad2")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/haasn/libplacebo")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo
-  git submodule update --init --recursive
-  rm -rf 3rdparty/glad
-  mv $srcdir/glad 3rdparty 
-  meson --wipe 3rdparty/jinja 3rdparty/mako 3rdparty/markupsafe
+  git submodule update --init 
+  meson --wipe 3rdparty/glad
   mkdir work
   meson . work --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
     -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
