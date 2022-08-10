@@ -49,7 +49,7 @@ package() {
     --prefix=/opt \
     $CARGS \
     --extra-libs="-lssp" \
-    --extra-ldflags="-static" \
+    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
     --disable-mediafoundation \
     --enable-avisynth \
     --enable-gmp \
@@ -63,8 +63,6 @@ package() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libsrt \
-    --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
@@ -72,7 +70,6 @@ package() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libopus \
-    --enable-mbedtls \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
