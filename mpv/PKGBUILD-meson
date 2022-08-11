@@ -34,7 +34,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
+  LDFLAGS="$LDFLAGS -static -lssp"
   meson build --buildtype=release -Dprefix=/opt \
     -Db_lto=true \
     -Db_ndebug=true \
