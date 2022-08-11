@@ -11,6 +11,6 @@ md5sums=('SKIP')
 package() {
   cd $srcdir/angle
   mkdir -p $pkgdir/opt/include
-  mv include/EGL $pkgdir/opt
-  mv include/KHR $pkgdir/opt
+  mv include/EGL $pkgdir/opt/include
+  mv include/KHR $pkgdir/opt/include
 }
