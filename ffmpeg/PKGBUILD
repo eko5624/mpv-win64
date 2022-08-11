@@ -64,7 +64,6 @@ package() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libsrt \
     --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
