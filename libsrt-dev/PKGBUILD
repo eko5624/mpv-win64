@@ -29,5 +29,4 @@ build() {
 package() {
   cd $srcdir/srt/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  #echo "Libs.private:  -lstdc++" >> $pkgdir/opt/lib/pkgconfig/srt.pc 
 }
