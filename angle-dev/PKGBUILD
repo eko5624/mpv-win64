@@ -5,7 +5,7 @@ pkgdesc='Almost Native Graphics Layer Engine'
 arch=('x86_64')
 url="https://chromium.googlesource.com/angle/angle/"
 license=('custom')
-source=("git+https://chromium.googlesource.com/angle/angle)
+source=("git+https://chromium.googlesource.com/angle/angle")
 md5sums=('SKIP')
 
 package() {
