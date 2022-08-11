@@ -48,8 +48,8 @@ package() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-lssp" \
-    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
+    --extra-libs="-lssp -lstdc++" \
+    --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
@@ -64,6 +64,7 @@ package() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
+    --enable-libsrt \
     --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
