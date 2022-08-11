@@ -21,8 +21,8 @@ build() {
     -DENABLE_CXX_DEPS=OFF \
     -DUSE_ENCLIB=mbedtls \
     -DENABLE_APPS=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc+' \
-    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc+' 
+    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
+    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' 
   $CMAKE --build .
 }
 
