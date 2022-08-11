@@ -18,7 +18,7 @@ build() {
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DUSE_STATIC_LIBSTDCXX=ON \
-    -DENABLE_CXX_DEPS=ON \
+    -DENABLE_CXX_DEPS=O \
     -DUSE_ENCLIB=mbedtls \
     -DENABLE_APPS=OFF \
     -DCMAKE_C_FLAGS='-static-libgcc' \
