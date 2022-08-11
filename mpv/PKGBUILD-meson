@@ -10,6 +10,7 @@ makedepends=("yasm"
              "libpng-dev"
              "libsdl2-dev"
              "libsixel-dev"
+             "angle-dev"
              "ffmpeg-dev"
              "mujs-dev"
              "rubberband-dev"
@@ -34,7 +35,13 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -static -lssp"
-  meson build --buildtype=release -Dprefix=/opt -Db_lto=true -Db_ndebug=true -Dopenal=enabled -Drubberband=enabled -Dsdl2=enabled 
+  meson build --buildtype=release -Dprefix=/opt \
+    -Db_lto=true \
+    -Db_ndebug=true \
+    -Dopenal=enabled \
+    -Drubberband=enabled \
+    -Dsdl2=enabled \
+    -Degl-angle=enabled 
   meson compile -C build 
 }
 
