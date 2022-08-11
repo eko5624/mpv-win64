@@ -15,7 +15,7 @@ prepare() {
 }  
 
 package() {
-  mkdir -p $pkgdir/opt
-  mv amf/public/include/core $pkgdir/opt
-  mv amf/public/include/components $pkgdir/opt
+  mkdir -p $pkgdir/opt/include/AMF
+  mv amf/public/include/core $pkgdir/opt/include/AMF
+  mv amf/public/include/components $pkgdir/opt/include/AMF
 }
