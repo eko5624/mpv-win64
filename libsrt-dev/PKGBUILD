@@ -21,13 +21,13 @@ build() {
     -DENABLE_CXX_DEPS=ON \
     -DUSE_ENCLIB=mbedtls \
     -DENABLE_APPS=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc' \
-    -DCMAKE_CXX_FLAGS='-static-libgcc' 
+    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc+' \
+    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc+' 
   $CMAKE --build .
 }
 
 package() {
   cd $srcdir/srt/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/srt.pc 
+  #echo "Libs.private: -lstdc++" >> $pkgdir/opt/lib/pkgconfig/srt.pc 
 }
