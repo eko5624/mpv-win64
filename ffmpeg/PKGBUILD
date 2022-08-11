@@ -48,7 +48,7 @@ package() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-lmcfgthread -lssp -lstdc++" \
+    --extra-libs="-lssp -lstdc++" \
     --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-amf \
