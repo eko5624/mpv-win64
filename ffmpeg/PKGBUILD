@@ -5,7 +5,7 @@ pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("nasm"
-             "amf-dev"
+             "amf-headers-dev"
              "avisynth-dev"
              "gmp-dev"
              "lame-dev"
