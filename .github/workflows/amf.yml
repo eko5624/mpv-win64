@@ -31,7 +31,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |                  
         cd amf-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
