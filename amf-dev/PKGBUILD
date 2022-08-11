@@ -5,11 +5,16 @@ pkgdesc='Header files for AMD Advanced Media Framework'
 arch=('x86_64')
 url="https://github.com/GPUOpen-LibrariesAndSDKs/AMF/"
 license=('MIT')
-source=("git+https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git#tag=v$pkgver")
-md5sums=('SKIP')
+source=("git+https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git#tag=v$pkgver"
+        "0001-prevent-some-redefinition.patch")
+md5sums=('SKIP' 'SKIP')
+
+prepare() {
+  cd $srcdir/AMF
+  patch -p1 -i $srcdir/0001-prevent-some-redefinition.patch
+}  
 
 package() {
-  cd $srcdir/AMF
   mkdir -p $pkgdir/opt
   mv amf/public/include/core $pkgdir/opt
   mv amf/public/include/components $pkgdir/opt
