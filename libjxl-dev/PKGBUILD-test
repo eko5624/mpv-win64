@@ -8,11 +8,7 @@ license=('BSD')
 source=("git+https://github.com/libjxl/libjxl")
 md5sums=('SKIP')
 
-build() {
-  # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
- 
+build() { 
   cd $srcdir/libjxl
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,skcms}  
   rm -rf build && mkdir build && cd build
@@ -32,7 +28,9 @@ build() {
     -DJPEGXL_ENABLE_PLUGINS=OFF \
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
-    -DJPEGXL_ENABLE_SJPEG=OFF 
+    -DJPEGXL_ENABLE_SJPEG=OFF \
+    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move' \# fix crash on AVX2 proc (64bit) due to unaligned stack memory
+    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move'    
   /d/msys64/mingw64/bin/mingw32-make.exe
 }
 
