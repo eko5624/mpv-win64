@@ -274,7 +274,7 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install meson ninja        
@@ -287,7 +287,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -422,7 +422,7 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install meson ninja        
@@ -435,7 +435,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin 
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin 
         cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -525,7 +525,7 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install meson ninja
@@ -538,7 +538,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin
         cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -1332,7 +1332,7 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install meson ninja mako Jinja2
@@ -1345,7 +1345,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin       
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.224-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.1-1-x86_64.pkg.tar.zst
@@ -2089,7 +2089,7 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install Jinja2
@@ -2103,7 +2103,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |                         
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin       
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin       
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -2157,7 +2157,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin
         pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
         pip install ninja      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
@@ -2473,7 +2473,7 @@ jobs:
         # Version range or exact version of a Python version to use, using SemVer's version range syntax.
         python-version: '3.10'
 
-    - name: Install python dependents
+    - name: Install python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install meson ninja
@@ -2486,7 +2486,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
+        PATH=/d/ucrt64/bin:${{ env.pythonLocation }}:${{ env.pythonLocation }}\scripts:/usr/bin:/opt/bin
         cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
