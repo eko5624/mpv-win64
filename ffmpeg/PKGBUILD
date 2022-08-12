@@ -48,8 +48,7 @@ package() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-lssp -lstdc++" \
-    --extra-ldflags="-static-libgcc" \
+    --extra-libs="-lssp" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
