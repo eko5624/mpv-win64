@@ -268,6 +268,17 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja        
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -276,8 +287,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install meson ninja
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -405,6 +415,18 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja        
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -413,8 +435,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin 
-        pip3 install meson ninja 
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin 
         cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -497,6 +518,18 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -505,8 +538,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install meson ninja 
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
         cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -1293,6 +1325,18 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja mako Jinja2
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1301,8 +1345,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install meson ninja mako Jinja2         
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.224-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.1-1-x86_64.pkg.tar.zst
@@ -2039,6 +2082,18 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install Jinja2
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2048,8 +2103,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |                         
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install Jinja2        
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin       
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
       uses: mknejp/delete-release-assets@v1
@@ -2088,6 +2142,13 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2096,9 +2157,9 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
-        pip3 install ninja      
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
+        pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
+        pip install ninja      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.3-1-x86_64.pkg.tar.zst
@@ -2400,6 +2461,23 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+        python-version: '3.10'
+
+    - name: Install python dependents
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja
+
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2408,8 +2486,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: | 
-        PATH=/d/ucrt64/bin:/c/hostedtoolcache/windows/python/3.7.9/x64:/c/hostedtoolcache/windows/python/3.7.9/x64/scripts:/usr/bin:/opt/bin
-        pip3 install meson ninja
+        PATH=/d/ucrt64/bin:$pythonLocation:$pythonLocation/scripts:/usr/bin:/opt/bin
         cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
