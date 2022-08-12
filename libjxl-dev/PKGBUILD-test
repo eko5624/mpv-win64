@@ -29,8 +29,8 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF \
-    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move' \ # fix crash on AVX2 proc (64bit) due to unaligned stack memory
-    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move'    
+    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move' \ # fix crash on AVX2 proc (64bit) due to unaligned stack memory
+    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++ -Wa,-muse-unaligned-vector-move'    
   /d/msys64/mingw64/bin/mingw32-make.exe
 }
 
