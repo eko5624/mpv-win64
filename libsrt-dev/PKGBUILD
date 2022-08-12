@@ -18,7 +18,6 @@ build() {
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DUSE_STATIC_LIBSTDCXX=ON \ # Enforces linking the SRT library against the static libstdc++ library
-    -DENABLE_CXX_DEPS=OFF \ # srt.pc will not to be generated with the libstdc++ library as a dependency
     -DUSE_ENCLIB=mbedtls \
     -DENABLE_APPS=OFF \
     -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
