@@ -33,8 +33,8 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++'
-    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' \     
+    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
+    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++'      
   /d/msys64/mingw64/bin/mingw32-make.exe
 }
 
