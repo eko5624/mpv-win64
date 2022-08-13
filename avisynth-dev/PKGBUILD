@@ -20,7 +20,7 @@ build() {
 
 package() {
   cd $srcdir/AviSynthPlus/build
-  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir VersionGen install 
+  /d/usr/bin/make.exe DESTDIR=$pkgdir VersionGen install 
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 } 
