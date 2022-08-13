@@ -18,12 +18,12 @@ build() {
     -DUSE_STATIC_MBEDTLS_LIBRARY=ON \
     -DUSE_SHARED_MBEDTLS_LIBRARY=OFF \
     -DINSTALL_MBEDTLS_HEADERS=ON
-  /d/msys64/mingw64/bin/mingw32-make.exe
+  $MAKE
 }
 
 package() {
   cd $srcdir/mbedtls/build
-  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir install
+  $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
