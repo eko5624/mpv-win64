@@ -26,12 +26,12 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_STATIC_LIB=ON \
     -DCMAKE_C_FLAGS='-DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD' 
-  /d/msys64/mingw64/bin/mingw32-make.exe
+  $MAKE
 }
 
 package() {
   cd $srcdir/libssh/build
-  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir install
+  $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
