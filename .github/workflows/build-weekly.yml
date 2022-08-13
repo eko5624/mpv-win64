@@ -16,7 +16,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Build
       shell: msys2 {0}
       run: |
@@ -39,7 +39,7 @@ jobs:
         file_glob: true
 
   ffmpeg:
-    needs: [amf, avisynth, dav1d, gmp, lame, mbedtls, libbs2b, libjxl, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, opus, ffnvcodec, vapoursynth, zlib]
+    needs: [amf, avisynth, dav1d, gmp, lame, mbedtls, libbs2b, libjxl, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -49,7 +49,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -123,7 +123,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -168,7 +168,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -213,7 +213,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -260,7 +260,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -314,7 +314,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -359,7 +359,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -404,7 +404,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -458,7 +458,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -503,7 +503,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -557,7 +557,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -602,7 +602,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -648,7 +648,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -698,7 +698,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -746,7 +746,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -791,7 +791,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -836,7 +836,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -882,7 +882,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -931,7 +931,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -978,7 +978,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1024,7 +1024,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1070,7 +1070,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1115,7 +1115,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1161,7 +1161,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1209,7 +1209,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1255,7 +1255,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1306,7 +1306,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1366,7 +1366,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1413,7 +1413,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1458,7 +1458,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1506,7 +1506,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1552,7 +1552,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1598,7 +1598,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1647,7 +1647,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1696,7 +1696,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1742,7 +1742,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1789,7 +1789,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1834,7 +1834,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1879,7 +1879,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1924,7 +1924,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -1969,7 +1969,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2014,7 +2014,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2059,7 +2059,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2115,7 +2115,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2222,7 +2222,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2267,7 +2267,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2313,7 +2313,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2432,7 +2432,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2486,7 +2486,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2532,7 +2532,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2577,7 +2577,7 @@ jobs:
         install: base-devel autotools     
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@v3     
+    - uses: actions/checkout@main     
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2617,7 +2617,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
@@ -2663,7 +2663,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
