@@ -33,12 +33,12 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF   
-  /d/msys64/mingw64/bin/mingw32-make.exe
+  $MAKE
 }
 
 package() {
   cd $srcdir/libjxl/build
-  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir install
+  $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
   cd third_party
