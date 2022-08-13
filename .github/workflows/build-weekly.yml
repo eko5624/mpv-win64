@@ -39,7 +39,7 @@ jobs:
         file_glob: true
 
   ffmpeg:
-    needs: [amf, avisynth, dav1d, gmp, lame, libbs2b, libjxl, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, vapoursynth, zlib]
+    needs: [amf, avisynth, dav1d, gmp, lame, mbedtls, libbs2b, libjxl, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -229,6 +229,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |                  
         cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
@@ -994,6 +995,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |            
         cd libjxl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-test 
@@ -1663,6 +1665,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |  
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst     
@@ -2082,6 +2085,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |                         
         pypath=$(cygpath -u $pythonLocation)
@@ -2283,6 +2287,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |            
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
