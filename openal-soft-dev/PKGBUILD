@@ -17,12 +17,12 @@ build() {
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
     -DALSOFT_BACKEND_PIPEWIRE=OFF 
-  /d/msys64/mingw64/bin/mingw32-make.exe
+  $MAKE
 }
 
 package() {
   cd $srcdir/openal-soft/build
-  /d/msys64/mingw64/bin/mingw32-make.exe DESTDIR=$pkgdir install
+  $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
