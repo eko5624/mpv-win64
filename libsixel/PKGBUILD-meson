@@ -19,7 +19,9 @@ build() {
     -Dpng=enabled \
     -Dimg2sixel=disabled \
     -Dsixel2png=disabled \
-    -Dpython=disabled 
+    -Dgdk-pixbuf2=disabled \
+    -Dpython=disabled \
+    -Dtests=disabled
   meson compile -C build 
 }
 
