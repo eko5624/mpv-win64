@@ -1,0 +1,29 @@
+pkgname=libsixel-dev
+pkgver=1.10.3 
+pkgrel=1
+pkgdesc='Encoder/decoder implementation for DEC SIXEL graphics'
+arch=('x86_64')
+url="https://github.com/libsixel/libsixel"
+makedepends=('libjpeg-dev' 'libpng-dev')
+license=('BSD')
+source=("git+https://github.com/libsixel/libsixel")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libsixel
+  meson build --buildtype=release -Dprefix=/opt \
+    --prefer-static \
+    LIBPNG_CFLAGS='-I/opt/include' \
+    LIBPNG_LIBS='-L/opt/lib -lpng' \
+    -Djpeg=enabled \
+    -Dpng=enabled \
+    -Dimg2sixel=disabled \
+    -Dsixel2png=disabled \
+    -Dpython=disabled 
+  meson compile -C build 
+}
+
+package() {
+  cd $srcdir/libsixel
+  meson install -C build DESTDIR=$pkgdir
+}
