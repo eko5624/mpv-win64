@@ -33,7 +33,50 @@ pkgs['mpv'] = x['mpv']
 pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel']
-for p in ['avisynth', 'brotli', 'dav1d', 'ffnvcodec', 'freetype2', 'fribidi', 'harfbuzz', 'highway', 'lame', 'lcms2', 'libass', 'libbluray', 'libbs2b', 'libcaca', 'libdvdcss', 'libdvdnav', 'libdvdread', 'libudfread', 'libjpeg', 'libjxl', 'libmfx', 'libmodplug', 'libmysofa', 'libogg', 'libopenmpt', 'libplacebo', 'libpng', 'libsdl2', 'libspeex', 'libssh', 'libsrt', 'libwebp', 'libxml2', 'libxvid', 'libzimg', 'mbedtls', 'openal-soft', 'opus', 'shaderc', 'spirv-cross', 'vulkan', 'zlib']:
+for p in [
+  'avisynth', 
+  'brotli', 
+  'dav1d', 
+  'ffnvcodec', 
+  'freetype2', 
+  'fribidi', 
+  'harfbuzz', 
+  'highway', 
+  'lame', 
+  'lcms2', 
+  'libass', 
+  'libbluray', 
+  'libbs2b', 
+  'libcaca', 
+  'libdvdcss', 
+  'libdvdnav', 
+  'libdvdread', 
+  'libudfread', 
+  'libjpeg', 
+  'libjxl', 
+  'libmfx', 
+  'libmodplug', 
+  'libmysofa', 
+  'libogg', 
+  'libopenmpt', 
+  'libplacebo', 
+  'libpng', 
+  'libsdl2', 
+  'libspeex', 
+  'libssh', 
+  'libsrt', 
+  'libwebp', 
+  'libxml2', 
+  'libxvid', 
+  'libzimg', 
+  'mbedtls', 
+  'openal-soft', 
+  'opus', 
+  'shaderc', 
+  'spirv-cross', 
+  'vulkan', 
+  'zlib',
+  ]:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
