@@ -34,6 +34,8 @@ pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel']
 for p in [
+  'amf',
+  'angle',
   'avisynth', 
   'brotli', 
   'dav1d', 
