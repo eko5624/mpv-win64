@@ -1,5 +1,5 @@
 pkgname=angle-headers-dev
-pkgver=1.0.xx
+pkgver=1.0.772
 pkgrel=1
 pkgdesc='Almost Native Graphics Layer Engine'
 arch=('x86_64')
