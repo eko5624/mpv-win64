@@ -351,12 +351,13 @@ jobs:
         file_glob: true
 
   freetype2:
+    needs: [libpng, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autotools git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -369,6 +370,13 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20220707_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install python dependencies
+      run: |
+        pip install meson ninja
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -377,7 +385,12 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd freetype2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        pypath=$(cygpath -u $pythonLocation)
+        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst      
+        pacman -U *.zst --noconfirm        
+        cd freetype2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -431,7 +444,7 @@ jobs:
       run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -495,6 +508,7 @@ jobs:
         file_glob: true        
 
   harfbuzz:
+    needs: [freetype2, libpng]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -530,7 +544,10 @@ jobs:
       run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst     
+        pacman -U *.zst --noconfirm         
+        cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -669,7 +686,9 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-5.1.0-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
         cd libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete      
