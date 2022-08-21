@@ -21,5 +21,7 @@ build() {
 
 package() {
   cd $srcdir/fribidi
-  meson install -C build DESTDIR=$pkgdir
+  DESTDIR=$pkgdir meson install -C build 
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
