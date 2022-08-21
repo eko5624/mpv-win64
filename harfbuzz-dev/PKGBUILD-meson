@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/harfbuzz
-  meson build --prefix=/opt --buildtype=release --default-library=static \
+  meson build --prefix=/opt --libdir=/opt/lib --buildtype=release --default-library=static \
     -Dtests=disabled -Ddocs=disabled -Dbenchmark=disabled
   meson compile -C build
 }
