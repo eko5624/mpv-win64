@@ -1,0 +1,21 @@
+pkgname=libunibreak-dev
+pkgver=5_0
+pkgrel=1
+pkgdesc='An implementation of the line breaking and word breaking algorithms'
+arch=('x86_64')
+url="https://github.com/adah1972/libunibreak/"
+makedepends=('nasm' 'freetype2-dev' 'fribidi-dev' 'harfbuzz-dev')
+license=('BSD')
+source=("git+https://github.com/adah1972/libunibreak.git#tag=libunibreak_5_0")
+
+build() {
+  cd $srcdir/libunibreak
+  ./autogen.sh
+  ./configure prefix=/opt --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/libunibreak
+  make DESTDIR=$pkgdir install
+}
