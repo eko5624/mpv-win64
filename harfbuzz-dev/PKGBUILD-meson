@@ -1,0 +1,24 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=harfbuzz-dev
+pkgver=5.1.0
+pkgrel=1
+pkgdesc='OpenType text shaping engine'
+arch=('x86_64')
+url="https://github.com/harfbuzz/harfbuzz/"
+license=('GPL')
+source=("git+https://github.com/harfbuzz/harfbuzz#tag=$pkgver")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/harfbuzz
+  meson build --prefix=/opt --buildtype=release --default-library=static \
+    -Dtests=disabled -Ddocs=disabled -Dbenchmark=disabled
+  meson compile -C build
+}
+
+package() {
+  cd $srcdir/harfbuzz
+  DESTDIR=$pkgdir meson install -C build
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
