@@ -7,7 +7,7 @@ on:
       
 jobs:  
   libass:
-    needs: [freetype2, fribidi, libunibreak]
+    needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -93,7 +93,10 @@ jobs:
       run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2.12.1-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst     
+        pacman -U *.zst --noconfirm        
+        cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
