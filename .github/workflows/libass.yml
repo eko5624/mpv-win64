@@ -58,6 +58,7 @@ jobs:
         file_glob: true
         
   harfbuzz:
+    needs: [freetype2]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
