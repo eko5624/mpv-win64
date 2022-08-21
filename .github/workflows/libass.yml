@@ -1,5 +1,13 @@
+name: libass
+
+on:
+  #schedule:
+  #- cron: '03 0 * * *'
+  workflow_dispatch:
+      
+jobs:  
   libass:
-    needs: [freetype2, fribidi, harfbuzz, libunibreak]
+    needs: [freetype2, fribidi, libunibreak]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
