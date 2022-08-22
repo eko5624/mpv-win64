@@ -41,11 +41,9 @@ package() {
   $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
-  cd third_party
-  mv brotli/*.pc $pkgdir/opt/lib/pkgconfig
-  mv brotli/libbrotlienc-static.a $pkgdir/opt/lib/libbrotlienc.a
-  mv brotli/libbrotlidec-static.a $pkgdir/opt/lib/libbrotlidec.a
-  mv brotli/libbrotlicommon-static.a $pkgdir/opt/lib/libbrotlicommon.a  
+  mv $pkgdir/opt/lib/libbrotlienc-static.a $pkgdir/opt/lib/libbrotlienc.a
+  mv $pkgdir/opt/lib/libbrotlidec-static.a $pkgdir/opt/lib/libbrotlidec.a
+  mv $pkgdir/opt/lib/libbrotlicommon-static.a $pkgdir/opt/lib/libbrotlicommon.a  
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc 
 }
