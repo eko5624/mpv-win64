@@ -48,21 +48,21 @@ build() {
 
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/bin/include  
+  mkdir -p $pkgdir/opt/libmpv/include  
   cd $srcdir/mpv/build
-  mv libmpv-2.dll $pkgdir/opt/bin
-  mv libmpv.dll.a $pkgdir/opt/bin
-  mv ../libmpv/mpv.def $pkgdir/opt/bin
-  mv ../libmpv/client.h $pkgdir/opt/bin/include 
-  mv ../libmpv/stream_cb.h $pkgdir/opt/bin/include 
-  mv ../libmpv/render.h $pkgdir/opt/bin/include  
-  mv ../libmpv/render_gl.h $pkgdir/opt/bin/include 
+  mv libmpv-2.dll $pkgdir/opt/libmpv
+  mv libmpv.dll.a $pkgdir/opt/libmpv
+  mv ../libmpv/mpv.def $pkgdir/opt/libmpv
+  mv ../libmpv/client.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/render.h $pkgdir/opt/libmpv/include  
+  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include 
 }
 
 package_mpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/bin  
+  mkdir -p $pkgdir/opt/mpv  
   cd $srcdir/mpv/build
-  mv mpv.exe $pkgdir/opt/bin
-  mv generated/mpv.com $pkgdir/opt/bin
+  mv mpv.exe $pkgdir/opt/mpv
+  mv generated/mpv.com $pkgdir/opt/mpv
 }
