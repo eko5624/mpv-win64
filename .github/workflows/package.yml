@@ -73,7 +73,7 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a MPV-git-${date}.7z D:\msys64\opt\mpv\*
-        7z a MPV-lib-git-${date}.7z D:\msys64\opt\libmpv\*
+        7z a MPVlib-git-${date}.7z D:\msys64\opt\libmpv\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
