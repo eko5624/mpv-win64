@@ -78,7 +78,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        files: |
+        file: |
           MPV*.7z
           LibMPV*.7z
         tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
