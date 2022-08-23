@@ -18,5 +18,5 @@ package() {
   cd $srcdir/libiconv-$pkgver
   make DESTDIR=$pkgdir install
   cp ../../*.pc $pkgdir/opt/lib/pkgconfig
-  sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/iconv.pc
+  sed -i 's/_ver/$pkgver/' $pkgdir/opt/lib/pkgconfig/iconv.pc
 }
