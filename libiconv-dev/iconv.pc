@@ -1,0 +1,9 @@
+libdir=/opt/lib
+includedir=/opt/include
+
+Name: iconv
+Description: libiconv
+URL: https://www.gnu.org/software/libiconv/
+Version: _ver
+Libs: -L${libdir} -liconv
+Cflags: -I${includedir}
