@@ -26,5 +26,5 @@ package() {
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT -DLUAJIT_ENABLE_GC64' install
   cp ../../*.pc $pkgdir/opt/lib/pkgconfig
-  # rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
+  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
 }
