@@ -40,6 +40,7 @@ build() {
     -Db_lto=true \
     -Db_ndebug=true \
     -Dlibmpv=true \
+    -Dlua=enabled \
     -Dopenal=enabled \
     -Drubberband=enabled \
     -Dsdl2=enabled \
