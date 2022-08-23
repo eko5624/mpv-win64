@@ -1,4 +1,4 @@
-pkgname=(ffmpeg-dev ffmpeg)
+pkgname=(ffmpeg-dev ffmpeg-git)
 pkgver=5.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
@@ -83,7 +83,7 @@ package_ffmpeg-dev() {
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
 
-package_ffmpeg() {
+package_ffmpeg-git() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/ffmpeg
   cd $srcdir/FFmpeg
