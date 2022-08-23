@@ -85,8 +85,10 @@ package_ffmpeg-dev() {
 
 package_ffmpeg() {
   export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/ffmpeg
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
+  mv $pkgdir/opt/bin/ffmpeg.exe $pkgdir/opt/ffmpeg
 }
