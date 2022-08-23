@@ -63,6 +63,7 @@ jobs:
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-5.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
@@ -72,13 +73,14 @@ jobs:
         $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
-        7z a MPV-git-${date}.7z D:\msys64\opt\mpv\*
-        7z a MPVlib-git-${date}.7z D:\msys64\opt\libmpv\*
+        7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
+        7z a git-libmpv-git-${date}.7z D:\msys64\opt\libmpv\*
+        7z a git-ffmpeg-${date}.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: MPV*.7z 
+        file: git*.7z
         tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
