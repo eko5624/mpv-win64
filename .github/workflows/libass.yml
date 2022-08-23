@@ -82,6 +82,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-5.1.0-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst           
