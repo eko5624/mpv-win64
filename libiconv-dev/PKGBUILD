@@ -9,13 +9,13 @@ source=("https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libiconv
+  cd $srcdir/libiconv-$pkgver
   ./configure --prefix=/opt --disable-nls --disable-shared --enable-extra-encodings
   make
 }
 
 package() {
-  cd $srcdir/libiconv
+  cd $srcdir/libiconv-$pkgver
   make DESTDIR=$pkgdir install
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/iconv.pc
