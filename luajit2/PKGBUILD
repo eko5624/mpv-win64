@@ -6,18 +6,26 @@ pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
 license=('MIT')
-source=("git+https://github.com/openresty/luajit2")
-md5sums=('SKIP')
+source=("git+https://github.com/openresty/luajit2"
+        "luajit-0001-add-win32-utf-8-filesystem-functions.patch")
+md5sums=('SKIP''SKIP')
 
-build() {   
-  CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE'
-  XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT -DLUAJIT_ENABLE_GC64'  
+build() { 
   cd $srcdir/luajit2
-  make amalg BUILDMODE=static PREFIX=/opt 
+  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
+  make amalg BUILDMODE=static PREFIX=/opt \
+    FILE_T=luajit.exe \
+    CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT -DLUAJIT_ENABLE_GC64'     
 }
 
 package() {
   cd $srcdir/luajit2
-  make DESTDIR=$pkgdir PREFIX=/opt install
-  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
+  make DESTDIR=$pkgdir PREFIX=/opt \
+    FILE_T=luajit.exe \
+    CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT -DLUAJIT_ENABLE_GC64'    
+  install
+  cp ../../*.pc $pkgdir/opt/lib/pkgconfig
+  # rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
 }
