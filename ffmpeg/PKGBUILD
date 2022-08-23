@@ -1,4 +1,4 @@
-pkgname=ffmpeg-dev
+pkgname=(ffmpeg-dev ffmpeg)
 pkgver=5.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
@@ -43,7 +43,7 @@ build() {
          --disable-pthreads --enable-w32threads"
 }
 
-package() {
+package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
   ./configure \
     --prefix=/opt \
@@ -81,4 +81,12 @@ package() {
     --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
+}
+
+package_ffmpeg() {
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir/FFmpeg
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
+  strip $pkgdir/opt/bin/*
 }
