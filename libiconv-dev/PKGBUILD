@@ -1,0 +1,21 @@
+pkgname=libiconv-dev
+pkgver=1.17
+pkgrel=1
+pkgdesc='Character encoding conversion library and utility'
+arch=('x86_64')
+url="https://www.gnu.org/software/libiconv/"
+license=('spdx:GPL-3.0-or-later')
+source=("https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libiconv
+  ./configure --prefix=/opt --disable-nls --disable-shared --enable-extra-encodings
+  make
+}
+
+package() {
+  cd $srcdir/libiconv
+  make DESTDIR=$pkgdir install
+  cp ../*.pc $pkgdir/opt/lib/pkgconfig  
+}
