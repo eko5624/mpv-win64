@@ -2497,7 +2497,7 @@ jobs:
         install: base-devel
 
     - name: Get mpv latest commit sha
-      id: get_sha
+      id: mpv_sha
       uses: actions/github-script@v6
       with:
         script: |
@@ -2507,10 +2507,25 @@ jobs:
             ref: `master`
           })
           core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add SHORT_SHA env 
-      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+    - name: Add MPV_SHORT_SHA env 
+      run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
-    
+
+    - name: Get ffmpeg latest commit sha
+      id: ffmpeg_sha
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const commit = await github.rest.repos.getCommit({
+            owner: 'FFmpeg',
+            repo: 'FFmpeg',
+            ref: `master`
+          })
+          core.setOutput('sha', String(commit.data.sha)) 
+    - name: Add FFMPEG_SHORT_SHA env 
+      run: echo "FFMPEG_SHORT_SHA=`echo ${{ steps.ffmpeg_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+      shell: bash 
+  
     - name: Get mpv latest release
       id: version    
       uses: actions/github-script@v6
@@ -2521,8 +2536,8 @@ jobs:
             repo: 'mpv'
           })
           core.setOutput('version', String(release.data.tag_name)) 
-    - name: Add GET_VERSION env 
-      run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+    - name: Add MPV_VERSION env 
+      run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
       shell: bash 
 
     - name: Get yt-dlp latest release
@@ -2548,20 +2563,20 @@ jobs:
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
-        $date = Get-Date -Format "yyyy-MM-dd"
+        $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
-        7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
-        7z a git-libmpv-git-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}.7z D:\msys64\opt\ffmpeg\*
+        7z a git-mpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\mpv\*
+        7z a git-libmpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\libmpv\*
+        7z a git-ffmpeg-${date}-${{ env.FFMPEG_SHORT_SHA }}.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
-        tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
+        tag: mpv-${{ env.MPV_VERSION }}-${{ env.MPV_SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
+        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
         overwrite: true
         file_glob: true
 
