@@ -21,6 +21,7 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l) 
+      
 for p in ['vulkan', 'libjxl']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
