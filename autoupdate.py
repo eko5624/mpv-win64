@@ -12,7 +12,15 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
     elif (i:=l.find('curl')) > -1:
       l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
     f.write(l)
-pkgs = {}     
+pkgs = {}          
+for p in ['vulkan', 'libjxl']:
+  pkgs['%s-dev' % p] = x[p]
+for p in pkgs:
+  with in_place.InPlace('%s/PKGBUILD-git' % p, newline='') as f:
+    for l in f:
+      if l.startswith('pkgver'):
+        l = 'pkgver=%s\n' % pkgs[p]
+      f.write(l)  
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
@@ -81,8 +89,8 @@ pkgs['luajit-dev'] = x['LuaJIT']
 pkgs['luajit2-dev'] = x['luajit2']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-dev'] = x['ffmpeg']
-pkgs['ffmpeg-git'] = x['ffmpeg']
-pkgs['libmpv-git'] = x['mpv']
+# pkgs['ffmpeg-git'] = x['ffmpeg']
+# pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 for t in ['ffmpeg.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
