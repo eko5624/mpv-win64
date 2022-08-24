@@ -13,10 +13,10 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
       l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
     f.write(l)
 pkgs = {}
-for p in ['vulkan']:
+for p in ['freetype2', 'fribidi', 'harfbuzz']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-git' % p, newline='') as f:
+  with in_place.InPlace('%s/PKGBUILD-meson' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
@@ -51,6 +51,7 @@ for p in [
   'libdvdcss', 
   'libdvdnav', 
   'libdvdread', 
+  'libiconv',
   'libudfread', 
   'libjpeg', 
   'libjxl', 
