@@ -35,13 +35,7 @@ pkgs['luajit'] = x['LuaJIT']
 pkgs['luajit2'] = x['luajit2']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
-pkgs['mpv'] = x['mpv']
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-meson' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l) 
+pkgs['mpv'] = x['mpv'] 
 pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel']
