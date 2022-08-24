@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=(libmpv-git mpv-git)
-pkgver=0.34.1
+pkgver=test
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
