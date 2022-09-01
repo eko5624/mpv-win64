@@ -72,11 +72,12 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for t in ['PKGBUILD', 'PKGBUILD-new']:  
-  with in_place.InPlace('%s/%s' % (p, t), newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
+for t in ['PKGBUILD', 'PKGBUILD-new']: 
+  if p in pkgs: 
+    with in_place.InPlace('%s/%s' % (p, t), newline='') as f:
+      for l in f:
+        if l.startswith('pkgver'):
+          l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)   
 pkgs['luajit-dev'] = x['LuaJIT']      
 pkgs['luajit2-dev'] = x['luajit2']
