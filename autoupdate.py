@@ -20,16 +20,7 @@ for p in pkgs:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)  
-pkgs = {}          
-for p in ['mpv']:
-  pkgs['%s' % p] = x[p]
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)        
+      f.write(l)         
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
@@ -40,6 +31,12 @@ pkgs['mpv'] = x['mpv']
 pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel']
+for p in pkgs:
+  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
+    for l in f:
+      if l.startswith('pkgver'):
+        l = 'pkgver=%s\n' % pkgs[p]
+      f.write(l) 
 for p in [
   'amf',
   'angle',
