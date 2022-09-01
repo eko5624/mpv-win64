@@ -21,7 +21,7 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)    
-pkgs = {}          
+# pkgs = {}          
 pkgs['mpv'] = x['mpv'] 
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
