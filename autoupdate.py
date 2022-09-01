@@ -1,6 +1,7 @@
 import json
 from urllib import request
 import in_place
+import re
 
 resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
@@ -72,18 +73,13 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
+pkg_regex = re.compile(r'PKGBUILD(-new)?')  
 for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
+  with in_place.InPlace('%s/pkg_regex' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)   
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)
 pkgs['luajit-dev'] = x['LuaJIT']      
 pkgs['luajit2-dev'] = x['luajit2']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
