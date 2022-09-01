@@ -11,7 +11,8 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
       l = '%s%s-${{ env.random_hash }}\n' % (l[:i+9], mingw)
     elif (i:=l.find('curl')) > -1:
       l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
-    f.write(l)              
+    f.write(l)
+pkgs = {}    
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
