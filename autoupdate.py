@@ -74,7 +74,7 @@ for p in [
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs: 
   for t in ['PKGBUILD', 'PKGBUILD-new']: 
-    with in_place.InPlace('%s/%s\n' % (p, t), newline='') as f:
+    with in_place.InPlace('%s/%s' % (p, t), newline='') as f:
       for l in f:
         if l.startswith('pkgver'):
           l = 'pkgver=%s\n' % pkgs[p]
