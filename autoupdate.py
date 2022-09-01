@@ -24,7 +24,6 @@ pkgs['mpv'] = x['mpv']
 pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel'] 
-pkgs = {} 
 for p in [
   'amf',
   'angle',
@@ -75,7 +74,7 @@ for p in [
   pkgs['%s-dev' % p] = x[p]
 pkg_regex = re.compile(r'PKGBUILD(-new)?')  
 for p in pkgs:
-  with in_place.InPlace('%s/pkg_regex' % p, newline='') as f:
+  with in_place.InPlace('%s/% pkg_regex' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
