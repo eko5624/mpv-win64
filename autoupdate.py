@@ -13,30 +13,21 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
       l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
     f.write(l)
 pkgs = {}          
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'vulkan', 'libjxl']:
+pkgs['mpv'] = x['mpv']
+for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)    
-pkgs = {}          
-for p in ['mpv']:
-  pkgs['%s' % p] = x[p]
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)       
+      f.write(l)         
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT']
 pkgs['luajit2'] = x['luajit2']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 pkgs['ffmpeg'] = x['ffmpeg']
-pkgs['mpv'] = x['mpv'] 
 pkgs['mujs'] = x['mujs']
 pkgs['rubberband'] = x['rubberband']
 pkgs['libsixel'] = x['libsixel'] 
@@ -47,9 +38,6 @@ for p in [
   'brotli', 
   'dav1d', 
   'ffnvcodec', 
-  'freetype2', 
-  'fribidi', 
-  'harfbuzz', 
   'highway', 
   'lame', 
   'lcms2', 
@@ -63,7 +51,6 @@ for p in [
   'libiconv',
   'libudfread', 
   'libjpeg', 
-  'libjxl', 
   'libmfx', 
   'libmodplug', 
   'libmysofa', 
@@ -84,7 +71,6 @@ for p in [
   'opus', 
   'shaderc', 
   'spirv-cross', 
-  'vulkan', 
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
@@ -119,5 +105,3 @@ for t in ['ffmpeg.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'pac
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       f.write(l)
-
-
