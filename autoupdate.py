@@ -14,7 +14,7 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
     f.write(l)
 
 pkgs = {}          
-pkgs[mpv] = x[mpv]
+pkgs['mpv'] = x['mpv']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
