@@ -102,6 +102,6 @@ for t in ['ffmpeg.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'pac
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
         p = l[i+8:rr]
-        if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
+        #if p in pkgs:
+        l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       f.write(l)
