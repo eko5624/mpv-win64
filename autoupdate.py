@@ -72,8 +72,8 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for t in ['PKGBUILD', 'PKGBUILD-new']: 
-  if p in pkgs: 
+for p in pkgs: 
+  if t in ['PKGBUILD', 'PKGBUILD-new']: 
     with in_place.InPlace('%s/%s\n' % (p, t), newline='') as f:
       for l in f:
         if l.startswith('pkgver'):
