@@ -27,7 +27,7 @@ for p in pkgs:
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit'] = x['LuaJIT'] 
-for p in ['ffmpeg', 'libsixel', 'luajit2', 'mujs', 'rubberband']
+for p in ['ffmpeg', 'libsixel', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]  
 for p in [
   'amf',
