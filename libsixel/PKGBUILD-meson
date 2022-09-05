@@ -13,7 +13,7 @@ build() {
   LIBPNG_CFLAGS='-I/opt/include' 
   LIBPNG_LIBS='-L/opt/lib -lpng' 
   cd $srcdir/libsixel
-  meson build --buildtype=release -Dprefix=/opt \
+  meson setup build --buildtype=release -Dprefix=/opt \
     -Ddefault_library=static \
     -Djpeg=enabled \
     -Dpng=enabled \
