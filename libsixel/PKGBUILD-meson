@@ -10,8 +10,6 @@ source=("git+https://github.com/libsixel/libsixel")
 md5sums=('SKIP')
 
 build() {
-  LIBPNG_CFLAGS='-I/opt/include' 
-  LIBPNG_LIBS='-L/opt/lib -lpng' 
   cd $srcdir/libsixel
   meson setup build --buildtype=release -Dprefix=/opt \
     -Ddefault_library=static \
