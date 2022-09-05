@@ -1,4 +1,4 @@
-name: dav1d
+name: shaderc
 
 on:
   workflow_dispatch:
