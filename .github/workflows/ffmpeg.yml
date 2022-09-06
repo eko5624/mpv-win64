@@ -50,7 +50,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.2.4-1-x86_64.pkg.tar.zst
