@@ -21,7 +21,11 @@ build() {
   cd $srcdir/shaderc
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DSHADERC_SKIP_TESTS=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
+    -DSHADERC_SKIP_TESTS=ON \
+    -DSHADERC_SKIP_SPVC=ON \
+    -DSHADERC_SKIP_INSTALL=ON \
+    -DSHADERC_SKIP_EXAMPLES=ON \
+    -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
   $CMAKE --build .
 }
 
