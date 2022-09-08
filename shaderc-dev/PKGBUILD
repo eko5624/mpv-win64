@@ -9,9 +9,8 @@ license=('Apache')
 source=("git+https://github.com/google/shaderc"
         "git+https://github.com/KhronosGroup/glslang"
         "git+https://github.com/KhronosGroup/SPIRV-Headers"
-        "git+https://github.com/KhronosGroup/SPIRV-Tools"
-        "https://patch-diff.githubusercontent.com/raw/google/shaderc/pull/1264.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+        "git+https://github.com/KhronosGroup/SPIRV-Tools")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir
@@ -20,7 +19,6 @@ build() {
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
   cp spirv-headers/SPIRV-Headers.pc.in shaderc
   cd $srcdir/shaderc
-  patch -p1 -i $srcdir/1264.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
