@@ -28,7 +28,7 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         release: false
-        location: D:\         
+        location: D:\msys64         
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
