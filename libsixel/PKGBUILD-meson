@@ -8,7 +8,7 @@ makedepends=('libjpeg-dev' 'libpng-dev')
 license=('BSD')
 source=("git+https://github.com/libsixel/libsixel"
         "https://patch-diff.githubusercontent.com/raw/libsixel/libsixel/pull/66.patch")
-md5sums=('SKIP' SKIP')
+md5sums=('SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libsixel
