@@ -8,11 +8,7 @@ on:
 jobs:
   libsixel:
     runs-on: windows-2022
-    steps: 
-    - uses: msys2/setup-msys2@v2
-      with:
-        release: false
-        location: D:\    
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -26,8 +22,13 @@ jobs:
         path: |
           D:\ucrt64
           D:\msys64
-        key: mcf_20220907_12.2.1_x64-ucrt-${{ env.random_hash }}
-        
+        key: mcf_20220907_12.2.1_x64-ucrt-${{ env.random_hash }}    
+    
+    - name: setup msys2
+      uses: msys2/setup-msys2@v2
+      with:
+        release: false
+        location: D:\         
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
