@@ -48,6 +48,7 @@ jobs:
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
         cd libsixel; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-meson
     - name: Delete
