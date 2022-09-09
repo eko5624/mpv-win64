@@ -1,5 +1,5 @@
 pkgname=libsixel-dev
-pkgver=1.xx
+pkgver=1.10.3
 pkgrel=1
 pkgdesc='Encoder/decoder implementation for DEC SIXEL graphics'
 arch=('x86_64')
