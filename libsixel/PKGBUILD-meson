@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
-  meson build --buildtype=release -Dprefix=/opt \
+  meson setup build --buildtype=release -Dprefix=/opt \
     -Ddefault_library=static \
     -Djpeg=enabled \
     -Dpng=enabled \
