@@ -12,9 +12,7 @@ md5sums=('SKIP' SKIP')
 
 build() { 
   cd $srcdir/libsixel
-  patch -p1 -i $srcdir/66.patch
-  LIBPNG_CFLAGS='-I/opt/include' 
-  LIBPNG_LIBS='-L/opt/lib -lpng'  
+  patch -p1 -i $srcdir/66.patch  
   meson build --buildtype=release -Dprefix=/opt \
     -Ddefault_library=static \
     -Djpeg=enabled \
