@@ -78,8 +78,11 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
+pkgs['libsixel-dev'] = x['libsixel']
 pkgs['luajit-dev'] = x['LuaJIT']      
 pkgs['luajit2-dev'] = x['luajit2']
+pkgs['mujs-dev'] = x['mujs']
+pkgs['rubberband-dev'] = x['rubberband']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-dev'] = x['ffmpeg']
 pkgs['ffmpeg-git'] = x['ffmpeg']
