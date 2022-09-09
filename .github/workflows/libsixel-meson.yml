@@ -8,7 +8,10 @@ on:
 jobs:
   libsixel:
     runs-on: windows-2022
-    steps:                 
+    steps: 
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
