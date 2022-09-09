@@ -20,7 +20,6 @@ jobs:
       id: cache
       with:
         path: |
-          D:\ucrt64
           D:\msys64
         key: mcf_20220907_12.2.1_x64-ucrt-${{ env.random_hash }}    
     
