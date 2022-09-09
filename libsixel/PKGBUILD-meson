@@ -14,8 +14,7 @@ build() {
   cd $srcdir/libsixel
   patch -p1 -i $srcdir/66.patch   
   meson build --buildtype=release -Dprefix=/opt \
-    LIBPNG_CFLAGS='-I/opt/include' 
-    LIBPNG_LIBS='-L/opt/lib -lpng'
+    --libdir='-L/opt/lib'
     -Ddefault_library=static \
     -Djpeg=enabled \
     -Dpng=enabled \
