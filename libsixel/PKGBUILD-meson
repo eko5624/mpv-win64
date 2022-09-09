@@ -10,11 +10,11 @@ source=("git+https://github.com/libsixel/libsixel"
         "https://patch-diff.githubusercontent.com/raw/libsixel/libsixel/pull/66.patch")
 md5sums=('SKIP' SKIP')
 
-build() {
-  LIBPNG_CFLAGS='-I/opt/include' 
-  LIBPNG_LIBS='-L/opt/lib -lpng' 
+build() { 
   cd $srcdir/libsixel
   patch -p1 -i $srcdir/66.patch
+  LIBPNG_CFLAGS='-I/opt/include' 
+  LIBPNG_LIBS='-L/opt/lib -lpng'  
   meson build --buildtype=release -Dprefix=/opt \
     -Ddefault_library=static \
     -Djpeg=enabled \
