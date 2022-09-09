@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Encoder/decoder implementation for DEC SIXEL graphics'
 arch=('x86_64')
 url="https://github.com/libsixel/libsixel"
-makedepends=('libjpeg-dev' 'libpng-dev')
+makedepends=('libjpeg-dev' 'libpng-dev' 'zlib-dev')
 license=('BSD')
 source=("git+https://github.com/libsixel/libsixel"
         "https://patch-diff.githubusercontent.com/raw/libsixel/libsixel/pull/66.patch")
@@ -12,10 +12,10 @@ md5sums=('SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libsixel
-  patch -p1 -i $srcdir/66.patch
-  LIBPNG_CFLAGS='-I/opt/include' 
-  LIBPNG_LIBS='-L/opt/lib -lpng'   
+  patch -p1 -i $srcdir/66.patch   
   meson build --buildtype=release -Dprefix=/opt \
+    LIBPNG_CFLAGS='-I/opt/include' 
+    LIBPNG_LIBS='-L/opt/lib -lpng'
     -Ddefault_library=static \
     -Djpeg=enabled \
     -Dpng=enabled \
