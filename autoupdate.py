@@ -15,7 +15,7 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
     f.write(l)
     
 pkgs = {} 
-pkgs['libsixel-dev'] = x['libsixel']
+pkgs['libsixel'] = x['libsixel']
 pkgs['mpv'] = x['mpv']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
@@ -25,6 +25,8 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)        
+for p in ['ffmpeg', 'luajit2', 'mujs', 'rubberband']:
+  pkgs['%s' % p] = x[p]
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
@@ -63,8 +65,6 @@ for p in [
   'libxvid', 
   'libzimg', 
   'mbedtls', 
-  'mujs',
-  'rubberband',
   'openal-soft', 
   'opus', 
   'shaderc', 
