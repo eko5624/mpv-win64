@@ -38,7 +38,7 @@ build() {
   LDFLAGS="$LDFLAGS -static -lssp"
   meson setup build --buildtype=release -Dprefix=/opt \
     -Db_lto=true \
-    -Db_ndebug=true \  
+    -Db_ndebug=true \
     -Dlibmpv=true \
     -Dlua=enabled \
     -Dopenal=enabled \
@@ -53,9 +53,9 @@ build() {
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/libmpv/include  
-  cd $srcdir/mpv/build 
+  cd $srcdir/mpv/build
   strip -s libmpv-2.dll
-  mv libmpv-2.dll $pkgdir/opt/libmpv/mpv-2.dll
+  mv libmpv-2.dll $pkgdir/opt/libmpv
   mv libmpv.dll.a $pkgdir/opt/libmpv
   mv ../libmpv/mpv.def $pkgdir/opt/libmpv
   mv ../libmpv/client.h $pkgdir/opt/libmpv/include 
