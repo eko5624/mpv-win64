@@ -13,6 +13,6 @@ jobs:
       - uses: freenet-actions/delete-old-releases@v1
         with:
           prefix: '20'  # Delete all releases starting with "20".
-          max-age: 'P6M'      # Delete all releases older than 3 months.
+          max-age: 'P6M'      # Delete all releases older than 6 months.
           delete-tags: true
           token: '${{ github.token }}'
