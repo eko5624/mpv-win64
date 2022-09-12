@@ -13,8 +13,7 @@ md5sums=('SKIP' 'SKIP')
 build() { 
   cd $srcdir/libsixel
   patch -p1 -i $srcdir/66.patch   
-  meson build --buildtype=release --prefix=/opt --libdir='/opt/lib' \
-    -Ddefault_library=static \
+  meson build --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
     -Djpeg=enabled \
     -Dpng=enabled \
     -Dimg2sixel=disabled \
