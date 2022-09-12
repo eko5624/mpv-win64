@@ -9,6 +9,7 @@ makedepends=("yasm"
              "libjpeg-dev"
              "libpng-dev"
              "libsdl2-dev"
+             "libsixel-dev"
              "angle-headers-dev"
              "ffmpeg-dev"
              "mujs-dev"
@@ -34,7 +35,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -static -lssp"
+  LIBS="$LIBS -static -lssp -lstdc++"
+  LDFLAGS="$LDFLAGS -static-libgcc"
   meson setup build --buildtype=release -Dprefix=/opt \
     -Db_lto=true \
     -Db_ndebug=true \
