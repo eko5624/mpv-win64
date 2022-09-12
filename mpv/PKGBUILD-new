@@ -35,7 +35,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -static -lssp -lstdc++ -static-libgcc"
+  export LDFLAGS="$LDFLAGS -static -lssp -lstdc++"
   meson setup build --buildtype=release -Dprefix=/opt \
     -Db_lto=true \
     -Db_ndebug=true \
