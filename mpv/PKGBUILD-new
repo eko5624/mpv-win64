@@ -53,7 +53,7 @@ build() {
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/libmpv/include  
-  cd $srcdir/mpv/build
+  cd $srcdir/mpv/build 
   strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir/opt/libmpv/mpv-2.dll
   mv libmpv.dll.a $pkgdir/opt/libmpv
