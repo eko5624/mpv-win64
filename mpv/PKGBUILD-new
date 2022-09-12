@@ -37,6 +37,8 @@ build() {
   cd $srcdir/mpv
   LDFLAGS="$LDFLAGS -static -lssp"
   meson setup build --buildtype=release -Dprefix=/opt \
+    -Db_lto=true \
+    -Db_ndebug=true \  
     -Dlibmpv=true \
     -Dlua=enabled \
     -Dopenal=enabled \
