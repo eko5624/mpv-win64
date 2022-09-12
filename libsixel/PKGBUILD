@@ -6,15 +6,14 @@ arch=('x86_64')
 url="https://github.com/saitoha/sixel"
 makedepends=('libjpeg-dev' 'libpng-dev')
 license=('BSD')
-source=("git+https://github.com/saitoha/libsixel.git#tag=v$pkgver")
+source=("git+https://github.com/saitoha/libsixel.git")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libsixel
   ./configure \
     --prefix=/opt \
-    LIBPNG_CFLAGS='-I/opt/include' \
-    LIBPNG_LIBS='-L/opt/lib -lpng' \
+    --libdir='/opt/lib' \
     --with-jpeg \
     --with-png \
     --disable-img2sixel \
