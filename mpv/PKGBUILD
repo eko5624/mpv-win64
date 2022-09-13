@@ -34,9 +34,10 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
+  export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
+  export CC="gcc"
   cd $srcdir/mpv
-  python bootstrap.py
-  CC=gcc.exe LDFLAGS="$LDFLAGS -static -lstdc++ -lssp" 
+  python bootstrap.py 
   python waf configure --prefix=/opt \
     --enable-static-build \ 
     --enable-libmpv-shared \
