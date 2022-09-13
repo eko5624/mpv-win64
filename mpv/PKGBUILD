@@ -34,7 +34,7 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
-  export LIBS="$LIBS -lssp -lstdc++"
+  export LIBS="-lssp -lstdc++"
   export LDFLAGS="$LDFLAGS -static -static-libgcc -static-libstdc++"
   export CC="gcc.exe"
   cd $srcdir/mpv
