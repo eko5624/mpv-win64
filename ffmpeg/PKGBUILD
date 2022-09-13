@@ -20,7 +20,6 @@ makedepends=("nasm"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
-             "libsrt-dev"
              "libssh-dev"
              "libvorbis_aotuv-dev"
              "libvpx-dev"
@@ -64,7 +63,6 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libsrt \
     --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
