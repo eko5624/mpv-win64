@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
-makedepends=("yasm"  
+makedepends=("yasm"
              "libjpeg-dev"
              "libpng-dev"
              "libsdl2-dev"
@@ -14,19 +14,19 @@ makedepends=("yasm"
              "ffmpeg-dev"
              "mujs-dev"
              "rubberband-dev"
-             "luajit2-dev" 
-             "freetype2-dev" 
-             "fribidi-dev" 
-             "harfbuzz-dev" 
-             "libass-dev" 
+             "luajit2-dev"
+             "freetype2-dev"
+             "fribidi-dev"
+             "harfbuzz-dev"
+             "libass-dev"
              "lcms2-dev"
-             "libbluray-dev" 
+             "libbluray-dev"
              "libdvdnav-dev"
              "libiconv-dev"
              "libplacebo-dev"
-             "shaderc-dev" 
+             "shaderc-dev"
              "spirv-cross-dev"
-             "vapoursynth-dev" 
+             "vapoursynth-dev"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
@@ -34,10 +34,10 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS="$LDFLAGS -static -static-libgcc -static-libstdc++ -lssp -lstdc++"
+  export LDFLAGS="$LDFLAGS -static -lssp -lstdc++"
   export CC="gcc.exe"
   cd $srcdir/mpv
-  python bootstrap.py 
+  python bootstrap.py
   python waf configure --prefix=/opt \
     --enable-static-build \
     --enable-libmpv-shared \
@@ -54,23 +54,23 @@ build() {
 
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/libmpv/include  
+  mkdir -p $pkgdir/opt/libmpv/include 
   cd $srcdir/mpv/build
   strip -s mpv-2.dll
   mv mpv-2.dll $pkgdir/opt/libmpv
   mv mpv.dll.a $pkgdir/opt/libmpv
   mv mpv.def $pkgdir/opt/libmpv
-  mv ../libmpv/client.h $pkgdir/opt/libmpv/include 
-  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include 
-  mv ../libmpv/render.h $pkgdir/opt/libmpv/include  
-  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/client.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/render.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include
 }
 
 package_mpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/mpv  
+  mkdir -p $pkgdir/opt/mpv
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/mpv
   mv mpv.com $pkgdir/opt/mpv
-  strip -s $pkgdir/opt/mpv/mpv.* 
+  strip -s $pkgdir/opt/mpv/mpv.*
 }
