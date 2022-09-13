@@ -39,7 +39,7 @@ jobs:
         file_glob: true
 
   ffmpeg:
-    needs: [amf, avisynth, dav1d, gmp, lame, mbedtls, libbs2b, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, vapoursynth, zlib]
+    needs: [amf, avisynth, dav1d, gmp, lame, mbedtls, libbs2b, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, opus, ffnvcodec, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -81,7 +81,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.24.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.2.4-1-x86_64.pkg.tar.zst
@@ -1637,57 +1636,6 @@ jobs:
         overwrite: true
         file_glob: true  
 
-  libssh:
-    needs: [mbedtls, zlib]
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make           
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
-    - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
-      shell: msys2 {0}
-      run: |  
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst     
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.2.1-1-x86_64.pkg.tar.zst
-        pacman -U *.zst --noconfirm                   
-        cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libssh*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libssh-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
-
   libudfread:
     runs-on: windows-2022
     steps:
@@ -2211,7 +2159,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.4-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst               
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
