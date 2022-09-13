@@ -37,14 +37,40 @@ build() {
   cd $srcdir/mpv
   python bootstrap.py
   LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
-  CC=gcc.exe python waf configure --prefix=/opt --disable-iconv --disable-debug-build --enable-libbluray --enable-dvdnav
+  CC=gcc.exe 
+  python waf configure --prefix=/opt \
+    --enable-static-build \ 
+    --enable-libmpv-shared \
+    --enable-lua \
+    --enable-javascript \
+    --enable-sdl2 \
+    --enable-libbluray \
+    --enable-dvdnav \
+    --enable-rubberband \
+    --enable-lcms2 \
+    --enable-openal
   python waf build
 }
 
-package() {
+package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/bin  
+  mkdir -p $pkgdir/opt/libmpv/include  
   cd $srcdir/mpv/build
-  strip mpv.*
-  mv mpv.* $pkgdir/opt/bin
+  strip -s mpv-2.dll
+  mv mpv-2.dll $pkgdir/opt/libmpv
+  mv mpv.dll.a $pkgdir/opt/libmpv
+  mv mpv.def $pkgdir/opt/libmpv
+  mv ../libmpv/client.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/render.h $pkgdir/opt/libmpv/include  
+  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include 
+}
+
+package_mpv-git() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/mpv  
+  cd $srcdir/mpv/build
+  mv mpv.exe $pkgdir/opt/mpv
+  mv mpv.com $pkgdir/opt/mpv
+  strip -s $pkgdir/opt/mpv/mpv.* 
 }
