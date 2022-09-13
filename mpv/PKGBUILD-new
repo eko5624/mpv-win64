@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
-makedepends=("yasm"  
+makedepends=("yasm"
              "libjpeg-dev"
              "libpng-dev"
              "libsdl2-dev"
@@ -14,19 +14,19 @@ makedepends=("yasm"
              "ffmpeg-dev"
              "mujs-dev"
              "rubberband-dev"
-             "luajit2-dev" 
-             "freetype2-dev" 
-             "fribidi-dev" 
-             "harfbuzz-dev" 
-             "libass-dev" 
+             "luajit2-dev"
+             "freetype2-dev"
+             "fribidi-dev"
+             "harfbuzz-dev"
+             "libass-dev"
              "lcms2-dev"
-             "libbluray-dev" 
+             "libbluray-dev"
              "libdvdnav-dev"
              "libiconv-dev"
              "libplacebo-dev"
-             "shaderc-dev" 
+             "shaderc-dev"
              "spirv-cross-dev"
-             "vapoursynth-dev" 
+             "vapoursynth-dev"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
@@ -46,29 +46,29 @@ build() {
     -Dsdl2=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
-    -Degl-angle=enabled 
-  meson compile -C build 
+    -Degl-angle=enabled
+  meson compile -C build
 }
 
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/libmpv/include  
+  mkdir -p $pkgdir/opt/libmpv/include
   cd $srcdir/mpv/build
   strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir/opt/libmpv
   mv libmpv.dll.a $pkgdir/opt/libmpv
   mv ../libmpv/mpv.def $pkgdir/opt/libmpv
-  mv ../libmpv/client.h $pkgdir/opt/libmpv/include 
-  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include 
-  mv ../libmpv/render.h $pkgdir/opt/libmpv/include  
-  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include 
+  mv ../libmpv/client.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/render.h $pkgdir/opt/libmpv/include
+  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include
 }
 
 package_mpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/mpv  
+  mkdir -p $pkgdir/opt/mpv
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/mpv
   mv generated/mpv.com $pkgdir/opt/mpv
-  strip -s $pkgdir/opt/mpv/mpv.* 
+  strip -s $pkgdir/opt/mpv/mpv.*
 }
