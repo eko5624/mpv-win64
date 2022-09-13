@@ -37,7 +37,6 @@ build() {
     -Dlibmpv=true \
     -Dlua=enabled \
     -Dopenal=enabled \
-    -Drubberband=enabled \
     -Dsdl2=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
