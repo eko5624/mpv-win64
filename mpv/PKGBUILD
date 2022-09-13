@@ -34,8 +34,7 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
-  export LIBS="-lssp -lstdc++"
-  export LDFLAGS="$LDFLAGS -static -static-libgcc -static-libstdc++"
+  export LDFLAGS="$LDFLAGS -static -static-libgcc -static-libstdc++ -lssp -lstdc++"
   export CC="gcc.exe"
   cd $srcdir/mpv
   python bootstrap.py 
