@@ -39,7 +39,7 @@ build() {
   cd $srcdir/mpv
   python bootstrap.py 
   python waf configure --prefix=/opt \
-    --enable-static-build \ 
+    --enable-static-build \
     --enable-libmpv-shared \
     --enable-lua \
     --enable-javascript \
