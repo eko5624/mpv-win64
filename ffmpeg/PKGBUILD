@@ -7,10 +7,11 @@ url="http://ffmpeg.org/"
 makedepends=("nasm"
              "amf-headers-dev"
              "avisynth-dev"
-             "dav1d-dev"             
+             "dav1d-dev"
              "gmp-dev"
              "lame-dev"
              "libbs2b-dev"
+             "libjxl-dev"
              "libmfx-dev"
              "libmodplug-dev"
              "libmysofa-dev"
@@ -19,6 +20,8 @@ makedepends=("nasm"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
+             "libsrt-dev"
+             "libssh-dev"
              "libvorbis_aotuv-dev"
              "libvpx-dev"
              "libwebp-dev"
@@ -26,8 +29,8 @@ makedepends=("nasm"
              "libxvid-dev"
              "libzimg-dev"
              "mbedtls-dev"
-             "opus-dev" 
-             "ffnvcodec-dev" 
+             "opus-dev"
+             "ffnvcodec-dev"
              "vapoursynth-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
@@ -53,6 +56,7 @@ package_ffmpeg-dev() {
     --enable-gmp \
     --enable-libbs2b \
     --enable-libdav1d \
+    --enable-libjxl \
     --enable-libmfx \
     --enable-libmodplug \
     --enable-libmp3lame \
@@ -60,6 +64,8 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
+    --enable-libsrt \
+    --enable-libssh \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
