@@ -11,7 +11,6 @@ makedepends=("nasm"
              "gmp-dev"
              "lame-dev"
              "libbs2b-dev"
-             "libjxl-dev"
              "libmfx-dev"
              "libmodplug-dev"
              "libmysofa-dev"
@@ -55,7 +54,6 @@ package_ffmpeg-dev() {
     --enable-gmp \
     --enable-libbs2b \
     --enable-libdav1d \
-    --enable-libjxl \
     --enable-libmfx \
     --enable-libmodplug \
     --enable-libmp3lame \
