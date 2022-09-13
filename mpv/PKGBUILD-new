@@ -31,7 +31,7 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS="$LDFLAGS -static -static-libgcc -static-libstdc++ -lssp"
+  export LDFLAGS="$LDFLAGS -static -lssp -lstdc++"
   cd $srcdir/mpv
   meson setup build --prefix=/opt --buildtype=release --default-library=shared --prefer-static \
     -Dlibmpv=true \
