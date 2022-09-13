@@ -9,9 +9,12 @@ makedepends=("yasm"
              "libjpeg-dev"
              "libpng-dev"
              "libsdl2-dev"
+             "libsixel-dev"
              "angle-headers-dev"
              "ffmpeg-dev"
-             "luajit2-dev"
+             "mujs-dev"
+             "rubberband-dev"
+             "luajit2-dev" 
              "freetype2-dev"
              "fribidi-dev"
              "harfbuzz-dev"
@@ -31,12 +34,13 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS="-static -lssp -lstdc++"
+  export LDFLAGS="-static -lssp"
   cd $srcdir/mpv
   meson setup build --prefix=/opt --buildtype=release --default-library=shared --prefer-static \
     -Dlibmpv=true \
     -Dlua=enabled \
     -Dopenal=enabled \
+    -Drubberband=enabled \
     -Dsdl2=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
