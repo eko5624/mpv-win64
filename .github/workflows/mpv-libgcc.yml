@@ -1,4 +1,4 @@
-name: mpv-libgcc
+name: mpv-meson
 
 on:
   workflow_dispatch:
@@ -18,11 +18,11 @@ jobs:
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+    - name: Setup Toolchain
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        curl -OL curl -OL https://github.com/${{ github.repository }}/releases/download/Toolchain/mingw-w64-gcc-mcf_20220809_12.1.1_x64-ucrt_c9d5018f396c8bcadc57913553b05273aaf78952.7z
+        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -38,9 +38,11 @@ jobs:
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
-        pip install ninja 
+        pip install ninja      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmfx-dev-1.35.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.26-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
@@ -55,10 +57,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.24.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.4-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst               
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.2.4-1-x86_64.pkg.tar.zst
@@ -71,6 +75,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20220411-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.2.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-59-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
@@ -83,7 +89,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libepoxy-dev-1.5.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.227-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
@@ -116,12 +121,6 @@ jobs:
       with:
         location: D:\
         install: base-devel
-
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
 
     - name: Get mpv latest commit sha
       id: mpv_sha
