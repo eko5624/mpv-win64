@@ -30,7 +30,7 @@ makedepends=("yasm"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv.git#commit=d433c5d655b79c957dde329b7fa6f58e7f16021d")
+source=("git+https://github.com/mpv-player/mpv.git#commit=789")
 md5sums=('SKIP')
 
 build() {
