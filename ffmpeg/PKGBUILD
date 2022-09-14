@@ -48,7 +48,7 @@ package_ffmpeg-dev() {
   ./configure \
     --prefix=/opt \
     $CARGS \
-    --extra-libs="-static -lssp -lstdc++" \
+    --extra-libs="-static -lstdc++" \
     --extra-ldflags="-static -static-libgcc -static-libstdc++" \
     --disable-mediafoundation \
     --enable-amf \
