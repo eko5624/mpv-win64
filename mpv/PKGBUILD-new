@@ -30,11 +30,11 @@ makedepends=("yasm"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv.git#commit=789")
+source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS="-static -lssp"
+  export LDFLAGS="-static"
   cd $srcdir/mpv
   meson setup build --prefix=/opt --buildtype=release --default-library=shared --prefer-static \
     -Dlibmpv=true \
