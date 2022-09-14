@@ -14,8 +14,9 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir
-  # mv SPIRV-Headers spirv-headers
-  # mv SPIRV-Tools spirv-tools
+  mv SPIRV-Headers spirv-headers
+  mv SPIRV-Tools spirv-tools
+  cp spirv-headers/SPIRV-Headers.pc.in shaderc
   cd $srcdir/shaderc
   rm -rf build && mkdir build && cd build
   mv $srcdir/SPIRV-Headers third_party
