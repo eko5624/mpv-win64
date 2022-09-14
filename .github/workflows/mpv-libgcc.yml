@@ -1,4 +1,4 @@
-name: mpv-meson
+name: mpv-libgcc
 
 on:
   workflow_dispatch:
