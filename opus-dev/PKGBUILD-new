@@ -10,12 +10,13 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/opus
+  LDFLAGS+=" -lssp"
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DOPUS_STACK_PROTECTOR=OFF \
     -DOPUS_BUILD_PROGRAMS=OFF \
     -DBUILD_TESTING=OFF \
-    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_FORTIFY_SOURCE=0'
+    -DCMAKE_C_FLAGS='-D_FORTIFY_SOURCE=0'
   $CMAKE --build .  
 }
 
