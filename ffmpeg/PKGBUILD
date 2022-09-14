@@ -91,4 +91,5 @@ package_ffmpeg-git() {
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
   mv $pkgdir/opt/bin/ffmpeg.exe $pkgdir/opt/ffmpeg
+  rm -rf $pkgdir/opt/bin
 }
