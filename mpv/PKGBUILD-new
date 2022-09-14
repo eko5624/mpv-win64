@@ -35,7 +35,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -static"
+  LDFLAGS="-static -static-libgcc"
   meson setup build --prefix=/opt --buildtype=release --default-library=shared --prefer-static \
     -Dlibmpv=true \
     -Dlua=enabled \
