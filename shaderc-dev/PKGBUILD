@@ -25,6 +25,7 @@ build() {
     -DSHADERC_SKIP_SPVC=ON \
     -DSHADERC_SKIP_INSTALL=ON \
     -DSHADERC_SKIP_EXAMPLES=ON \
+    -DCMAKE_CXX_FLAGS='-std=c++11' \
     -DSHADERC_THIRD_PARTY_ROOT_DIR="${srcdir}"
   $CMAKE --build .
 }
