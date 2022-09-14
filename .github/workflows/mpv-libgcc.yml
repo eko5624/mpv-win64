@@ -19,7 +19,6 @@ jobs:
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
     - name: Setup Toolchain
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/Toolchain/mingw-w64-gcc-mcf_20220809_12.1.1_x64-ucrt_c9d5018f396c8bcadc57913553b05273aaf78952.7z
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
