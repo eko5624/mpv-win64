@@ -34,8 +34,8 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS="-static"
   cd $srcdir/mpv
+  LDFLAGS="$LDFLAGS -static"
   meson setup build --prefix=/opt --buildtype=release --default-library=shared --prefer-static \
     -Dlibmpv=true \
     -Dlua=enabled \
