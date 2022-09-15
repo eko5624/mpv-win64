@@ -35,7 +35,7 @@ md5sums=('SKIP')
 
 build() {
   export CC="g++.exe"
-  export LDFLAGS="$LDFLAGS -static"
+  export LDFLAGS="$LDFLAGS -static -lstdc++"
   cd $srcdir/mpv
   python bootstrap.py
   python waf configure --prefix=/opt \
