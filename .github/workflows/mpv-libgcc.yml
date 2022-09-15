@@ -1,9 +1,9 @@
-name: mpv-libgcc
+name: mpv-waf
 
 on:
   workflow_dispatch:
 
-jobs:
+jobs: 
   mpv:
     runs-on: windows-2022
     steps:
@@ -18,10 +18,11 @@ jobs:
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
-    - name: Setup Toolchain
-      run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/Toolchain/mingw-w64-gcc-mcf_20220809_12.1.1_x64-ucrt_c9d5018f396c8bcadc57913553b05273aaf78952.7z
-        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -33,18 +34,16 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       shell: msys2 {0}
-      run: |
+      run: |      
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
-        pip install ninja      
+        pip install ninja        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmfx-dev-1.35.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.26-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
@@ -56,7 +55,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.37-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.24.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.0-1-x86_64.pkg.tar.zst
@@ -67,15 +65,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.2.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.10.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.4-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.22.2-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.4-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20220411-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.2.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-59-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
@@ -94,7 +89,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.208.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -120,6 +115,12 @@ jobs:
       with:
         location: D:\
         install: base-devel
+
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
 
     - name: Get mpv latest commit sha
       id: mpv_sha
