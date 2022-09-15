@@ -22,7 +22,6 @@ makedepends=("yasm"
              "lcms2-dev"
              "libbluray-dev"
              "libdvdnav-dev"
-             "libiconv-dev"
              "libplacebo-dev"
              "shaderc-dev"
              "spirv-cross-dev"
@@ -35,10 +34,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  export CFLAGS="-static"
-  export LDFLAGS="-static"
-  export CPPFLAGS="-static"
-  export CC="gcc.exe"  
+  export CC="gcc.exe"   
+  export LDFLAGS="-static" 
   python bootstrap.py
   python waf configure --prefix=/opt \
     --enable-static-build \
@@ -50,7 +47,8 @@ build() {
     --enable-dvdnav \
     --enable-rubberband \
     --enable-lcms2 \
-    --enable-openal
+    --enable-openal \
+    --disable-iconv
   python waf build
 }
 
