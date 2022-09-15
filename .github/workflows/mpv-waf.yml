@@ -35,6 +35,10 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |      
+        pypath=$(cygpath -u $pythonLocation)
+        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
+        pip install ninja        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
@@ -91,7 +95,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-4.208.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
