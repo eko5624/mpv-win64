@@ -34,8 +34,8 @@ source=("git+https://github.com/mpv-player/mpv")
 md5sums=('SKIP')
 
 build() {
+  export CC="g++.exe"
   export LDFLAGS="$LDFLAGS -static"
-  export CC="gcc.exe"
   cd $srcdir/mpv
   python bootstrap.py
   python waf configure --prefix=/opt \
