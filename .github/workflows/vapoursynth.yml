@@ -33,7 +33,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: vapoursynth*
+        assets: vapoursynth-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload Dev
