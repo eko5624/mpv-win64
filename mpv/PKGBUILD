@@ -36,7 +36,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   export CC="gcc.exe"   
-  export LDFLAGS="-static" 
+  export LDFLAGS="-static -lssp -lstdc++" 
   python bootstrap.py
   python waf configure --prefix=/opt \
     --enable-static-build \
