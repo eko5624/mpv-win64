@@ -25,6 +25,7 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)        
+pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['mcfgthread'] = mingw[:8]
