@@ -39,7 +39,7 @@ build() {
   export LDFLAGS="-static -lssp -lstdc++" 
   python bootstrap.py
   python waf configure --prefix=/opt \
-    --enable-static-build \
+    --disable-debug-build \
     --enable-libmpv-shared \
     --enable-lua \
     --enable-javascript \
