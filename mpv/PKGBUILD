@@ -36,7 +36,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   python bootstrap.py
-  LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"    
+  LDFLAGS="$LDFLAGS -static -lssp"    
   CC=gcc.exe python waf configure --prefix=/opt \
     --disable-debug-build \
     --enable-libmpv-shared \
