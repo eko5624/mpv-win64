@@ -21,7 +21,7 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Get random hash
       run: |
-        git checkout static-build
+        git checkout static
         random_hash=$(echo $RANDOM | md5sum | head -c 20)
         echo $random_hash > HASH
         git add HASH
