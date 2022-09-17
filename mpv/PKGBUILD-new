@@ -53,8 +53,8 @@ package_libmpv-git() {
   mkdir -p $pkgdir/opt/libmpv/include
   cd $srcdir/mpv/build
   strip -s libmpv-2.dll
-  mv libmpv-2.dll $pkgdir/opt/libmpv
-  mv libmpv.dll.a $pkgdir/opt/libmpv
+  mv libmpv-2.dll $pkgdir/opt/mpv-2.dll
+  mv libmpv.dll.a $pkgdir/opt/libmpv/mpv.dll.a
   mv ../libmpv/mpv.def $pkgdir/opt/libmpv
   mv ../libmpv/client.h $pkgdir/opt/libmpv/include
   mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include
