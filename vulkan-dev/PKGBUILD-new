@@ -7,8 +7,9 @@ url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
         "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=sdk-$pkgver"
-        "vulkan-0001-cross-compile-static-linking-hacks.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "vulkan-0001-cross-compile-static-linking-hacks.patch"
+        "vulkan-0002-remove-pkg-config-detection.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
@@ -24,6 +25,7 @@ build() {
 
   cd $srcdir/Vulkan-Loader
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
+  patch -p1 -i $srcdir/vulkan-0002-remove-pkg-config-detection.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF 
@@ -35,6 +37,4 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  sed -i '/Libs:/d' $pkgdir/opt/lib/pkgconfig/*.pc
-  sed -i 's/Libs.private:/Libs: -L${libdir} -lvulkan/' $pkgdir/opt/lib/pkgconfig/*.pc
 }
