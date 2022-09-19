@@ -17,12 +17,12 @@ build() {
   curl -OL https://www.japheth.de/Download/JWasm/JWasm211bw.zip
   bsdtar -C /d/ucrt64/bin -xvf JWasm211bw.zip '*.EXE'
 
-  cd $srcdir/Vulkan-Headers-sdk-$pkgver
+  cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
   $CMAKE --install . --prefix=$srcdir/opt
 
-  cd $srcdir/Vulkan-Loader-sdk-$pkgver
+  cd $srcdir/Vulkan-Loader
   # skip rc info and use vulkan-1.dll from your graphic driver
   sed -i '/Git/d' CMakeLists.txt
   sed -i '/loader.rc/d' loader/CMakeLists.txt
@@ -34,8 +34,8 @@ build() {
 }
 
 package() {
-  cd $srcdir/Vulkan-Headers-sdk-$pkgver/build
+  cd $srcdir/Vulkan-Headers/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  cd $srcdir/Vulkan-Loader-sdk-$pkgver/build
+  cd $srcdir/Vulkan-Loader/build
   $CMAKE --install . --prefix=$pkgdir/opt
 }
