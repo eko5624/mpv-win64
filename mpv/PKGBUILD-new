@@ -47,20 +47,6 @@ build() {
   meson compile -C build
 }
 
-package_libmpv-git() {
-  export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/libmpv/include
-  cd $srcdir/mpv/build
-  strip -s libmpv-2.dll
-  mv libmpv-2.dll $pkgdir/opt/libmpv/mpv-2.dll
-  mv libmpv.dll.a $pkgdir/opt/libmpv/mpv.dll.a
-  mv ../libmpv/mpv.def $pkgdir/opt/libmpv
-  mv ../libmpv/client.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/render.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include
-}
-
 package() {
   depends=('ffmpeg-shared' 'vapoursynth-shared' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
@@ -68,4 +54,5 @@ package() {
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/bin
   mv generated/mpv.com $pkgdir/opt/bin
+  strip -s $pkgdir/opt/bin/mpv.*
 }
