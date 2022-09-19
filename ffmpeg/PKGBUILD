@@ -43,7 +43,7 @@ build() {
          --disable-pthreads --enable-w32threads"
 }
 
-package_ffmpeg-dev() {
+package_ffmpeg-shared-dev() {
   cd $srcdir/FFmpeg
   ./configure \
     --prefix=/opt \
@@ -83,13 +83,11 @@ package_ffmpeg-dev() {
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
 
-package_ffmpeg-git() {
+package_ffmpeg-shared() {
+  depends=('vapoursynth' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/ffmpeg
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
-  mv $pkgdir/opt/bin/ffmpeg.exe $pkgdir/opt/ffmpeg
-  rm -rf $pkgdir/opt/bin
 }
