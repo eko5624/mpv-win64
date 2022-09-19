@@ -1,5 +1,5 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(libmpv-git mpv-git)
+pkgname=mpv-shared
 pkgver=0.34.1
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
@@ -11,10 +11,9 @@ makedepends=("yasm"
              "libsdl2-dev"
              "libsixel-dev"
              "angle-headers-dev"
-             "ffmpeg-dev"
+             "ffmpeg-shared-dev"
              "mujs-dev"
              "rubberband-dev"
-             "luajit2-dev"
              "freetype2-dev"
              "fribidi-dev"
              "harfbuzz-dev"
@@ -23,11 +22,12 @@ makedepends=("yasm"
              "libbluray-dev"
              "libdvdnav-dev"
              "libiconv-dev"
-             "libplacebo-dev"
+             "libplacebo-shared-dev"
+             "luajit2-dev"
              "shaderc-dev"
              "spirv-cross-dev"
-             "vapoursynth-dev"
-             "vulkan-dev"
+             "vapoursynth-shared-dev"
+             "vulkan-shared-dev"
              "zlib-dev")
 license=('GPL3')
 source=("git+https://github.com/mpv-player/mpv")
@@ -38,9 +38,7 @@ build() {
   python bootstrap.py
   LDFLAGS="$LDFLAGS -lstdc++ -lssp" 
   CC=gcc.exe python waf configure --prefix=/opt \
-    --enable-static-build \
     --disable-debug-build \
-    --enable-libmpv-shared \
     --enable-lua \
     --enable-javascript \
     --enable-sdl2 \
@@ -48,29 +46,18 @@ build() {
     --enable-dvdnav \
     --enable-rubberband \
     --enable-lcms2 \
-    --enable-openal 
+    --enable-openal \
+    --enable-spirv-cross \
+    --enable-vulkan \
+    --enable-vapoursynth    
   python waf build
 }
 
-package_libmpv-git() {
+package() {
+  depends=('ffmpeg-shared' 'vapoursynth-shared' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/libmpv/include 
+  mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
-  strip -s mpv-2.dll
-  mv mpv-2.dll $pkgdir/opt/libmpv
-  mv mpv.dll.a $pkgdir/opt/libmpv
-  mv mpv.def $pkgdir/opt/libmpv
-  mv ../libmpv/client.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/stream_cb.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/render.h $pkgdir/opt/libmpv/include
-  mv ../libmpv/render_gl.h $pkgdir/opt/libmpv/include
-}
-
-package_mpv-git() {
-  export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir/opt/mpv
-  cd $srcdir/mpv/build
-  mv mpv.exe $pkgdir/opt/mpv
-  mv mpv.com $pkgdir/opt/mpv
-  strip -s $pkgdir/opt/mpv/mpv.*
+  strip mpv.*
+  mv mpv.* $pkgdir/opt/bin
 }
