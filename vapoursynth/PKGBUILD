@@ -1,36 +1,47 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=vapoursynth-dev
+pkgname=(vapoursynth-shared-dev vapoursynth-plugin-core-extra vapoursynth-shared)
 pkgver=60
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z"
-        "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip")
-md5sums=('SKIP' 'SKIP')
+source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+options=(!strip)
+md5sums=('SKIP')
 
 build() {
-  cd $srcdir/mingw-w64-master/mingw-w64-tools/gendef
-  ./configure --prefix=/opt
-  make install
+  cd $srcdir
+  rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll
+  rm -rf doc
+  rm vapoursynth64/plugins/.keep
 }
 
-package() {
+package_vapoursynth-shared-dev() {
   cd $srcdir
-  set -x
-  gendef VSScript.dll
-  gendef VapourSynth.dll
-  dlltool -d VSScript.def -y libvsscript.a 
-  dlltool -d VapourSynth.def -y libvapoursynth.a 
+  mkdir -p $pkgdir/opt
+  mv sdk/include $pkgdir/opt
+  mv sdk/lib64 $pkgdir/opt/lib
   mkdir -p $pkgdir/opt/lib/pkgconfig
-  mkdir -p $pkgdir/opt/include
-  mv sdk/include/VapourSynth.h $pkgdir/opt/include
-  mv sdk/include/VSScript.h $pkgdir/opt/include
-  mv sdk/include/VSHelper.h $pkgdir/opt/include
-  cp libvsscript.a $pkgdir/opt/lib
-  cp libvapoursynth.a $pkgdir/opt/lib   
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
+}
+
+package_vapoursynth-plugin-core-extra() {
+  depends=('vapoursynth')
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir
+  mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv *.exe $pkgdir/opt/bin
+  mv vsrepo.py $pkgdir/opt/bin
+  mv VSVFW.dll $pkgdir/opt/bin
+  mv vapoursynth64/coreplugins/AvsCompat.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+}
+
+package_vapoursynth-shared() {
+  optdepends=('python-embed>=3.9')
+  rm -rf $srcdir/sdk
+  mkdir $pkgdir/opt
+  mv $srcdir $pkgdir/opt/bin
 }
