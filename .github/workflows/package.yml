@@ -96,7 +96,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
-        tag: mpv-${{ env.MPV_VERSION }}-${{ env.MPV_SHORT_SHA }}
+        tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
         overwrite: true
