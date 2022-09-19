@@ -1,4 +1,4 @@
-name: package-git
+name: package
 
 on:
   workflow_dispatch:
