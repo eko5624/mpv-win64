@@ -12,14 +12,8 @@ jobs:
         location: D:\
         install: base-devel
 
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
-
     - name: Get mpv latest commit sha
-      id: mpv_sha
+      id: get_sha
       uses: actions/github-script@v6
       with:
         script: |
@@ -29,25 +23,10 @@ jobs:
             ref: `master`
           })
           core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add MPV_SHORT_SHA env 
-      run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+    - name: Add SHORT_SHA env 
+      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
-
-    - name: Get ffmpeg latest commit sha
-      id: ffmpeg_sha
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const commit = await github.rest.repos.getCommit({
-            owner: 'FFmpeg',
-            repo: 'FFmpeg',
-            ref: `master`
-          })
-          core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add FFMPEG_SHORT_SHA env 
-      run: echo "FFMPEG_SHORT_SHA=`echo ${{ steps.ffmpeg_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
-      shell: bash 
-  
+    
     - name: Get mpv latest release
       id: version    
       uses: actions/github-script@v6
@@ -58,8 +37,8 @@ jobs:
             repo: 'mpv'
           })
           core.setOutput('version', String(release.data.tag_name)) 
-    - name: Add MPV_VERSION env 
-      run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+    - name: Add GET_VERSION env 
+      run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
       shell: bash 
 
     - name: Get yt-dlp latest release
@@ -78,26 +57,25 @@ jobs:
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-5.1.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.34.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.34.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-5.1.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-60-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220823-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
-        $date = Get-Date -Format "yyyyMMdd"
+        $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
-        mv yt-dlp.exe D:\msys64\opt\mpv
-        7z a git-mpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\mpv\*
-        7z a git-libmpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-${{ env.FFMPEG_SHORT_SHA }}.7z D:\msys64\opt\ffmpeg\*
+        mv yt-dlp.exe D:\msys64\opt\bin
+        7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: git*.7z
-        tag: mpv-${{ env.MPV_VERSION }}-${{ env.MPV_SHORT_SHA }}
+        file: All*.7z
+        tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
+        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
         file_glob: true
