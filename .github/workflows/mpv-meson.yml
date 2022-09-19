@@ -5,7 +5,6 @@ on:
 
 jobs:
   mpv:
-    needs: [ffmpeg, libplacebo, vulkan]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
