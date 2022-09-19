@@ -1,4 +1,4 @@
-pkgname=(ffmpeg-dev ffmpeg-git)
+pkgname=(ffmpeg-shared-dev ffmpeg-shared)
 pkgver=5.1.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
@@ -84,7 +84,7 @@ package_ffmpeg-shared-dev() {
 }
 
 package_ffmpeg-shared() {
-  depends=('vapoursynth' 'mcfgthread')
+  depends=('vapoursynth-shared' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
