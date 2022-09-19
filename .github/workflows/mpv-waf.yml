@@ -156,14 +156,13 @@ jobs:
         $date = Get-Date -Format "yyyy-MM-dd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
-        cp D:\ucrt64\bin\libmcfgthread-1.dll D:\msys64\opt\bin\
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: All*.7z
-        tag: mpv-${{ env.GET_VERSION }}-${{ env.SHORT_SHA }}
+        file: shared*.7z
+        tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
         body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
         overwrite: true
