@@ -33,7 +33,6 @@ jobs:
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
         MAKE: /mingw64/bin/mingw32-make
-
       shell: msys2 {0}
       run: |  
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.12-1-x86_64.pkg.tar.zst     
