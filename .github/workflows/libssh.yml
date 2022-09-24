@@ -32,6 +32,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
         CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
 
       shell: msys2 {0}
       run: |  
