@@ -25,7 +25,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -46,7 +46,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.24.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
@@ -116,7 +116,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -176,7 +176,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -302,7 +302,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-60-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220823-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220922-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
@@ -388,7 +388,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
