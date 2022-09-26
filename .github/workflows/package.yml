@@ -23,8 +23,8 @@ jobs:
             ref: `master`
           })
           core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add SHORT_SHA env 
-      run: echo "SHORT_SHA=`echo ${{ steps.get_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+    - name: Add MPV_SHORT_SHA env 
+      run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
     
     - name: Get mpv latest release
@@ -37,9 +37,9 @@ jobs:
             repo: 'mpv'
           })
           core.setOutput('version', String(release.data.tag_name)) 
-    - name: Add GET_VERSION env 
-      run: echo "GET_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
-      shell: bash 
+    - name: Add MPV_VERSION env 
+      run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+      shell: bash
 
     - name: Get yt-dlp latest release
       id: dlp_tag    
