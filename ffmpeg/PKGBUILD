@@ -1,5 +1,5 @@
 pkgname=(ffmpeg-dev ffmpeg-git)
-pkgver=5.1.1
+pkgver=5.1.2
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
