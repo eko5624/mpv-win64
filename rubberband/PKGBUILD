@@ -5,7 +5,7 @@ pkgdesc='High quality software library for audio time-stretching and pitch-shift
 arch=('x86_64')
 url="https://breakfastquay.com/rubberband/"
 license=('GPL')
-source=("git+https://github.com/breakfastquay/rubberband.git#commit=e90f377600d6097c6e37d0824f98bf60f77a0841")
+source=("git+https://github.com/breakfastquay/rubberband.git")
 md5sums=('SKIP')
 
 build() {
