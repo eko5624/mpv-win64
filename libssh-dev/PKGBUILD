@@ -7,13 +7,11 @@ url="https://www.libssh.org/"
 makedepends=('zlib-dev' 'mbedtls-dev')
 license=('LGPL')
 options=('staticlibs' 'strip')
-source=("git+https://git.libssh.org/projects/libssh.git"
-        "libssh-0001-install-modified-pc-file.patch")
+source=("git+https://git.libssh.org/projects/libssh.git")
 md5sums=('SKIP' 'SKIP')
 
 build() { 
   cd $srcdir/libssh
-  # patch -p1 -i $srcdir/libssh-0001-install-modified-pc-file.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
