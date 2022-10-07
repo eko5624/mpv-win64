@@ -152,6 +152,6 @@ jobs:
         file: git*.7z
         tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
+        body: Bump to mpv-player/mpv@161bdd9
         overwrite: true
         file_glob: true
