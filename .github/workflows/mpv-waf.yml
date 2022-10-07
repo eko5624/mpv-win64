@@ -128,60 +128,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
 
-    - name: Get mpv latest commit sha
-      id: mpv_sha
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const commit = await github.rest.repos.getCommit({
-            owner: 'mpv-player',
-            repo: 'mpv',
-            ref: `master`
-          })
-          core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add MPV_SHORT_SHA env 
-      run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
-      shell: bash 
-
-    - name: Get ffmpeg latest commit sha
-      id: ffmpeg_sha
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const commit = await github.rest.repos.getCommit({
-            owner: 'FFmpeg',
-            repo: 'FFmpeg',
-            ref: `master`
-          })
-          core.setOutput('sha', String(commit.data.sha)) 
-    - name: Add FFMPEG_SHORT_SHA env 
-      run: echo "FFMPEG_SHORT_SHA=`echo ${{ steps.ffmpeg_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
-      shell: bash 
-  
-    - name: Get mpv latest release
-      id: version    
-      uses: actions/github-script@v6
-      with:
-        script: |    
-          const release = await github.rest.repos.getLatestRelease({
-            owner: 'mpv-player',
-            repo: 'mpv'
-          })
-          core.setOutput('version', String(release.data.tag_name)) 
-    - name: Add MPV_VERSION env 
-      run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
-      shell: bash 
-
-    - name: Get yt-dlp latest release
-      id: dlp_tag    
-      uses: actions/github-script@v6
-      with:
-        script: |    
-          const release = await github.rest.repos.getLatestRelease({
-            owner: 'yt-dlp',
-            repo: 'yt-dlp'
-          })
-          core.setOutput('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
       id: timestamp
       run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
@@ -197,7 +143,8 @@ jobs:
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
-        7z a git-libmpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\libmpv\*
+        7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
+        7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-fce8b90.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
