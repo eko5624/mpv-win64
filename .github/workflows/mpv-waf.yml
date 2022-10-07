@@ -198,7 +198,7 @@ jobs:
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
         7z a git-libmpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-fce8b90.7z D:\msys64\optfmpeg\*
+        7z a git-ffmpeg-${date}-fce8b90.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
