@@ -90,8 +90,6 @@ pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 pkgs['yt-dlp'] = x['yt-dlp']
 pkgs['ffmpeg-short_sha'] =x['ffmpeg-git'][:7]
-pkgs['libmpv-short_sha'] = x['mpv-git'][:7]
-pkgs['mpv-short_sha'] = x['mpv-git'][:7]
 
 for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
@@ -112,5 +110,8 @@ for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'mpv-meson.yml', 'mpv-w
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
         for p in pkgs:
-          l = '%s%s/yt-dlp.exe\n' % (l[:i+26], pkgs[p])          
+          l = '%s%s/yt-dlp.exe\n' % (l[:i+26], pkgs[p])
+      elif (i:=l.find('ffmpeg-${date}-')) > -1:
+        for p in pkgs:
+          l = '%s%s.7z D:\msys64\opt\ffmpeg\*\n' % (l[:i+15], pkgs[p])           
       f.write(l)
