@@ -89,6 +89,9 @@ pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 pkgs['yt-dlp'] = x['yt-dlp']
+pkgs['ffmpeg-short_sha'] =x['ffmpeg-git'][:7]
+pkgs['libmpv-short_sha'] = x['mpv-git'][:7]
+pkgs['mpv-short_sha'] = x['mpv-git'][:7]
 
 for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
