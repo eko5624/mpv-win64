@@ -107,7 +107,7 @@ for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'mpv-meson.yml', 'mpv-w
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
-          l = '%s%s/yt-dlp.exe\n' % (l[:i+26], x['yt-dlp'])
+        l = '%s%s/yt-dlp.exe\n' % (l[:i+26], x['yt-dlp'])
       elif (i:=l.find('ffmpeg-${date}-')) > -1:
-          l = '%s%s.7z D:\msys64\opt\ffmpeg\*\n' % (l[:i+15], x['ffmpeg-git'][:7])           
+        l = '%s%s.7z D:\msys64\opt\ffmpeg\*\n' % (l[:i+15], x['ffmpeg-git'][:7])           
       f.write(l)
