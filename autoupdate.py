@@ -108,7 +108,6 @@ for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'mpv-meson.yml', 'mpv-w
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
-        r = l.find('/yt-dlp.exe')
-        if p in pkgs:
-          l = '%s%s%s' % (l[:i+26], pkgs[p], l[r:])          
+        for p in pkgs:
+          l = '%s%s/yt-dlp.exe' % (l[:i+26], pkgs[p])          
       f.write(l)
