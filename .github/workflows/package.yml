@@ -24,7 +24,7 @@ jobs:
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-XXX-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-5.1.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
