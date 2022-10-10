@@ -152,11 +152,11 @@ jobs:
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
-        $date = Get-Date -Format "yyyy-MM-dd"
+        $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
-        7z a shared-mpv-${date}-${{ env.MPV_SHORT_SHA }}.7z D:\msys64\opt\bin\*
+        7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -164,6 +164,6 @@ jobs:
         file: shared*.7z
         tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.SHORT_SHA }}
+        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
         overwrite: true
         file_glob: true
