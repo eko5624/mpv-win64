@@ -306,7 +306,7 @@ jobs:
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
-        $date = Get-Date -Format "yyyy-MM-dd"
+        $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
