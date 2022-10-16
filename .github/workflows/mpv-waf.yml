@@ -85,7 +85,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-292961-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
@@ -145,7 +145,7 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-a010193.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-662e838.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -153,6 +153,6 @@ jobs:
         file: git*.7z
         tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@dfb5b0c
+        body: Bump to mpv-player/mpv@cdcbd73
         overwrite: true
         file_glob: true
