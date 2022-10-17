@@ -1,5 +1,5 @@
 pkgname=libudfread-dev
-pkgver=292961
+pkgver=1.1.2
 pkgrel=1
 pkgdesc='Library to access Blu-Ray disks for video playback'
 arch=('x86_64')
