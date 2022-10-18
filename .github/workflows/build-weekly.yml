@@ -101,7 +101,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
-        assets: ffmpeg*
+        assets: ffmpeg-git*
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Delete Dev
@@ -109,7 +109,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: ffmpeg*
+        assets: ffmpeg-dev*
         fail-if-no-assets: false
         fail-if-no-release: false 
     - name: Upload
@@ -1429,7 +1429,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: libplacebo*
+        assets: libplacebo-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
@@ -2185,7 +2185,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: luajit2*
+        assets: luajit2-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload Dev
@@ -2350,7 +2350,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
-        assets: mpv*
+        assets: mpv-git*
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Upload
@@ -2711,7 +2711,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: vapoursynth*
+        assets: vapoursynth-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload Dev
@@ -2757,7 +2757,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: vulkan*
+        assets: vulkan-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
