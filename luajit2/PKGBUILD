@@ -1,11 +1,10 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=luajit2-dev 
+pkgname=luajit2-dev
 pkgver=2.1_20220915
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
-makedepends=('libiconv-dev')
 license=('MIT')
 source=("git+https://github.com/openresty/luajit2"
         "luajit-0001-add-win32-utf-8-filesystem-functions.patch")
