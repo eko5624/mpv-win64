@@ -21,7 +21,6 @@ makedepends=("yasm"
              "lcms2-dev"
              "libbluray-dev"
              "libdvdnav-dev"
-             "libiconv-dev"
              "libplacebo-shared-dev"
              "luajit2-dev"
              "shaderc-dev"
@@ -35,7 +34,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -lstdc++ -lssp"
+  LDFLAGS="$LDFLAGS -lssp"
   meson setup build --buildtype=release -Dprefix=/opt \
     -Dlua=enabled \
     -Dopenal=enabled \
