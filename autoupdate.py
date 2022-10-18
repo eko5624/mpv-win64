@@ -80,13 +80,14 @@ for p in pkgs:
       f.write(l)
 pkgs['libsixel-dev'] = x['libsixel']
 pkgs['luajit-dev'] = x['LuaJIT']      
-pkgs['luajit2-dev'] = x['luajit2']
 pkgs['mujs-dev'] = x['mujs']
 pkgs['rubberband-dev'] = x['rubberband']
 pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
 pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
 pkgs['ffmpeg-shared'] = x['ffmpeg']
+pkgs['luajit2-shared-dev'] = x['luajit2']
+pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
