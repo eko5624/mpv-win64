@@ -1,32 +1,30 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=luajit2-dev 
-pkgver=2.1_20220915
+pkgname=(luajit2-shared-dev luajit2-shared)
+pkgver=2.1.0_beta3
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
-makedepends=('libiconv-dev')
 license=('MIT')
-source=("git+https://github.com/openresty/luajit2"
-        "luajit-0001-add-win32-utf-8-filesystem-functions.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/openresty/luajit2")
+md5sums=('SKIP')
 
-build() { 
+build() {
   cd $srcdir/luajit2
-  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
-  make amalg BUILDMODE=static PREFIX=/opt \
-    FILE_T=luajit.exe \
-    CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
-    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT'     
+  echo "int _dowildcard = 0;" >> src/luajit.c
+  make amalg BUILDMODE=dynamic XCFLAGS=-DLUAJIT_ENABLE_GC64
 }
 
-package() {
+package_luajit2-shared-dev() {
   cd $srcdir/luajit2
-  make DESTDIR=$pkgdir PREFIX=/opt \
-    FILE_T=luajit.exe \
-    CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
-    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
-    install
-  cp ../../*.pc $pkgdir/opt/lib/pkgconfig
+  make DESTDIR=$pkgdir PREFIX=/opt install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
+  mv src/lua*.a $pkgdir/opt/lib
+}
+
+package_luajit2-shared() {
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir/luajit2
+  mkdir -p $pkgdir/opt/bin
+  mv src/lua*.exe $pkgdir/opt/bin
+  mv src/lua*.dll $pkgdir/opt/bin
 }
