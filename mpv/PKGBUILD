@@ -21,7 +21,6 @@ makedepends=("yasm"
              "lcms2-dev"
              "libbluray-dev"
              "libdvdnav-dev"
-             "libiconv-dev"
              "libplacebo-shared-dev"
              "luajit2-dev"
              "shaderc-dev"
@@ -39,6 +38,7 @@ build() {
   LDFLAGS="$LDFLAGS -lstdc++ -lssp" 
   CC=gcc.exe python waf configure --prefix=/opt \
     --disable-debug-build \
+    --disable-iconv \
     --enable-lua \
     --enable-javascript \
     --enable-sdl2 \
