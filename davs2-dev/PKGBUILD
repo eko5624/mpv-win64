@@ -1,0 +1,20 @@
+pkgname=davs2-dev
+pkgver=1.7
+pkgrel=1
+pkgdesc='An open-source decoder of AVS2-P2/IEEE1857.4 video coding standard'
+arch=('x86_64')
+url="https://github.com/pkuvcl/davs2"
+license=('GPL')
+source=("git+https://github.com/pkuvcl/davs2.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/davs2/build/linux
+  ./configure --prefix=/opt --disable-cli
+  make
+}
+
+package() {
+  cd $srcdir/davs2/build/linux
+  make DESTDIR=$pkgdir install
+}
