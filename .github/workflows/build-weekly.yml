@@ -1361,7 +1361,7 @@ jobs:
         python-version: '3.10'
     - name: Install python dependencies
       run: |
-        pip install meson ninja mako Jinja2
+        pip install meson ninja Jinja2
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
