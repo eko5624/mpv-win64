@@ -1,5 +1,5 @@
 pkgname=rubberband-dev
-pkgver=3.1.0
+pkgver=3.1.1
 pkgrel=1
 pkgdesc='High quality software library for audio time-stretching and pitch-shifting'
 arch=('x86_64')
