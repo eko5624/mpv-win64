@@ -329,7 +329,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm     
+        install: base-devel autotools git nasm     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
