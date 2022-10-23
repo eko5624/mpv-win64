@@ -14,10 +14,11 @@ build() {
   $CMAKE ../.. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DCOMPILE_10BIT=ON
-  $CMAKE --build .
+  $MAKE 
 }
 
 package() {
   cd $srcdir/uavs3d/build/linux
-  $CMAKE --install . --prefix=$pkgdir/opt
+  $MAKE DESTDIR=$pkgdir install
+  mv $pkgdir/msys64/* $pkgdir
 }
