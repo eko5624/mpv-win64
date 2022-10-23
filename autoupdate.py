@@ -36,6 +36,7 @@ for p in [
   'avisynth',
   'brotli',
   'dav1d',
+  'davs2',
   'ffnvcodec',
   'highway',
   'lame',
@@ -69,6 +70,7 @@ for p in [
   'openal-soft',
   'shaderc',
   'spirv-cross',
+  'uavs3d',
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
