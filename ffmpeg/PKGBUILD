@@ -8,6 +8,7 @@ makedepends=("nasm"
              "amf-headers-dev"
              "avisynth-dev"
              "dav1d-dev"
+             "davs2-dev"
              "gmp-dev"
              "lame-dev"
              "libbs2b-dev"
@@ -31,6 +32,7 @@ makedepends=("nasm"
              "mbedtls-dev"
              "opus-dev"
              "ffnvcodec-dev"
+             "uavs3d-dev"
              "vapoursynth-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
@@ -56,6 +58,7 @@ package_ffmpeg-dev() {
     --enable-gmp \
     --enable-libbs2b \
     --enable-libdav1d \
+    --enable-libdavs2 \
     --enable-libjxl \
     --enable-libmfx \
     --enable-libmodplug \
@@ -66,6 +69,7 @@ package_ffmpeg-dev() {
     --enable-libspeex \
     --enable-libsrt \
     --enable-libssh \
+    --enable-libuavs3d \
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libwebp \
