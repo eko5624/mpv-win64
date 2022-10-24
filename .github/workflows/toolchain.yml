@@ -32,12 +32,10 @@ jobs:
         &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'    
     - name: Make Toolchain
       shell: msys2 {0}
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg      
 
     - name: Delete
-      if: steps.cache.outputs.cache-hit != 'true'
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +44,6 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false        
     - name: Upload
-      if: steps.cache.outputs.cache-hit != 'true'
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
