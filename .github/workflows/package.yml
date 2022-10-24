@@ -33,6 +33,7 @@ jobs:
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
+        mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-874a6f2.7z D:\msys64\opt\ffmpeg\*
