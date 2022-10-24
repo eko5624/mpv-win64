@@ -57,7 +57,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -149,7 +149,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -194,7 +194,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -239,7 +239,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -287,7 +287,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -341,7 +341,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -386,7 +386,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -432,7 +432,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -489,7 +489,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -543,7 +543,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -589,7 +589,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -646,7 +646,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -691,7 +691,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -737,7 +737,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -790,7 +790,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -840,7 +840,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -885,7 +885,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -930,7 +930,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -976,7 +976,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1025,7 +1025,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1072,7 +1072,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1119,7 +1119,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1165,7 +1165,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1210,7 +1210,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1256,7 +1256,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1304,7 +1304,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1350,7 +1350,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1401,7 +1401,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1461,7 +1461,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1508,7 +1508,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1554,7 +1554,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -1614,7 +1614,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1660,7 +1660,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1706,7 +1706,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1755,7 +1755,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1805,7 +1805,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1850,7 +1850,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1896,7 +1896,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1943,7 +1943,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1988,7 +1988,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2033,7 +2033,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2078,7 +2078,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2123,7 +2123,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2168,7 +2168,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2213,7 +2213,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2270,7 +2270,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2379,7 +2379,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2424,7 +2424,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2471,7 +2471,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2524,7 +2524,7 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-5ec9d26.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-874a6f2.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -2554,7 +2554,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2608,7 +2608,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2655,7 +2655,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2701,7 +2701,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2747,7 +2747,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       shell: msys2 {0}
       run: |
@@ -2787,7 +2787,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2833,7 +2833,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221020_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221004_12.2.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
