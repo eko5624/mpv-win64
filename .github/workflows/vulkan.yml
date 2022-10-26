@@ -44,7 +44,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: eko5624/upload-release-action@master
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: vulkan-dev/*.zst
