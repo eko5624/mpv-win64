@@ -44,9 +44,10 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/action-gh-release@v1.1
+      uses: eko5624/upload-release-action@v2
       with:
-        tag_name: dev
-        files: vulkan-dev/*.zst
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: vulkan-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
