@@ -2525,7 +2525,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-1af499c.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-9bed814.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
