@@ -44,7 +44,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/action-gh-release@vmaster
+      uses: eko5624/action-gh-release@master
       with:
         tag_name: dev
         files: vulkan-dev/*.zst
