@@ -12,15 +12,9 @@ jobs:
         location: D:\
         install: base-devel
 
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
-
     - name: Get current timestamp      
       id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
+      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
@@ -38,7 +32,7 @@ jobs:
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-cb803a0.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
