@@ -356,7 +356,7 @@ jobs:
           core.setOutput('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
       id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
+      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_ENV    
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
