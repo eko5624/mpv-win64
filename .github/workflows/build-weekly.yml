@@ -2509,7 +2509,7 @@ jobs:
 
     - name: Get current timestamp      
       id: timestamp
-      run: echo "::set-output name=date::$(date +%Y-%m-%d)"    
+      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT   
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
