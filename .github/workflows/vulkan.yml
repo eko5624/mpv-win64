@@ -38,7 +38,7 @@ jobs:
 
         
     - name: Upload
-      shell: bash
+      shell: msys2 {0}
       env:
         CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5 --retry-all-errors"
       run: |  
