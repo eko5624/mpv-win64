@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake git     
+        install: base-devel autotools mingw-w64-x86_64-cmake git jq    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
