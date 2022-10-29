@@ -44,9 +44,14 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: eko5624/action-gh-release@master
-      with:
-        tag_name: dev
-        files: vulkan-dev/*.zst
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |  
+        id=$(curl -u eko5624:${{ secrets.BOT }} \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/releases \
+          -d @- <<END | jq -r '.id'
+        {
+         "tag_name": "dev"
+        }
+        END
+        )
