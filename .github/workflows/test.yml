@@ -27,8 +27,11 @@ jobs:
         }
         END
         )
-        echo "release_id='$id'" >> $GITHUB_ENV
+        for f in vulkan-dev/*.zst; do 
+          curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
+            -X POST -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: $(file -b --mime-type $f)" \
+            https://uploads.github.com/repos/${{ github.repository }}/releases/$id/assets?name=$(basename $f) \
+            --data-binary @$f; 
+        done
         
-    - name: Release 2
-      run: |
-        mv vulkan-dev/*.zst ./
