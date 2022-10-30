@@ -47,10 +47,10 @@ jobs:
         ref: 'static'
     - name: Upload
       run: |  
-        id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/releases -d @- <<END | jq -r '.id'
+        id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/eko5624/mpv-win64/releases -d @- <<END | jq -r '.id'
         {
           "tag_name": "dev"
         }
         END
         )
-        for f in ./vulkan-dev/*.zst; do curl -u eko5624:$GH_TOKEN $CURL_RETRIES -X POST -H "Accept: application/vnd.github.v3+json" -H "Content-Type: $(file -b --mime-type $f)" https://uploads.github.com/repos/${{ github.repository }}/releases/$id/assets?name=$(basename $f) --data-binary @$f; done
+        for f in ./vulkan-dev/*.zst; do curl -u eko5624:$GH_TOKEN $CURL_RETRIES -X POST -H "Accept: application/vnd.github.v3+json" -H "Content-Type: $(file -b --mime-type $f)" https://uploads.github.com/repos/eko5624/mpv-win64/releases/$id/assets?name=$(basename $f) --data-binary @$f; done
