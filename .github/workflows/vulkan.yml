@@ -48,7 +48,7 @@ jobs:
     - name: Upload
       shell: bash
       run: |
-        id=$(curl -u eko5624:${{ secrets.BOT }} \
+        id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           https://api.github.com/repos/eko5624/mpv-win64/releases \
