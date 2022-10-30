@@ -38,12 +38,14 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.BOT }}
+      CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5"
     steps:
-    - uses: actions/checkout@main        
+    - uses: actions/checkout@main
+      with:
+        ref: 'static'
     - name: Upload
-      env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5"
       shell: bash
       run: |  
         id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
