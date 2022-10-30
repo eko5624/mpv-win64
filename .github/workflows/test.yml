@@ -28,3 +28,7 @@ jobs:
         END
         )
         echo "release_id='$id'" >> $GITHUB_ENV
+        
+    - name: Release 2
+      run: |
+        mv vulkan-dev/*.zst ./
