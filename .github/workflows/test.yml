@@ -27,3 +27,4 @@ jobs:
         }
         END
         )
+        echo "release_id= '$id'" >> >> $GITHUB_ENV
