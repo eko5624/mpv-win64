@@ -23,7 +23,7 @@ jobs:
           -d @- <<END | jq -r '.id'
         {
           "tag_name": "dev",
-          "name": "dev",
+          "name": "dev"
         }
         END
         )
