@@ -36,7 +36,10 @@ jobs:
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
 
-        
+  test:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@main        
     - name: Upload
       env:
         GH_TOKEN: ${{ secrets.BOT }}
