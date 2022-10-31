@@ -36,8 +36,8 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
-        tag: ${{ date.ENV }}
-        release_name: ${{ date.ENV }}
+        tag: ${{ env.date }}
+        release_name: ${{ env.date }}
         body: Bump to mpv-player/mpv@d3a28f1
         overwrite: true
         file_glob: true
