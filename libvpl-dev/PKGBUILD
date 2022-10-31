@@ -26,4 +26,6 @@ build() {
 package() {
   cd $srcdir/oneVPL/build
   $CMAKE --install . --prefix=$pkgdir/opt
+  rm -rf $pkgdir/opt/etc
+  rm -rf $pkgdir/opt/share
 } 
