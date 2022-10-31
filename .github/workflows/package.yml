@@ -14,7 +14,7 @@ jobs:
 
     - name: Get current timestamp      
       id: timestamp
-      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_ENV    
+      run: echo "short_date=$(date +%Y-%m-%d)" >> $GITHUB_ENV    
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
@@ -36,8 +36,8 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
-        tag: ${{ env.date }}
-        release_name: ${{ env.date }}
+        tag: ${{ env.short_date }}
+        release_name: ${{ env.short_date }}
         body: Bump to mpv-player/mpv@d3a28f1
         overwrite: true
         file_glob: true
