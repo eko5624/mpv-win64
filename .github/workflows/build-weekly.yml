@@ -325,7 +325,7 @@ jobs:
             repo: 'mpv',
             ref: `master`
           })
-          core.setOutput('sha', String(commit.data.sha)) 
+          core.exportVariable('sha', String(commit.data.sha)) 
     - name: Add MPV_SHORT_SHA env 
       run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
@@ -339,7 +339,7 @@ jobs:
             owner: 'mpv-player',
             repo: 'mpv'
           })
-          core.setOutput('version', String(release.data.tag_name)) 
+          core.exportVariable('version', String(release.data.tag_name)) 
     - name: Add MPV_VERSION env 
       run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
       shell: bash
@@ -353,7 +353,7 @@ jobs:
             owner: 'yt-dlp',
             repo: 'yt-dlp'
           })
-          core.setOutput('dlp_tag', String(release.data.tag_name)) 
+          core.exportVariable('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
       shell: bash
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT     
