@@ -12,9 +12,8 @@ jobs:
         location: D:\
         install: base-devel
 
-    - name: Get current timestamp      
-      id: timestamp
-      run: echo "short_date=$(date +%Y-%m-%d)" >> $GITHUB_ENV    
+    - name: Get current date     
+      run: echo "short_date=$(date +%Y-%m-%d)" >> $GITHUB_ENV
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
