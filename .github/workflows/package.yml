@@ -72,7 +72,7 @@ jobs:
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Upload
-      uses: ek5624/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: shared*.7z
