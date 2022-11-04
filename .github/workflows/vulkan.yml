@@ -8,6 +8,9 @@ on:
 jobs:
   vulkan:
     runs-on: windows-2022
+    env:
+      GH_TOKEN: ${{ secrets.BOT }}
+      CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5"    
     steps:
     - uses: msys2/setup-msys2@v2
       with:
@@ -35,28 +38,26 @@ jobs:
       shell: msys2 {0}
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-
+    - name: Delete
+      shell: bash
+      run: |
+        asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/releases/tags/dev | jq -r '.assets[] | select(.name | startswith("vulkan-dev")) | .id')                
+        curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+          -X DELETE \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/releases/assets/$asset_id
     - name: Release 
-      env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5"
       shell: bash 
       run: |
-        id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
-          -X POST \
+        release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/releases \
-          -d @- <<END | jq -r '.id'
-        {
-          "tag_name": "dev",
-          "name": "dev"
-        }
-        END
-        )
+          https://api.github.com/repos/${{ github.repository }}/releases/tags/dev | jq -r '.id')
         for f in vulkan-dev/*.zst; do 
-          curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
+          curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
             -X POST -H "Accept: application/vnd.github.v3+json" \
             -H "Content-Type: $(file -b --mime-type $f)" \
-            https://uploads.github.com/repos/${{ github.repository }}/releases/$id/assets?name=$(basename $f) --data-binary @$f; 
+            https://uploads.github.com/repos/${{ github.repository }}/releases/$release_id/assets?name=$(basename $f) --data-binary @$f; 
         done
         
