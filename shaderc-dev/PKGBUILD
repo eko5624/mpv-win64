@@ -19,9 +19,10 @@ build() {
   mv glslang* glslang
   mv SPIRV-Headers* spirv-headers
   mv SPIRV-Tools* spirv-tools
-  sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
-  cp spirv-headers/SPIRV-Headers.pc.in shaderc-$pkgver/
   cd $srcdir/shaderc
+  mv $srcdir/spirv-headers third_party
+  mv $srcdir/spirv-tools third_party
+  mv $srcdir/glslang third_party
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON \
