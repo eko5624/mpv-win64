@@ -2,8 +2,8 @@ name: Delete old releases
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '08 12 * * MON'
+#  schedule:
+#  - cron: '08 12 * * MON'
      
 jobs:
   prune:
