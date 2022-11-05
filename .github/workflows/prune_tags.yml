@@ -20,7 +20,7 @@ jobs:
         # Keep latest 30 tags/releases
         git fetch --tags
         tag_list=($(git tag -l '20*' 'mpv*' | sort -r))
-        old=${tag_list[@]:18}
+        old=${tag_list[@]:17}
         for tag in ${old[@]}; do
           id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES -s -X GET -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/releases/tags/$tag | jq -r '.id')
           curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES -s -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/releases/$id
