@@ -6,18 +6,19 @@ pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
 url="https://github.com/google/shaderc/"
 license=('Apache')
-source=("git+https://github.com/google/shaderc"
-        "git+https://github.com/KhronosGroup/glslang"
-        "git+https://github.com/KhronosGroup/SPIRV-Headers"
-        "git+https://github.com/KhronosGroup/SPIRV-Tools")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+source=("git+https://github.com/google/shaderc")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  mv SPIRV-Headers spirv-headers
-  mv SPIRV-Tools spirv-tools
-  # sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
-  # cp spirv-headers/SPIRV-Headers.pc.in shaderc
+  cp $srcdir/shaderc/DEPS ./
+  curl -OL https://github.com/KhronosGroup/glslang/archive/`cat DEPS | grep glslang | head -n1 | cut -d\' -f4`.tar.gz
+  curl -OL https://github.com/KhronosGroup/SPIRV-Headers/archive/`cat DEPS | grep spirv_headers | head -n1 | cut -d\' -f4`.tar.gz
+  curl -OL https://github.com/KhronosGroup/SPIRV-Tools/archive/`cat DEPS | grep spirv_tools | head -n1 | cut -d\' -f4`.tar.gz
+  for f in *.gz; do tar xvf "$f"; done 
+  mv glslang* glslang
+  mv SPIRV-Headers* spirv-headers
+  mv SPIRV-Tools* spirv-tools
   cd $srcdir/shaderc
   mv $srcdir/spirv-headers third_party
   mv $srcdir/spirv-tools third_party
