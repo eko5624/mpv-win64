@@ -13,7 +13,7 @@ makedepends=("nasm"
              "lame-dev"
              "libbs2b-dev"
              "libjxl-dev"
-             "libmfx-dev"
+             "libvpl-dev"
              "libmodplug-dev"
              "libmysofa-dev"
              "libogg-dev"
@@ -60,7 +60,7 @@ package_ffmpeg-shared-dev() {
     --enable-libdav1d \
     --enable-libdavs2 \
     --enable-libjxl \
-    --enable-libmfx \
+    --enable-libvpl \
     --enable-libmodplug \
     --enable-libmp3lame \
     --enable-libmysofa \
