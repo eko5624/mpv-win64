@@ -1880,6 +1880,52 @@ jobs:
         overwrite: true
         file_glob: true
 
+  libvpl:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autotools git mingw-w64-x86_64-cmake           
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@v3
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@v3
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20221104_13.0.0_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: |                
+        cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Delete
+      uses: eko5624/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: dev
+        assets: libvpl*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: eko5624/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: libvpl-dev/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true          
+
   libvpx:
     runs-on: windows-2022
     steps:
