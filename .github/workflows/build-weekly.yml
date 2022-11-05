@@ -39,7 +39,7 @@ jobs:
         file_glob: true
 
   ffmpeg:
-    needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libmfx, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
+    needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -68,7 +68,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.7.0-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmfx-dev-1.35.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.26-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
@@ -1145,52 +1145,7 @@ jobs:
         file: libjpeg-dev/*.zst
         tag: dev
         overwrite: true
-        file_glob: true 
-        
-  libmfx:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autotools git      
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20221104_13.0.0_x64-ucrt-${{ env.random_hash }}
-    - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libmfx-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libmfx*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libmfx-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+        file_glob: true         
 
   libmodplug:
     runs-on: windows-2022
@@ -2291,7 +2246,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.7.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmfx-dev-1.35.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.26-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
