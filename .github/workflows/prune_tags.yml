@@ -1,0 +1,26 @@
+name: Pruning tags
+on:
+  schedule:
+    - cron: '0 12 * * MON'
+# Run monthly, at 00:00 on the 1st day of month.
+  workflow_dispatch:
+
+jobs:
+  del_tags:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+      with:
+        token: ${{ secrets.BOT }}
+    - name: Pruning tags
+      run: |
+        # Keep latest 30 tags/releases
+          git fetch --tags
+          tag_list=($(git tag | sort -r))
+          old=${tag_list[@]:30}
+          for tag in ${old[@]}; do
+            id=$(curl -u shinchiro:$GH_TOKEN $CURL_RETRIES -s -X GET -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/tags/$tag | jq -r '.id')
+            curl -u shinchiro:$GH_TOKEN $CURL_RETRIES -s -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/$id
+            git tag -d $tag
+          done
+          git push --tags --prune https://shinchiro:$GH_TOKEN@github.com/shinchiro/mpv-winbuild-cmake
