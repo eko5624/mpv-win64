@@ -30,7 +30,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-e8850bc.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-aa3d982.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
