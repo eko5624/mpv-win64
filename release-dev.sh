@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 github_repository=eko5624/mpv-win64
 
