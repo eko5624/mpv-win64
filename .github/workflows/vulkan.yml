@@ -37,6 +37,9 @@ jobs:
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
 
     - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
         chmod +x release-dev.sh
