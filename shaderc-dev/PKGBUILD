@@ -30,7 +30,7 @@ build() {
     -DSHADERC_SKIP_SPVC=ON \
     -DSHADERC_SKIP_INSTALL=ON \
     -DSHADERC_SKIP_EXAMPLES=ON
-  $MAKE
+  $CMAKE --build .
 }
 
 package() {
