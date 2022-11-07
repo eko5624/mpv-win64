@@ -130,6 +130,7 @@ jobs:
 
     - name: Get current timestamp      
       id: timestamp
+      shell: bash
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
     - name: Setup Packages      
       shell: msys2 {0}
