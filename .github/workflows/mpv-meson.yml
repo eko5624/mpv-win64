@@ -129,7 +129,7 @@ jobs:
         key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
 
     - name: Get current timestamp      
-      shell: bash
+      id: timestamp
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
     - name: Setup Packages      
       shell: msys2 {0}
