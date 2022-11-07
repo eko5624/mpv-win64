@@ -25,7 +25,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -118,7 +118,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -177,7 +177,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -239,7 +239,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -365,7 +365,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20220915-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.34.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220922-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20220809-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
@@ -451,7 +451,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
