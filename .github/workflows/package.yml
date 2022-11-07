@@ -53,6 +53,7 @@ jobs:
           core.exportVariable('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
       id: timestamp
+      shell: bash
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT     
     - name: Setup Packages      
       shell: msys2 {0}
