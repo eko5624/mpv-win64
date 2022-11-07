@@ -1,13 +1,13 @@
 #!/bin/bash
 set -x
 
-github_repository=eko5624/mpv-win64
+github_repository="eko5624/mpv-win64"
 
 # Delete assets
 asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${github_repository}/releases/tags/dev \
-  | jq -r '.assets[] | select(.name | startswith("$1")) | .id') 
+  | jq -r --arg name "$1" '.assets[] | select(.name | startswith($name)) | .id') 
   
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X DELETE \
