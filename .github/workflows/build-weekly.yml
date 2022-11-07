@@ -355,7 +355,7 @@ jobs:
           })
           core.exportVariable('dlp_tag', String(release.data.tag_name)) 
     - name: Get current timestamp      
-      shell: bash
+      id: timestamp
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT     
     - name: Setup Packages      
       shell: msys2 {0}
