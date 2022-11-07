@@ -6,7 +6,7 @@ pkgdesc='FFmpeg version of headers required to interface with Nvidias codec APIs
 arch=('x86_64')
 url="http://ffmpeg.org/"
 license=('MIT')
-source=("git+https://github.com/FFmpeg/nv-codec-headers#tag=n$pkgver")
+source=("git+https://github.com/FFmpeg/nv-codec-headers")
 md5sums=('SKIP')
 
 build() {
