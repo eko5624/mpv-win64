@@ -31,13 +31,11 @@ jobs:
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-1800a0d.7z D:\msys64\opt\ffmpeg\*
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: git*.7z
-        tag: ${{ env.short_date }}
-        release_name: ${{ env.short_date }}
-        body: Bump to mpv-player/mpv@2e5d0d6
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-package.sh
+        ./release-dev.sh
