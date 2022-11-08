@@ -30,7 +30,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-09eaa76.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-1800a0d.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: eko5624/upload-release-action@v2
       with:
@@ -38,6 +38,6 @@ jobs:
         file: git*.7z
         tag: ${{ env.short_date }}
         release_name: ${{ env.short_date }}
-        body: Bump to mpv-player/mpv@2590651
+        body: Bump to mpv-player/mpv@2e5d0d6
         overwrite: true
         file_glob: true
