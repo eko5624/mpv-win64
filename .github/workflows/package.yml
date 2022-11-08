@@ -38,4 +38,4 @@ jobs:
       shell: bash 
       run: |
         chmod +x ./release-package.sh
-        ./release-dev.sh
+        ./release-package.sh
