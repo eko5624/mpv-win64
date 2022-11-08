@@ -11,10 +11,10 @@ jobs:
       with:
         location: D:\
         install: base-devel
-
-    - name: Get current date
+    - name: Prepare
+      run: git config --global core.autocrlf input
       shell: bash
-      run: echo "short_date=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+    - uses: actions/checkout@main
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
