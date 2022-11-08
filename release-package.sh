@@ -3,21 +3,18 @@ set -x
 
 # Release assets
 curl -OL https://github.com/eko5624/nginx-nosni/raw/master/old.json
-date=$(date +%Y-%m-%d)
 short_sha=$(cat old.json | jq -r '."mpv-git"')
-release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+date=$(date +%Y-%m-%d)
+
+curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
-  -d @- <<END \
-  | jq -r '.id'
-{ 
-  "tag_name": "$date",
-  "name":"$date",
-  "body": "Bump to mpv-player/mpv@$short_sha"
-}
-END
-)
+  -d '{"tag_name": "${date}","name": "${date}","body": "Bump to mpv-player/mpv@${short_sha}"}'
+  
+release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${date} | jq -r '.id')
   
 for f in git*.7z; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
