@@ -1,4 +1,11 @@
-        ./release-package.sh
+name: vapoursynth
+
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+  
+jobs:
   vapoursynth:
     runs-on: windows-2022
     steps:
