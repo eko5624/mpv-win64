@@ -27,6 +27,7 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh ./release-dev.sh
+        chmod +x ./release-latest.sh 
+        chmod +x ./release-dev.sh
         ./release-latest.sh vapoursynth-shared vapoursynth
         ./release-dev.sh vapoursynth-shared-dev vapoursynth
