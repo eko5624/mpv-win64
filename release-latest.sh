@@ -5,7 +5,7 @@ set -x
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
-  | jq -r -b '.assets[] | select(.name | startswith("'"$1"'")) | .id'))  
+  | jq -r --binary '.assets[] | select(.name | startswith("'"$1"'")) | .id'))  
 
 for id in ${asset_id[@]}; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
