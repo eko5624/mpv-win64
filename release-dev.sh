@@ -2,30 +2,35 @@
 set -x
 
 # Delete assets
-asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+asset_id=$(curl \
   -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev \
   | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id') 
   
-curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+curl \
   -X DELETE \
   -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$asset_id    
 
 # Release assets
-curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+curl \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
   -d '{"tag_name": "dev"}'
   
-release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+release_id=$(curl \
   -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev | jq -r '.id')
   
 for f in $2/*.zst; do 
-  curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+  curl \
     -X POST -H "Accept: application/vnd.github.v3+json" \
+    -H "Authorization: token ${GITHUB_TOKEN}" \
     -H "Content-Type: $(file -b --mime-type $f)" \
     https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/$release_id/assets?name=$(basename $f) --data-binary @$f; 
 done
