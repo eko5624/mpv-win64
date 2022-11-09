@@ -5,14 +5,13 @@ set -x
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
-  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id'))
-ids=${asset_id[@]}  
+  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id'))  
 
-for f in ${ids[@]}; do
+for id in ${asset_id[@].rstrip}; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -X DELETE \
     -H "Accept: application/vnd.github.v3+json" \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$f;
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$id;
 done 
 
 # Release assets
