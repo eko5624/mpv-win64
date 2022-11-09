@@ -2,12 +2,12 @@
 set -x
 
 # Delete assets
-asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
-  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id' | tr -d '\r"'))  
+  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id' | sed 's/\r//g')
 
-for id in ${asset_id[@]}; do
+for id in $asset_id; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -X DELETE \
     -H "Accept: application/vnd.github.v3+json" \
