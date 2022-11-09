@@ -110,7 +110,7 @@ jobs:
           })
           core.exportVariable('sha', String(commit.data.sha)) 
     - name: Add MPV_SHORT_SHA env 
-      run: echo "MPV_SHORT_SHA=`echo ${{ steps.mpv_sha.outputs.sha }}| cut -c1-7`" >> $GITHUB_ENV         
+      run: echo "MPV_SHORT_SHA=`echo ${{ env.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
     
     - name: Get mpv latest release
@@ -124,7 +124,7 @@ jobs:
           })
           core.exportVariable('version', String(release.data.tag_name)) 
     - name: Add MPV_VERSION env 
-      run: echo "MPV_VERSION=`echo ${{ steps.version.outputs.version }}| cut -c2-`" >> $GITHUB_ENV         
+      run: echo "MPV_VERSION=`echo ${{ env.version }}| cut -c2-`" >> $GITHUB_ENV         
       shell: bash
 
     - name: Get yt-dlp latest release
@@ -154,7 +154,7 @@ jobs:
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ steps.dlp_tag.outputs.dlp_tag }}/yt-dlp.exe
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
