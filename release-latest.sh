@@ -11,7 +11,7 @@ for f in ${asset_id[@]}; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -X DELETE \
     -H "Accept: application/vnd.github.v3+json" \
-    https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$f
+    https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$f;
 done 
 
 # Release assets
