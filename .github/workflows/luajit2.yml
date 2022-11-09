@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20220922_12.2.1_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
