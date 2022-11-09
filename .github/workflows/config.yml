@@ -26,4 +26,4 @@ jobs:
       shell: bash 
       run: |
         chmod +x ./release-latest.sh
-        ./release-dev.latest config mpv-config
+        ./release-latest.sh config mpv-config
