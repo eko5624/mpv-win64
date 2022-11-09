@@ -7,7 +7,7 @@ asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
   | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id'))  
 
-for id in ${asset_id[@].rstrip}; do
+for id in ${asset_id[@].rstrip('\r')}; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -X DELETE \
     -H "Accept: application/vnd.github.v3+json" \
