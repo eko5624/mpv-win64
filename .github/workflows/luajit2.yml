@@ -32,25 +32,12 @@ jobs:
       shell: msys2 {0}
       run: |      
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Release 
+
+    - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 999 --retry-delay 5"
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        id=$(curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
-          -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/releases \
-          -d @- <<END | jq -r '.id'
-        {
-          "tag_name": "dev",
-        }
-        END
-        )
-        for f in luajit2/*.zst; do
-          curl -u eko5624:$GH_TOKEN $CURL_RETRIES \
-            -X POST -H "Accept: application/vnd.github.v3+json" \
-            -H "Content-Type: $(file -b --mime-type $f)" \
-            https://uploads.github.com/repos/${{ github.repository }}/releases/$id/assets?name=$(basename $f) --data-binary @$f; 
-        done
+        chmod +x ./release-dev.sh
+        ./release-dev.sh luajit2-dev luajit2
