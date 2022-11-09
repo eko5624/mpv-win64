@@ -1,11 +1,4 @@
-name: vapoursynth
-
-on:
-  workflow_dispatch:
-  #schedule:
-  #- cron: '30 0 * * MON'
-  
-jobs:
+        ./release-package.sh
   vapoursynth:
     runs-on: windows-2022
     steps:
@@ -15,33 +8,18 @@ jobs:
         install: base-devel autotools     
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220823_12.2.1_x64-ucrt-${{ env.random_hash }}
+      shell: bash
+    - uses: actions/checkout@v3
     - name: Build
       shell: msys2 {0}
       run: |
-        cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG="pkg-config --static" makepkg 
-    - name: Delete Dev
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: vapoursynth-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload Dev
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
-        
+        cd vapoursynth; makepkg
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh ./release-dev.sh
+        ./release-latest.sh vapoursynth-shared vapoursynth
+        ./release-dev.sh vapoursynth-shared-dev vapoursynth
