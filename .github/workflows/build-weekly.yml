@@ -21,22 +21,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd mpv-config; makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: config*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mpv-config/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-dev.latest config mpv-config
 
   ffmpeg:
     needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
@@ -98,38 +90,15 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: ffmpeg-git*
-        fail-if-no-assets: false
-        fail-if-no-release: false    
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: ffmpeg-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false 
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ffmpeg/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true        
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ffmpeg/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh ./release-dev.sh
+        ./release-latest.sh ffmpeg-git ffmpeg
+        ./release-dev.sh ffmpeg-dev ffmpeg
 
   amf:
     runs-on: windows-2022
@@ -159,22 +128,14 @@ jobs:
       shell: msys2 {0}
       run: |                  
         cd amf-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: amf*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: amf-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
     runs-on: windows-2022
@@ -204,22 +165,14 @@ jobs:
       shell: msys2 {0}
       run: |                  
         cd angle-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: angle*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: angle-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh angle-headers-dev angle-dev
 
   avisynth:
     runs-on: windows-2022
@@ -251,22 +204,14 @@ jobs:
       shell: msys2 {0}
       run: |                  
         cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: avisynth*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: avisynth-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh avisynth-dev avisynth-dev
 
   dav1d:
     runs-on: windows-2022
@@ -306,22 +251,14 @@ jobs:
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: dav1d*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: dav1d-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
     runs-on: windows-2022
@@ -351,22 +288,14 @@ jobs:
       shell: msys2 {0}
       run: |      
         cd davs2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete      
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: davs2*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: davs2-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
     runs-on: windows-2022
@@ -396,22 +325,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: ffnvcodec*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ffnvcodec-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
@@ -454,22 +375,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
         cd freetype2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: freetype2*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: freetype2-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
     runs-on: windows-2022
@@ -508,22 +421,14 @@ jobs:
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: fribidi*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: fribidi-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh fribidi-dev fribidi-dev
 
   gmp:
     runs-on: windows-2022
@@ -553,22 +458,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd gmp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: gmp*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: gmp-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true        
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh gmp-dev gmp-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
@@ -611,22 +508,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.38-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
         cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: harfbuzz*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: harfbuzz-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
   lame:
     runs-on: windows-2022
@@ -656,22 +545,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: lame*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: lame-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     runs-on: windows-2022
@@ -701,22 +582,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: lcms2*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: lcms2-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
@@ -754,22 +627,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
         cd libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete      
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libass*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libass-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libass-dev libass-dev
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
@@ -805,22 +670,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
         cd libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libbluray*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libbluray-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
     runs-on: windows-2022
@@ -850,22 +707,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd libbs2b-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libbs2b*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libbs2b-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
     runs-on: windows-2022
@@ -895,22 +744,14 @@ jobs:
       shell: msys2 {0}
       run: | 
         cd libcaca-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libcaca*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libcaca-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libcaca-dev libcaca-dev              
 
   libdvdcss:
     runs-on: windows-2022
@@ -940,22 +781,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libdvdcss*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libdvdcss-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
@@ -989,22 +822,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libdvdnav*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libdvdnav-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
@@ -1037,22 +862,52 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libdvdread-dev libdvdread-dev         
+
+  libjpeg:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libdvdread*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
+        location: D:\
+        install: base-devel autotools mingw-w64-x86_64-cmake git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - name: Get HASH ENV
+      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
+      shell: bash    
+    - uses: actions/cache@main
+      id: cache
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libdvdread-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true          
+        path: D:\ucrt64
+        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+      shell: msys2 {0}
+      run: |
+        cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     runs-on: windows-2022
@@ -1084,68 +939,14 @@ jobs:
       shell: msys2 {0}
       run: |            
         cd libjxl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libjxl*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libjxl-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
-
-  libjpeg:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake git      
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20220809_12.1.1_x64-ucrt-${{ env.random_hash }}
-    - name: Build
+    - name: Release
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-      shell: msys2 {0}
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
       run: |
-        cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libjpeg*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libjpeg-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true         
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
     runs-on: windows-2022
@@ -1175,22 +976,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd libmodplug-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libmodplug*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libmodplug-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
@@ -1224,22 +1017,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
         cd libmysofa-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libmysofa*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libmysofa-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                           
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: windows-2022
@@ -1269,22 +1054,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libogg*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libogg-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
@@ -1320,22 +1097,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
         cd libopenmpt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libopenmpt*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libopenmpt-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [lcms2, vulkan, shaderc, spirv-cross]
@@ -1380,22 +1149,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
         cd libplacebo-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libplacebo-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libplacebo-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
@@ -1428,22 +1189,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
         cd libpng-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libpng*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libpng-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true        
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
     runs-on: windows-2022
@@ -1473,22 +1226,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libsdl2*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libsdl2-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
@@ -1535,22 +1280,15 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
         cd libsixel; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libsixel*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libsixel/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libsixel-dev libsixel 
+
   libsoxr:
     runs-on: windows-2022
     steps:
@@ -1580,22 +1318,14 @@ jobs:
       shell: msys2 {0}
       run: |                  
         cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libsoxr*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libsoxr-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                    
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: windows-2022
@@ -1625,22 +1355,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libspeex-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libspeex*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libspeex-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [mbedtls]
@@ -1674,22 +1396,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.2.1-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
         cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libsrt*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libsrt-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [mbedtls, zlib]
@@ -1725,22 +1439,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.2.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
         cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libssh*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libssh-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: windows-2022
@@ -1770,22 +1476,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libudfread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libudfread*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libudfread-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: windows-2022
@@ -1815,22 +1513,14 @@ jobs:
       shell: msys2 {0}
       run: |      
         cd libunibreak-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete      
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libunibreak*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libunibreak-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                               
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libvorbis_aotuv:
     needs: [libogg]
@@ -1863,22 +1553,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libvorbis_aotuv*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libvorbis_aotuv-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: windows-2022
@@ -1909,22 +1591,14 @@ jobs:
       shell: msys2 {0}
       run: |                
         cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libvpl*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libvpl-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true          
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
     runs-on: windows-2022
@@ -1954,22 +1628,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libvpx-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libvpx*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libvpx-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true   
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: windows-2022
@@ -1999,22 +1665,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libwebp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libwebp*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libwebp-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     runs-on: windows-2022
@@ -2044,22 +1702,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd libxml2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libxml2*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libxml2-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true          
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
     runs-on: windows-2022
@@ -2089,22 +1739,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libxvid-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libxvid*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libxvid-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true   
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libxvid-dev libxvid-dev  
         
   libzimg:
     runs-on: windows-2022
@@ -2134,22 +1776,14 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd libzimg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libzimg*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libzimg-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libzimg-dev libzimg-dev  
 
   luajit2:
     runs-on: windows-2022
@@ -2179,22 +1813,14 @@ jobs:
       shell: msys2 {0}
       run: |       
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: luajit2-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: luajit2/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh luajit2-dev luajit2 
 
   mbedtls:
     runs-on: windows-2022
@@ -2235,22 +1861,14 @@ jobs:
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: mbedtls*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mbedtls-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true               
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh mbedtls-dev mbedtls-dev               
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
@@ -2345,22 +1963,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: mpv-git*
-        fail-if-no-assets: false
-        fail-if-no-release: false    
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mpv/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-latest.sh mpv-git mpv
 
   mujs:
     runs-on: windows-2022
@@ -2390,22 +2000,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd mujs; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: mujs*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mujs/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: windows-2022
@@ -2437,22 +2039,14 @@ jobs:
       shell: msys2 {0}
       run: |            
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: openal-soft*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: openal-soft-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true                
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   opus:
     runs-on: windows-2022
@@ -2482,22 +2076,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: opus*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: opus-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
@@ -2507,10 +2093,10 @@ jobs:
       with:
         location: D:\
         install: base-devel
-
-    - name: Get current timestamp      
+    - name: Prepare
+      run: git config --global core.autocrlf input
       shell: bash
-      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_ENV   
+    - uses: actions/checkout@main  
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
@@ -2527,16 +2113,14 @@ jobs:
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-86157f5.7z D:\msys64\opt\ffmpeg\*
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: git*.7z
-        tag: ${{ env.date }}
-        release_name: ${{ env.date }}
-        body: Bump to mpv-player/mpv@2e5d0d6
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-package.sh
+        ./release-package.sh
 
   rubberband:
     runs-on: windows-2022
@@ -2575,22 +2159,14 @@ jobs:
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: rubberband*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: rubberband/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true         
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh rubberband-dev rubberband        
   
   shaderc:
     runs-on: windows-2022
@@ -2622,22 +2198,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: shaderc*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: shaderc-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: windows-2022
@@ -2668,22 +2236,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: spirv-cross*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: spirv-cross-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
     runs-on: windows-2022
@@ -2715,22 +2275,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd uavs3d-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: uavs3d*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: uavs3d-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true        
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: windows-2022
@@ -2754,22 +2306,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG="pkg-config --static" makepkg 
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: vapoursynth-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: windows-2022
@@ -2800,22 +2344,14 @@ jobs:
       shell: msys2 {0}
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: vulkan-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vulkan-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh vulkan-dev vulkan-dev
         
   zlib:
     runs-on: windows-2022
@@ -2845,19 +2381,11 @@ jobs:
       shell: msys2 {0}
       run: |        
         cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: zlib*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: zlib-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh zlib-dev zlib-dev
