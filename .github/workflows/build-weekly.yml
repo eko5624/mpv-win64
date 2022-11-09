@@ -66,38 +66,15 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: ffmpeg-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false    
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: ffmpeg-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false 
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ffmpeg/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true        
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ffmpeg/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true 
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh ./release-dev.sh
+        ./release-latest.sh ffmpeg-shared ffmpeg
+        ./release-dev.sh ffmpeg-shared-dev ffmpeg
 
   libplacebo:
     needs: [vulkan]
@@ -142,22 +119,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
         cd libplacebo-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: libplacebo-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: libplacebo-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libplacebo-shared-dev libplacebo-dev
         
   luajit2:
     runs-on: windows-2022
@@ -187,38 +156,15 @@ jobs:
       shell: msys2 {0}
       run: |      
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: luajit2-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: luajit2-shared-dev*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: luajit2/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: luajit2/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true      
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh ./release-dev.sh
+        ./release-latest.sh luajit2-shared luajit2
+        ./release-dev.sh luajit2-shared-dev luajit2    
 
   mpv:
     needs: [ffmpeg, libplacebo, luajit2, vulkan]
@@ -289,22 +235,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: mpv-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false    
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mpv/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-latest.sh mpv-shared mpv
 
   package:
     needs: [mpv]
@@ -354,10 +292,7 @@ jobs:
             repo: 'yt-dlp'
           })
           core.exportVariable('dlp_tag', String(release.data.tag_name)) 
-    - name: Get current timestamp      
-      id: timestamp
-      shell: bash
-      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT     
+    
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
@@ -375,16 +310,14 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: shared*.7z
-        tag: ${{ steps.timestamp.outputs.date }}
-        release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-package.sh
+        ./release-package.sh
 
   vapoursynth:
     runs-on: windows-2022
@@ -401,38 +334,15 @@ jobs:
       shell: msys2 {0}
       run: |
         cd vapoursynth; makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: vapoursynth-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: vapoursynth-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
-    - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vapoursynth/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh ./release-dev.sh
+        ./release-latest.sh vapoursynth-shared vapoursynth
+        ./release-dev.sh vapoursynth-shared-dev vapoursynth
 
   vulkan:
     runs-on: windows-2022
@@ -463,19 +373,11 @@ jobs:
       shell: msys2 {0}
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: vulkan-shared*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: vulkan-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh vulkan-shared-dev vulkan-dev
