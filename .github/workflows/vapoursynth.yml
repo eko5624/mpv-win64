@@ -35,4 +35,5 @@ jobs:
       shell: bash 
       run: |
         chmod +x ./release-dev.sh
+        ./release-dev.sh vapoursynth-dev vapoursynth
         
