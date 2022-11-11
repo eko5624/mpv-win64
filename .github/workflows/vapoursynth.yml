@@ -29,5 +29,5 @@ jobs:
       run: |
         chmod +x ./release-latest.sh 
         chmod +x ./release-dev.sh
-        ./release-latest.sh vapoursynth-shared vapoursynth
+        ./release-latest.sh "vapoursynth-shared" "vapoursynth"
         ./release-dev.sh "vapoursynth-shared-dev" "vapoursynth"
