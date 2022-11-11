@@ -3,7 +3,7 @@ set -x
 
 # Release assets
 curl -OL https://github.com/eko5624/nginx-nosni/raw/master/old.json
-short_sha=$(cat old.json | jq -r '."mpv"')
+short_sha=$(cat old.json | jq -r '."mpv-git"')
 date=$(date +%Y-%m-%d)
 
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
