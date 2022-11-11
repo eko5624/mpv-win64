@@ -3,11 +3,11 @@ set -x
 set -eo pipefail
 
 # Delete assets
-asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
-  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id' | sed 's/\r//g'))
-echo "${asset_id[@]}"
+  | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id')
+echo "$asset_id
 
 for id in "${asset_id[@]}"; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
