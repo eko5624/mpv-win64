@@ -7,7 +7,6 @@ asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
 | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id' | tr -d '\r'))
-echo $asset_id
 
 for id in "${asset_id[@]}"; do
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
@@ -16,13 +15,7 @@ for id in "${asset_id[@]}"; do
     https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$id;
 done    
 
-# Release assets
-curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
-  -X POST \
-  -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
-  -d '{"tag_name": "latest"}'
-  
+# Release assets  
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest | jq -r '.id')
