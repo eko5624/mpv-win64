@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+set -eo pipefail
 
 # Delete assets
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
