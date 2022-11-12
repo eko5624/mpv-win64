@@ -143,11 +143,11 @@ jobs:
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.10.04/yt-dlp.exe
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.11.11/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-8e59e72.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-c124981.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
       uses: svenstaro/upload-release-action@v2
       with:
@@ -155,6 +155,6 @@ jobs:
         file: git*.7z
         tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@ac39661
+        body: Bump to mpv-player/mpv@c56d981
         overwrite: true
         file_glob: true
