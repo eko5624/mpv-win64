@@ -178,6 +178,7 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
+    
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
