@@ -252,6 +252,10 @@ jobs:
       with:
         location: D:\
         install: base-devel
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout
 
     - name: Get mpv latest commit sha
       id: get_sha
