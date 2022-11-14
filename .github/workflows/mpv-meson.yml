@@ -100,7 +100,6 @@ jobs:
 
     - name: Get mpv latest commit sha
       id: get_sha
-      shell: bash
       uses: actions/github-script@v6
       with:
         script: |
