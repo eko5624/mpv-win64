@@ -28,7 +28,7 @@ jobs:
       shell: bash 
       run: |
         chmod +x ./release-latest.sh
-        ./release-dev.latest config mpv-config
+        ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
