@@ -255,7 +255,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout
+    - uses: actions/checkout@main
 
     - name: Get mpv latest commit sha
       id: get_sha
