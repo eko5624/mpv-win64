@@ -6,9 +6,10 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=sdk-$pkgver")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
+        "git+https://github.com/KhronosGroup/Vulkan-Loader"
+        "https://github.com/shinchiro/mpv-winbuild-cmake/blob/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
@@ -23,13 +24,10 @@ build() {
   $CMAKE --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-  # skip rc info and use vulkan-1.dll from your graphic driver
-  sed -i '/Git/d' CMakeLists.txt
-  sed -i '/loader.rc/d' loader/CMakeLists.txt
-  sed -i 's/vulkan-1.def/vulkan-1.def)/' loader/CMakeLists.txt
+  patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF
+    -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF 
   $CMAKE --build .
 }
 
