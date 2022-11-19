@@ -6,9 +6,8 @@ arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=sdk-$pkgver"
-        "vulkan-sdk-0001-cross-compile-static-linking-hacks.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=sdk-$pkgver")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
