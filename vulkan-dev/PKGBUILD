@@ -7,8 +7,9 @@ arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader")
-md5sums=('SKIP' 'SKIP')
+        "git+https://github.com/KhronosGroup/Vulkan-Loader"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
@@ -23,36 +24,7 @@ build() {
   $CMAKE --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-  sed -i '/string/d' loader/unknown_ext_chain_gas_x86.S
-  sed -i '/.data/d' loader/unknown_ext_chain_gas_x86.S
-  sed -i '/Git/d' CMakeLists.txt
-  sed -i '/corrupted stack/{n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
-  sed -i '/GAS assembler/{n;n;n;n;n;n;n;n;n;s/.*/if(MSVC)/}' loader/CMakeLists.txt
-  sed -i 's/APPLE AND BUILD_STATIC_LOADER/MINGW/' loader/CMakeLists.txt
-  sed -i 's/@VULKAN_LIB_SUFFIX@/ -lshlwapi -lcfgmgr32/' loader/vulkan.pc.in
-  sed -i '/private/d' loader/vulkan.pc.in
-  sed -i '/DllMain/,+15d' loader/loader_windows.c
-  sed -i '/DllMain/,+4d' loader/vk_loader_platform.h
-  echo "
-extern LOADER_PLATFORM_THREAD_ONCE_DEFINITION(once_init);
-#define CM_GETIDLIST_FILTER_PRESENT (0x00000100)
-#define CM_GETIDLIST_FILTER_CLASS (0x00000200)
-  " >> loader/loader.h
-  echo "
-#define LOADER_PLATFORM_THREAD_ONCE_DECLARATION(var) INIT_ONCE var = INIT_ONCE_STATIC_INIT;
-#define LOADER_PLATFORM_THREAD_ONCE_DEFINITION(var) INIT_ONCE var;
-#define LOADER_PLATFORM_THREAD_ONCE(ctl, func) loader_platform_thread_once_fn(ctl, func)
-static BOOL CALLBACK InitFuncWrapper(PINIT_ONCE InitOnce, PVOID Parameter, PVOID *Context) {
-    void (*func)(void) = (void (*)(void))Parameter;
-    func();
-    return TRUE;
-}
-static void loader_platform_thread_once_fn(void *ctl, void (*func)(void)) {
-    assert(func != NULL);
-    assert(ctl != NULL);
-    InitOnceExecuteOnce((PINIT_ONCE)ctl, InitFuncWrapper, (void *)func, NULL);
-}
-  " >> loader/vk_loader_platform.h  
+  patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF 
