@@ -34,7 +34,7 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
-        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-test
 
     - name: Release
       env:
