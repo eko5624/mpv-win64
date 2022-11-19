@@ -149,7 +149,7 @@ jobs:
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-00409d8.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
