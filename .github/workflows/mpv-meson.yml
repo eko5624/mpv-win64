@@ -97,7 +97,7 @@ jobs:
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Delete
-      uses: mknejp/delete-release-assets@v1
+      uses: eko5624/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -105,7 +105,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mpv/*pkg*.xz
