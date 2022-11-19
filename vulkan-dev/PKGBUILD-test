@@ -38,11 +38,6 @@ extern LOADER_PLATFORM_THREAD_ONCE_DEFINITION(once_init);
 #define CM_GETIDLIST_FILTER_CLASS (0x00000200)
   " >> loader/loader.h  
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
-  $CMAKE --install . --prefix=$srcdir/opt
-
-  cd $srcdir/Vulkan-Loader
-  rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DENABLE_WERROR=OFF 
   $CMAKE --build .
