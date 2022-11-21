@@ -1,7 +1,7 @@
 # MPV Player Win64 Build
-![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static?label=build&labelColor=323940&logo=github)
-![release](https://img.shields.io/github/release-date/eko5624/mpv-win64?label=release&labelColor=323940&logo=github)
-![stars](https://img.shields.io/github/stars/eko5624/mpv-win64?style=social)
+![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static?label=build&logo=github)
+![release](https://img.shields.io/github/release-date/eko5624/mpv-win64?label=release&logo=github)
+![stars](https://img.shields.io/github/stars/eko5624/mpv-win64?style=flat)
 ## Installation
 Grab and extract the All-in-One archive from <https://github.com/eko5624/mpv-win64/releases>  
 You can also manually install these pacman-based packages if you are using MSYS2  
