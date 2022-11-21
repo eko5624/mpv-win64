@@ -7,7 +7,7 @@ on:
 
 jobs:
   del_tags:
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
     env:
       GH_TOKEN: ${{ github.token }}
       CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"   
@@ -16,11 +16,12 @@ jobs:
       with:
         token: ${{ secrets.BOT }}
     - name: Pruning tags
+      shell: bash
       run: |
         # Keep latest 30 tags/releases
         git checkout shared
         git fetch --tags
-        tag_list=($(git tag -l '20*' | sort -r ))
+        tag_list=($(git tag -l '2022*' | sort -r ))
         echo "$tag_list"
         old=${tag_list[@]:30}
         echo "${old[@]}"
