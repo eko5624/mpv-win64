@@ -2,6 +2,8 @@
 ![toolchain](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/toolchain/static?label=toolchain&labelColor=323940&logo=github)
 ![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static?label=build&labelColor=323940&logo=github)
 ![downloads](https://img.shields.io/github/downloads/eko5624/mpv-win64/total?color=brightgreen&label=downloads&labelColor=323940&logo=github)
+![release](https://img.shields.io/github/release-date/eko5624/mpv-win64?label=release&logo=github)
+![stars](https://img.shields.io/github/stars/eko5624/mpv-win64?style=social)
 ## Installation
 Grab and extract the All-in-One archive from <https://github.com/eko5624/mpv-win64/releases>  
 You can also manually install these pacman-based packages if you are using MSYS2  
