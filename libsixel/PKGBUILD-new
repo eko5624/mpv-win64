@@ -6,13 +6,11 @@ arch=('x86_64')
 url="https://github.com/libsixel/libsixel"
 makedepends=('libjpeg-dev' 'libpng-dev' 'zlib-dev')
 license=('BSD')
-source=("git+https://github.com/libsixel/libsixel"
-        "libsixel-0001-fix-non-unix-builds.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/libsixel/libsixel")
+md5sums=('SKIP')
 
 build() { 
-  cd $srcdir/libsixel
-  patch -p1 -i $srcdir/libsixel-0001-fix-non-unix-builds.patch   
+  cd $srcdir/libsixel   
   meson build --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
     -Djpeg=enabled \
     -Dpng=enabled \
