@@ -26,7 +26,9 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 ### Lua Plugin
 - [Autoload](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua)
 - [Play List Manager](https://github.com/jonniek/mpv-playlistmanager)
-- [MPV Thumbnail](https://github.com/TheAMM/mpv_thumbnail_script)
+- [MPV Thumbnail](https://github.com/po5/thumbfast)
+- [uosc](https://github.com/tomasklaen/uosc)
+- [SmartCopyPaste](https://github.com/Eisa01/mpv-scripts/blob/master/script-opts/SmartCopyPaste_II.conf)
 ### VapourSynth Plugin
 - [SVP](https://www.svp-team.com) proprietary motion interpolation solution to produce high frame rate video
 - [MVTools](https://github.com/dubhater/vapoursynth-mvtools) another motion interpolation plugin and it was open source
