@@ -21,7 +21,7 @@ jobs:
         # Keep latest 30 tags/releases
         git fetch --tags
         tag_list=($(git tag -l '2022*' | sort -r))
-        echo "$tag_list"
+        echo "${tag_list[@]}"
         old=${tag_list[@]:30}
         echo "${old[@]}"
         for tag in ${old[@]}; do
