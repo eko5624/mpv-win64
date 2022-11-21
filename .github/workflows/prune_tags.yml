@@ -18,6 +18,7 @@ jobs:
     - name: Pruning tags
       run: |
         # Keep latest 30 tags/releases
+        git checkout static
         git fetch --tags
         tag_list=($(git tag -l '20*' | sort -r ))
         echo "$tag_list"
