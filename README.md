@@ -1,6 +1,6 @@
 # MPV Player Win64 Build
-![toolchain](https://github.com/eko5624/mpv-win64/workflows/toolchain/badge.svg)
-![build](https://github.com/eko5624/mpv-win64/workflows/build-weekly/badge.svg)
+![toolchain](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/toolchain/static)
+![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static)
 ![downloads](https://img.shields.io/github/downloads/eko5624/mpv-win64/total.svg?style=flat&labelColor=323940&color=brightgreen&logo=github)
 ## Installation
 Grab and extract the All-in-One archive from <https://github.com/eko5624/mpv-win64/releases>  
