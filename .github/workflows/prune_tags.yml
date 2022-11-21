@@ -7,7 +7,7 @@ on:
 
 jobs:
   del_tags:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
       CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"   
