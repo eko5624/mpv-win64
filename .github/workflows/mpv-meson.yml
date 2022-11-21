@@ -96,22 +96,15 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Delete
-      uses: eko5624/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: mpv*
-        fail-if-no-assets: false
-        fail-if-no-release: false    
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mpv/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true    
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-latest.sh mpv-git mpv
+        ./release-latest.sh libmpv-git    
    
   package:
     needs: [mpv]
@@ -148,13 +141,11 @@ jobs:
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-ba209e3.7z D:\msys64\opt\ffmpeg\*
-    - name: Upload
-      uses: eko5624/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: git*.7z
-        tag: ${{ steps.timestamp.outputs.date }}
-        release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@a62f71b
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-package.sh
+        ./release-package.sh
