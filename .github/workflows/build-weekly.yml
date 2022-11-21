@@ -1963,15 +1963,22 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
-    - name: Release
+    - name: Delete old libmpv
       env:
         GH_TOKEN: ${{ github.token }}
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
         chmod +x ./release-latest.sh
-        ./release-latest.sh mpv-git mpv
-        ./release-latest.sh libmpv-git mpv
+        ./release-latest.sh libmpv-git
+    - name: Release mpv and libmpv
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-latest.sh mpv-git mpv 
 
   mujs:
     runs-on: windows-2022
