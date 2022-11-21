@@ -1,5 +1,5 @@
 # MPV Player Win64 Build
-![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static?label=build&logo=github)
+![build](https://img.shields.io/github/workflow/status/eko5624/mpv-win64/build-weekly/static?label=build-weekly&logo=github)
 ![release](https://img.shields.io/github/release-date/eko5624/mpv-win64?label=release&logo=github)
 ![stars](https://img.shields.io/github/stars/eko5624/mpv-win64?style=social)
 ## Installation
