@@ -104,7 +104,6 @@ jobs:
       shell: bash 
       run: |
         chmod +x ./release-latest.sh
-        ./release-latest.sh mpv-git mpv
         ./release-latest.sh libmpv-git
 
     - name: Release mpv and libmpv
