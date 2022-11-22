@@ -56,7 +56,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.38-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.24.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
@@ -148,7 +148,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-ba209e3.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-c0c0a5f.7z D:\msys64\opt\ffmpeg\*
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
