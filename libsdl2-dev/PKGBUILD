@@ -5,21 +5,23 @@ pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graph
 arch=('x86_64')
 url="https://github.com/libsdl-org/SDL/"
 license=('ZLIB')
-source=("git+https://github.com/libsdl-org/SDL.git"
-        "libsdl2-0001-mingw-header.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/libsdl-org/SDL.git)
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/SDL
-  # patch -p1 -i $srcdir/libsdl2-0001-mingw-header.patch
-  # rm -rf build && mkdir build && cd build
-  # ../autogen.sh
-  ./configure prefix=/opt --disable-shared --enable-static
-  make
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DSDL_SHARED=OFF \
+    -DSDL_STATIC=ON \
+    -DSDL_STATIC_PIC=ON \
+    -DSDL_TEST=OFF
+  $MAKE
 }
 
 package() {
   cd $srcdir/SDL
-  make DESTDIR=$pkgdir install
-  # rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+  $MAKE DESTDIR=$pkgdir install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }  
