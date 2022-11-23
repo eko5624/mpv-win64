@@ -35,7 +35,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/mpv
   # temporaray gcc13 hack
-  sed -i 's/MPV_CONFDIR/mpv_home/' osdep/path-unix.c  
+  # sed -i 's/MPV_CONFDIR/mpv_home/' osdep/path-unix.c  
   LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
   meson setup build --buildtype=release -Dprefix=/opt \
     -Dlibmpv=true \
