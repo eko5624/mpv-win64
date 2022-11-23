@@ -15,11 +15,11 @@ jobs:
         install: base-devel autotools   
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@v3     
+    - uses: actions/checkout@main     
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
-    - uses: actions/cache@v3
+    - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
@@ -35,21 +35,11 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg      
-    - name: Delete
-      if: steps.cache.outputs.cache-hit != 'true'
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        assets: mcfgthread*
-        fail-if-no-assets: false
-        fail-if-no-release: false        
-    - name: Upload
-      if: steps.cache.outputs.cache-hit != 'true'
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: mcfgthread/*pkg*.xz
-        tag: latest
-        overwrite: true
-        file_glob: true
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-latest.sh
+        ./release-latest.sh mcfgthread mcfgthread
