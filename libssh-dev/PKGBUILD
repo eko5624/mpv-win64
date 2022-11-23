@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://www.libssh.org/"
 makedepends=('zlib-dev' 'mbedtls-dev')
 license=('LGPL')
-options=('staticlibs' 'strip')
+options=('strip')
 source=("git+https://gitlab.com/libssh/libssh-mirror.git")
 md5sums=('SKIP')
 
