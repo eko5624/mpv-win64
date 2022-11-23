@@ -12,14 +12,14 @@ md5sums=('SKIP' 'SKIP')
 build() {
   cd $srcdir/SDL
   # patch -p1 -i $srcdir/libsdl2-0001-mingw-header.patch
-  rm -rf build && mkdir build && cd build
-  ../autogen.sh
-  ../configure prefix=/opt --disable-shared --enable-static
+  # rm -rf build && mkdir build && cd build
+  # ../autogen.sh
+  ./configure prefix=/opt --disable-shared --enable-static
   make
 }
 
 package() {
-  cd $srcdir/SDL/build
+  cd $srcdir/SDL
   make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+  # rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }  
