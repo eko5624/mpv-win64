@@ -11,7 +11,7 @@ md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/SDL
-  patch -p1 -i $srcdir/libsdl2-0001-mingw-header.patch
+  # patch -p1 -i $srcdir/libsdl2-0001-mingw-header.patch
   rm -rf build && mkdir build && cd build
   ../autogen.sh
   ../configure prefix=/opt --disable-shared --enable-static
