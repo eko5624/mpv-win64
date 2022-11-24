@@ -5,7 +5,7 @@ pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graph
 arch=('x86_64')
 url="https://github.com/libsdl-org/SDL/"
 license=('ZLIB')
-source=("git+https://github.com/libsdl-org/SDL.git")
+source=("git+https://github.com/libsdl-org/SDL.git#branch=SDL2")
 md5sums=('SKIP')
 
 build() {
