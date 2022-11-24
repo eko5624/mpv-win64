@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='VBI capture and decoding library'
 arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
-license=('BSD')
+license=('LGPL')
 source=("git+https://github.com/zapping-vbi/zvbi.git")
 md5sums=('SKIP')
 
