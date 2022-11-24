@@ -15,12 +15,12 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zvbi
-  autoreconf -ivf
-  patch -p1 -i $srcdir/zvbi-fix-clang-support.patch
-  patch -p1 -i $srcdir/zvbi-fix-static-linking.patch
-  patch -p1 -i $srcdir/zvbi-ioctl.patch
-  patch -p1 -i $srcdir/zvbi-ssize_max.patch
-  patch -p1 -i $srcdir/zvbi-win32.patch
+  for patch in $srcdir/*.patch; do
+      echo "Applying $patch"
+      patch -p1 < "$patch"
+  done
+
+  autoreconf -i
   ./configure --prefix=/opt --disable-shared --enable-static 
   make
 }
