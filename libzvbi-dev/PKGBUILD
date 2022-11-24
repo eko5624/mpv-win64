@@ -15,6 +15,7 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zvbi
+  sed -i 's/configure.in/configure.ac/g' $srcdir/zvbi-fix-static-linking.patch
   for patch in $srcdir/*.patch; do
       echo "Applying $patch"
       patch -p1 < "$patch"
