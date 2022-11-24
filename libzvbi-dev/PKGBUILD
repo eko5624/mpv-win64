@@ -5,7 +5,7 @@ pkgdesc='VBI capture and decoding library'
 arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
 license=('LGPL')
-source=("git+https://github.com/zapping-vbi/zvbi.git"
+source=("git+https://github.com/zapping-vbi/zvbi.git#tag=$pkgver"
         "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-clang-support.patch"
         "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-static-linking.patch"
         "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-ioctl.patch"
@@ -21,7 +21,7 @@ build() {
       patch -p1 < "$patch"
   done
 
-  autoreconf -ivf
+  # autoreconf -ivf
   ./configure --prefix=/opt --disable-shared --enable-static 
   make
 }
