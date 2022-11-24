@@ -21,7 +21,7 @@ build() {
       patch -p1 < "$patch"
   done
 
-  autoreconf -i
+  autoreconf -ivf
   ./configure --prefix=/opt --disable-shared --enable-static 
   make
 }
