@@ -2120,7 +2120,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-98f6c59.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-c8e9cc8.7z D:\msys64\opt\ffmpeg\*
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
