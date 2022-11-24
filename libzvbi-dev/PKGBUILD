@@ -5,11 +5,21 @@ pkgdesc='VBI capture and decoding library'
 arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
 license=('LGPL')
-source=("git+https://github.com/zapping-vbi/zvbi.git")
-md5sums=('SKIP')
+source=("git+https://github.com/zapping-vbi/zvbi.git"
+        "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-clang-support.patch"
+        "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-static-linking.patch"
+        "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-ioctl.patch"
+        "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-ssize_max.patch"
+        "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-win32.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zvbi
+  patch -p1 -i $srcdir/zvbi-fix-clang-support.patch
+  patch -p1 -i $srcdir/zvbi-fix-static-linking.patch
+  patch -p1 -i $srcdir/zvbi-ioctl.patch
+  patch -p1 -i $srcdir/zvbi-ssize_max.patch
+  patch -p1 -i $srcdir/zvbi-win32.patch
   ./autogen.sh --prefix=/opt --disable-shared --enable-static 
   make
 }
