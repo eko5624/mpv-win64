@@ -11,10 +11,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/zvbi
   ./autogen.sh
-  ./configure \
-    --prefix=/opt \
-    --disable-shared \
-    --enable-static 
+  ./configure prefix=/opt --disable-shared --enable-static 
   make
 }
 
