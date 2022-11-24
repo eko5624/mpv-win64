@@ -36,8 +36,6 @@ build() {
   cd $srcdir/mpv
   python bootstrap.py 
   CC=gcc.exe LDFLAGS="$LDFLAGS -lstdc++ -lssp" python waf configure --prefix=/opt \
-    SDL_CFLAGS='-I/opt/include' \
-    SDL_LIBS='-L/opt/lib -lSDL3' \
     --disable-debug-build \
     --disable-iconv \
     --enable-libmpv-shared \
