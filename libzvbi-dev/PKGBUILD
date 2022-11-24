@@ -22,7 +22,8 @@ build() {
   done
 
   # autoreconf -ivf
-  ./autogen.sh --prefix=/opt --disable-shared --enable-static 
+  ./autogen-maint.sh
+  ./configure --prefix=/opt --disable-shared --enable-static 
   make
 }
 
