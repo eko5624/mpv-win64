@@ -39,8 +39,5 @@ build() {
 package() {
   cd $srcdir/zvbi
   DESTDIR=$pkgdir make -C src install
-  DESTDIR=$pkgdir make SUBDIRS=. install
-  #mkdir -p $pkgdir/opt/lib/pkgconfig
-  #cp ../../*.pc $pkgdir/opt/lib/pkgconfig
-  #sed -i 's/-lzvbi *$/-lzvbi -lpng -lpthread/' $pkgdir/opt/lib/pkgconfig/zvbi.pc  
+  DESTDIR=$pkgdir make SUBDIRS=. install  
 }
