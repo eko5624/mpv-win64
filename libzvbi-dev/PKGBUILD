@@ -42,5 +42,5 @@ package() {
   DESTDIR=$pkgdir make SUBDIRS=. install
   #mkdir -p $pkgdir/opt/lib/pkgconfig
   #cp ../../*.pc $pkgdir/opt/lib/pkgconfig
-  #sed -i 's/_ver/$pkgver/' $pkgdir/opt/lib/pkgconfig/zvbi.pc  
+  #sed -i 's/-lzvbi *$/-lzvbi -lpng -lpthread/' $pkgdir/opt/lib/pkgconfig/zvbi.pc  
 }
