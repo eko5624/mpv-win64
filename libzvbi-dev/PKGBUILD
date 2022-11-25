@@ -22,9 +22,10 @@ build() {
       echo "Applying $patch"
       patch -p1 < "$patch"
   done
-
-  # autoreconf -ivf
-  ./autogen.sh --prefix=/opt \
+  export CFLAGS=-DPTW32_STATIC_LIB # seems needed XXX
+  autoreconf -ivf
+  export LIBS="-lpng -liconv -lpthread"
+  ./configure --prefix=/opt \
     --disable-shared \
     --enable-static \
     --with-pic \
@@ -33,11 +34,11 @@ build() {
     --disable-dvb \
     --disable-bktr \
     --disable-nls \
-    --disable-proxy 
+    --disable-proxy
   make -C src
 }
 
 package() {
-  cd $srcdir/zvbi
+  cd $srcdir/zvbi/src
   make DESTDIR=$pkgdir install
 }
