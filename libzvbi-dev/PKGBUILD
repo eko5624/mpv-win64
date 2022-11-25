@@ -1,15 +1,11 @@
 pkgname=libzvbi-dev
 pkgver=0.2.37
 pkgrel=1
-pkgdesc='VBI capture and decoding library'
+pkgdesc='A VBI decoding library which can be used by FFmpeg to decode DVB teletext pages and DVB teletext subtitles'
 arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
 makedepends=('libiconv-dev' 'libpng-dev')
-license=(BSD
-  GPL2
-  LGPL2.1
-  MIT
-)
+license=('BSD' 'GPL2' 'LGPL2.1' 'MIT')
 source=("git+https://github.com/zapping-vbi/zvbi.git"
         "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-clang-support.patch"
         "https://raw.githubusercontent.com/videolan/vlc/master/contrib/src/zvbi/zvbi-fix-static-linking.patch"
