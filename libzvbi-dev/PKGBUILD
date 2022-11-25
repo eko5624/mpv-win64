@@ -23,6 +23,7 @@ build() {
 
   # autoreconf -ivf
   ./autogen.sh
+  ./configure --help
   ./configure --prefix=/opt \
     --disable-shared \
     --enable-static \
