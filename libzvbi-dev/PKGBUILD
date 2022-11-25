@@ -34,7 +34,7 @@ build() {
     --disable-bktr \
     --disable-nls \
     --disable-proxy 
-  make
+  make -C src
 }
 
 package() {
