@@ -1,9 +1,0 @@
-libdir=/opt/lib
-includedir=/opt/include
-
-Name: ZVBI
-Description: VBI Capturing and Decoding Library
-URL: https://github.com/zapping-vbi/zvbi/
-Version: _ver
-Libs: -L${libdir} -lzvbi -lpng -lpthread
-Cflags: -I${includedir}
