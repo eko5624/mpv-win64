@@ -17,6 +17,7 @@ makedepends=("nasm"
              "libmysofa-dev"
              "libogg-dev"
              "libopenmpt-dev"
+             "libpng-dev"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
@@ -29,6 +30,7 @@ makedepends=("nasm"
              "libxml2-dev"
              "libxvid-dev"
              "libzimg-dev"
+             "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
              "ffnvcodec-dev"
@@ -76,6 +78,7 @@ package_ffmpeg-dev() {
     --enable-libxml2 \
     --enable-libxvid \
     --enable-libzimg \
+    --enable-libzvbi \
     --enable-libopus \
     --enable-mbedtls \
     --disable-decoder=libvorbis \
