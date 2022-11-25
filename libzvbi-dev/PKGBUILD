@@ -23,7 +23,17 @@ build() {
 
   # autoreconf -ivf
   ./autogen.sh
-  ./configure --prefix=/opt --disable-shared --enable-static 
+  ./configure --prefix=/opt \
+    --disable-shared \
+    --enable-static \
+    --with-pic \
+    --without-doxygen \
+    --without-iconv \
+    --without-libpng \
+    --disable-dvb \
+    --disable-bktr \
+    --disable-nls \
+    --disable-proxy
   make
 }
 
