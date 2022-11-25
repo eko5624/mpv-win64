@@ -31,8 +31,8 @@ build() {
     --without-doxygen \
     --without-libpng \
     --without-x \
-    --without-iconv \
     --without-libunicode \
+    --disable-iconv \
     --disable-dvb \
     --disable-bktr \
     --disable-nls \
