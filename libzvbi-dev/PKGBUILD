@@ -23,12 +23,13 @@ build() {
   done
   autoreconf -ivf
   ./configure --prefix=/opt \
+    HAVE_LIBPNG=0 \
+    HAVE_ICONV=0 \
     --disable-shared \
     --enable-static \
     --with-pic \
     --without-doxygen \
     --disable-iconv \
-    --without-png \
     --without-x \
     --disable-dvb \
     --disable-bktr \
