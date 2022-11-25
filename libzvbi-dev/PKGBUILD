@@ -27,7 +27,7 @@ build() {
     --enable-static \
     --with-pic \
     --without-doxygen \
-    --without-iconv \
+    --disable-iconv \
     --without-png \
     --without-x \
     --disable-dvb \
