@@ -24,8 +24,7 @@ build() {
   done
 
   # autoreconf -ivf
-  ./autogen.sh
-  ./configure --prefix=/opt \
+  ./autogen.sh --prefix=/opt \
     --disable-shared \
     --enable-static \
     --with-pic \
