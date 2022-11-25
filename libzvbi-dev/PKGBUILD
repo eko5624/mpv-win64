@@ -22,12 +22,13 @@ build() {
       patch -p1 < "$patch"
   done
   autoreconf -ivf
-  #export LIBS="-lpng -liconv -lpthread"
   ./configure --prefix=/opt \
     --disable-shared \
     --enable-static \
     --with-pic \
     --without-doxygen \
+    --without-iconv \
+    --without-png \
     --without-x \
     --disable-dvb \
     --disable-bktr \
