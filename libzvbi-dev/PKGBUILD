@@ -22,7 +22,6 @@ build() {
       patch -p1 < "$patch"
   done
   autoreconf -ivf
-  #export LIBS="-lpng -liconv -lpthread"
   ./configure --prefix=/opt \
     --disable-shared \
     --enable-static \
