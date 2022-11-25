@@ -28,12 +28,13 @@ build() {
     --enable-static \
     --with-pic \
     --without-doxygen \
-    --without-libiconv \
     --without-libpng \
+    --without-x \
+    --disable-iconv \
     --disable-dvb \
     --disable-bktr \
     --disable-nls \
-    --disable-proxy
+    --disable-proxy 
   make
 }
 
