@@ -29,6 +29,7 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        jq: /mingw64/bin/jq
       shell: msys2 {0}
       run: |
         ./download-dev.sh iconv libpng
