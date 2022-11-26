@@ -25,10 +25,12 @@ makedepends=("nasm"
              "libssh-dev"
              "libvorbis_aotuv-dev"
              "libvpx-dev"
+             "libvpl-dev",
              "libwebp-dev"
              "libxml2-dev"
              "libxvid-dev"
              "libzimg-dev"
+             "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
              "ffnvcodec-dev"
@@ -76,6 +78,7 @@ package_ffmpeg-shared-dev() {
     --enable-libxml2 \
     --enable-libxvid \
     --enable-libzimg \
+    --enable-libzvbi \
     --enable-libopus \
     --enable-mbedtls \
     --disable-decoder=libvorbis \
