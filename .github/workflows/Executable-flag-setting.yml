@@ -21,7 +21,7 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Executable flag setting
       run: |
-        git checkout main
+        git checkout static
         chmod +x *.sh 
         git commit *.sh -m "Executable-flag-setting"
         git push  
