@@ -67,6 +67,7 @@ for p in [
   'libxml2',
   'libxvid',
   'libzimg',
+  'libzvbi',
   'mbedtls',
   'openal-soft',
   'shaderc',
