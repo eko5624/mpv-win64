@@ -39,4 +39,5 @@ package() {
   cd $srcdir/zvbi
   DESTDIR=$pkgdir make -C src install
   DESTDIR=$pkgdir make SUBDIRS=. install
+  #sed -i "s/\/[^ ]*libiconv.a/-liconv/" $pkgdir/opt/lib/pkgconfig
 }
