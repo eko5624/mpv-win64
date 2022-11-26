@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd $srcdir/mpv-config
-  printf "%s" "$(git rev-parse --short HEAD)"
+  printf "%s.%s" "$pkgver" "$(git rev-parse --short HEAD)"
 }
 
 package() {
