@@ -9,6 +9,11 @@ source=(git+"https://github.com/eko5624/mpv-config")
 options=(!strip)
 md5sums=('SKIP')
 
+pkgver() {
+  cd $srcdir/mpv-config
+  printf "%s" "$(git rev-parse --short HEAD)"
+}
+
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/mpv
