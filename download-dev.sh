@@ -1,7 +1,6 @@
 #!/bin/bash
 set -x
 
-# Delete assets
 download_url=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev \
