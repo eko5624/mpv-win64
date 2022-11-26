@@ -17,7 +17,7 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
 pkgs = {} 
 pkgs['libsixel'] = x['libsixel']
 pkgs['mpv'] = x['mpv']
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus', 'vulkan']:
+for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus', 'spirv-cross', 'vulkan']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
@@ -71,7 +71,6 @@ for p in [
   'mbedtls',
   'openal-soft',
   'shaderc',
-  'spirv-cross',
   'uavs3d',
   'zlib',
   ]:
