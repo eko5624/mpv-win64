@@ -31,7 +31,7 @@ jobs:
         ./release-latest.sh config mpv-config
 
   ffmpeg:
-    needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
+    needs: [amf, avisynth, dav1d, davs2, gmp, lame, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -85,6 +85,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.37-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
@@ -1819,7 +1820,14 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
         cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Delete
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        chmod +x ./release-dev.sh
+        ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     runs-on: windows-2022
