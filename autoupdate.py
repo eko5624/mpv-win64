@@ -19,7 +19,7 @@ pkgs['libsixel'] = x['libsixel']
 pkgs['mpv'] = x['mpv']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus']:
   pkgs['%s-dev' % p] = x[p]
-for p in pkgs:
+for p in ['mpv']:
   with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
@@ -76,7 +76,7 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in pkgs:
+for p in ['ffmpeg', 'libplacebo-dev', 'luajit2', 'vapoursynth', 'vulkan-dev']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
