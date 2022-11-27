@@ -1930,68 +1930,69 @@ jobs:
         python-version: '3.11'
     - name: Build
       run: |
+        ./install-dev.sh \
+          amf-headers-dev \
+          angle-headers-dev \
+          avisynth-dev \
+          dav1d-dev \
+          davs2-dev \
+          ffmpeg-dev \
+          ffnvcodec-dev \
+          freetype2-dev \
+          fribidi-dev \
+          gmp-dev \
+          harfbuzz-dev \
+          mbedtls-dev \
+          lame-dev \
+          lcms2-dev \
+          libass-dev \
+          libbs2b-dev \
+          libbluray-dev \
+          libcaca-dev \
+          libdvdcss-dev \
+          libdvdread-dev \
+          libdvdnav-dev \
+          libiconv-dev \
+          libmodplug-dev \
+          libmysofa-dev \
+          libiconv-dev \
+          libjpeg-dev \
+          libjxl-dev \
+          libogg-dev \
+          libopenmpt-dev \
+          libplacebo-dev \
+          libpng-dev \
+          libsdl2-dev \
+          libsixel-dev \
+          libsoxr-dev \
+          libspeex-dev \
+          libsrt-dev \
+          libssh-dev \
+          libudfread-dev \
+          libunibreak-dev \
+          libvorbis_aotuv-dev \
+          libvpl-dev \
+          libvpx-dev \
+          libwebp-dev \
+          libxml2-dev \
+          libxvid-dev \
+          libzimg-dev \
+          libzvbi-dev \
+          luajit2-dev \
+          mujs-dev \
+          openal-soft-dev \
+          opus-dev \
+          rubberband-dev \
+          shaderc-dev \
+          spirv-cross-dev \
+          uavs3d-dev \
+          vapoursynth-dev \
+          vulkan-dev \
+          zlib-dev
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
-        pip install ninja      
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.7.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.26-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.26.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.4-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_0-1-x86_64.pkg.tar.zst               
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.2.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.10.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.37-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.22.2-1-x86_64.pkg.tar.zst       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20220915-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-60-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_12_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-5.3.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.16.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.14-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.231.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2022.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-2021.01.15-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-5.229.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
-        pacman -U *.zst --noconfirm
+        pip install ninja
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Delete old libmpv
       run: |
@@ -2046,6 +2047,8 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
+      MAKE: /mingw64/bin/mingw32-make
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -2068,8 +2071,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       run: |            
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
