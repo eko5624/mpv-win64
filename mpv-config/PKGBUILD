@@ -9,12 +9,6 @@ source=(git+"https://github.com/eko5624/mpv-config")
 options=(!strip)
 md5sums=('SKIP')
 
-build() {
-  cd $srcdir/mpv-config
-  short_sha=$(git rev-parse --short HEAD)
-  echo $commit_sha > SHORT_SHA
-}
-
 package() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/mpv
@@ -22,5 +16,4 @@ package() {
   mv portable_config $pkgdir/opt/mpv
   mv installer $pkgdir/opt/mpv
   mv d3dcompiler_43.dll $pkgdir/opt/mpv
-  mv SHORT_SHA $pkgdir/opt/mpv
 }
