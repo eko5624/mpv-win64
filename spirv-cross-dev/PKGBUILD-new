@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://github.com/KhronosGroup/SPIRV-Cross/"
 license=('Apache')
 source=("git+https://github.com/KhronosGroup/SPIRV-Cross"
-        "spirv-cross-0001-static-linking-hacks.patch")
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/spirv-cross-0001-static-linking-hacks.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() {
