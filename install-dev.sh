@@ -10,6 +10,5 @@ for url in "${download_url[@]}"; do
   curl -OL $url;
 done
 pacman -U *.zst --noconfirm
-cd "$2"; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
   
   
