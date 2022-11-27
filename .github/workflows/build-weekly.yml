@@ -2107,7 +2107,7 @@ jobs:
 
     -name: Get ffmpeg latest commit sha
      run: |
-       cd /c/msys64/opt/ffmpeg
+       cd /d/msys64/opt/ffmpeg
        echo "ffmpeg_sha=$(cat SHORT_SHA)" >> $GITHUB_ENV
      shell: bash
 
