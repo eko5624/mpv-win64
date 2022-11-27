@@ -6,7 +6,7 @@ for param in "$@"; do
     https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev \
     | jq -r '.assets[] | select(.name | startswith("'"$param"'")) | .browser_download_url'));
   for url in "${download_url[@]}"; do
-  curl -OL $url;
+    curl -OL $url;
   done
 done
 pacman -U *.zst --noconfirm
