@@ -22,7 +22,7 @@ build() {
 #define md5_finish srt_md5_finish
 
   " > rename_define
-  sed '/define md5_INCLUDED/{n;r} rename_define' srtcore/md5.h
+  sed '/define md5_INCLUDED/{n;r rename_define}' srtcore/md5.h
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SHARED=OFF \
