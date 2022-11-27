@@ -6,14 +6,14 @@ on:
 jobs:
   libzvbi:
     runs-on: windows-2022
-      env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"      
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-        MSYS2_PATH_TYPE: inherit
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"      
+      C_INCLUDE_PATH: /opt/include
+      CPLUS_INCLUDE_PATH: /opt/include
+      LIBRARY_PATH: /opt/lib
+      MSYSTEM: UCRT64
+      MSYS2_PATH_TYPE: inherit
     defaults:
       run:
         shell: msys2 {0}
