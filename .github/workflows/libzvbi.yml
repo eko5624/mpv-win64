@@ -31,9 +31,11 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        MSYS2_PATH_TYPE: inherit
+      shell: msys2 {0}
       run: |
-        bash -c './download-dev.sh iconv libpng'
-        msys2 {0} -c 'cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
+        ./download-dev.sh iconv libpng'
+        cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Upload
       shell: bash
       run: |
