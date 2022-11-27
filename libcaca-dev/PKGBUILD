@@ -13,6 +13,7 @@ md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libcaca
+  # wrong result with ucrt
   export ac_cv_func_sprintf_s=yes
   export ac_cv_func_vsnprintf_s=yes
   for patch in $srcdir/*.patch; do
