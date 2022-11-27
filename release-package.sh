@@ -1,9 +1,10 @@
 #!/bin/bash
 set -x  
 
+#Get mpv latest commit sha
+short_sha=$(cat /c/msys64/opt/mpv/SHORT_SHA)
+
 # Release assets
-curl -OL https://github.com/eko5624/nginx-nosni/raw/master/old.json
-short_sha=$(cat old.json | jq -r '."mpv-git"' | head -c 7)
 date=$(date +%Y-%m-%d)
 
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
