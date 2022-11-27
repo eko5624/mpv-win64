@@ -11,7 +11,9 @@ md5sums=('SKIP')
 
 build() { 
   cd $srcdir/srt
+  
   sed -i 's/SSL_INCLUDE_DIRS ${MBEDTLS_INCLUDE_DIR}/SSL_LIBRARIES  ${MBEDTLS_LIBRARIES}/' CMakeLists.txt
+  # To avoid the collision with libssh, lets rename the methods here with some defines. 
   echo "/*
  * To avoid the collision with libssh, lets
  * rename the methods here with some defines
@@ -20,8 +22,9 @@ build() {
 #define md5_append srt_md5_append
 #define md5_finish srt_md5_finish
 
-  " > rename_define
+  " > rename_define  
   sed '/define md5_INCLUDED/{n;r rename_define}' srtcore/md5.h
+  
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SHARED=OFF \
