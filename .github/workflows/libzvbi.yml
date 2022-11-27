@@ -32,7 +32,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       run: |
-        ./download-dev.sh iconv libpng
+        bash -c './download-dev.sh iconv libpng'
         msys2 {0} -c 'cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg'
     - name: Upload
       shell: bash
