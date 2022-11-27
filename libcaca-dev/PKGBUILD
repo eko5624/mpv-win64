@@ -20,7 +20,6 @@ build() {
       echo "Applying $patch"
       patch -p1 < "$patch"
   done
-  #./bootstrap
   autoreconf -fvi
   ./configure \
     --prefix=/opt \
