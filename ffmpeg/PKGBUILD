@@ -87,6 +87,10 @@ package_ffmpeg-dev() {
     --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
+  
+  # get latest commit sha
+  short_sha=$(git rev-parse --short HEAD)
+  echo $short_sha > SHORT_SHA
 }
 
 package_ffmpeg-git() {
@@ -98,4 +102,5 @@ package_ffmpeg-git() {
   strip $pkgdir/opt/bin/*
   mv $pkgdir/opt/bin/ffmpeg.exe $pkgdir/opt/ffmpeg
   rm -rf $pkgdir/opt/bin
+  mv SHORT_SHA $pkgdir/opt/ffmoeg
 }
