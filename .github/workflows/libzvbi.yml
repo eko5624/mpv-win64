@@ -34,8 +34,7 @@ jobs:
         MSYS2_PATH_TYPE: inherit
       shell: msys2 {0}
       run: |
-        ./install-dev.sh libiconv 
-        ./install-dev.sh libpng
+        ./install-dev.sh libiconv libpng
         cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Upload
       shell: bash
