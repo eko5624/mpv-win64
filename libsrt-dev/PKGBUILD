@@ -12,7 +12,7 @@ md5sums=('SKIP')
 build() { 
   cd $srcdir/srt
   sed -i 's/SSL_INCLUDE_DIRS ${MBEDTLS_INCLUDE_DIR}/SSL_LIBRARIES  ${MBEDTLS_LIBRARIES}/' CMakeLists.txt
-  echo "'
+  echo "
 +/*
 + * To avoid the collision with libssh, lets
 + * rename the methods here with some defines
