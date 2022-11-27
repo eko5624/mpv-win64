@@ -27,7 +27,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh
         ./release-latest.sh config mpv-config
 
   ffmpeg:
@@ -99,7 +98,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh ./release-dev.sh
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
 
@@ -137,7 +135,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
@@ -174,7 +171,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh angle-headers-dev angle-dev
 
   avisynth:
@@ -213,7 +209,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh avisynth-dev avisynth-dev
 
   dav1d:
@@ -223,7 +218,6 @@ jobs:
       with:
         location: D:\
         install: base-devel autotools nasm git    
-
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -260,7 +254,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
@@ -297,7 +290,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
@@ -334,7 +326,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
@@ -384,7 +375,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
@@ -430,7 +420,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh fribidi-dev fribidi-dev
 
   gmp:
@@ -467,7 +456,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh gmp-dev gmp-dev       
 
   harfbuzz:
@@ -517,7 +505,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
   lame:
@@ -554,7 +541,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
@@ -591,7 +577,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
@@ -636,7 +621,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libass-dev libass-dev
 
   libbluray:
@@ -679,7 +663,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
@@ -716,7 +699,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
@@ -753,7 +735,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libcaca-dev libcaca-dev              
 
   libdvdcss:
@@ -790,7 +771,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
@@ -831,7 +811,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
@@ -871,7 +850,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libdvdread-dev libdvdread-dev         
 
   libjpeg:
@@ -909,7 +887,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
@@ -948,7 +925,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
@@ -985,7 +961,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
@@ -1026,7 +1001,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
@@ -1063,7 +1037,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
@@ -1106,7 +1079,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
@@ -1158,7 +1130,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
@@ -1198,7 +1169,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
@@ -1235,7 +1205,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
@@ -1257,17 +1226,14 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
-    
+        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}   
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-
     - name: Install python dependencies
       run: |
-        pip install meson ninja        
-        
+        pip install meson ninja                
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1289,7 +1255,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
@@ -1327,7 +1292,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
@@ -1364,7 +1328,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
@@ -1405,7 +1368,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
@@ -1448,7 +1410,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
@@ -1485,7 +1446,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
@@ -1522,7 +1482,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libvorbis_aotuv:
@@ -1562,7 +1521,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
@@ -1600,7 +1558,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
@@ -1637,7 +1594,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
@@ -1674,7 +1630,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
@@ -1711,7 +1666,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
@@ -1748,7 +1702,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libxvid-dev libxvid-dev  
         
   libzimg:
@@ -1785,7 +1738,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
@@ -1826,7 +1778,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
@@ -1863,7 +1814,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh luajit2-dev luajit2 
 
   mbedtls:
@@ -1911,7 +1861,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh mbedtls-dev mbedtls-dev               
 
   mpv:
@@ -2023,7 +1972,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh
         ./release-latest.sh mpv-git mpv 
 
   mujs:
@@ -2060,7 +2008,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh mujs-dev mujs
 
   openal-soft:
@@ -2099,7 +2046,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   opus:
@@ -2136,7 +2082,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh opus-dev opus-dev
 
   package:
@@ -2173,7 +2118,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-package.sh
         ./release-package.sh
 
   rubberband:
@@ -2219,7 +2163,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh rubberband-dev rubberband        
   
   shaderc:
@@ -2258,7 +2201,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
@@ -2296,7 +2238,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
@@ -2335,7 +2276,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
@@ -2366,7 +2306,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
@@ -2404,7 +2343,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh vulkan-dev vulkan-dev
         
   zlib:
@@ -2441,5 +2379,4 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh zlib-dev zlib-dev
