@@ -47,6 +47,10 @@ build() {
     -Ddvdnav=enabled \
     -Degl-angle=enabled
   meson compile -C build
+  
+  # get latest commit sha
+  short_sha=$(git rev-parse --short HEAD)
+  echo $short_sha > SHORT_SHA
 }
 
 package_libmpv-git() {
@@ -70,4 +74,5 @@ package_mpv-git() {
   mv mpv.exe $pkgdir/opt/mpv
   mv generated/mpv.com $pkgdir/opt/mpv
   strip -s $pkgdir/opt/mpv/mpv.*
+  mv ../SHORT_SHA $pkgdir/opt/mpv
 }
