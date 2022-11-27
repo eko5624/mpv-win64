@@ -1854,6 +1854,8 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
+      MAKE: /mingw64/bin/mingw32-make
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -1883,8 +1885,6 @@ jobs:
       run: |
         pip install Jinja2
     - name: Build
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       run: |                         
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
@@ -1994,14 +1994,10 @@ jobs:
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Delete old libmpv
- 
       run: |
-
         ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
- 
       run: |
-
         ./release-latest.sh mpv-git mpv 
 
   mujs:
@@ -2142,11 +2138,7 @@ jobs:
     - uses: actions/checkout@main  
     - name: Setup Packages      
       run: |        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-5.1.2-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.35.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        pacman -U *.xz --noconfirm
+        ./install-latest.sh ffmpeg-git mpv-git libmpv-git config
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
@@ -2157,7 +2149,6 @@ jobs:
         7z a git-ffmpeg-${date}-1009396.7z D:\msys64\opt\ffmpeg\*
     - name: Release 
       run: |
-        chmod +x ./release-package.sh
         ./release-package.sh
 
   rubberband:
@@ -2215,6 +2206,8 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
+      MAKE: /mingw64/bin/mingw32-make
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -2237,8 +2230,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       run: |
         cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
@@ -2254,6 +2245,7 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -2276,7 +2268,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
-        CMAKE: /mingw64/bin/cmake
       run: |
         cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release 
@@ -2292,6 +2283,8 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
+      MAKE: /mingw64/bin/mingw32-make
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -2314,8 +2307,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       run: |
         cd uavs3d-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
     - name: Release 
@@ -2367,6 +2358,7 @@ jobs:
       CPLUS_INCLUDE_PATH: /opt/include
       LIBRARY_PATH: /opt/lib
       MSYSTEM: UCRT64
+      CMAKE: /mingw64/bin/cmake
       MSYS2_PATH_TYPE: inherit
     defaults:
       run:
@@ -2389,7 +2381,6 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
-        CMAKE: /mingw64/bin/cmake
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release 
