@@ -2,7 +2,7 @@
 set -x  
 
 #Get mpv latest commit sha
-short_sha=$(cat /c/msys64/opt/mpv/SHORT_SHA)
+short_sha=$(cat /d/msys64/opt/mpv/SHORT_SHA)
 
 # Release assets
 date=$(date +%Y-%m-%d)
