@@ -1226,7 +1226,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}   
+        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2118,7 +2118,7 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-2324b91.7z D:\msys64\opt\ffmpeg\*
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
