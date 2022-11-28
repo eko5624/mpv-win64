@@ -105,7 +105,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh
         ./release-latest.sh libmpv-git
 
     - name: Release mpv and libmpv
@@ -114,7 +113,6 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-latest.sh
         ./release-latest.sh mpv-git mpv    
    
   package:
@@ -163,5 +161,4 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-package.sh
         ./release-package.sh
