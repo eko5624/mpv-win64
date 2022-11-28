@@ -142,6 +142,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
+
+
+    - name: Get ffmpeg latest commit sha
+      run: |
+        echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
+      shell: bash
+
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
@@ -149,9 +156,9 @@ jobs:
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-2324b91.7z D:\msys64\opt\ffmpeg\*
+        7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: eko5624/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: git*.7z
