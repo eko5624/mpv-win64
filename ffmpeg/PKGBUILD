@@ -24,7 +24,7 @@ makedepends=("nasm"
              "libssh-dev"
              "libvorbis_aotuv-dev"
              "libvpx-dev"
-             "libvpl-dev",
+             "libvpl-dev"
              "libwebp-dev"
              "libxml2-dev"
              "libxvid-dev"
