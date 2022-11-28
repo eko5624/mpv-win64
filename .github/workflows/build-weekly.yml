@@ -2105,11 +2105,11 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
 
-   - name: Get ffmpeg latest commit sha
-     run: |
-       cd /d/msys64/opt/ffmpeg
-       echo "ffmpeg_sha=$(cat SHORT_SHA)" >> $GITHUB_ENV
-     shell: bash
+    - name: Get ffmpeg latest commit sha
+      run: |
+        cd /d/msys64/opt/ffmpeg
+        echo "ffmpeg_sha=$(cat SHORT_SHA)" >> $GITHUB_ENV
+      shell: bash
 
     - name: Zip Packages    
       run: | 
