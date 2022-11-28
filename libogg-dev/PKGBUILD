@@ -6,17 +6,18 @@ pkgdesc='Ogg bitstream and framing library'
 arch=('x86_64')
 url="https://www.xiph.org/ogg/"
 license=('BSD')
-source=("http://downloads.xiph.org/releases/ogg/libogg-$pkgver.tar.xz")
+source=("git+https://github.com/xiph/ogg.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libogg-$pkgver
+  cd $srcdir/ogg
+  ./autogen.sh
   ./configure prefix=/opt --disable-shared
   make
 }
 
 package() {
-  cd $srcdir/libogg-$pkgver
+  cd $srcdir/ogg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/share
 }
