@@ -79,6 +79,5 @@ jobs:
         file: shared*.7z
         tag: ${{ steps.timestamp.outputs.date }}
         release_name: ${{ steps.timestamp.outputs.date }}
-        body: Bump to mpv-player/mpv@${{ env.MPV_SHORT_SHA }}
         overwrite: true
         file_glob: true
