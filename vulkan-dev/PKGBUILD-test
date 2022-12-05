@@ -1,0 +1,31 @@
+pkgname=vulkan-shared-dev
+pkgver=1.3.231.1
+pkgrel=1
+pkgdesc='Vulkan Header and Loader'
+arch=('x86_64')
+url="https://www.khronos.org/vulkan/"
+license=('APACHE')
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
+        "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip")
+md5sums=('SKIP' 'SKIP')
+
+build() {
+
+  cd $srcdir/mingw-w64-master/mingw-w64-tools/gendef
+  ./configure --prefix=/opt
+  make install
+
+  cd $srcdir
+  cp `cygpath -S`/../SysWOW64/vulkan-1.dll ./
+  gendef vulkan-1.dll
+  dlltool -d vulkan-1.def -y libvulkan-1.a
+
+  cd $srcdir/Vulkan-Headers
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
+
+package() {
+  cd $srcdir/Vulkan-Headers/build
+  $CMAKE --install . --prefix=$pkgdir/opt
+  mv ../../libvulkan-1.a $pkgdir/opt/lib
+  mv ../../vulkan-1.pc $pkgdir/opt/lib/pkgconfig
