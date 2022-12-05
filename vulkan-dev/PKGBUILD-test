@@ -27,5 +27,6 @@ build() {
 package() {
   cd $srcdir/Vulkan-Headers/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  mv ../../libvulkan-1.a $pkgdir/opt/lib
-  mv ../../vulkan-1.pc $pkgdir/opt/lib/pkgconfig
+  mkdir -p $pkgdir/opt/lib/pkgconfig
+  cp ../../libvulkan-1.a $pkgdir/opt/lib
+  cp ../../vulkan-1.pc $pkgdir/opt/lib/pkgconfig
