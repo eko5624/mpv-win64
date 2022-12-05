@@ -5,6 +5,7 @@ includedir=${prefix}/include
 
 Name: Vulkan-Loader
 Description: Vulkan Loader
+Version: _ver
 Libs: -L${libdir} -lvulkan-1
 Libs.private:  -lcfgmgr32
 Cflags: -I${includedir}
