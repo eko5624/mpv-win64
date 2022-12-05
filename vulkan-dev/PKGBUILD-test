@@ -15,7 +15,7 @@ build() {
   make install
 
   cd $srcdir
-  cp `cygpath -S`/vulkan-1.dll ./
+  #cp `cygpath -S`/vulkan-1.dll ./
   gendef vulkan-1.dll
   dlltool -d vulkan-1.def -y libvulkan-1.a
 
