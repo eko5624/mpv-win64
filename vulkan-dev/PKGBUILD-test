@@ -16,8 +16,9 @@ build() {
 
   cd $srcdir
   # cp `cygpath -S`/vulkan-1.dll ./
-  gendef vulkan-1.dll
-  dlltool -l libvulkan-1.a -d vulkan-1.def -k -A 
+  gendef ../vulkan-1.dll
+  cat ../vulkan-1.def
+  dlltool -l libvulkan-1.a -d ../vulkan-1.def -k -A 
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
