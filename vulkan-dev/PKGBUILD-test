@@ -9,9 +9,6 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/mingw-w64-master/mingw-w64-tools/gendef
-  ./configure --prefix=/opt
-  make install
 
   cd $srcdir
   # copy C:\Windows\System32\vulkan-1.dll 
