@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=libbluray-dev
-pkgver=1.3.3
+pkgver=1.3.4
 pkgrel=1
 pkgdesc='Library to access Blu-Ray disks for video playback'
 arch=('x86_64')
