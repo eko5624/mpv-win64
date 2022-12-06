@@ -5,9 +5,8 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
-        "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/mingw-w64-master/mingw-w64-tools/gendef
@@ -18,7 +17,7 @@ build() {
   # copy C:\Windows\System32\vulkan-1.dll 
   # cp `cygpath -S`/vulkan-1.dll ./
   set -x
-  gendef ../vulkan-1.dll
+  /mingw64/bin/gendef ../vulkan-1.dll
   cat vulkan-1.def
   dlltool -l libvulkan-1.a -d vulkan-1.def -k -A 
 
