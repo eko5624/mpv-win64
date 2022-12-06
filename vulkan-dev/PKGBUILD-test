@@ -32,6 +32,6 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../../libvulkan-1.a $pkgdir/opt/lib
-  cp ../../vulkan-1.pc $pkgdir/opt/lib/pkgconfig
+  cp ../../../vulkan-1.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vulkan-1.pc
 }
