@@ -15,7 +15,9 @@ build() {
   make install
 
   cd $srcdir
+  # copy C:\Windows\System32\vulkan-1.dll 
   # cp `cygpath -S`/vulkan-1.dll ./
+  set -x
   gendef ../vulkan-1.dll
   cat ../vulkan-1.def
   dlltool -l libvulkan-1.a -d ../vulkan-1.def -k -A 
