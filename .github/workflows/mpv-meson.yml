@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221205_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
