@@ -61,7 +61,6 @@ build() {
     fi
   done
   
-  rm bin/gen*
   rm bin/*icu*
   rm bin/makeconv.exe
   rm bin/uconv.exe
