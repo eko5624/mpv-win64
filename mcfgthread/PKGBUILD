@@ -52,6 +52,15 @@ build() {
   rm lib/libexpat*
 
   rm bin/derb.exe
+  
+  for f in bin/gen*
+  do 
+    if [ "$f" != gendef.exe ]
+    then
+      rm bin/$f
+    fi
+  done
+  
   rm bin/gen*
   rm bin/*icu*
   rm bin/makeconv.exe
