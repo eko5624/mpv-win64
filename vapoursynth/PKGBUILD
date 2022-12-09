@@ -6,15 +6,8 @@ pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z"
-        "mingw-w64.zip"::"https://github.com/mirror/mingw-w64/archive/refs/heads/master.zip")
-md5sums=('SKIP' 'SKIP')
-
-build() {
-  cd $srcdir/mingw-w64-master/mingw-w64-tools/gendef
-  ./configure --prefix=/opt
-  make install
-}
+source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+md5sums=('SKIP')
 
 package() {
   cd $srcdir
