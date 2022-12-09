@@ -2308,7 +2308,7 @@ jobs:
     - name: Build
       shell: msys2 {0}
       run: |
-        cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG="pkg-config --static" makepkg 
+        cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
