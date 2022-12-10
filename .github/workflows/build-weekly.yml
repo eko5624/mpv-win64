@@ -2293,7 +2293,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools     
+        install: base-devel    
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
