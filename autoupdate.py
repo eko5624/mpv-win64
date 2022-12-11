@@ -77,7 +77,7 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in ['ffmpeg', 'libplacebo-dev', 'luajit2', 'vapoursynth', 'vulkan-dev']:
+for p in ['ffmpeg', 'luajit2', 'vapoursynth']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
@@ -91,11 +91,9 @@ pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
 pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
 pkgs['ffmpeg-shared'] = x['ffmpeg']
-pkgs['libplacebo-shared-dev'] = x['libplacebo']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
-pkgs['vulkan-shared-dev'] = x['vulkan']
 
 for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
