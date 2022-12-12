@@ -118,7 +118,7 @@ jobs:
         ./release-dev.sh luajit2-shared-dev luajit2    
 
   mpv:
-    needs: [ffmpeg, libplacebo, luajit2, vulkan]
+    needs: [ffmpeg, luajit2]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
