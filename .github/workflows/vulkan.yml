@@ -7,12 +7,12 @@ on:
     
 jobs:
   vulkan:
-    runs-on: windows-2022  
+    runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake mingw-w64-x86_64-tools-git git     
+        install: base-devel autotools mingw-w64-x86_64-cmake git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -34,13 +34,11 @@ jobs:
         CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
-        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-test
-
+        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        chmod +x ./release-dev.sh
         ./release-dev.sh vulkan-dev vulkan-dev
