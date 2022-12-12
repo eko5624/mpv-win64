@@ -75,5 +75,5 @@ package_mpv-git() {
   mv generated/mpv.com $pkgdir/opt/mpv
   strip -s $pkgdir/opt/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir/opt/mpv
-  mv $pkgdir/opt/bin/vulkan-1.dll $pkgdir/opt/mpv
+  mv /d/msys64/opt/bin/vulkan-1.dll $pkgdir/opt/mpv
 }
