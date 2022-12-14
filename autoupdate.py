@@ -81,6 +81,8 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
+pkgs['amf-headers'] = x['amf']
+pkgs['angle-headers'] =x['angle']
 pkgs['libsixel-dev'] = x['libsixel']
 pkgs['luajit-dev'] = x['LuaJIT']      
 pkgs['luajit2-dev'] = x['luajit2']
