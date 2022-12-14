@@ -5,7 +5,7 @@ pkgdesc='An implementation of the line breaking and word breaking algorithms'
 arch=('x86_64')
 url="https://github.com/adah1972/libunibreak/"
 license=('BSD')
-source=("git+https://github.com/adah1972/libunibreak.git#tag=libunibreak_5_0")
+source=("git+https://github.com/adah1972/libunibreak.git#tag=libunibreak_$pkgver")
 md5sums=('SKIP')
 
 build() {
