@@ -50,6 +50,7 @@ for p in [
   'libdvdread',
   'libiconv',
   'libudfread',
+  'libunibreak',
   'libjpeg',
   'libmfx',
   'libmodplug',
