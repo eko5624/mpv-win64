@@ -6,14 +6,7 @@ resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.js
 x = json.loads(resp.read().decode('utf-8'))
 
 mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
-with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
-  for l in f:
-    if (i:=l.find('key: mcf_')) > -1:
-      l = '%s%s-${{ env.random_hash }}\n' % (l[:i+9], mingw)
-    elif (i:=l.find('curl')) > -1:
-      l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
-    f.write(l)
-    
+   
 pkgs = {} 
 pkgs['libsixel'] = x['libsixel']
 pkgs['mpv'] = x['mpv']
@@ -98,7 +91,7 @@ pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
 
-for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
