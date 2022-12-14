@@ -1,5 +1,5 @@
 pkgname=libunibreak-dev
-pkgver=5_0
+pkgver=5_1
 pkgrel=1
 pkgdesc='An implementation of the line breaking and word breaking algorithms'
 arch=('x86_64')
