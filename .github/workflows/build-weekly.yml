@@ -1843,7 +1843,7 @@ jobs:
         python-version: '3.11'
     - name: Install python dependencies
       run: |
-        pip install Jinja2
+        pip install Jinja2 jsonschema
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
