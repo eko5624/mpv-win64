@@ -24,7 +24,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20221123_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20221205_13.0.0_x64-ucrt-${{ env.random_hash }}
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -36,7 +36,7 @@ jobs:
       shell: msys2 {0}
       run: |  
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst     
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.3.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
         cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
