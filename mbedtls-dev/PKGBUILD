@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='Portable cryptographic and SSL/TLS library, aka polarssl'
 arch=('x86_64')
 url="https://tls.mbed.org/"
+makedepends=("jinja2" "jsonschema")
 license=('Apache')
 source=("git+https://github.com/Mbed-TLS/mbedtls.git#tag=v$pkgver")
 md5sums=('SKIP')
