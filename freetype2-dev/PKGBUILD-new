@@ -9,6 +9,10 @@ license=('GPL')
 source=("git+https://github.com/freetype/freetype.git")
 md5sums=('SKIP')
 
+pkgver() {
+  cd $srcdir/mpv-config
+  printf "%s" "${pkgver//_/-}"
+
 build() {
   cd $srcdir/freetype
   meson build --prefix=/opt --buildtype=release --default-library=static \
