@@ -10,7 +10,6 @@ source=("git+https://github.com/freetype/freetype.git")
 md5sums=('SKIP')
 
 pkgver() {
-  cd $srcdir/mpv-config
   printf "%s" "${pkgver//_/-}"
 }  
 
