@@ -7,11 +7,7 @@ url="https://www.freetype.org/"
 makedepends=('libpng-dev' 'zlib-dev')
 license=('GPL')
 source=("git+https://github.com/freetype/freetype.git")
-md5sums=('SKIP')
-
-#pkgver() {
-#  printf "%s" "${pkgver//_/-}"
-#}  
+md5sums=('SKIP') 
 
 build() {
   cd $srcdir/freetype
