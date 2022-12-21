@@ -12,7 +12,7 @@ md5sums=('SKIP')
 pkgver() {
   cd $srcdir/mpv-config
   printf "%s" "${pkgver//_/-}"
-
+}  
 
 build() {
   cd $srcdir/freetype
