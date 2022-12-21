@@ -9,9 +9,9 @@ license=('GPL')
 source=("git+https://github.com/freetype/freetype.git")
 md5sums=('SKIP')
 
-pkgver() {
-  printf "%s" "${pkgver//_/-}"
-}  
+#pkgver() {
+#  printf "%s" "${pkgver//_/-}"
+#}  
 
 build() {
   cd $srcdir/freetype
