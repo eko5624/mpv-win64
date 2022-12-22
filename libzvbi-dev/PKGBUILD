@@ -1,5 +1,5 @@
 pkgname=libzvbi-dev
-pkgver=0.2.38
+pkgver=0.2.39
 pkgrel=1
 pkgdesc='A VBI decoding library which can be used by FFmpeg to decode DVB teletext pages and DVB teletext subtitles'
 arch=('x86_64')
