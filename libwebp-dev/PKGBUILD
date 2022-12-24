@@ -5,7 +5,7 @@ pkgdesc='A library to encode and decode images in WebP format'
 arch=('x86_64')
 url="https://chromium.googlesource.com/webm/libwebp/"
 license=('LGPL')
-source=("git+https://chromium.googlesource.com/webm/libwebp.git#tag=v$pkgver")
+source=("git+https://chromium.googlesource.com/webm/libwebp.git#tag=v${pkgver//_/-}")
 md5sums=('SKIP')
 
 build() {
