@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://www.freetype.org/"
 makedepends=('libpng-dev' 'zlib-dev')
 license=('GPL')
-source=("git+https://github.com/freetype/freetype.git")
+source=("git+https://github.com/freetype/freetype.git#tag=VER-${pkgver//_/-}")
 md5sums=('SKIP') 
 
 build() {
