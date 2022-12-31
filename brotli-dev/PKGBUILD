@@ -19,10 +19,4 @@ build() {
 package() {
   cd $srcdir/brotli/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  mv $pkgdir/opt/lib/libbrotlienc-static.a $pkgdir/opt/lib/libbrotlienc.a
-  mv $pkgdir/opt/lib/libbrotlidec-static.a $pkgdir/opt/lib/libbrotlidec.a
-  mv $pkgdir/opt/lib/libbrotlicommon-static.a $pkgdir/opt/lib/libbrotlicommon.a
-  rm $pkgdir/opt/lib/libbrotlicommon.dll.a 
-  rm $pkgdir/opt/lib/libbrotlidec.dll.a 
-  rm $pkgdir/opt/lib/libbrotlienc.dll.a
 }  
