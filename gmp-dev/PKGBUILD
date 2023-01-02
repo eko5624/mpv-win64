@@ -5,7 +5,7 @@ pkgdesc='A free library for arbitrary precision arithmetic'
 arch=('x86_64')
 url="https://gmplib.org/"
 license=('LGPL3' 'GPL')
-source=("https://gmplib.org/download/gmp/gmp-$pkgver.tar.xz")
+source=("http://gmplib.org/download/gmp/gmp-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
