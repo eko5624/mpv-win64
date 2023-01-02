@@ -5,9 +5,8 @@ pkgdesc='A free library for arbitrary precision arithmetic'
 arch=('x86_64')
 url="https://gmplib.org/"
 license=('LGPL3' 'GPL')
-source=("https://gmplib.org/download/gmp/gmp-$pkgver.tar.xz{,.sig}")
-md5sums=('SKIP' 'SKIP')
-validpgpkeys=('343C2FF0FBEE5EC2EDBEF399F3599FF828C67298') # Niels Möller <nisse@lysator.liu.se>"
+source=("https://ftp.gnu.org/gnu/gmp/gmp-$pkgver.tar.xz")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/gmp-$pkgver
