@@ -23,6 +23,7 @@ for p in ['ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
+pkgs['python-embed'] = x['Python']
 for p in [
   'amf',
   'angle',
@@ -71,7 +72,7 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in ['ffmpeg', 'luajit2', 'vapoursynth']:
+for p in ['ffmpeg', 'luajit2', 'python-embed', 'vapoursynth']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
