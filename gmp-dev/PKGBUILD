@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://gmplib.org/"
 license=('LGPL3' 'GPL')
 source=("http://gmplib.org/download/gmp/gmp-$pkgver.tar.xz{,.sig}")
-md5sums=('SKIP')
+md5sums=('SKIP' 'SKIP')
 validpgpkeys=('343C2FF0FBEE5EC2EDBEF399F3599FF828C67298') # Niels Möller <nisse@lysator.liu.se>"
 
 build() {
