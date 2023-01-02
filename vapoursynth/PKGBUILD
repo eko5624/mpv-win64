@@ -40,7 +40,7 @@ package_vapoursynth-shared-plugin-core-extra() {
 }
 
 package_vapoursynth-shared() {
-  optdepends=('python-embed>=3.9')
+  optdepends=('python-embed>=3.10')
   rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
   mv $srcdir $pkgdir/opt/bin
