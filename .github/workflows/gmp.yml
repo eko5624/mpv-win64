@@ -8,9 +8,6 @@ on:
 jobs:
   gmp:
     runs-on: windows-2022
-    env:
-      GH_TOKEN: ${{ github.token }}
-      CURL_RETRIES: "--insecure --connect-timeout 60 --retry 5 --retry-delay 5"
     steps:
     - uses: msys2/setup-msys2@v2
       with:
@@ -37,7 +34,10 @@ jobs:
       shell: msys2 {0}
       run: |
         cd gmp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    - name: Release     
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"    
       shell: bash 
       run: |
         ./release-dev.sh gmp-dev gmp-dev       
