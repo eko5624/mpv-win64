@@ -453,7 +453,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--insecure --connect-timeout 60 --retry 5 --retry-delay 5"     
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
         ./release-dev.sh gmp-dev gmp-dev       
