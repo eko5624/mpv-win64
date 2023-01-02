@@ -1,0 +1,22 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=python-embed
+pkgver=3.10.9
+pkgrel=1
+pkgdesc='Python mini embed package'
+arch=('x86_64')
+url="https://www.python.org/"
+license=('custom')
+source=("https://www.python.org/ftp/python/$pkgver/python-$pkgver-embed-amd64.zip")
+options=(!strip)
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir
+  rm *.txt vc* *.cat *embed*
+}
+
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir $pkgdir/opt
+  mv $srcdir $pkgdir/opt/bin
+}
