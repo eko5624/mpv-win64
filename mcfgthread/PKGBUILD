@@ -17,9 +17,10 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  mv lib/libmcfgthread.dll.a ./
-  rm -rf lib/*.dll.a
-  mv ./libmcfgthread.dll.a lib/
+  find ./lib -name "*.dll.a" ! -name "libmcfgthread.dll.a" -exec rm -rf {} +
+  #mv lib/libmcfgthread.dll.a ./
+  #rm -rf lib/*.dll.a
+  #mv ./libmcfgthread.dll.a lib/
   rm -rf include/pkg*
   rm -rf lib/pkg*
   rm -rf lib/cmake*
