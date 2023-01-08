@@ -53,7 +53,7 @@ build() {
 
   rm bin/derb.exe
   
-  find bin -name "gen*" ! -name  "gendef" -exec rm -f {}\;
+  find bin -name "gen*" ! -name  "gendef.exe" -exec rm -f {}\;
   #for f in bin/gen*; do
   #  if [ "$(basename $f)" != gendef.exe ]; then
   #    rm $f
