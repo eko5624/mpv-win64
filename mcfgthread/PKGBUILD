@@ -11,6 +11,7 @@ md5sums=()
 
 build() {
   cd /d/ucrt64
+  set -ex
   rm -rf ssl
   rm -rf share
   rm -rf sbin
