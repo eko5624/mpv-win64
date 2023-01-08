@@ -17,7 +17,7 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  find ./lib -type f \(-name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
+  find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
   rm -rf include/pkg*
   rm -rf lib/pkg*
   rm -rf lib/cmake*
@@ -52,7 +52,7 @@ build() {
 
   rm bin/derb.exe
   
-  find ./bin -type f \(-name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
+  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
   #for f in bin/gen*; do
   #  if [ "$(basename $f)" != gendef.exe ]; then
   #    rm $f
