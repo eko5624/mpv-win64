@@ -48,7 +48,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.6.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.26.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
