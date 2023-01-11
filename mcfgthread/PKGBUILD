@@ -22,6 +22,7 @@ build() {
   rm -rf lib/pkg*
   rm -rf lib/cmake*
 
+  #Remove gettext
   rm bin/autopoint
   rm bin/envsubst.exe
   rm bin/iconv.exe
@@ -35,22 +36,23 @@ build() {
   rm lib/libgettext*
   rm lib/libintl*
 
+  #Remove boost
   rm bin/b2.exe
   rm bin/bjam.exe
   rm bin/libboost*
   rm -rf include/boost
   rm lib/libboost*
 
+  #Remove bzip2
   rm bin/bunzip2.exe
   rm include/bzlib.h
   rm lib/libbz2*
 
+  #Remove expat
   rm bin/libexpat*
   rm bin/xmlwf.exe
   rm include/expat*
   rm lib/libexpat*
-
-  rm bin/derb.exe
   
   find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
   #for f in bin/gen*; do
@@ -58,24 +60,29 @@ build() {
   #    rm $f
   #  fi
   #done
-  
+
+  #Remove icu  
   rm bin/*icu*
+  rm bin/derb.exe
   rm bin/makeconv.exe
   rm bin/uconv.exe
   rm -rf include/unicode
   rm -rf lib/*icu*
 
+  #Remove libiconv
   rm include/iconv.h
   rm include/libcharset.h
   rm include/localcharset.h
   rm lib/libcharset*
   rm lib/libiconv*
 
+  #Remove lua
   rm bin/*lua*
   rm include/lauxlib.h
   rm include/*lua*
   rm -rf lib/*lua*
 
+  #Remove ncurses
   rm bin/ncursesw6-config
   rm bin/x86_64-w64-mingw32-captoinfo.exe
   rm bin/x86_64-w64-mingw32-clear.exe
@@ -94,6 +101,7 @@ build() {
   rm lib/libpanel*
   rm -rf lib/terminfo
 
+  #Remove openssl
   rm bin/libcrypto*
   rm bin/libssl*
   rm bin/openssl.exe
@@ -108,10 +116,12 @@ build() {
   rm -rf lib/*p11*
   rm -rf lib/pkcs11*
 
+  #Remove pcre2
   rm bin/*pcre*
   rm include/pcre2*
   rm lib/*pcre*
 
+  #Remove python
   rm bin/2to3*
   rm bin/idle*
   rm bin/libpython*
@@ -120,11 +130,13 @@ build() {
   rm -rf include/python*
   rm -rf lib/python*
 
+  #Remove sqlite3
   rm bin/dbhash.exe
   rm bin/*sql*
   rm include/*sql*
   rm -rf lib/*sql*
 
+  #Remove tcl
   rm bin/tcl*
   rm bin/tk*
   rm bin/wish*
@@ -141,22 +153,27 @@ build() {
   rm -rf lib/tdb*
   rm -rf lib/thread*
 
+  #Remove termcap
   rm bin/libtermcap*
   rm include/termcap.h
   rm lib/libtermcap*
 
+  #Remove wineditline
   rm bin/edit*
   rm -rf include/editline
   rm lib/libedit*
 
+  #Remove xxhash
   rm bin/*xxh*.exe
   rm include/xxh*
 
+  #Remove xz
   rm bin/*lzma*
   rm bin/*xz*
   rm -rf include/lzma*
   rm lib/liblzma*
 
+  #Remove zstd
   rm bin/*zstd*.exe
   rm include/zdict.h
   rm include/zstd*
