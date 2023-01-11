@@ -41,7 +41,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
-      uses: svenstaro/upload-release-action@v2
+      uses: svenstaro/upload-release-action@master
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: mujs/*.zst
