@@ -48,6 +48,9 @@ build() {
   rm include/bzlib.h
   rm lib/libbz2*
 
+  #Remove ca-certificates
+  rm bin/update-ca-trust
+
   #Remove expat
   rm bin/libexpat*
   rm bin/xmlwf.exe
@@ -105,16 +108,17 @@ build() {
   rm bin/libcrypto*
   rm bin/libssl*
   rm bin/openssl.exe
-  rm bin/update-ca-trust
-  rm bin/*p11*
-  rm bin/trust.exe
   rm -rf include/openssl
-  rm -rf include/p11*
   rm -rf lib/engines*
   rm lib/libcrypto*
   rm lib/libssl*
+
+  #Remove p11-kit
+  rm bin/*p11*
+  rm bin/trust.exe
   rm -rf lib/*p11*
   rm -rf lib/pkcs11*
+  rm -rf include/p11*
 
   #Remove pcre2
   rm bin/*pcre*
