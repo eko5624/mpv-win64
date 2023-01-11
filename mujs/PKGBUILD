@@ -11,7 +11,7 @@ md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/mujs
-  patch -p1 -i $srcdir/mujs-0001-add-exe-to-binary-name.patch
+  #patch -p1 -i $srcdir/mujs-0001-add-exe-to-binary-name.patch
   make release
 }
 
