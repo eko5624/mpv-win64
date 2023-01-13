@@ -1,0 +1,72 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=mcfgthread
+pkgver=20230106
+pkgrel=1
+pkgdesc='MCF thread model'
+arch=('x86_64')
+url="https://gcc-mcf.lhmouse.com/"
+license=('custom')
+source=()
+md5sums=()
+
+build() {
+  cd /d/ucrt64
+  set -ex
+  rm -rf ssl
+  rm -rf share
+  rm -rf sbin
+  rm -rf etc
+  rm -rf libexec
+  mkdir include2
+  mkdir lib2  
+
+  #keep binutils
+  mv include/ansidecl.h include2
+  mv include/bfd.h include2
+  mv include/bfdlink.h include2
+  mv include/ctf-api.h include2
+  mv include/ctf.h include2
+  mv include/diagnostics.h include2
+  mv include/dis-asm.h include2
+
+  #keep crt-git 
+  mv lib/libssp.a lib2
+  mv lib/libssp_nonshared.a lib2
+
+  #keep gcc  
+  mv include/c++ include2
+  mv lib/gcc lib2
+  mv lib/libatomic.a lib2
+  mv lib/libgcc_s.a lib2
+  mv lib/libgomp.a lib2
+  mv lib/libquadmath.a lib2
+  mv lib/libstdc++.a lib2
+  mv lib/libstdc++.dll.a-gdb.py lib2
+  mv lib/libstdc++fs.a lib2
+  mv lib/libsupc++.a lib2
+
+  #keep gdb 
+  mv include/gdb/jit-reader.h include2
+
+  #keep mcfgthread
+  mv include/mcfgthread include2
+  mv lib/libmcfgthread.a lib2
+  mv lib/libmcfgthread.dll.a lib2
+
+  #keep zlib
+  mv include/zconf.h include2
+  mv include/zlib.h include2
+  mv lib/libz.a lib2
+
+  rm -rf include
+  rm -rf lib
+  mv include2 include
+  mv lib2 lib
+}
+
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/bin
+  cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
+  strip $pkgdir/opt/bin/*
+}
