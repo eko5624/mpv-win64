@@ -142,7 +142,7 @@ build() {
   #Keep gdb
   mv include/gdb/jit-reader.h include2
   
-  Keep make
+  #Keep make
   mv include/gnu* include2
 
   #Keep mcfgthread
