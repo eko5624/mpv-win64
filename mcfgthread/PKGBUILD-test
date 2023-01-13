@@ -17,11 +17,104 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
   mkdir include2
   mkdir lib2  
 
-  #keep binutils
+  #Remove boost
+  rm bin/b2.exe
+  rm bin/bjam.exe
+  rm bin/libboost*
+
+  #Remove bzip2
+  rm bin/bunzip2.exe
+
+  #Remove ca-certificates
+  rm bin/update-ca-trust
+
+  #Remove expat
+  rm bin/libexpat*
+  rm bin/xmlwf.exe
+
+  #Remove gdb and gdb-multiarch
+  rm bin/gdb*
+
+  #Remove gettext
+  rm bin/autopoint
+  rm bin/envsubst.exe
+  rm bin/msg*
+  rm bin/recode-sr-latin.exe
+
+  #Remove iconv
+  rm bin/iconv.exe
+
+  #Remove icu  
+  rm bin/*icu*
+  rm bin/derb.exe
+  rm bin/makeconv.exe
+  rm bin/uconv.exe
+
+  #Remove lua
+  rm bin/*lua*
+
+  #Remove ncurses
+  rm bin/ncursesw6-config
+  rm bin/x86_64-w64-mingw32-captoinfo.exe
+  rm bin/x86_64-w64-mingw32-clear.exe
+  rm bin/x86_64-w64-mingw32-infocmp.exe
+  rm bin/x86_64-w64-mingw32-infotocap.exe
+  rm bin/x86_64-w64-mingw32-reset.exe
+  rm bin/x86_64-w64-mingw32-tabs.exe
+  rm bin/x86_64-w64-mingw32-tic.exe
+  rm bin/x86_64-w64-mingw32-toe.exe
+  rm bin/x86_64-w64-mingw32-tput.exe
+  rm bin/x86_64-w64-mingw32-tset.exe
+
+  #Remove openssl
+  rm bin/libcrypto*
+  rm bin/libssl*
+  rm bin/openssl.exe
+
+  #Remove p11-kit
+  rm bin/*p11*
+  rm bin/trust.exe
+
+  #Remove pcre2
+  rm bin/*pcre*
+
+  #Remove python
+  rm bin/2to3*
+  rm bin/idle*
+  rm bin/libpython*
+  rm bin/py*
+
+  #Remove sqlite3
+  rm bin/dbhash.exe
+  rm bin/*sql*
+
+  #Remove tcl
+  rm bin/tcl*
+
+  #Remove termcap
+  rm bin/libtermcap*
+
+  #Remove tk
+  rm bin/tk*
+  rm bin/wish*
+
+  #Remove wineditline
+  rm bin/edit*
+
+  #Remove xxhash
+  rm bin/*xxh*.exe
+
+  #Remove xz
+  rm bin/*lzma*
+  rm bin/*xz*
+
+  #Remove zstd
+  rm bin/*zstd*.exe
+
+  #Keep binutils
   mv include/ansidecl.h include2
   mv include/bfd.h include2
   mv include/bfdlink.h include2
@@ -30,11 +123,11 @@ build() {
   mv include/diagnostics.h include2
   mv include/dis-asm.h include2
 
-  #keep crt-git 
+  #Keep crt-git 
   mv lib/libssp.a lib2
   mv lib/libssp_nonshared.a lib2
 
-  #keep gcc  
+  #Keep gcc  
   mv include/c++ include2
   mv lib/gcc lib2
   mv lib/libatomic.a lib2
@@ -46,15 +139,15 @@ build() {
   mv lib/libstdc++fs.a lib2
   mv lib/libsupc++.a lib2
 
-  #keep gdb 
+  #Keep gdb 
   mv include/gdb/jit-reader.h include2
 
-  #keep mcfgthread
+  #Keep mcfgthread
   mv include/mcfgthread include2
   mv lib/libmcfgthread.a lib2
   mv lib/libmcfgthread.dll.a lib2
 
-  #keep zlib
+  #Keep zlib
   mv include/zconf.h include2
   mv include/zlib.h include2
   mv lib/libz.a lib2
