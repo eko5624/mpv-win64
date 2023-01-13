@@ -139,8 +139,11 @@ build() {
   mv lib/libstdc++fs.a lib2
   mv lib/libsupc++.a lib2
 
-  #Keep gdb 
+  #Keep gdb
   mv include/gdb/jit-reader.h include2
+  
+  Keep make
+  mv include/gnu* include2
 
   #Keep mcfgthread
   mv include/mcfgthread include2
