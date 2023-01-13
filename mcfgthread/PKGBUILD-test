@@ -122,6 +122,7 @@ build() {
   mv include/ctf.h include2
   mv include/diagnostics.h include2
   mv include/dis-asm.h include2
+  mv include/libiberty include2
   mv include/plugin-api.h include2
   mv include/symcat.h include2
   mv lib/libbfd.a lib2
