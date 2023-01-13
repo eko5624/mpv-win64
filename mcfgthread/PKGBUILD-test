@@ -137,6 +137,7 @@ build() {
 
   #Keep gcc  
   mv include/c++ include2
+  mv lib/bfd-plugins lib2
   mv lib/gcc lib2
   mv lib/libatomic.a lib2
   mv lib/libgcc_s.a lib2
@@ -148,10 +149,10 @@ build() {
   mv lib/libsupc++.a lib2
 
   #Keep gdb
-  mv include/gdb/jit-reader.h include2
+  mv include/gdb include2
   
   #Keep make
-  mv include/gnu* include2
+  mv include/gnumake.h include2
 
   #Keep mcfgthread
   mv include/mcfgthread include2
