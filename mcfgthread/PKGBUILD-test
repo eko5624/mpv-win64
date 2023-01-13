@@ -17,6 +17,7 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
+  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
   mkdir include2
   mkdir lib2  
 
