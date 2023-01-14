@@ -60,11 +60,6 @@ build() {
   rm lib/libgettext*
   rm lib/libintl*
 
-  #Remove gmp
-  rm bin/libgmp*
-  rm include/gmp*
-  rm lib/libgmp*
-
   #Remove gperf
   rm bin/gperf.exe
 
