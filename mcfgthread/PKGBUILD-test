@@ -47,7 +47,7 @@ build() {
   #Remove gcc-fortran
   rm bin/gfortran.exe
   rm bin/*gfortran.exe
-  rm lib/**/f951.exe
+  rm -rf lib/**/f951.exe
   rm -rf lib/**/finclude
   rm lib/**/libcaf_single.a
   rm lib/**/libgfortran.a
