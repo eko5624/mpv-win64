@@ -79,14 +79,6 @@ build() {
   rm lib/libgettext*
   rm lib/libintl*
 
-  #Remove gmp
-  rm bin/libgmp*
-  rm include/gmp*
-  rm lib/libgmp*
-
-  #Remove gperf
-  rm bin/gperf.exe
-
   #Remove iconv
   rm bin/iconv.exe
 
@@ -97,11 +89,6 @@ build() {
   rm bin/uconv.exe
   rm -rf include/unicode
   rm -rf lib/*icu*
-
-  #Remove isl
-  rm bin/libisl*
-  rm -rf include/isl
-  rm lib/libisl*
 
   #Remove libffi
   rm bin/libffi*
@@ -147,13 +134,6 @@ build() {
   #Remove mpc
   rm bin/libmpc*
   rm include/mpc*
-
-  #Remove mpdecimal
-  rm bin/libmpdec*
-  rm include/decimal.hh
-  rm include/mpdecimal.h
-  rm lib/libmpdec*
-
 
   #Remove mpfr
   rm bin/libmpfr*
