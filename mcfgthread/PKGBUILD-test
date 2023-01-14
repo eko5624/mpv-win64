@@ -84,6 +84,9 @@ build() {
   rm include/gmp*
   rm lib/libgmp*
 
+  #Remove gperf
+  rm bin/gperf.exe
+
   #Remove iconv
   rm bin/iconv.exe
 
