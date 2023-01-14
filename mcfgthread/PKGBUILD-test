@@ -60,7 +60,7 @@ build() {
   rm -rf lib/**/libobjc.a
 
   #Remove libgccgit
-  rm bin/libgccgit*
+  rm bin/libgccjit-0.dll
   rm include/libgccgit*
   rm lib/libgccgit*  
   
