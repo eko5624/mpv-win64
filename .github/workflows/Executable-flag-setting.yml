@@ -22,6 +22,7 @@ jobs:
     - name: Executable flag setting
       run: |
         git checkout static
-        chmod +x *.sh 
-        git commit *.sh -m "Executable-flag-setting"
+        chmod +x *.sh
+        git add -A
+        git commit -am "Executable-flag-setting" || echo "nothing updated"
         git push  
