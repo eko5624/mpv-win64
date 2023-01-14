@@ -1,0 +1,110 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=mcfgthread
+pkgver=20230106
+pkgrel=1
+pkgdesc='MCF thread model'
+arch=('x86_64')
+url="https://gcc-mcf.lhmouse.com/"
+license=('custom')
+source=()
+md5sums=()
+
+build() {
+  cd /d/ucrt64
+  set -ex
+  rm -rf ssl
+  rm -rf share
+  rm -rf sbin
+  rm -rf etc
+  rm -rf libexec
+  find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
+  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
+  rm -rf include/pkg*
+  rm -rf lib/pkg*
+  rm -rf lib/cmake*
+  mkdir include2
+  mkdir lib2
+
+  #Keep binutils
+  mv include/ansidecl.h include2
+  mv include/bfd.h include2
+  mv include/bfdlink.h include2
+  mv include/ctf-api.h include2
+  mv include/ctf.h include2
+  mv include/diagnostics.h include2
+  mv include/dis-asm.h include2
+  mv include/libiberty include2
+  mv include/plugin-api.h include2
+  mv include/symcat.h include2
+  mv lib/libbfd.a lib2
+  mv lib/libctf-nobfd.a lib2
+  mv lib/libctf.a lib2
+  mv lib/libiberty.a lib2
+  mv lib/libopcodes.a lib2
+  
+
+  #Keep crt-git 
+  mv lib/libssp.a lib2
+  mv lib/libssp_nonshared.a lib2
+
+  #Keep gcc  
+  mv include/c++ include2
+  mv lib/bfd-plugins lib2
+  mv lib/gcc lib2
+  mv lib/libatomic.a lib2
+  mv lib/libgcc_s.a lib2
+  mv lib/libgomp.a lib2
+  mv lib/libquadmath.a lib2
+  mv lib/libstdc++.a lib2
+  mv lib/libstdc++.dll.a-gdb.py lib2
+  mv lib/libstdc++fs.a lib2
+  mv lib/libsupc++.a lib2
+
+  #Keep gdb
+  mv include/gdb include2
+
+  #Keep gmp
+  mv include/gmp* include2
+  mv lib/libgmp* lib2
+
+  #Keep gperf
+
+  #Keep isl
+  mv include/isl include2
+  mv lib/libisl* lib2
+  
+  #Keep make
+  mv include/gnumake.h include2
+
+  #Keep mcfgthread
+  mv include/mcfgthread include2
+  mv lib/libmcfgthread.a lib2
+  mv lib/libmcfgthread.dll.a lib2
+
+  #Keep mpc
+  mv include/mpc* include2
+
+  #Keep mpfr
+  mv include/mpf2mpfr.h include2
+  mv include/mpfr.h include2
+
+  #Keep windows-default-manifest
+  mv lib/default-manifest.o lib2
+
+  #Keep zlib
+  mv include/zconf.h include2
+  mv include/zlib.h include2
+  mv lib/libz.a lib2
+
+  rm -rf include
+  rm -rf lib
+  mv include2 include
+  mv lib2 lib
+}
+
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir/opt/bin
+  cp /d/ucrt64/bin/libmcfgthread* $pkgdir/opt/bin/
+  strip $pkgdir/opt/bin/*
+}
