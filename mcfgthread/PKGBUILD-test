@@ -147,7 +147,6 @@ build() {
   #Remove mpc
   rm bin/libmpc*
   rm include/mpc*
-  rm lib/libmpc*
 
   #Remove mpdecimal
   rm bin/libmpdec*
