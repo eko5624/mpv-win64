@@ -131,6 +131,12 @@ build() {
   rm -rf include/*lua*
   rm -rf lib/*lua*
 
+  #Remove mpdecimal
+  rm bin/libmpdec*
+  rm include/decimal.hh
+  rm include/mpdecimal.h
+  rm lib/libmpdec*
+
   #Remove ncurses
   rm bin/ncursesw6-config
   rm bin/x86_64-w64-mingw32-captoinfo.exe
