@@ -43,25 +43,6 @@ build() {
   rm bin/xmlwf.exe
   rm include/expat*
   rm lib/libexpat*
-
-  #Remove gcc-fortran
-  rm bin/gfortran.exe
-  rm bin/*gfortran.exe
-  rm -rf lib/**/f951.exe
-  rm -rf lib/**/finclude
-  rm -rf lib/**/libcaf_single.a
-  rm -rf lib/**/libgfortran.a
-  rm -rf lib/**/libgfortran.spec
-
-  #Remove gcc-objc
-  rm bin/libobjc*
-  rm -rf lib/**/cc1obj*
-  rm -rf lib/**/objc
-  rm -rf lib/**/libobjc.a
-
-  #Remove libgccgit
-  rm bin/libgccjit-0.dll
-  rm -rf include/libgccgit* 
   
   #Remove gdb and gdb-multiarch
   rm bin/gdb*
