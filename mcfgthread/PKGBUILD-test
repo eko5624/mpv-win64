@@ -138,10 +138,10 @@ build() {
   rm -rf include/tre
   rm lib/libtre*
 
-  #Remove lua
+  #Remove lua and tolua
   rm bin/*lua*
   rm include/lauxlib.h
-  rm include/*lua*
+  rm -rf include/*lua*
   rm -rf lib/*lua*
 
   #Remove mpc
@@ -243,12 +243,6 @@ build() {
   rm -rf include/tk*
   rm -rf include/X11
   rm -rf lib/*tk*
-
-  #Remove tolua
-  rm bin/tolua.exe
-  rm bin/tolua_lua.exe
-  rm include/tolua.h
-  rm lib/libtolua.a
 
   #Remove windows-default-manifest
   rm lib/default-manifest.o
