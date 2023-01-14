@@ -215,9 +215,6 @@ build() {
   rm -rf include/X11
   rm -rf lib/*tk*
 
-  #Remove windows-default-manifest
-  rm lib/default-manifest.o
-
   #Remove wineditline
   rm bin/edit*
   rm -rf include/editline
