@@ -41,7 +41,6 @@ build() {
   mv lib/libctf.a lib2
   mv lib/libiberty.a lib2
   mv lib/libopcodes.a lib2
-  
 
   #Keep crt-git 
   mv lib/libssp.a lib2
