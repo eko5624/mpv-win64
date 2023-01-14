@@ -131,15 +131,6 @@ build() {
   rm -rf include/*lua*
   rm -rf lib/*lua*
 
-  #Remove mpc
-  rm bin/libmpc*
-  rm include/mpc*
-
-  #Remove mpfr
-  rm bin/libmpfr*
-  rm include/mpf2mpfr.h
-  rm include/mpfr.h
-
   #Remove ncurses
   rm bin/ncursesw6-config
   rm bin/x86_64-w64-mingw32-captoinfo.exe
