@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git   
+        install: base-devel autoconf-wrapper automake-wrapper libtool git   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -36,19 +36,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -107,19 +104,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git             
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -143,19 +137,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git             
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -179,19 +170,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -217,19 +205,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git    
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -262,19 +247,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git nasm     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git nasm     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -298,19 +280,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git       
+        install: base-devel autoconf-wrapper automake-wrapper libtool git       
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -335,19 +314,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git             
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -383,19 +359,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git              
+        install: base-devel autoconf-wrapper automake-wrapper libtool git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -428,19 +401,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -465,19 +435,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git             
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -513,19 +480,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm      
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -549,19 +513,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -586,19 +547,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -630,19 +588,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -671,19 +626,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -707,19 +659,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git              
+        install: base-devel autoconf-wrapper automake-wrapper libtool git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -743,19 +692,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -780,19 +726,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -820,19 +763,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -858,19 +798,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool mingw-w64-x86_64-cmake git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -895,19 +832,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -933,19 +867,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -970,19 +901,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1009,19 +937,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1046,19 +971,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1088,19 +1010,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git           
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1139,19 +1058,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1177,19 +1093,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1216,19 +1129,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git              
+        install: base-devel autoconf-wrapper automake-wrapper libtool git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1265,19 +1175,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1302,19 +1209,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1339,19 +1243,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1379,19 +1280,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make           
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1420,19 +1318,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1456,19 +1351,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1493,19 +1385,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1531,19 +1420,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake           
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1568,19 +1454,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools yasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1604,19 +1487,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1640,19 +1520,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1676,19 +1553,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1712,19 +1586,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1749,19 +1620,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel gettext-devel autotools git     
+        install: base-devel gettext-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1788,19 +1656,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1824,19 +1689,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1872,19 +1734,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools yasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1981,19 +1840,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2017,19 +1873,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2055,19 +1908,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2135,19 +1985,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git              
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2180,19 +2027,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2218,19 +2062,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2255,19 +2096,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2297,14 +2135,11 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       shell: msys2 {0}
       run: |
@@ -2323,19 +2158,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools mingw-w64-x86_64-cmake git     
+        install: base-devel autoconf-wrapper automake-wrapper libtool mingw-w64-x86_64-cmake git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2360,19 +2192,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
