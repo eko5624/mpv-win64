@@ -51,7 +51,6 @@ for p in [
   'libudfread',
   'libunibreak',
   'libjpeg',
-  'libmfx',
   'libmodplug',
   'libmysofa',
   'libogg',
