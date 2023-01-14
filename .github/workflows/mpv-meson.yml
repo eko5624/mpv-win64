@@ -10,19 +10,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools yasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
     - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
