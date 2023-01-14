@@ -17,64 +17,260 @@ build() {
   rm -rf sbin
   rm -rf etc
   rm -rf libexec
-  mkdir include2
-  mkdir lib2
+  find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
+  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
+  rm -rf include/pkg*
+  rm -rf lib/pkg*
+  rm -rf lib/cmake*
 
-  #Keep binutils
-  mv include/ansidecl.h include2
-  mv include/bfd.h include2
-  mv include/bfdlink.h include2
-  mv include/ctf-api.h include2
-  mv include/ctf.h include2
-  mv include/diagnostics.h include2
-  mv include/dis-asm.h include2
-  mv include/libiberty include2
-  mv include/plugin-api.h include2
-  mv include/symcat.h include2
-  mv lib/libbfd.a lib2
-  mv lib/libctf-nobfd.a lib2
-  mv lib/libctf.a lib2
-  mv lib/libiberty.a lib2
-  mv lib/libopcodes.a lib2
+  #Remove boost
+  rm bin/b2.exe
+  rm bin/bjam.exe
+  rm bin/libboost*
+  rm -rf include/boost
+  rm lib/libboost*
+
+  #Remove bzip2
+  rm bin/bunzip2.exe
+  rm include/bzlib.h
+  rm lib/libbz2*
+
+  #Remove ca-certificates
+  rm bin/update-ca-trust
+
+  #Remove expat
+  rm bin/libexpat*
+  rm bin/xmlwf.exe
+  rm include/expat*
+  rm lib/libexpat*
+
+  #Remove gcc-fortran
+  rm bin/gfortran.exe
+  rm bin/*gfortran.exe
+  rm lib/**/f951.exe
+  rm -rf lib/**/finclude
+  rm lib/**/libcaf_single.a
+  rm lib/**/libgfortran*
+
+  #Remove gcc-objc
+  rm bin/libobjc*
+  rm lib/**/cc1obj*
+  rm -rf lib/**/objc
+  rm lib/**/libobjc*
+
+  #Remove libgccgit
+  rm bin/libgccgit*
+  rm include/libgccgit*
+  rm lib/libgccgit*  
   
+  #Remove gdb and gdb-multiarch
+  rm bin/gdb*
 
-  #Keep crt-git 
-  mv lib/libssp.a lib2
-  mv lib/libssp_nonshared.a lib2
+  #Remove gettext
+  rm bin/autopoint
+  rm bin/envsubst.exe
+  rm bin/msg*
+  rm bin/recode-sr-latin.exe
+  rm include/autosprintf.h
+  rm include/gettext-po.h
+  rm include/libintl.h
+  rm -rf lib/gettext
+  rm lib/libasprintf*
+  rm lib/libgettext*
+  rm lib/libintl*
 
-  #Keep gcc  
-  mv include/c++ include2
-  mv lib/bfd-plugins lib2
-  mv lib/gcc lib2
-  mv lib/libatomic.a lib2
-  mv lib/libgcc_s.a lib2
-  mv lib/libgomp.a lib2
-  mv lib/libquadmath.a lib2
-  mv lib/libstdc++.a lib2
-  mv lib/libstdc++.dll.a-gdb.py lib2
-  mv lib/libstdc++fs.a lib2
-  mv lib/libsupc++.a lib2
+  #Remove gmp
+  rm bin/libgmp*
+  rm include/gmp*
+  rm lib/libgmp*
 
-  #Keep gdb
-  mv include/gdb include2
-  
-  #Keep make
-  mv include/gnumake.h include2
+  #Remove iconv
+  rm bin/iconv.exe
 
-  #Keep mcfgthread
-  mv include/mcfgthread include2
-  mv lib/libmcfgthread.a lib2
-  mv lib/libmcfgthread.dll.a lib2
+  #Remove icu  
+  rm bin/*icu*
+  rm bin/derb.exe
+  rm bin/makeconv.exe
+  rm bin/uconv.exe
+  rm -rf include/unicode
+  rm -rf lib/*icu*
 
-  #Keep zlib
-  mv include/zconf.h include2
-  mv include/zlib.h include2
-  mv lib/libz.a lib2
+  #Remove isl
+  rm bin/libisl*
+  rm -rf include/isl
+  rm lib/libisl*
 
-  rm -rf include
-  rm -rf lib
-  mv include2 include
-  mv lib2 lib
+  #Remove libffi
+  rm bin/libffi*
+  rm include/ffi*
+  rm lib/libffi*
+
+  #Remove libiconv
+  rm include/iconv.h
+  rm include/libcharset.h
+  rm include/localcharset.h
+  rm lib/libcharset*
+  rm lib/libiconv*
+
+  #Remove libmangle-git
+  rm include/libmangle*
+  rm lib/libmangle*
+
+  #Remove libsystre
+  rm bin/libsystre*
+  rm include/regex.h
+  rm lib/libgnurx*
+  rm lib/libregex*
+  rm lib/libsystre*
+
+  #Remove libtasn1
+  rm bin/asn1*
+  rm bin/libtasn1*
+  rm include/libtasn1*
+  rm lib/libtasn1*
+
+  #Remove libtre-git
+  rm bin/libtre*
+  rm bin/x86_64-w64-mingw32-agrep.exe
+  rm -rf include/tre
+  rm lib/libtre*
+
+  #Remove lua
+  rm bin/*lua*
+  rm include/lauxlib.h
+  rm include/*lua*
+  rm -rf lib/*lua*
+
+  #Remove mpc
+  rm bin/libmpc*
+  rm include/mpc*
+  rm lib/libmpc*
+
+  #Remove mpdecimal
+  rm bin/libmpdec*
+  rm include/decimal.hh
+  rm include/mpdecimal.h
+  rm lib/libmpdec*
+
+  #Remove mpfr
+  rm bin/libmpfr*
+  rm include/mpf2mpfr.h
+  rm include/mpfr.h
+
+  #Remove ncurses
+  rm bin/ncursesw6-config
+  rm bin/x86_64-w64-mingw32-captoinfo.exe
+  rm bin/x86_64-w64-mingw32-clear.exe
+  rm bin/x86_64-w64-mingw32-infocmp.exe
+  rm bin/x86_64-w64-mingw32-infotocap.exe
+  rm bin/x86_64-w64-mingw32-reset.exe
+  rm bin/x86_64-w64-mingw32-tabs.exe
+  rm bin/x86_64-w64-mingw32-tic.exe
+  rm bin/x86_64-w64-mingw32-toe.exe
+  rm bin/x86_64-w64-mingw32-tput.exe
+  rm bin/x86_64-w64-mingw32-tset.exe
+  rm -rf include/ncur*
+  rm lib/libform*
+  rm lib/libmenu*
+  rm lib/libncur*
+  rm lib/libpanel*
+  rm -rf lib/terminfo
+
+  #Remove openssl
+  rm bin/libcrypto*
+  rm bin/libssl*
+  rm bin/openssl.exe
+  rm -rf include/openssl
+  rm -rf lib/engines*
+  rm lib/libcrypto*
+  rm lib/libssl*
+
+  #Remove p11-kit
+  rm bin/*p11*
+  rm bin/trust.exe
+  rm -rf lib/*p11*
+  rm -rf lib/pkcs11*
+  rm -rf include/p11*
+
+  #Remove pcre2
+  rm bin/*pcre*
+  rm include/pcre2*
+  rm lib/*pcre*
+
+  #Remove python
+  rm bin/2to3*
+  rm bin/idle*
+  rm bin/libpython*
+  rm bin/py*
+  rm -rf include/python*
+  rm -rf lib/python*
+
+  #Remove readline
+  rm bin/libhistory8.dll
+  rm bin/libreadline*
+  rm -rf include/readline
+  rm lib/libhistory.a
+  rm lib/libreadline.a
+
+  #Remove sqlite3
+  rm bin/dbhash.exe
+  rm bin/*sql*
+  rm include/*sql*
+  rm -rf lib/*sql*
+
+  #Remove tcl
+  rm bin/tcl*
+  rm include/itcl*
+  rm include/*Stubs*
+  rm -rf include/tcl*
+  rm -rf include/tdb*
+  rm -rf lib/dde*
+  rm -rf lib/*tcl*
+  rm -rf lib/reg*
+  rm -rf lib/tdb*
+  rm -rf lib/thread*
+
+  #Remove termcap
+  rm bin/libtermcap*
+  rm include/termcap.h
+  rm lib/libtermcap*
+
+  #Remove tk
+  rm bin/tk*
+  rm bin/wish*
+  rm -rf include/tk*
+  rm -rf include/X11
+  rm -rf lib/*tk*
+
+  #Remove tolua
+  rm bin/tolua.exe
+  rm bin/tolua_lua.exe
+  rm include/tolua.h
+  rm lib/libtolua.a
+
+  #Remove windows-default-manifest
+  rm lib/default-manifest.o
+
+  #Remove wineditline
+  rm bin/edit*
+  rm -rf include/editline
+  rm lib/libedit*
+
+  #Remove xxhash
+  rm bin/*xxh*.exe
+  rm include/xxh*
+
+  #Remove xz
+  rm bin/*lzma*
+  rm bin/*xz*
+  rm -rf include/lzma*
+  rm lib/liblzma*
+
+  #Remove zstd
+  rm bin/*zstd*.exe
+  rm include/zdict.h
+  rm include/zstd*
+  rm lib/libzstd*
 }
 
 package() {
