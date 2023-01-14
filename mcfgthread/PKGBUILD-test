@@ -50,13 +50,14 @@ build() {
   rm lib/**/f951.exe
   rm -rf lib/**/finclude
   rm lib/**/libcaf_single.a
-  rm lib/**/libgfortran*
+  rm lib/**/libgfortran.a
+  rm lib/**/libgfortran.spec
 
   #Remove gcc-objc
   rm bin/libobjc*
   rm lib/**/cc1obj*
   rm -rf lib/**/objc
-  rm lib/**/libobjc*
+  rm lib/**/libobjc.a
 
   #Remove libgccgit
   rm bin/libgccgit*
