@@ -92,11 +92,11 @@ pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
 
-for t in ['ffmpeg.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
-        l = '%s%s-${{ env.random_hash }}\n' % (l[:i+9], mingw)
+        l = '%s%s\n' % (l[:i+9], mingw)
       elif (i:=l.find('/dev/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
