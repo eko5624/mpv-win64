@@ -9,7 +9,7 @@ mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
   for l in f:
     if (i:=l.find('key: mcf_')) > -1:
-      l = '%s%s-${{ env.random_hash }}\n' % (l[:i+9], mingw)
+      l = '%s%s\n' % (l[:i+9], mingw)
     elif (i:=l.find('curl')) > -1:
       l = '%s%s.7z\n' % (l[:i+55], x['Mingw-w64'])
     f.write(l)
@@ -95,11 +95,11 @@ pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 
-for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'mpv-waf.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
-        l = '%s%s-${{ env.random_hash }}\n' % (l[:i+9], mingw)
+        l = '%s%s\n' % (l[:i+9], mingw)
       elif (i:=l.find('/dev/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
