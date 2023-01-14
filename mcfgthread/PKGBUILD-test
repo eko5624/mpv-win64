@@ -61,8 +61,7 @@ build() {
 
   #Remove libgccgit
   rm bin/libgccjit-0.dll
-  rm include/libgccgit*
-  rm lib/libgccgit*  
+  rm -rf include/libgccgit* 
   
   #Remove gdb and gdb-multiarch
   rm bin/gdb*
