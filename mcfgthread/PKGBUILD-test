@@ -60,9 +60,6 @@ build() {
   rm lib/libgettext*
   rm lib/libintl*
 
-  #Remove gperf
-  rm bin/gperf.exe
-
   #Remove iconv
   rm bin/iconv.exe
 
@@ -73,11 +70,6 @@ build() {
   rm bin/uconv.exe
   rm -rf include/unicode
   rm -rf lib/*icu*
-
-  #Remove isl
-  rm bin/libisl*
-  rm -rf include/isl
-  rm lib/libisl*
 
   #Remove libffi
   rm bin/libffi*
@@ -120,20 +112,11 @@ build() {
   rm -rf include/*lua*
   rm -rf lib/*lua*
 
-  #Remove mpc
-  rm bin/libmpc*
-  rm include/mpc*
-
   #Remove mpdecimal
   rm bin/libmpdec*
   rm include/decimal.hh
   rm include/mpdecimal.h
   rm lib/libmpdec*
-
-  #Remove mpfr
-  rm bin/libmpfr*
-  rm include/mpf2mpfr.h
-  rm include/mpfr.h
 
   #Remove ncurses
   rm bin/ncursesw6-config
@@ -182,13 +165,6 @@ build() {
   rm bin/py*
   rm -rf include/python*
   rm -rf lib/python*
-
-  #Remove readline
-  rm bin/libhistory8.dll
-  rm bin/libreadline*
-  rm -rf include/readline
-  rm lib/libhistory.a
-  rm lib/libreadline.a
 
   #Remove sqlite3
   rm bin/dbhash.exe
