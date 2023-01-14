@@ -12,19 +12,16 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@v3
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230106_13.0.0_x64-ucrt-${{ env.random_hash }}
+        key: mcf_20230106_13.0.0_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -69,7 +66,7 @@ jobs:
         pacman -U *.zst --noconfirm
         cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
@@ -77,7 +74,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Delete Dev
-      uses: eko5624/delete-release-assets@v1
+      uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
@@ -85,7 +82,7 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false 
     - name: Upload
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@master
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*pkg*.xz
@@ -93,7 +90,7 @@ jobs:
         overwrite: true
         file_glob: true        
     - name: Upload Dev
-      uses: eko5624/upload-release-action@v2
+      uses: svenstaro/upload-release-action@master
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ffmpeg/*.zst
