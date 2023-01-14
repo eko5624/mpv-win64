@@ -45,8 +45,7 @@ build() {
   rm lib/libexpat*
 
   #Remove gcc-fortran
-  rm bin/gfortran.exe
-  rm bin/*gfortran.exe
+  rm bin/*gfortran*.exe
   rm -rf lib/**/f951.exe
   rm -rf lib/**/finclude
   rm -rf lib/**/libcaf_single.a
