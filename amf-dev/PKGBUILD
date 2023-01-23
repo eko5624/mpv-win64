@@ -12,8 +12,8 @@ package() {
   cd $srcdir
   git clone \
     --depth 1 \
-    --filter=tree:0 \
     --sparse \
+    --filter=tree:0 \
     https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git
   cd AMF
   git sparse-checkout set amf/public/include
