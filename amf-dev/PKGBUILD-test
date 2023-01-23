@@ -1,0 +1,23 @@
+pkgname=amf-headers-dev
+pkgver=1.4.28
+pkgrel=1
+pkgdesc='Header files for AMD Advanced Media Framework'
+arch=('x86_64')
+url="https://github.com/GPUOpen-LibrariesAndSDKs/AMF/"
+license=('MIT')
+source=()
+md5sums=()
+
+package() {
+  cd $srcdir
+  git clone \
+    --depth 1 \
+    --filter=blob:none \
+    --sparse \
+    https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git
+  cd AMF
+  git sparse-checkout set amf/public/include
+  mkdir -p $pkgdir/opt/include/AMF
+  mv amf/public/include/core $pkgdir/opt/include/AMF
+  mv amf/public/include/components $pkgdir/opt/include/AMF
+}
