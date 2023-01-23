@@ -31,19 +31,11 @@ jobs:
       shell: msys2 {0}
       run: |                  
         cd angle-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg -p PKGBUILD-test 
-    - name: Delete
-      uses: mknejp/delete-release-assets@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: dev
-        assets: angle*
-        fail-if-no-assets: false
-        fail-if-no-release: false
-    - name: Upload
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: angle-dev/*.zst
-        tag: dev
-        overwrite: true
-        file_glob: true
+
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+      shell: bash 
+      run: |
+        ./release-dev.sh angle-dev angle-dev
