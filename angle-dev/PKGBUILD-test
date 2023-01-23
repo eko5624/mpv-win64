@@ -5,11 +5,21 @@ pkgdesc='Almost Native Graphics Layer Engine'
 arch=('x86_64')
 url="https://chromium.googlesource.com/angle/angle/"
 license=('custom')
-source=("git+https://chromium.googlesource.com/angle/angle#branch=main")
+source=("git+")
 md5sums=('SKIP')
 
 package() {
   cd $srcdir/angle
+  cd $srcdir
+  git clone \
+    --depth 1 \
+    --filter=tree:0 \
+    --sparse \
+    --branch main \
+    https://chromium.googlesource.com/angle/angle
+  cd angle
+  git sparse-checkout set include/EGL include/KHR
+
   mkdir -p $pkgdir/opt/include
   mv include/EGL $pkgdir/opt/include
   mv include/KHR $pkgdir/opt/include
