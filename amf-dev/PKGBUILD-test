@@ -12,7 +12,7 @@ package() {
   cd $srcdir
   git clone \
     --depth 1 \
-    --filter=blob:none \
+    --filter=tree:0 \
     --sparse \
     https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git
   cd AMF
