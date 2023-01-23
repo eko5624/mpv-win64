@@ -5,11 +5,10 @@ pkgdesc='Almost Native Graphics Layer Engine'
 arch=('x86_64')
 url="https://chromium.googlesource.com/angle/angle/"
 license=('custom')
-source=("git+")
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 package() {
-  cd $srcdir/angle
   cd $srcdir
   git clone \
     --depth 1 \
