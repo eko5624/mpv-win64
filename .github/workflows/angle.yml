@@ -38,4 +38,4 @@ jobs:
         CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
       shell: bash 
       run: |
-        ./release-dev.sh angle-dev angle-headers-dev
+        ./release-dev.sh angle-headers-dev angle-dev
