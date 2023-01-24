@@ -12,8 +12,8 @@ package() {
   cd $srcdir
   git clone \
     --depth 1 \
-    --filter=tree:0 \
     --sparse \
+    --filter=tree:0 \
     --branch main \
     https://chromium.googlesource.com/angle/angle
   cd angle
