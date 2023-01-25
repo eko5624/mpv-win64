@@ -1,5 +1,5 @@
 pkgname=amf-headers-dev
-pkgver=1.4.28
+pkgver=1.4.29
 pkgrel=1
 pkgdesc='Header files for AMD Advanced Media Framework'
 arch=('x86_64')
