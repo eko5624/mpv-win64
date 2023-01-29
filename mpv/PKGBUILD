@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mpv-shared
-pkgver=0.35.0
+pkgver=0.35.1
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
