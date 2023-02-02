@@ -1,5 +1,5 @@
 pkgname=libjpeg-dev
-pkgver=2.1.4
+pkgver=2.1.90
 pkgrel=1
 pkgdesc='JPEG image codec with accelerated baseline compression and decompression'
 arch=('x86_64')
