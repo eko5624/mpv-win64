@@ -38,7 +38,7 @@ build() {
 
 package() {
   cd $srcdir/libjxl/build
-  mddir -p $pkgdir/opt/build
+  mkdir -p $pkgdir/opt/build
   $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
