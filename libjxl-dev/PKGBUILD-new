@@ -38,10 +38,11 @@ build() {
 
 package() {
   cd $srcdir/libjxl/build
-  mv ../third_party/brotli $pkgdir/opt
+  mkdir -p $pkgdir/opt/test
   $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
+  mv ../third_party/brotli $pkgdir/opt/test
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc 
 }
