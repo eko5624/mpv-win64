@@ -41,6 +41,9 @@ package() {
   $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
+  rm $pkgdir/opt/lib/libbrotlienc.dll.a
+  rm $pkgdir/opt/lib/libbrotlidec.dll.a
+  rm $pkgdir/opt/lib/libbrotlicommon.dll.a
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
   sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc 
 }
