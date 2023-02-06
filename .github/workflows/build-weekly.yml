@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230125_13.0.1_x64-ucrt
+        key: mcf_20230203_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -92,7 +92,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230125_13.0.1_x64-ucrt
+        key: mcf_20230203_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -129,7 +129,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230125_13.0.1_x64-ucrt
+        key: mcf_20230203_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -249,7 +249,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20230119-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.35.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230125-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230203-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
