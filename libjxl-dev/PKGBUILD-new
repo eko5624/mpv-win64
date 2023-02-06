@@ -41,7 +41,7 @@ package() {
   $MAKE DESTDIR=$pkgdir install
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
-  tree ../third_party/brotli
+  tree third_party/brotli
   #mv ../third_party/brotli/lib/libbrotlienc.a $pkgdir/opt/lib/libbrotlienc.a
   #mv ../third_party/brotli/lib/libbrotlidec.a $pkgdir/opt/lib/libbrotlidec.a
   #mv ../third_party/brotli/lib/libbrotlicommon.a $pkgdir/opt/lib/libbrotlicommon.a
