@@ -1,5 +1,5 @@
 pkgname=freetype2-dev
-pkgver=2_12_1
+pkgver=2_13_0
 pkgrel=1
 pkgdesc='Font rasterization library'
 arch=('x86_64')
