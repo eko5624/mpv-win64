@@ -56,7 +56,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.29-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
@@ -1763,7 +1763,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.29-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst
