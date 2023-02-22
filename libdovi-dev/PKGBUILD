@@ -1,0 +1,22 @@
+pkgname=libdovi-dev
+pkgver=3.1.2
+pkgrel=1
+pkgdesc='Library to read and write Dolby Vision metadata (C-API)'
+arch=('x86_64')
+url="https://github.com/quietvoid/dovi_tool/"
+makedepends=("rust" "cargo-c")
+license=('BSD')
+source=("git+https://github.com/quietvoid/dovi_tool.git")
+md5sums=('SKIP')
+
+package() {
+  cd $srcdir/dovi_tool
+  cargo \
+    --config profile.release.codegen-units=1 \
+    cinstall \
+    --manifest-path=$srcdir/dovi_tool/dolby_vision/Cargo.toml \
+    --prefix=/opt \
+    --destdir=$pkgdir \
+    --release \
+    --library-type staticlib
+}
