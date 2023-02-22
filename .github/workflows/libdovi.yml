@@ -24,8 +24,17 @@ jobs:
         key: mcf_20230203_13.0.1_x64-ucrt
     
     - name: Install Rust
-      uses: dtolnay/rust-toolchain@stable
-      
+      shell: bash
+      run: |
+        cd /d/ucrt64
+        curl -sSf https://sh.rustup.rs |
+        sh -s -- -y --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path --profile minimal
+
+    - name: Install cargo-c (Windows)
+      run: |
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'${env:USERPROFILE}\.cargo\bin'
+
     - name: Get the version
       shell: bash
       run: |
