@@ -10,8 +10,7 @@ md5sums=('SKIP')
 
 package() {
   cd $srcdir/dovi_tool
-  cargo --config profile.release.codegen-units=1
-  cinstall \
+  cargo --config profile.release.codegen-units=1 cinstall \
     --manifest-path=$srcdir/dovi_tool/dolby_vision/Cargo.toml \
     --prefix=/opt \
     --destdir=$pkgdir \
