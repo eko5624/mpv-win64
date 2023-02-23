@@ -26,6 +26,8 @@ jobs:
     - name: Install Rust
       shell: bash
       run: |
+        rm -rf C:\Users\runneradmin\.cargo
+        curl -sSf https://sh.rustup.rs |
         curl -sSf https://sh.rustup.rs |
         sh -s -- -y --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path --profile minimal
 
