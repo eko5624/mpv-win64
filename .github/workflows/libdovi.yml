@@ -28,13 +28,12 @@ jobs:
       run: |
         rm -rf C:\Users\runneradmin\.cargo
         curl -sSf https://sh.rustup.rs |
-        curl -sSf https://sh.rustup.rs |
         sh -s -- -y --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path --profile minimal
 
     - name: Install cargo-c
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'${env:USERPROFILE}\.cargo\bin'
+        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.cargo\bin'
         
     - name: Build
       env:
