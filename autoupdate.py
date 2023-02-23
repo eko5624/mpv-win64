@@ -33,6 +33,7 @@ for p in [
   'libbluray',
   'libbs2b',
   'libcaca',
+  'libdovi',
   'libdvdcss',
   'libdvdnav',
   'libdvdread',
