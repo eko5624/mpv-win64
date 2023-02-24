@@ -5,12 +5,23 @@ pkgdesc='Library to read and write Dolby Vision metadata (C-API)'
 arch=('x86_64')
 url="https://github.com/quietvoid/dovi_tool/"
 license=('MIT')
-source=("git+https://github.com/quietvoid/dovi_tool.git")
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 package() {
-  cd $srcdir/dovi_tool
-  cargo --config profile.release.codegen-units=1 cinstall \
+  cd $srcdir
+  git clone \
+    --depth 1 \
+    --sparse \
+    --filter=tree:0 \
+    https://github.com/quietvoid/dovi_tool.git
+  cd dovi_tool
+  git sparse-checkout set dolby_vision
+  cd dolby_vision
+  mkdir build
+  CARGO_BUILD_TARGET_DIR=$srcdir/dovi_tool/dolby_vision/build
+  CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  cargo cinstall \
     --manifest-path=$srcdir/dovi_tool/dolby_vision/Cargo.toml \
     --prefix=/opt \
     --destdir=$pkgdir \
