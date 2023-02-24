@@ -29,7 +29,7 @@ jobs:
         rm -rf /c/Users/runneradmin/.cargo
         curl -sSf https://sh.rustup.rs |
         sh -s -- -y --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path --profile minimal
-        C:\Users\runneradmin\.cargo\bin\rustup update
+        'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
     - name: Install cargo-c
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
