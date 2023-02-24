@@ -701,7 +701,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230203_13.0.1_x64-ucrt    
+        key: mcf_20230203_13.0.1_x64-ucrt
     - name: Install Rust
       shell: bash
       run: |
