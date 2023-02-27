@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=libass-dev
-pkgver=0.17.0
+pkgver=0.17.1
 pkgrel=1
 pkgdesc='A portable library for SSA/ASS subtitles rendering'
 arch=('x86_64')

@@ -19,7 +19,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230203_13.0.1_x64-ucrt
+        key: mcf_20230224_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -81,7 +81,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-7.0.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.14-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
@@ -136,7 +136,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-5.1.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.1-1-x86_64.pkg.tar.xz        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230203-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230224-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.35.1-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
 
