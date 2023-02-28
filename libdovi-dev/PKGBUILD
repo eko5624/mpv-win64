@@ -19,14 +19,8 @@ package() {
   git sparse-checkout set dolby_vision
   cd dolby_vision
   mkdir build
-  CARGO_BUILD_TARGET_DIR=$srcdir/dovi_tool/dolby_vision/build
-  CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
-  cargo cinstall \
-    --manifest-path=$srcdir/dovi_tool/dolby_vision/Cargo.toml \
-    --prefix=/opt \
-    --destdir=$pkgdir \
-    --release \
-    --library-type staticlib
+  set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  cargo cinstall --manifest-path=Cargo.toml --destdir=build --release --library-type staticlib
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
