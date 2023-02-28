@@ -30,7 +30,7 @@ jobs:
         curl -sSf https://sh.rustup.rs |
         sh -s -- -y --default-toolchain none
         rustup set default-host x86_64-pc-windows-gnu
-        rustup toolchain install stable --no-modify-path --profile minimal 
+        rustup toolchain install stable-x86_64-pc-windows-gnu --no-modify-path --profile minimal 
         'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
     - name: Install cargo-c
       run: |
