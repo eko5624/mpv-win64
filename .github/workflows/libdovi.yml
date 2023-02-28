@@ -27,7 +27,6 @@ jobs:
     #    rustup update
         
     - name: Install cargo-c
-      shell: bash
       run: |
         cargo install cargo-c --features=vendored-openssl
         
