@@ -27,8 +27,7 @@ jobs:
       shell: bash
       run: |
         rm -rf /c/Users/runneradmin/.cargo
-        curl -sSf https://sh.rustup.rs |
-        sh -s -- -y --default-toolchain none
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
         rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal
         rustup set default-host x86_64-pc-windows-gnu     
         'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
