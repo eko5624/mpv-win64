@@ -18,13 +18,13 @@ jobs:
       shell: bash
     - uses: actions/checkout@v3
 
-    - name: Install Rust
-      shell: bash
-      run: |
-        rm -rf /c/Users/runneradmin/.cargo
-        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --no-modify-path
-        rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal 
-        rustup update
+    #- name: Install Rust
+    #  shell: bash
+    #  run: |
+    #    rm -rf /c/Users/runneradmin/.cargo
+    #    curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --no-modify-path
+    #    rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal 
+    #    rustup update
         
     - name: Install cargo-c
       shell: bash
