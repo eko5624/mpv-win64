@@ -27,13 +27,14 @@ jobs:
       shell: bash
       run: |
         rm -rf /c/Users/runneradmin/.cargo
-        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
-        rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal   
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --no-modify-path
+        rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal 
         rustup update
+        
     - name: Install cargo-c
-      shell: bash
       run: |
-        /c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin/cargo install cargo-c --profile=release-strip --features=vendored-openssl
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.rustup\toolchains\stable-x86_64-pc-windows-gnu\bin'
         
     - name: Build
       env:
