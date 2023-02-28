@@ -31,7 +31,7 @@ jobs:
         sh -s -- -y --default-toolchain none
         rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal
         rustup set default-host x86_64-pc-windows-gnu     
-         'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
+        'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
     - name: Install cargo-c
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
