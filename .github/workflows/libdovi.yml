@@ -32,9 +32,9 @@ jobs:
         rustup update
         
     - name: Install cargo-c
+      shell: bash
       run: |
-        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.rustup\toolchains\stable-x86_64-pc-windows-gnu\bin'
+        /c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin/cargo install cargo-c
         
     - name: Build
       env:
