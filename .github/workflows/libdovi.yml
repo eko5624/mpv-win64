@@ -17,12 +17,7 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@v3
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20230224_13.0.1_x64-ucrt
-    
+
     - name: Install Rust
       shell: bash
       run: |
@@ -34,17 +29,14 @@ jobs:
     - name: Install cargo-c
       shell: bash
       run: |
-        /c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin/cargo install cargo-c
+        cargo install cargo-c --features=vendored-openssl
         
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |                  
-        cd libdovi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libdovi-dev; PATH=/usr/bin:/opt/bin:/c/Users/runneradmin/.cargo/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
