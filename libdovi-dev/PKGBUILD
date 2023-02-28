@@ -21,7 +21,7 @@ package() {
   mkdir build
   CARGO_BUILD_TARGET_DIR=$srcdir/dovi_tool/dolby_vision/build
   CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
-  cargo.exe cargo-cinstall.exe \
+  cargo cargo-cinstall \
     --manifest-path=$srcdir/dovi_tool/dolby_vision/Cargo.toml \
     --prefix=/opt \
     --destdir=$pkgdir \
