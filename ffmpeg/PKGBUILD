@@ -1,5 +1,5 @@
 pkgname=(ffmpeg-shared-dev ffmpeg-shared)
-pkgver=5.1.2
+pkgver=6.0
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
