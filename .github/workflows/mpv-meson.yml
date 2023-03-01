@@ -38,6 +38,7 @@ jobs:
         pip install ninja      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-2.1.91-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.8.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.1.2-1-x86_64.pkg.tar.zst
@@ -73,7 +74,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.3.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-11.1.5.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-5.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20230119-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.1.2-1-x86_64.pkg.tar.zst
