@@ -696,32 +696,25 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
-    - uses: actions/cache@v3
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20230224_13.0.1_x64-ucrt
-    - name: Install Rust
+    - uses: actions/checkout@v3   
+    - name: Install rust
       shell: bash
       run: |
         rm -rf /c/Users/runneradmin/.cargo
-        curl -sSf https://sh.rustup.rs |
-        sh -s -- -y --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path --profile minimal
-        'C:\Users\runneradmin\.cargo\bin\rustup.exe' update
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --no-modify-path
+        rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal 
+        rustup update      
     - name: Install cargo-c
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        7z x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.cargo\bin'        
+        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.rustup\toolchains\stable-x86_64-pc-windows-gnu\bin'       
     - name: Build
       env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |                  
-        cd libdovi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin:/c/Users/runneradmin/.cargo/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libdovi-dev; PATH=/usr/bin:/opt/bin:/c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+      
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
