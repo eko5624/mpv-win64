@@ -19,7 +19,7 @@ package() {
   git sparse-checkout set dolby_vision
   cd dolby_vision
   mkdir build
-  set CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   cargo cinstall --manifest-path=Cargo.toml --prefix=/opt --destdir=$pkgdir --release --library-type staticlib
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
