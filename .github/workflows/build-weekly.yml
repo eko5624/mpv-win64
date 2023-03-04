@@ -567,7 +567,7 @@ jobs:
       run: |      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-7.0.1-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-7.1.0-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst       
@@ -1808,7 +1808,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.12-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-7.0.1-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-7.1.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.14-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
@@ -2004,7 +2004,7 @@ jobs:
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.02.17/yt-dlp.exe
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.03.03/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
         mv D:\msys64\opt\bin\libmcfgthread-1.dll D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
