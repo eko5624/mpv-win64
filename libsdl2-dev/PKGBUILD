@@ -1,5 +1,5 @@
 pkgname=libsdl2-dev
-pkgver=2.26.3
+pkgver=2.26.4
 pkgrel=1
 pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
 arch=('x86_64')
