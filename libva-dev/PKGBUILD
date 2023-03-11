@@ -1,0 +1,27 @@
+pkgname=libva-dev
+pkgver=2.17.0
+pkgrel=1
+pkgdesc='An implementation for VA-API'
+arch=('x86_64')
+url="https://github.com/intel/libva"
+license=('MIT')
+source=("git+https://github.com/intel/libva.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libva
+  meson build \
+    --prefix=/opt \
+    --buildtype=release \
+    --default-library=static \
+    --libdir='/opt/lib' \
+    -Denable_docs=false
+  meson compile -C build 
+}
+
+package() {
+  cd $srcdir/libva
+  DESTDIR=$pkgdir meson install -C build
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
