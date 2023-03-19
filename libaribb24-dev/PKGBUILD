@@ -23,7 +23,7 @@ build() {
     --prefix=/opt \
     --disable-shared \
     --enable-static \
-    --with-pic \
+    --with-pic
   make
 }
 
