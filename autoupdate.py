@@ -29,6 +29,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
+  'libaribb24',   
   'libass',
   'libbluray',
   'libbs2b',
