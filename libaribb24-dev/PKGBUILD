@@ -18,8 +18,9 @@ build() {
       echo "Applying $patch"
       patch -p1 < "$patch"
   done
-  autoreconf -ivf
-  ./configure prefix=/opt \
+  ./bootstrap
+  ./configure \
+    --prefix=/opt \
     --disable-shared \
     --enable-static \
     --with-pic \
