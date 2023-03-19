@@ -1,0 +1,31 @@
+pkgname=libaribb24-dev
+pkgver=1.0.3
+pkgrel=1
+pkgdesc='A library for ARIB STD-B24, decoding JIS 8 bit characters and parsing MPEG-TS stream'
+arch=('x86_64')
+url="https://github.com/nkoriyama/aribb24/"
+license=('LGPL3.0')
+source=("git+https://github.com/nkoriyama/aribb24.git"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/aribb24-0001-fix-default-macros.patch"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/aribb24-0002-reset-control_time-when-finalizing-decoder.patch"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/aribb24-0003-fixed-DRCS-parser-bug.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+
+build() {
+  cd $srcdir/aribb24
+  for patch in $srcdir/*.patch; do
+      echo "Applying $patch"
+      patch -p1 < "$patch"
+  done
+  autoreconf -ivf
+  ./configure prefix=/opt \
+    --disable-shared \
+    --enable-static \
+    --with-pic \
+  make
+}
+
+package() {
+  cd $srcdir/aribb24
+  make DESTDIR=$pkgdir install
+}
