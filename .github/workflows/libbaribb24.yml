@@ -1,3 +1,11 @@
+name: libbaribb24
+
+on:
+  #schedule:
+  #- cron: '03 0 * * *'
+  workflow_dispatch:
+      
+jobs:  
   libbaribb24:
     runs-on: windows-2022
     steps:
