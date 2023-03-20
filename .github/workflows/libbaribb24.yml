@@ -1,4 +1,4 @@
-name: libbaribb24
+name: libaribb24
 
 on:
   #schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
       
 jobs:  
-  libbaribb24:
+  libaribb24:
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
