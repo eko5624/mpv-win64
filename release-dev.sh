@@ -4,23 +4,27 @@ set -x
 # Delete assets
 asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev \
   | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id') 
   
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X DELETE \
   -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$asset_id    
 
 # Release assets
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
   -d '{"tag_name": "dev"}'
   
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev | jq -r '.id')
   
 for f in $2/*.zst; do 
