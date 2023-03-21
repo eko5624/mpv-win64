@@ -17,7 +17,8 @@ build() {
   ./configure \
     --prefix=/opt \
     --disable-shared \
-    --with-mbedtls=/opt
+    --with-mbedtls=/opt \
+    --with-ca-bundle=/opt/bin/ca-bundle.crt
   make
 }
 
