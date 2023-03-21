@@ -1,0 +1,25 @@
+pkgname=curl-dev
+pkgver=8.0.1
+pkgrel=1
+pkgdesc='Command line tool and library for transferring data with URLs'
+arch=('x86_64')
+url="https://curl.se/"
+makedepends=('mbedtls-dev')
+license=('spdx:MIT')
+source=("git+https://github.com/curl/curl.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/curl
+  autoreconf -vfi
+  ./configure \
+    --prefix=/opt \
+    --disable-shared \
+    --with-mbedtls=/opt
+  make
+}
+
+package() {
+  cd $srcdir/curl
+  make DESTDIR=$pkgdir install
+}
