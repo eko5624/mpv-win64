@@ -2,33 +2,33 @@
 set -x
 
 # Delete assets
-asset_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+asset_id=$(/d/ucrt64/bin/curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev \
   | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id') 
   
-curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+/d/ucrt64/bin/curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X DELETE \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/$asset_id    
 
 # Release assets
-curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+/d/ucrt64/bin/curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
   -d '{"tag_name": "dev"}'
   
-release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+release_id=$(/d/ucrt64/bin/curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev | jq -r '.id')
   
 for f in $2/*.zst; do 
-  curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+  /d/ucrt64/bin/curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -X POST -H "Accept: application/vnd.github+json" \
     -H "Content-Type: $(file -b --mime-type $f)" \
     https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/$release_id/assets?name=$(basename $f) --data-binary @$f; 
