@@ -30,7 +30,7 @@ jobs:
         7z x *.7z -o'D:'
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8.0.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        mv /d/msys64/opt/bin/curl.exe /d/ucrt64/bin
+        mv /d/msys64/opt/bin/* /d/ucrt64/bin
         
     - name: Make Toolchain
       shell: msys2 {0}
