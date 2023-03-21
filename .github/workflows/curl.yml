@@ -1,4 +1,4 @@
-name: libass
+name: curl
 
 on:
   #schedule:
