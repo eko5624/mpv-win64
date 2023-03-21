@@ -734,7 +734,12 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3   
+    - uses: actions/checkout@v3
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20230307_13.0.1_x64-ucrt
     - name: Install rust
       shell: bash
       run: |
