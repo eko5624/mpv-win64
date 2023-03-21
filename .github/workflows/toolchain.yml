@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools p7zip
+        install: base-devel autotools
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
