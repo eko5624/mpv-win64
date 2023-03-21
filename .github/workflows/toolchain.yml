@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel  
+        install: base-devel autotools  
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -26,7 +26,11 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
-        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'    
+        &'C:\Program Files\7-Zip\7z.exe' x *.7z -o'D:'
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8.0.1-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        mv D:\msys64\opt\bin\curl.exe D:\ucrt64\bin
+        
     - name: Make Toolchain
       shell: msys2 {0}
       if: steps.cache.outputs.cache-hit != 'true'
