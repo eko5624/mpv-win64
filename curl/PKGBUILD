@@ -18,7 +18,7 @@ build() {
     --prefix=/opt \
     --disable-shared \
     --with-mbedtls=/opt \
-    --with-ca-bundle=/opt/bin/ca-bundle.crt
+    --with-ca-bundle=/opt/bin/curl-ca-bundle.crt
   make
 }
 
