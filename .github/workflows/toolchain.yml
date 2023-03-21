@@ -31,8 +31,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8.0.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         mv /d/msys64/opt/bin/* /d/ucrt64/bin
-        curl -OL https://curl.se/ca/cacert.pem
-        mv ./cacert.pem /d/ucrt64/bin/curl-ca-bundle.crt
+        #curl -OL https://curl.se/ca/cacert.pem
+        #mv ./cacert.pem /d/ucrt64/bin/curl-ca-bundle.crt
         
         
     - name: Make Toolchain
