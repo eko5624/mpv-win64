@@ -1,4 +1,4 @@
-name: upload-curl
+name: autoupdate-curl
 
 on:
   workflow_dispatch:
