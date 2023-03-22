@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-CURL=/d/ucrt64/bin/curl
+CURL=./bin/curl
 # Delete assets
 asset_id=$($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
