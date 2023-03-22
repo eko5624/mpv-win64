@@ -13,8 +13,6 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
       l = '%s%s\n' % (l[:i+9], mingw)
     elif (i:=l.find('mingw-w64-gcc-mcf_')) > -1:
       l = '%s%s.7z\n' % (l[:i+18], x['Mingw-w64'])
-    elif (i:=l.find('curl-dev-')) > -1:
-      l = '%s%s-1-x86_64.pkg.tar.zst\n' % (l[:i+9], curl)
     f.write(l)
     
 pkgs = {} 
