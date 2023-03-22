@@ -34,11 +34,21 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
-      shell: bash
+    - name: Delete
       if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        ./release-latest.sh mcfgthread mcfgthread
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        assets: mcfgthread*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mcfgthread/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true
