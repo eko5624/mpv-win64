@@ -28,14 +28,19 @@ jobs:
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         7z x *.7z -o/d
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8.0.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/re20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         pacman -U *.zst --noconfirm
         mv /d/msys64/opt/bin/* /d/ucrt64/bin
         # Download the cacert.pem file: https://curl.haxx.se/docs/caextract.html
+20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         curl -OL https://curl.se/ca/cacert.pem
+20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         # Rename the cacert.pem file to curl-ca-bundle.crt
+20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         # Put in same directory as curl.exe
+20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         mv ./cacert.pem /d/ucrt64/bin/curl-ca-bundle.crt
+20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         
     - name: Make Toolchain
       shell: msys2 {0}
