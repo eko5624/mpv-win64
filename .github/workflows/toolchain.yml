@@ -30,7 +30,12 @@ jobs:
         7z x *.7z -o/d
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8.0.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        mv /d/msys64/opt/bin/* /d/ucrt64/bin 
+        mv /d/msys64/opt/bin/* /d/ucrt64/bin
+        # Download the cacert.pem file: https://curl.haxx.se/docs/caextract.html
+        curl -OL https://curl.se/ca/cacert.pem
+        # Rename the cacert.pem file to curl-ca-bundle.crt
+        # Put in same directory as curl.exe
+        mv ./cacert.pem /d/ucrt64/bin/curl-ca-bundle.crt
         
     - name: Make Toolchain
       shell: msys2 {0}
