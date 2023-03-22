@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools
+        install: base-devel autotools p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -30,12 +30,7 @@ jobs:
         7z x *.7z -o/d
         curl -OL https://github.com/${{ github.repository }}/re20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         pacman -U *.zst --noconfirm
-        mv /d/msys64/opt/bin/* /d/ucrt64/bin
-        #curl -OL https://curl.se/ca/cacert.pem
-20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
-        #mv ./cacert.pem /d/ucrt64/bin/curl-ca-bundle.crt
-20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
-        
+        mv /d/msys64/opt/bin/* /d/ucrt64/bin 
         
     - name: Make Toolchain
       shell: msys2 {0}
