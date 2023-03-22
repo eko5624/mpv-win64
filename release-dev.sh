@@ -4,6 +4,7 @@ set -x
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 export PATH="$DIR/bin:$PATH"
 CURL=$DIR/bin/curl
+
 # Delete assets
 asset_id=$($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
