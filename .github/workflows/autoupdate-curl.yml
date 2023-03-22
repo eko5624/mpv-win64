@@ -28,13 +28,10 @@ jobs:
         pacman -U *.zst --noconfirm
         mv /d/msys64/opt/bin/* ./
         
-    - name: Setup git config
+    - name: Push
       run: |
         git config --global user.name 'eko5624'
-        git config --global user.email 'datong5624@gmail.com'
-    - name: Push
-      shell: msys2 {0}
-      run: |
+        git config --global user.email 'datong5624@gmail.com'      
         git add -A
         git commit -am "update curl" || echo "nothing updated"
         git push        
