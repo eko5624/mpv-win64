@@ -7,7 +7,8 @@ url="https://curl.se/"
 makedepends=('mbedtls-dev')
 license=('spdx:MIT')
 source=("git+https://github.com/curl/curl.git#tag=curl-$pkgver"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/curl-0001-Skip-compiling-unnecessary-stuff.patch")
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/curl-0001-Skip-compiling-unnecessary-stuff.patch"
+        "https://curl.se/ca/cacert.pem")
 md5sums=('SKIP' 'SKIP')
 
 build() {
@@ -24,4 +25,5 @@ build() {
 package() {
   cd $srcdir/curl
   make DESTDIR=$pkgdir install
+  mv $srcdir/cacert.pem $pkgdir/opt/bin/curl-ca-bundle.crt
 }
