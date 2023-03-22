@@ -1,7 +1,8 @@
 #!/bin/bash
 set -x
-export PATH="./bin:$PATH"
-CURL=./bin/curl
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+export PATH="$DIR/bin:$PATH"
+CURL=$DIR/bin
 
 # Delete assets
 asset_id=($($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
