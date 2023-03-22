@@ -6,14 +6,14 @@ arch=('x86_64')
 url="https://curl.se/"
 makedepends=('mbedtls-dev')
 license=('spdx:MIT')
-source=("git+https://github.com/curl/curl.git"
+source=("git+https://github.com/curl/curl.git#tag=curl-$pkgver"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/curl-0001-Skip-compiling-unnecessary-stuff.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/curl
   patch -p1 -i $srcdir/curl-0001-Skip-compiling-unnecessary-stuff.patch
-  autoreconf -vfi
+  #autoreconf -vfi
   ./configure \
     --prefix=/opt \
     --disable-shared \
