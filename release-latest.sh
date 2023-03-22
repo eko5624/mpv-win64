@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+export PATH="./bin:$PATH"
 CURL=./bin/curl
 
 # Delete assets
