@@ -26,7 +26,9 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8_0_1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        mv /d/msys64/opt/bin/* ./curl
+        rm -rf bin
+        mkdir bin
+        mv /d/msys64/opt/bin/* bin
         
     - name: Push
       run: |
