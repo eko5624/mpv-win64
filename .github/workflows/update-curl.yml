@@ -1,0 +1,40 @@
+name: upload-curl
+
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  upload-curl:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git 
+        
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash      
+    - uses: actions/checkout@main
+      with:
+        token: ${{ secrets.BOT }}
+        
+    - name: Install curl
+      shell: msys2 {0}
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/curl-dev-8_0_1-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        mv /d/msys64/opt/bin/* ./
+        
+    - name: Setup git config
+      run: |
+        git config --global user.name 'eko5624'
+        git config --global user.email 'datong5624@gmail.com'
+    - name: Push
+      shell: msys2 {0}
+      run: |
+        git add -A
+        git commit -am "update curl" || echo "nothing updated"
+        git push        
