@@ -25,7 +25,7 @@ for p in pkgs:
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)        
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
+for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
@@ -90,12 +90,13 @@ pkgs['luajit2-dev'] = x['luajit2']
 pkgs['mujs-dev'] = x['mujs']
 pkgs['rubberband-dev'] = x['rubberband']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
+pkgs['curl-dev'] = x['curl']
 pkgs['ffmpeg-dev'] = x['ffmpeg']
 pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 
-for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml', 'toolchain.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
