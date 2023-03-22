@@ -13,7 +13,7 @@ md5sums=('SKIP' 'SKIP')
 build() {
   cd $srcdir/curl
   patch -p1 -i $srcdir/curl-0001-Skip-compiling-unnecessary-stuff.patch
-  #autoreconf -vfi
+  autoreconf -vfi
   ./configure \
     --prefix=/opt \
     --disable-shared \
