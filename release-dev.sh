@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
 
-DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-export PATH="$DIR/bin:$PATH"
+#DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+#export PATH="$DIR/bin:$PATH"
 CURL=/d/ucrt64/bin/curl
 
 # Delete assets
