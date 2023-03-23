@@ -1,10 +1,10 @@
 #!/bin/bash
 set -x  
-
+CURL=/d/ucrt64/bin/curl
 # Release assets
 date=$(date +%Y-%m-%d)
   
-release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+release_id=$($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$date | jq -r '.id')
   
