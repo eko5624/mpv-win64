@@ -127,7 +127,11 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20230307_13.0.1_x64-ucrt
     - name: Get current timestamp      
       id: timestamp
       shell: bash
