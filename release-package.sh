@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x  
-CURL=./bin/curl
+CURL=/d/ucrt64/bin/curl
 
 #Get mpv latest commit sha
 short_sha=$(cat /d/msys64/opt/mpv/SHORT_SHA)
