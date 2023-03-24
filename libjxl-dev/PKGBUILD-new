@@ -47,6 +47,4 @@ package() {
   mv third_party/brotli/libbrotlicommon.pc $pkgdir/opt/lib/pkgconfig
   mv third_party/brotli/libbrotlidec.pc $pkgdir/opt/lib/pkgconfig
   mv third_party/brotli/libbrotlienc.pc $pkgdir/opt/lib/pkgconfig
-  sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl.pc  
-  sed -i 's/Libs.private: -lm/Libs.private: -lm -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl_threads.pc 
 }
