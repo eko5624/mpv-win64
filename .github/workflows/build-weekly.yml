@@ -21,7 +21,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       shell: msys2 {0}
       run: |
@@ -50,7 +50,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -119,7 +119,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -152,7 +152,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -185,7 +185,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -220,7 +220,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -262,7 +262,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -295,7 +295,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -329,7 +329,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -374,7 +374,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -416,7 +416,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -450,7 +450,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -495,7 +495,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -528,7 +528,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -562,7 +562,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -603,7 +603,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -640,7 +640,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -678,7 +678,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -711,7 +711,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -744,7 +744,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Install rust
       shell: bash
       run: |
@@ -786,7 +786,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -820,7 +820,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -857,7 +857,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -892,7 +892,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -926,7 +926,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -961,7 +961,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -995,7 +995,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1031,7 +1031,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1065,7 +1065,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1104,7 +1104,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1153,7 +1153,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1188,7 +1188,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1224,7 +1224,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1270,7 +1270,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1304,7 +1304,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1338,7 +1338,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1375,7 +1375,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1413,7 +1413,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1446,7 +1446,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1480,7 +1480,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1515,7 +1515,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1549,7 +1549,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1582,7 +1582,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1615,7 +1615,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1648,7 +1648,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1681,7 +1681,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1715,7 +1715,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1751,7 +1751,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1784,7 +1784,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1829,7 +1829,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -1937,7 +1937,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -1970,7 +1970,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2005,7 +2005,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2039,14 +2039,14 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Packages      
       shell: msys2 {0}
       run: |        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.1-1-x86_64.pkg.tar.xz        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230307-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230323-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.35.1-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
 
@@ -2087,7 +2087,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -2129,7 +2129,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2164,7 +2164,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2198,7 +2198,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2232,7 +2232,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       shell: msys2 {0}
       run: |
@@ -2260,7 +2260,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -2294,7 +2294,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230323_13.0.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
