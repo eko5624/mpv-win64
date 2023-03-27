@@ -7,22 +7,25 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('libdovi-dev' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo.git#tag=v$pkgver")
+source=("git+https://github.com/haasn/libplacebo.git")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libplacebo
   git submodule update --init --recursive  
-  mkdir work
-  meson . work --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
-    -Ddemos=false -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
-  cd work
-  ninja
+  meson setup build \
+    --prefix=/opt \
+    --buildtype=release \
+    --default-library=static \
+    --libdir='/opt/lib' \
+    -Ddemos=false \
+    -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/libplacebo/work
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir meson install -C build
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
