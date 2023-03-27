@@ -30,7 +30,7 @@ jobs:
         7z x *.7z -o/d
         #curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         curl -OL https://curl.se/windows/dl-7.87.0/curl-7.87.0-win64-mingw.zip
-        7z e -r curl-win64-mingw.zip -o/d/ucrt64/bin '*.exe' '*.crt'
+        7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         
     - name: Make Toolchain
       shell: msys2 {0}
