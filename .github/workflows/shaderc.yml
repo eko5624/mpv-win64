@@ -16,10 +16,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - name: Get HASH ENV
-      run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
+    - uses: actions/checkout@main  
     - uses: actions/cache@main
       id: cache
       with:
