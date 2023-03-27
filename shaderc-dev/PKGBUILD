@@ -23,6 +23,7 @@ build() {
   sed -i '/namespace/i #include <cstdint>' glslang/glslang/MachineIndependent/SymbolTable.h
   sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
   cd $srcdir/shaderc
+  export CXXFLAGS="$CXXFLAGS -std=c++11"
   mv $srcdir/spirv-headers third_party
   mv $srcdir/spirv-tools third_party
   mv $srcdir/glslang third_party
@@ -39,7 +40,7 @@ package() {
   cd $srcdir/shaderc
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp -r libshaderc/include $pkgdir/opt
-  cp -r libshaderc_util/include/libshaderc_util $pkgdir/opt/include
+  # cp -r libshaderc_util/include/libshaderc_util $pkgdir/opt/include
   cp build/libshaderc/libshaderc_combined.a $pkgdir/opt/lib
   cp build/shaderc_combined.pc $pkgdir/opt/lib/pkgconfig/shaderc.pc
 }
