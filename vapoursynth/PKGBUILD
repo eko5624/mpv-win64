@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll
+  rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll vapoursynth.cp38-win_amd64.pyd
   rm -rf doc
   rm vapoursynth64/plugins/.keep
 }
@@ -33,6 +33,7 @@ package_vapoursynth-shared-plugin-core-extra() {
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir
   mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vsgen* $pkgdir/opt/bin
   mv *.exe $pkgdir/opt/bin
   mv vsrepo.py $pkgdir/opt/bin
   mv VSVFW.dll $pkgdir/opt/bin
