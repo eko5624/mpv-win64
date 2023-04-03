@@ -136,6 +136,9 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
+    - name: Install python dependencies
+      run: |
+        pip install meson ninja
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -146,8 +149,6 @@ jobs:
       run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        pip install https://github.com/mesonbuild/meson/archive/refs/heads/master.zip
-        pip install ninja
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-shared-dev-6.0-1-x86_64.pkg.tar.zst
