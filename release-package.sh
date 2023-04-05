@@ -1,6 +1,8 @@
 #!/bin/bash
 set -x  
 CURL=/d/ucrt64/bin/curl
+CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
+
 # Release assets
 date=$(date +%Y-%m-%d)
 
