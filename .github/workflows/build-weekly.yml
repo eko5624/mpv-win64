@@ -71,8 +71,7 @@ jobs:
         cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}   
       shell: bash 
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
@@ -106,8 +105,7 @@ jobs:
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}  
       shell: bash 
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
@@ -185,8 +183,7 @@ jobs:
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}     
       shell: bash 
       run: |
         chmod +x ./release-latest.sh
@@ -268,8 +265,7 @@ jobs:
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         chmod +x ./release-package.sh
@@ -297,8 +293,7 @@ jobs:
         cd vapoursynth; makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}  
       shell: bash 
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
