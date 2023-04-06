@@ -28,8 +28,7 @@ jobs:
         cd mpv-config; makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-latest.sh config mpv-config
@@ -99,8 +98,7 @@ jobs:
         cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
@@ -133,8 +131,7 @@ jobs:
         cd amf-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh amf-headers-dev amf-dev
@@ -166,8 +163,7 @@ jobs:
         cd angle-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh angle-headers-dev angle-dev
@@ -201,8 +197,7 @@ jobs:
         cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh avisynth-dev avisynth-dev
@@ -243,8 +238,7 @@ jobs:
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh dav1d-dev dav1d-dev
@@ -276,8 +270,7 @@ jobs:
         cd davs2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh davs2-dev davs2-dev
@@ -309,8 +302,7 @@ jobs:
         cd ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
@@ -355,8 +347,7 @@ jobs:
         cd freetype2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh freetype2-dev freetype2-dev
@@ -397,8 +388,7 @@ jobs:
         cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh fribidi-dev fribidi-dev
@@ -430,8 +420,7 @@ jobs:
         cd gmp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh gmp-dev gmp-dev       
@@ -476,8 +465,7 @@ jobs:
         cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh harfbuzz-dev harfbuzz-dev 
@@ -509,8 +497,7 @@ jobs:
         cd lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh lame-dev lame-dev 
@@ -542,8 +529,7 @@ jobs:
         cd lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh lcms2-dev lcms2-dev 
@@ -583,8 +569,7 @@ jobs:
         cd libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libass-dev libass-dev
@@ -620,8 +605,7 @@ jobs:
         cd libaribb24-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libaribb24-dev libaribb24-dev        
@@ -659,8 +643,7 @@ jobs:
         cd libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libbluray-dev libbluray-dev
@@ -692,8 +675,7 @@ jobs:
         cd libbs2b-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libbs2b-dev libbs2b-dev
@@ -725,8 +707,7 @@ jobs:
         cd libcaca-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libcaca-dev libcaca-dev
@@ -767,8 +748,7 @@ jobs:
       
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libdovi-dev libdovi-dev                     
@@ -800,8 +780,7 @@ jobs:
         cd libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libdvdcss-dev libdvdcss-dev
@@ -837,8 +816,7 @@ jobs:
         cd libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libdvdnav-dev libdvdnav-dev
@@ -873,8 +851,7 @@ jobs:
         cd libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libdvdread-dev libdvdread-dev         
@@ -907,8 +884,7 @@ jobs:
         cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libjpeg-dev libjpeg-dev
@@ -942,8 +918,7 @@ jobs:
         cd libjxl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libjxl-dev libjxl-dev         
@@ -975,8 +950,7 @@ jobs:
         cd libmodplug-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libmodplug-dev libmodplug-dev 
@@ -1012,8 +986,7 @@ jobs:
         cd libmysofa-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libmysofa-dev libmysofa-dev                           
@@ -1045,8 +1018,7 @@ jobs:
         cd libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libogg-dev libogg-dev 
@@ -1084,8 +1056,7 @@ jobs:
         cd libopenmpt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
@@ -1133,8 +1104,7 @@ jobs:
         cd libplacebo-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libplacebo-dev libplacebo-dev
@@ -1169,8 +1139,7 @@ jobs:
         cd libpng-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libpng-dev libpng-dev      
@@ -1204,8 +1173,7 @@ jobs:
         cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libsdl2-dev libsdl2-dev 
@@ -1251,8 +1219,7 @@ jobs:
         cd libsixel; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libsixel-dev libsixel 
@@ -1285,8 +1252,7 @@ jobs:
         cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libsoxr-dev libsoxr-dev                   
@@ -1318,8 +1284,7 @@ jobs:
         cd libspeex-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libspeex-dev libspeex-dev 
@@ -1355,8 +1320,7 @@ jobs:
         cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libsrt-dev libsrt-dev 
@@ -1394,8 +1358,7 @@ jobs:
         cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libssh-dev libssh-dev 
@@ -1427,8 +1390,7 @@ jobs:
         cd libudfread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libudfread-dev libudfread-dev
@@ -1460,8 +1422,7 @@ jobs:
         cd libunibreak-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libunibreak-dev libunibreak-dev                             
@@ -1496,8 +1457,7 @@ jobs:
         cd libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
@@ -1530,8 +1490,7 @@ jobs:
         cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libvpl-dev libvpl-dev         
@@ -1563,8 +1522,7 @@ jobs:
         cd libvpx-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libvpx-dev libvpx-dev
@@ -1596,8 +1554,7 @@ jobs:
         cd libwebp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libwebp-dev libwebp-dev
@@ -1629,8 +1586,7 @@ jobs:
         cd libxml2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libxml2-dev libxml2-dev        
@@ -1662,8 +1618,7 @@ jobs:
         cd libxvid-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libxvid-dev libxvid-dev  
@@ -1695,8 +1650,7 @@ jobs:
         cd libzimg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libzimg-dev libzimg-dev  
@@ -1732,8 +1686,7 @@ jobs:
         cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libzvbi-dev libzvbi-dev
@@ -1765,8 +1718,7 @@ jobs:
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh luajit2-dev luajit2 
@@ -1809,8 +1761,7 @@ jobs:
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh mbedtls-dev mbedtls-dev               
@@ -1911,15 +1862,13 @@ jobs:
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Delete old libmpv
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-latest.sh mpv-git mpv 
@@ -1951,8 +1900,7 @@ jobs:
         cd mujs; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh mujs-dev mujs
@@ -1986,8 +1934,7 @@ jobs:
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh openal-soft-dev openal-soft-dev              
@@ -2019,8 +1966,7 @@ jobs:
         cd opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh opus-dev opus-dev
@@ -2068,8 +2014,7 @@ jobs:
         7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-package.sh
@@ -2110,8 +2055,7 @@ jobs:
         cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh rubberband-dev rubberband        
@@ -2145,8 +2089,7 @@ jobs:
         cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh shaderc-dev shaderc-dev
@@ -2179,8 +2122,7 @@ jobs:
         cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh spirv-cross-dev spirv-cross-dev
@@ -2214,8 +2156,7 @@ jobs:
         cd uavs3d-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh uavs3d-dev uavs3d-dev        
@@ -2241,8 +2182,7 @@ jobs:
         cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh vapoursynth-dev vapoursynth
@@ -2275,8 +2215,7 @@ jobs:
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh vulkan-dev vulkan-dev
@@ -2308,8 +2247,7 @@ jobs:
         cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ secrets.BOT }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh zlib-dev zlib-dev
