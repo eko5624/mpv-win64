@@ -1,0 +1,30 @@
+pkgname=rav1e-dev
+pkgver=0.6.3
+pkgrel=1
+pkgdesc='The fastest and safest AV1 encoder'
+arch=('x86_64')
+url="https://github.com/xiph/rav1e/"
+license=('spdx:BSD-2-Clause')
+source=("git+https://github.com/xiph/rav1e.git")
+md5sums=('SKIP')
+
+package() {  
+  cd $srcdir/rav1e
+  cat <<EOF >/d/.cargo/config
+[target.x86_64-pc-windows-gnu]
+linker = "gcc"
+ar = "ar"
+EOF
+  export CC="gcc"
+  export CXX="g++"
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  export CARGO_PROFILE_RELEASE_DEBUG=false
+  export CARGO_PROFILE_RELEASE_INCREMENTAL=false
+  export CARGO_PROFILE_RELEASE_LTO=off
+  export RUSTFLAGS="-C link-self-contained=no"
+  rustup default stable-x86_64-pc-windows-gnu
+  rustup component remove rust-mingw
+  cargo cinstall -v --manifest-path=Cargo.toml --prefix=/opt --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
