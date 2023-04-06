@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x  
 CURL=/d/ucrt64/bin/curl
+CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
 
 #Get mpv latest commit sha
 short_sha=$(cat /d/msys64/opt/mpv/SHORT_SHA)
