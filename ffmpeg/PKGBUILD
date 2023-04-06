@@ -11,14 +11,13 @@ makedepends=("nasm"
              "davs2-dev"
              "gmp-dev"
              "lame-dev"
-             "libaribb24-dev"
+             "libaribcaption-dev"
              "libbs2b-dev"
              "libjxl-dev"
              "libmodplug-dev"
              "libmysofa-dev"
              "libogg-dev"
              "libopenmpt-dev"
-             "libplacebo-dev"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
@@ -35,7 +34,6 @@ makedepends=("nasm"
              "mbedtls-dev"
              "opus-dev"
              "ffnvcodec-dev"
-             "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
 license=('LGPL')
@@ -60,7 +58,7 @@ package_ffmpeg-dev() {
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
-    --enable-libaribb24 \
+    --enable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
     --enable-libdavs2 \
