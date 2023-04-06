@@ -18,7 +18,6 @@ makedepends=("nasm"
              "libmysofa-dev"
              "libogg-dev"
              "libopenmpt-dev"
-             "libplacebo-dev"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
@@ -35,7 +34,6 @@ makedepends=("nasm"
              "mbedtls-dev"
              "opus-dev"
              "ffnvcodec-dev"
-             "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-shared-dev")
 license=('LGPL')
@@ -70,8 +68,6 @@ package_ffmpeg-shared-dev() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --disable-libplacebo \
-    --disable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
