@@ -70,8 +70,6 @@ package_ffmpeg-dev() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --disable-libplacebo \
-    --disable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
