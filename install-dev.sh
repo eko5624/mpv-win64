@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
 for param in "$@"; do
   download_url=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
     -H "Accept: application/vnd.github.v3+json" \
