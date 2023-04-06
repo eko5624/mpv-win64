@@ -1,0 +1,23 @@
+pkgname=libaribcaption-dev
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Portable ARIB STD-B24 Caption Decoder/Renderer'
+arch=('x86_64')
+url="https://github.com/xqq/libaribcaption/"
+license=('MIT')
+source=("git+https://github.com/xqq/libaribcaption.git")
+md5sums=('SKIP')
+
+build() { 
+  cd $srcdir/libaribcaption
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release 
+  $MAKE
+}
+
+package() {
+  cd $srcdir/libaribcaption/build
+  $MAKE DESTDIR=$pkgdir install
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
