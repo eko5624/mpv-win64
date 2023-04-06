@@ -26,6 +26,7 @@ build() {
   # skip rc info and use vulkan-1.dll from your graphic driver
   sed -i '/Git/d' CMakeLists.txt
   sed -i '/loader.rc/d' loader/CMakeLists.txt
+  sed -i '/RC_FILE_LOCATION/d' loader/CMakeLists.txt
   sed -i 's/vulkan-1.def/vulkan-1.def)/' loader/CMakeLists.txt
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
