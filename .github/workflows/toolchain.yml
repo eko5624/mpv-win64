@@ -28,8 +28,7 @@ jobs:
       run: |
         curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
         7z x *.7z -o/d
-        #curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
-        curl -OL https://curl.se/windows/dl-7.87.0/curl-7.87.0-win64-mingw.zip
+        curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         
     - name: Make Toolchain
@@ -39,8 +38,7 @@ jobs:
         cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ github.token }}   
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
