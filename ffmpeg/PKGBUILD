@@ -58,7 +58,7 @@ package_ffmpeg-dev() {
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
-    --enable-libaribcaption \
+    --disable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
     --enable-libdavs2 \
