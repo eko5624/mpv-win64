@@ -54,7 +54,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: dev
-        assets: libplacebo*
+        assets: libplacebo-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
