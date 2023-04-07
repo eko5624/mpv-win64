@@ -1,4 +1,4 @@
-name: libaribb24
+name: libaribcaption
 
 on:
   #schedule:
@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
       
 jobs:  
-  libaribb24:
+  libaribcaption:
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -28,16 +28,14 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
-      run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.39-1-x86_64.pkg.tar.zst      
-        curl -OL https://github.com/eko5624/mpv-win64/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
-        pacman -U *.zst --noconfirm
-        cd libaribb24-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: |            
+        cd libaribcaption-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
+        GH_TOKEN: ${{ secrets.BOT }}   
       shell: bash 
       run: |
-        ./release-dev.sh libaribb24-dev libaribb24-dev
+        ./release-dev.sh libaribcaption-dev libaribcaption-dev
