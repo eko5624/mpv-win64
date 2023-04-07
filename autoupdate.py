@@ -10,8 +10,6 @@ mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 pkgs = {} 
 pkgs['libsixel'] = x['libsixel']
 pkgs['mpv'] = x['mpv']
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus']:
-  pkgs['%s-dev' % p] = x[p]
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
@@ -26,10 +24,13 @@ for p in [
   'dav1d',
   'davs2',
   'ffnvcodec',
+  'freetype2',
+  'fribidi',
+  'harfbuzz',
   'highway',
   'lame',
   'lcms2',
-  'libaribcaption',   
+  'libaribb24',   
   'libass',
   'libbluray',
   'libbs2b',
@@ -39,6 +40,7 @@ for p in [
   'libdvdnav',
   'libdvdread',
   'libiconv',
+  'libjxl',
   'libudfread',
   'libunibreak',
   'libjpeg',
@@ -60,6 +62,7 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'opus',
   'shaderc',
   'spirv-cross',
   'uavs3d',
@@ -67,7 +70,7 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in ['mpv', 'ffmpeg', 'luajit2', 'python-embed', 'vapoursynth']:
+for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2', 'python-embed', 'vapoursynth']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
@@ -83,9 +86,11 @@ pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
 pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
 pkgs['ffmpeg-shared'] = x['ffmpeg']
+pkgs['libplacebo-shared'] = x['libplacebo']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
+pkgs['vulkan-shared'] = x['vulkan']
 
 for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
