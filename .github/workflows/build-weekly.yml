@@ -122,7 +122,7 @@ jobs:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
-        ./release-dev.sh libplacebo-dev libplacebo-dev
+        ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
   luajit2:
     runs-on: windows-2022
@@ -377,4 +377,4 @@ jobs:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
-        ./release-dev.sh vulkan-dev vulkan-dev        
+        ./release-dev.sh vulkan-shared-dev vulkan-dev        
