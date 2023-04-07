@@ -11,7 +11,7 @@ makedepends=("nasm"
              "davs2-dev"
              "gmp-dev"
              "lame-dev"
-             "libaribcaption-dev"
+             "libaribb24-dev"
              "libbs2b-dev"
              "libjxl-dev"
              "libmodplug-dev"
@@ -58,7 +58,7 @@ package_ffmpeg-dev() {
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
-    --disable-libaribcaption \
+    --enable-libaribb24 \
     --enable-libbs2b \
     --enable-libdav1d \
     --enable-libdavs2 \
