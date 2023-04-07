@@ -21,12 +21,12 @@ makedepends=("yasm"
              "lcms2-dev"
              "libbluray-dev"
              "libdvdnav-dev"
-             "libplacebo-dev"
+             "libplacebo-shared-dev"
              "luajit2-shared-dev"
              "shaderc-dev"
              "spirv-cross-dev"
              "vapoursynth-shared-dev"
-             "vulkan-dev"
+             "vulkan-shared-dev"
              "zlib-dev")
 license=('GPL3')
 source=("git+https://github.com/mpv-player/mpv.git")
