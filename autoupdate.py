@@ -86,11 +86,11 @@ pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
 pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
 pkgs['ffmpeg-shared'] = x['ffmpeg']
-pkgs['libplacebo-shared'] = x['libplacebo']
+pkgs['libplacebo-shared-dev'] = x['libplacebo']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
-pkgs['vulkan-shared'] = x['vulkan']
+pkgs['vulkan-shared-dev'] = x['vulkan']
 
 for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
