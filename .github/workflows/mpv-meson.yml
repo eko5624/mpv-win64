@@ -141,8 +141,7 @@ jobs:
       run: |        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.1-1-x86_64.pkg.tar.xz        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230307-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.35.1-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
 
@@ -156,7 +155,6 @@ jobs:
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.03.04/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
-        mv D:\msys64\opt\bin\libmcfgthread-1.dll D:\msys64\opt\mpv
         7z a git-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
         7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
