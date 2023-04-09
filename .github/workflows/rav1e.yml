@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git nasm
+        install: base-devel autoconf-wrapper automake-wrapper libtool git nasm
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -48,7 +48,7 @@ jobs:
         
       shell: msys2 {0}
       run: |      
-        cd rav1e-dev; PATH=/usr/bin:/mingw64/bin:/d/.cargo/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.cargo/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     
     - name: Delete
       uses: mknejp/delete-release-assets@v1
