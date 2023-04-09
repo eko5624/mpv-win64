@@ -20,13 +20,13 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230406_13.0.1_x64-ucrt
     
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230307_13.0.1_x64-ucrt_601b7673e8f8e2f280b0edb92c4035a979fcd15a.7z
+        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230406_13.0.1_x64-ucrt_81a7350f41e470aeddc2e1a4dc149e6b0179d464.7z
         7z x *.7z -o/d
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
