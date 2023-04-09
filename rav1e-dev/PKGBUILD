@@ -12,8 +12,8 @@ package() {
   cd $srcdir/rav1e
   cat <<EOF >/d/.cargo/config
 [target.x86_64-pc-windows-gnu]
-linker = "gcc"
-ar = "ar"
+linker = "x86_64-w64-mingw32-gcc"
+ar = "x86_64-w64-mingw32-gcc-ar"
 EOF
   export CC="gcc"
   export CXX="g++"
@@ -21,7 +21,6 @@ EOF
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
   export CARGO_PROFILE_RELEASE_LTO=off
-  export RUSTFLAGS="-C link-self-contained=no"
   rustup default stable-x86_64-pc-windows-gnu
   rustup component remove rust-mingw
   cargo cinstall -v --manifest-path=Cargo.toml --prefix=/opt --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
