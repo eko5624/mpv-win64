@@ -48,7 +48,7 @@ jobs:
         
       shell: msys2 {0}
       run: |      
-        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.cargo/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     
     - name: Delete
       uses: mknejp/delete-release-assets@v1
