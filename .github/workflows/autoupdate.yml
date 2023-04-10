@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
       with:
-        token: ${{ secrets.BOT }}
+        token: ${{ secrets.BOB }}
     - name: Check Latest Version
       run: |
         pip3 install in_place
