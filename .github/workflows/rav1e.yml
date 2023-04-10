@@ -12,26 +12,26 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git nasm mingw-w64-x86_64-gcc mingw-w64-x86_64-binutils
+        install: base-devel autoconf-wrapper automake-wrapper libtool git nasm
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    #- uses: actions/cache@main
-    #  id: cache
-    #  with:
-    #    path: D:\ucrt64
-    #    key: mcf_20230307_13.0.1_x64-ucrt
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20230307_13.0.1_x64-ucrt
     
     - name: Install Rust
       shell: bash
       run: |
-        rm -rf /c/Users/runneradmin/.cargo
-        rm -rf /c/Users/runneradmin/.rustup
+        rustup self uninstall -y
         export RUSTUP_HOME="/d/.rustup"
         export CARGO_HOME="/d/.cargo"
         curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
         $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu
+        cp -f /d/ucrt64/lib/{*.a,*.o} `$CARGO_HOME/bin/rustc --print sysroot`/lib/rustlib/x86_64-pc-windows-gnu/lib
         
     - name: Install cargo-c
       shell: bash
@@ -48,7 +48,7 @@ jobs:
         
       shell: msys2 {0}
       run: |      
-        cd rav1e-dev; PATH=/usr/bin:/mingw64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     
     - name: Delete
       uses: mknejp/delete-release-assets@v1

@@ -21,8 +21,6 @@ EOF
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
   export CARGO_PROFILE_RELEASE_LTO=off
-  rustup default stable-x86_64-pc-windows-gnu
-  rustup component remove rust-mingw
   cargo cinstall -v --manifest-path=Cargo.toml --prefix=/opt --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
