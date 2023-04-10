@@ -11,12 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@main
       with:
-        token: ${{ secrets.BOT }}
+        token: ${{ secrets.BOB }}
     - name: Check Latest Version
       run: |
         pip3 install in_place
         python autoupdate.py
-        git config --global user.name 'eko5624'
-        git config --global user.email 'datong5624@gmail.com'
+        git config --global user.name 'pinximei'
+        git config --global user.email 'meipinxi22@163.com'
         git commit -am "Automate" || echo "nothing updated"
         git push
