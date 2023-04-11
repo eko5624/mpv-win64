@@ -12,7 +12,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git p7zip mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
