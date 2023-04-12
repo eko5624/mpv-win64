@@ -1,5 +1,5 @@
 pkgname=openal-soft-dev
-pkgver=1.23.0
+pkgver=1.23.1
 pkgrel=1
 pkgdesc='Software implementation of the OpenAL 3D audio API'
 arch=('x86_64')
