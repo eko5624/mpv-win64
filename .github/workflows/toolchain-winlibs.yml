@@ -1,4 +1,4 @@
-name: winlibs
+name: toolchain-winlibs
 
 on:
   workflow_dispatch:  
