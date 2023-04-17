@@ -10,7 +10,11 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/gmp-$pkgver
-  ./configure CC_FOR_BUILD=cc prefix=/opt --enable-static --disable-shared
+  sed -i 's|__declspec\(__dllimport__\)||g' gmp-h.in
+  ./configure \
+    --prefix=/opt \
+    --enable-static \
+    --disable-shared
   make
 }
 
