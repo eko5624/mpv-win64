@@ -26,6 +26,6 @@ package() {
   mv $pkgdir/msys64/* $pkgdir
   rm $pkgdir/opt/lib/libpng16.a
   rm $pkgdir/opt/lib/pkgconfig/libpng.pc
-  rm $pkgdir/opt/pkgconfig/libpng16.pc
+  rm $pkgdir/opt/lib/pkgconfig/libpng16.pc
   rm -rf $pkgdir/msys64
 }
