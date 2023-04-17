@@ -24,6 +24,7 @@ package() {
   cd $srcdir/freetype
   DESTDIR=$pkgdir meson install -C build
   mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/opt/include/libpng16
   rm $pkgdir/opt/lib/libpng16.a
   rm $pkgdir/opt/lib/pkgconfig/libpng.pc
   rm $pkgdir/opt/lib/pkgconfig/libpng16.pc
