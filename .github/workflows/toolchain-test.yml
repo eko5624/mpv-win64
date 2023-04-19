@@ -32,7 +32,7 @@ jobs:
         curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-mcfgthread-1.6.alpha.1.15.gbb9cbb0-1-any.pkg.tar.zst
         curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-mcfgthread-libs-1.6.alpha.1.15.gbb9cbb0-1-any.pkg.tar.zst
         7z x mingw-w64-gcc-mcf*.7z -o/d
-        7z x -y mingw-w64-ucrt*.7z -o/d
+        for f in mingw-w64-ucrt*.tar.zst; do tar --use-compress-program=unzstd -xvf "$f" -C /d -f; done
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         
