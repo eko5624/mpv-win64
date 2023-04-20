@@ -9,7 +9,9 @@ source=("git+https://github.com/Mbed-TLS/mbedtls.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() { 
-  cd $srcdir/mbedtls  
+  cd $srcdir/mbedtls
+  CFLAGS+=" -masm=att"
+  CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_PROGRAMS=OFF \
