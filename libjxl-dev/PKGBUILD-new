@@ -10,10 +10,12 @@ md5sums=('SKIP')
 
 build() { 
   # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move -masm=att"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move -masm=att"
+  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
+  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
   
   cd $srcdir/libjxl
+  CFLAGS+=" -masm=att"
+  CXXFLAGS+=" -masm=att"
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,skcms}  
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
