@@ -49,6 +49,8 @@ build() {
 
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
+  CFLAGS+=" -masm=att"
+  CXXFLAGS+=" -masm=att"
   ./configure \
     --prefix=/opt \
     $CARGS \
