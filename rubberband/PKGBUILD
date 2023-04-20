@@ -10,15 +10,15 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/rubberband
-  mkdir work
-  meson . work --prefix=/opt --libdir=/opt/lib --buildtype=release --default-library=static -Dfft=builtin -Dresampler=builtin
-  cd work
-  ninja
+  CFLAGS+=" -masm=att"
+  CXXFLAGS+=" -masm=att"
+  meson setup build --prefix=/opt --libdir=/opt/lib --buildtype=release --default-library=static -Dfft=builtin -Dresampler=builtin
+  meson compile -C build
 }
 
 package() {
-  cd $srcdir/rubberband/work
-  DESTDIR=$pkgdir ninja install
+  cd $srcdir/rubberband
+  DESTDIR=$pkgdir meson install -C build
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
