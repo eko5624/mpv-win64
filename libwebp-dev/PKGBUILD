@@ -10,6 +10,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libwebp
+  CFLAGS+=" -masm=att"
+  CXXFLAGS+=" -masm=att"
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared
   make 
