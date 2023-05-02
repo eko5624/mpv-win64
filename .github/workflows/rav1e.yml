@@ -17,11 +17,11 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    #- uses: actions/cache@main
-    #  id: cache
-    #  with:
-    #    path: D:\ucrt64
-    #    key: mcf_20230307_13.0.1_x64-ucrt
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20230426_13.1.0_x64-ucrt
     
     - name: Install Rust
       shell: bash
@@ -47,9 +47,7 @@ jobs:
         
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/brechtsanders/winlibs_mingw/releases/download/13.0.1-snapshot20230402-11.0.0-ucrt-r1/winlibs-x86_64-mcf-seh-gcc-13.0.1-snapshot20230402-mingw-w64ucrt-11.0.0-r1.7z
-        7z x winlibs*.7z -o/d
-        cd rav1e-dev; PATH=/usr/bin:/d/mingw64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     
     - name: Delete
       uses: mknejp/delete-release-assets@v1
