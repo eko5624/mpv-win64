@@ -1,5 +1,5 @@
 pkgname=libssh-dev
-pkgver=0.10.4
+pkgver=0.10.5
 pkgrel=1
 pkgdesc='Library for accessing ssh client services through C libraries'
 arch=('x86_64')
