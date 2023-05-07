@@ -1,4 +1,4 @@
-name: toolchain-test
+name: toolchain
 
 on:
   workflow_dispatch:  
@@ -20,22 +20,18 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230307_13.0.1_x64-ucrt
+        key: mcf_20230426_13.1.0_x64-ucrt
     
     - name: Setup Toolchain
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20230412_13.0.1_x64-ucrt_339b07f4fbe5070caf4eeed0fcefced222820c17.7z
-        curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-crt-git-10.0.0.r269.g70ec1e0de-1-any.pkg.tar.zst
-        curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-headers-git-10.0.0.r269.g70ec1e0de-1-any.pkg.tar.zst
-        curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-mcfgthread-1.6.alpha.1.15.gbb9cbb0-1-any.pkg.tar.zst
-        curl -OL https://github.com/eko5624/mcfgthread/releases/download/latest/mingw-w64-ucrt-x86_64-mcfgthread-libs-1.6.alpha.1.15.gbb9cbb0-1-any.pkg.tar.zst
-        7z x mingw-w64-gcc-mcf*.7z -o/d
-        for f in mingw-w64-ucrt*.tar.zst; do tar --use-compress-program=unzstd -xvf "$f" -C /d; done
+        curl -OL https://github.com/eko5624/toolchain-test/releases/download/toolchain/gcc-with-mcf-ucrt-13.1.0.7z
+        7z x *.7z -o/d
+        mv target ucrt64
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
-
+        
     - name: Make Toolchain
       shell: msys2 {0}
       if: steps.cache.outputs.cache-hit != 'true'
