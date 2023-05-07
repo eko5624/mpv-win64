@@ -1,4 +1,4 @@
-name: toolchain
+name: toolchain-test
 
 on:
   workflow_dispatch:  
