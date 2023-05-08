@@ -32,11 +32,3 @@ jobs:
         mv /d/ucrt64/bin/libmcfgthread-1.dll /d/ucrt64/x86_64-w64-mingw32/bin
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
-        
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}   
-      shell: bash
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        ./release-latest.sh mcfgthread mcfgthread
