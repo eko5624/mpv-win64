@@ -13,6 +13,7 @@ build() {
   git submodule update --init --recursive
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" \
+    -DCMAKE_MAKE_PROGRAM=/d/msys64/mingw64/bin/mingw32-make.exe \
     -DCMAKE_CXX_COMPILER=/d/ucrt64/g++.exe \
     -DCMAKE_C_COMPILER=/d/ucrt64/gcc.exe \
     -DCMAKE_INSTALL_PREFIX=/opt \
