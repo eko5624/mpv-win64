@@ -29,9 +29,6 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain-test/releases/download/toolchain/target-gcc-with-mcf-ucrt-13.1.0.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
-        rm /d/ucrt64/mingw/include/pthread_signal.h
-        rm /d/ucrt64/mingw/include/pthread_time.h
-        rm /d/ucrt64/mingw/include/pthread_unistd.h
-        mv /d/ucrt64/bin/libmcfgthread-1.dll /d/ucrt64/x86_64-w64-mingw32/bin
+        rm -f /d/ucrt64/mingw
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
