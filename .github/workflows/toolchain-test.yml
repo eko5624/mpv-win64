@@ -12,7 +12,14 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autotools p7zip
+        install: >- 
+          base-devel
+          autotools
+          p7zip
+          mingw-w64-ucrt-x86_64-pkgconf
+          mingw-w64-ucrt-x86_64-windows-default-manifest
+          mingw-w64-ucrt-x86_64-winpthreads-git
+          mingw-w64-ucrt-x86_64-libwinpthread-git
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -26,9 +33,29 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain-test/releases/download/toolchain/target-gcc-with-mcf-ucrt-13.1.0.7z
+        curl -OL https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.2-11.0.0-ucrt-r1/winlibs-x86_64-mcf-seh-gcc-13.1.0-mingw-w64ucrt-11.0.0-r1.7z
         7z x *.7z -o/d
-        mv /d/target /d/ucrt64
-        cp /d/ucrt64/x86_64-w64-mingw32/bin/libwinpthread-1.dll /d/ucrt64/bin
+        mv /d/mingw64 /d/ucrt64
+        
+        #pkgconf
+        cp /d/msys64/ucrt64/bin/libpkgconf-3.dll /d/ucrt64/bin
+        cp /d/msys64/ucrt64/bin/pkg-config.exe /d/ucrt64/bin
+        cp /d/msys64/ucrt64/bin/pkgconf.exe /d/ucrt64/bin
+        cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkg-config.exe /d/ucrt64/bin
+        cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkgconf.exe /d/ucrt64/bin
+        #windows-default-manifest
+        #cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/x86_64-w64-mingw32/lib
+        #winpthreads
+        #cp /d/msys64/ucrt64/bin/libwinpthread-1.dll /d/ucrt64/bin
+        #cp /d/msys64/ucrt64/include/pthread.h /d/ucrt64/x86_64-w64-mingw32/lib
+        #cp /d/msys64/ucrt64/include/pthread_compat.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/include/pthread_signal.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/include/pthread_time.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/include/pthread_unistd.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/include/sched.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/include/semaphore.h /d/ucrt64/x86_64-w64-mingw32/include
+        #cp /d/msys64/ucrt64/lib/libpthread.a /d/ucrt64/x86_64-w64-mingw32/lib
+        #cp /d/msys64/ucrt64/lib/libwinpthread.a /d/ucrt64/x86_64-w64-mingw32/lib
+        
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
