@@ -16,6 +16,7 @@ jobs:
           base-devel
           autotools
           p7zip
+          mingw-w64-ucrt-x86_64-gperf
           mingw-w64-ucrt-x86_64-pkgconf
           mingw-w64-ucrt-x86_64-windows-default-manifest
           mingw-w64-ucrt-x86_64-winpthreads-git
@@ -37,14 +38,19 @@ jobs:
         7z x *.7z -o/d
         mv /d/mingw64 /d/ucrt64
         
+        #gperf
+        cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
+        
         #pkgconf
         cp /d/msys64/ucrt64/bin/libpkgconf-3.dll /d/ucrt64/bin
         cp /d/msys64/ucrt64/bin/pkg-config.exe /d/ucrt64/bin
         cp /d/msys64/ucrt64/bin/pkgconf.exe /d/ucrt64/bin
         cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkg-config.exe /d/ucrt64/bin
         cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkgconf.exe /d/ucrt64/bin
+        
         #windows-default-manifest
-        #cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/x86_64-w64-mingw32/lib
+        cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/x86_64-w64-mingw32/lib
+        
         #winpthreads
         #cp /d/msys64/ucrt64/bin/libwinpthread-1.dll /d/ucrt64/bin
         #cp /d/msys64/ucrt64/include/pthread.h /d/ucrt64/x86_64-w64-mingw32/lib
