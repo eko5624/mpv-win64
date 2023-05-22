@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/hoene/libmysofa/"
 makedepends=('zlib-dev')
 license=('BSD')
-source=("git+https://github.com/hoene/libmysofa.git")
+source=("git+https://github.com/hoene/libmysofa.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() { 
