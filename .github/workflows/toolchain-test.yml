@@ -41,13 +41,13 @@ jobs:
         cp lib/libgcc_s_seh-1.dll bin
         cp lib/gcc/x86_64-w64-mingw32/14.0.0/*plugin*.dll lib/bfd-plugins/
         rm -rf share
-        find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
-        rm bin/iconv.exe
-        rm include/iconv.h
-        rm include/libcharset.h
-        rm include/localcharset.h
-        rm lib/libcharset*
-        rm lib/libiconv*
+        #find ./lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -exec rm -f {} +
+        #rm bin/iconv.exe
+        #rm include/iconv.h
+        #rm include/libcharset.h
+        #rm include/localcharset.h
+        #rm lib/libcharset*
+        #rm lib/libiconv*
         popd
         
         #gperf
