@@ -50,7 +50,7 @@ jobs:
         popd
         
         #gperf
-        cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
+        #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
         
         #pkgconf
         cp /d/msys64/ucrt64/bin/libpkgconf-3.dll /d/ucrt64/bin
