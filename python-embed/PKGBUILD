@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=python-embed
-pkgver=3.10.11
+pkgver=3.10.12
 pkgrel=1
 pkgdesc='Python mini embed package'
 arch=('x86_64')
