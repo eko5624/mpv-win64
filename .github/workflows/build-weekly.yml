@@ -12,6 +12,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
     - name: Prepare
@@ -82,6 +83,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
@@ -129,6 +131,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
@@ -164,6 +167,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
     - name: Prepare
@@ -241,6 +245,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel
     - name: Prepare
@@ -322,6 +327,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool     
     - name: Prepare
@@ -351,6 +357,7 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        cache: false
         location: D:\
         install: base-devel autoconf-wrapper automake-wrapper libtool mingw-w64-x86_64-cmake git     
     - name: Prepare
