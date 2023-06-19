@@ -17,6 +17,7 @@ ar = "x86_64-w64-mingw32-gcc-ar"
 EOF
   export CC="gcc"
   export CXX="g++"
+  export LDFLAGS="-static -static-libgcc -static-libstdc++"
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
