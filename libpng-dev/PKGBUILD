@@ -1,5 +1,5 @@
 pkgname=libpng-dev
-pkgver=1.6.39
+pkgver=1.6.40
 pkgrel=1
 pkgdesc='A collection of routines used to create PNG format graphics'
 arch=('x86_64')
