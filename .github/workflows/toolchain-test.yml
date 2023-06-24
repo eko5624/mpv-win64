@@ -38,7 +38,7 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain-test/releases/download/toolchain/target-gcc-with-mcf-test.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
-        #find /d/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+        find /d/ucrt64/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
         
         #gperf
         #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
