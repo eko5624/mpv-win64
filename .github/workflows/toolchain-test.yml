@@ -40,7 +40,7 @@ jobs:
         mv /d/target /d/ucrt64
         #find /d/ucrt64/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
         rm /d/ucrt64/lib/libwinpthread.a
-        mv /d/ucrt64/lib/libwinpthread.a.bak libwinpthread.a
+        mv /d/ucrt64/lib/libwinpthread.a.bak /d/ucrt64/lib/libwinpthread.a
         
         #gperf
         #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
