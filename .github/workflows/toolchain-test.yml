@@ -39,7 +39,7 @@ jobs:
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
         find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
-        find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+        #find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
         #gperf
         #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
         
