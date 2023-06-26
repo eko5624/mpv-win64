@@ -40,6 +40,7 @@ jobs:
         mv /d/target /d/ucrt64
         find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
         #find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+        sed -i "s/library_names='libstdc++.dll.a'/library_names=''/" /d/ucrt64/lib/libstdc++.la
         #gperf
         #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
         
