@@ -59,7 +59,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst                       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-shared-dev-2.1_20230410-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.3-1-x86_64.pkg.tar.zst
