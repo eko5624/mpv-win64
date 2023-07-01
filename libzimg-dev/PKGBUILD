@@ -1,5 +1,5 @@
 pkgname=libzimg-dev
-pkgver=3.0.4
+pkgver=3.0.5
 pkgrel=1
 pkgdesc='Scaling, colorspace conversion, and dithering library'
 arch=('x86_64')
