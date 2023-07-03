@@ -23,7 +23,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -94,7 +94,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -142,7 +142,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -179,7 +179,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -256,7 +256,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@v6
@@ -305,7 +305,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20230410-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.35.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230605-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230626-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
@@ -338,7 +338,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Build
       shell: msys2 {0}
       run: |
@@ -368,7 +368,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include

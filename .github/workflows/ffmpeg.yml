@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230605_13.1.1_x64-ucrt
+        key: mcf_20230626_13.1.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
