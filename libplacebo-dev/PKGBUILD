@@ -1,5 +1,5 @@
 pkgname=libplacebo-shared-dev
-pkgver=5.264.1
+pkgver=6.292.0
 pkgrel=1
 pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')
