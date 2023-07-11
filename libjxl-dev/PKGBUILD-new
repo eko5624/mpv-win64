@@ -4,8 +4,9 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
+makedepends=('libjpeg-dev' 'lcms2-dev')
 license=('BSD')
-source=("git+https://github.com/libjxl/libjxl#commit=5f3cc36bca9e43cf78aa5b819b74b387c638cac5")
+source=("git+https://github.com/libjxl/libjxl")
 md5sums=('SKIP')
 
 build() { 
@@ -16,7 +17,7 @@ build() {
   cd $srcdir/libjxl
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
-  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,skcms}  
+  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway}
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
@@ -31,10 +32,13 @@ build() {
     -DJPEGXL_ENABLE_EXAMPLES=OFF \
     -DJPEGXL_ENABLE_MANPAGES=OFF \
     -DJPEGXL_ENABLE_JNI=OFF \
+    -DJPEGXL_ENABLE_SKCMS=OFF \
     -DJPEGXL_ENABLE_PLUGINS=OFF \
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
-    -DJPEGXL_ENABLE_SJPEG=OFF   
+    -DJPEGXL_ENABLE_SJPEG=OFF \
+	  -DJPEGXL_ENABLE_AVX512=ON \
+	  -DJPEGXL_ENABLE_AVX512_ZEN4=ON
   $MAKE
 }
 
