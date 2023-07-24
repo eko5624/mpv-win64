@@ -6,13 +6,13 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#commit=9c37439a7952c204150863fc35569dd864dbd599"
         "git+https://github.com/KhronosGroup/Vulkan-Loader"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
+  export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0600 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
   curl -OL https://www.japheth.de/Download/JWasm/JWasm211bw.zip
