@@ -2052,8 +2052,8 @@ jobs:
       run: |        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.35.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.35.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.36.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.36.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
 
     - name: Get ffmpeg latest commit sha
