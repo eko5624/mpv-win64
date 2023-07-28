@@ -17,6 +17,7 @@ jobs:
           base-devel
           autotools
           p7zip
+          mingw-w64-ucrt-x86_64-windows-default-manifest
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -47,7 +48,7 @@ jobs:
         #cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkgconf.exe /d/ucrt64/bin
         
         #windows-default-manifest
-        #cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
+        cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
         
         #winpthreads
         #cp /d/msys64/ucrt64/bin/libwinpthread-1.dll /d/ucrt64/bin
