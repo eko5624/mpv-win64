@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://luajit.org/"
 license=('MIT')
 source=("git+https://github.com/openresty/luajit2"
-        "luajit-0001-add-win32-utf-8-filesystem-functions.patch")
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/luajit-0001-add-win32-utf-8-filesystem-functions.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() { 
