@@ -5,8 +5,8 @@ pkgdesc='Compression library implementing the deflate compression method found i
 arch=('x86_64')
 url="https://github.com/madler/zlib/"
 license=('ZLIB')
-source=("git+https://github.com/madler/zlib.git#tag=v1.2.12"
-        "zlib-1-win32-static.patch")
+source=("git+https://github.com/madler/zlib.git#tag=v$pkgver"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/zlib-1-win32-static.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() {
