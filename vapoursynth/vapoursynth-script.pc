@@ -1,5 +1,5 @@
-libdir=/opt/lib
-includedir=/opt/include
+libdir=/github/home/opt/lib
+includedir=/github/home/opt/include
 
 Name: vapoursynth-script
 Description:
