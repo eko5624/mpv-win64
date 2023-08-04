@@ -18,12 +18,12 @@ package() {
   dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir/github/home/opt/lib/pkgconfig
   mkdir -p $pkgdir/github/home/opt/include
-  mv sdk/include/VapourSynth.h $pkgdir/github/home/opt/include
-  mv sdk/include/VSScript.h $pkgdir/github/home/opt/include
-  mv sdk/include/VSHelper.h $pkgdir/github/home/opt/include
-  cp libvsscript.a $pkgdir/github/home/opt/lib
-  cp libvapoursynth.a $pkgdir/github/home/opt/lib   
-  cp ../*.pc $pkgdir/github/home/opt/lib/pkgconfig
-  sed -i "s/_ver/$pkgver/" $pkgdir/github/home/opt/lib/pkgconfig/vapoursynth.pc
-  sed -i "s/_ver/$pkgver/" $pkgdir/github/home/opt/lib/pkgconfig/vapoursynth-script.pc
+  mv sdk/include/VapourSynth.h $pkgdir/opt/include
+  mv sdk/include/VSScript.h $pkgdir/opt/include
+  mv sdk/include/VSHelper.h $pkgdir/opt/include
+  cp libvsscript.a $pkgdir/opt/lib
+  cp libvapoursynth.a $pkgdir/opt/lib   
+  cp ../*.pc $pkgdir/opt/lib/pkgconfig
+  sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
+  sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
 }
