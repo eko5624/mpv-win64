@@ -16,8 +16,8 @@ package() {
   gendef VapourSynth.dll
   dlltool -d VSScript.def -y libvsscript.a 
   dlltool -d VapourSynth.def -y libvapoursynth.a 
-  mkdir -p $pkgdir/github/home/opt/lib/pkgconfig
-  mkdir -p $pkgdir/github/home/opt/include
+  mkdir -p $pkgdir/opt/lib/pkgconfig
+  mkdir -p $pkgdir/opt/include
   mv sdk/include/VapourSynth.h $pkgdir/opt/include
   mv sdk/include/VSScript.h $pkgdir/opt/include
   mv sdk/include/VSHelper.h $pkgdir/opt/include
