@@ -31,7 +31,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain-test/releases/download/toolchain/target-gcc-mcf-13.1.1-20230723-x64-ucrt.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20230731-x64-ucrt.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
         #find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
@@ -48,7 +48,7 @@ jobs:
         #cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkgconf.exe /d/ucrt64/bin
         
         #windows-default-manifest
-        cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
+        #cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
         
         #winpthreads
         #cp /d/msys64/ucrt64/bin/libwinpthread-1.dll /d/ucrt64/bin
