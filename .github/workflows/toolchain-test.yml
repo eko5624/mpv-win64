@@ -37,30 +37,9 @@ jobs:
         #find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
         #find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
         #mv /d/ucrt64/lib/libgcc_s_seh-1.dll /d/ucrt64/bin
-        #gperf
-        #cp /d/msys64/ucrt64/bin/gperf.exe /d/ucrt64/bin
-        
-        #pkgconf
-        #cp /d/msys64/ucrt64/bin/libpkgconf-3.dll /d/ucrt64/bin
-        #cp /d/msys64/ucrt64/bin/pkg-config.exe /d/ucrt64/bin
-        #cp /d/msys64/ucrt64/bin/pkgconf.exe /d/ucrt64/bin
-        #cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkg-config.exe /d/ucrt64/bin
-        #cp /d/msys64/ucrt64/bin/x86_64-w64-mingw32-pkgconf.exe /d/ucrt64/bin
-        
+              
         #windows-default-manifest
-        #cp /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
-        
-        #winpthreads
-        #cp /d/msys64/ucrt64/bin/libwinpthread-1.dll /d/ucrt64/bin
-        #cp /d/msys64/ucrt64/include/pthread.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/pthread_compat.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/pthread_signal.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/pthread_time.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/pthread_unistd.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/sched.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/include/semaphore.h /d/ucrt64/x86_64-w64-mingw32/include
-        #cp /d/msys64/ucrt64/lib/libpthread.a /d/ucrt64/x86_64-w64-mingw32/lib
-        #cp /d/msys64/ucrt64/lib/libwinpthread.a /d/ucrt64/x86_64-w64-mingw32/lib
+        cp -f /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
         
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
