@@ -34,7 +34,6 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.1.1-20230723-x64-ucrt.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
-        rm /d/ucrt64/lib/default-manifest.o
         #find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
         #find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
         #mv /d/ucrt64/lib/libgcc_s_seh-1.dll /d/ucrt64/bin
