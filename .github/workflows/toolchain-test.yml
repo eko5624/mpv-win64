@@ -39,7 +39,7 @@ jobs:
         #mv /d/ucrt64/lib/libgcc_s_seh-1.dll /d/ucrt64/bin
               
         #windows-default-manifest
-        cp -f /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
+        #cp -f /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
         
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
