@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=libplacebo-dev
-pkgver=6.292.0
+pkgver=6.292.1
 pkgrel=1
 pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')

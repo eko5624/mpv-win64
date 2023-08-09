@@ -1,5 +1,5 @@
 pkgname=libdovi-dev
-pkgver=3.1.2
+pkgver=3.2.0
 pkgrel=1
 pkgdesc='Library to read and write Dolby Vision metadata (C-API)'
 arch=('x86_64')
