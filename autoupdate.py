@@ -92,7 +92,7 @@ pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
-for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-all.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:

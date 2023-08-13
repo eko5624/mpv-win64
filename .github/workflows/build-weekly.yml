@@ -1,4 +1,4 @@
-name: build-weekly
+name: build-all
 
 on:
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
       shell: msys2 {0}
-      run: |        
+      run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.30-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.2.1-1-x86_64.pkg.tar.zst
