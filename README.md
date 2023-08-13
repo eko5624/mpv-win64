@@ -10,8 +10,8 @@ All my builds are portable and compiled with VapourSynth support, these plugins 
 - [Microsoft Visual C++ Redistributable](https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170)
 - Download [vc_redist.x64](https://aka.ms/vs/17/release/vc_redist.x64.exe)
 
-## Tips
-If you have vulkan-1.dll on your OS, mpv will use it from your graphic driver automatically. In this case, vulkan-1.dll and libmcfgthread-1.dll can be removed.
+## About shared build
+If you have vulkan-1.dll on your OS, mpv will use it from your graphic driver automatically. In this case, vulkan-1.dll can be removed.
 
 ## Main project site:
 <https://mpv.io/>
