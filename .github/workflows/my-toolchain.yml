@@ -13,11 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: >- 
-          base-devel
-          autotools
-          p7zip
-          mingw-w64-ucrt-x86_64-windows-default-manifest
+        install: base-devel autotools p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -31,30 +27,15 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20230807-x64-ucrt.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20230812-x64-ucrt.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
         #find /d/ucrt64/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
         #find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
-        #mv /d/ucrt64/lib/libgcc_s_seh-1.dll /d/ucrt64/bin
               
         #windows-default-manifest
         #cp -f /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
         
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
-    #- name: Packing my-mcf
-    #  shell: msys2 {0}
-    #  run: |
-    #    7z a my-mcf.7z /d/ucrt64
 
-    #- name: Release
-    #  continue-on-error: true
-    #  uses: softprops/action-gh-release@master
-    #  with:
-    #    tag_name: toolchain
-    #    name: toolchain
-    #    files: |
-    #      my-mcf.7z
-    #  env:
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
