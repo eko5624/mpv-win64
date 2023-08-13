@@ -273,20 +273,6 @@ jobs:
     - name: Add MPV_SHORT_SHA env 
       run: echo "MPV_SHORT_SHA=`echo ${{ env.sha }}| cut -c1-7`" >> $GITHUB_ENV         
       shell: bash 
-    
-    - name: Get mpv latest release
-      id: version    
-      uses: actions/github-script@v6
-      with:
-        script: |    
-          const release = await github.rest.repos.getLatestRelease({
-            owner: 'mpv-player',
-            repo: 'mpv'
-          })
-          core.exportVariable('version', String(release.data.tag_name)) 
-    - name: Add MPV_VERSION env 
-      run: echo "MPV_VERSION=`echo ${{ env.version }}| cut -c2-`" >> $GITHUB_ENV         
-      shell: bash
 
     - name: Get yt-dlp latest release
       id: dlp_tag    
@@ -307,13 +293,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20230410-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.36.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230626-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
+        mv D:\ucrt64\bin\libmcfgthread-1.dll D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
         7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
     - name: Release
