@@ -1,4 +1,4 @@
-name: build-weekly
+name: build-all
 
 on:
   workflow_dispatch:
