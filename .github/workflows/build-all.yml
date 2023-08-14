@@ -103,7 +103,7 @@ jobs:
         python-version: '3.11'
     - name: Install python dependencies
       run: |
-        pip install meson ninja Jinja2
+        pip install ninja Jinja2 https://github.com/mesonbuild/meson/archive/refs/tags/1.2.0.zip
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
