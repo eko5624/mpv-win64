@@ -47,7 +47,6 @@ build() {
 }
 
 package() {
-  depends=('ffmpeg-shared' 'vapoursynth-shared' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
