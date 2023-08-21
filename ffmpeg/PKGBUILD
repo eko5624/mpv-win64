@@ -94,7 +94,6 @@ package_ffmpeg-shared-dev() {
 }
 
 package_ffmpeg-shared() {
-  depends=('vapoursynth-shared' 'mcfgthread')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
