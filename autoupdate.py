@@ -7,18 +7,13 @@ x = json.loads(resp.read().decode('utf-8'))
 
 mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
    
-pkgs = {} 
-pkgs['libsixel'] = x['libsixel']
-pkgs['mpv'] = x['mpv']
-pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
-  pkgs['%s' % p] = x[p]
+pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
-pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['python-embed'] = x['Python']
+pkgs['vapoursynth'] = x['VapourSynth'][1:]
+for p in ['mpv', 'ffmpeg', 'luajit2']:
+  pkgs['%s' % p] = x[p]
 for p in [
-  'amf',
-  'angle',
   'avisynth',
   'brotli',
   'dav1d',
@@ -51,6 +46,7 @@ for p in [
   'libplacebo',
   'libpng',
   'libsdl2',
+  'libsixel',
   'libspeex',
   'libssh',
   'libsrt',
@@ -61,8 +57,10 @@ for p in [
   'libzimg',
   'libzvbi',
   'mbedtls',
+  'mujs', 
   'openal-soft',
   'opus',
+  'rubberband', 
   'shaderc',
   'spirv-cross',
   'uavs3d',
@@ -78,18 +76,16 @@ for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2', 'python-em
       f.write(l)
 pkgs['amf-headers-dev'] = x['amf']
 pkgs['angle-headers'] =x['angle']
-pkgs['libsixel-dev'] = x['libsixel']
-pkgs['luajit-dev'] = x['LuaJIT']      
-pkgs['mujs-dev'] = x['mujs']
-pkgs['rubberband-dev'] = x['rubberband']
-pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
-pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
 pkgs['ffmpeg-shared'] = x['ffmpeg']
 pkgs['libplacebo-shared-dev'] = x['libplacebo']
+pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
+pkgs['luajit-dev'] = x['LuaJIT']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
+pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
+pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
 for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-all.yml', 'package.yml']:
