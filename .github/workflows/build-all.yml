@@ -23,7 +23,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -96,7 +96,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -144,7 +144,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -181,7 +181,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -258,7 +258,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@v6
@@ -326,7 +326,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Build
       shell: msys2 {0}
       run: |
@@ -356,7 +356,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230807_13.2.1_x64-ucrt
+        key: mcf_20230823_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include

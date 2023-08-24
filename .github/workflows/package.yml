@@ -63,7 +63,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-63-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.36.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230807-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230823-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: | 
