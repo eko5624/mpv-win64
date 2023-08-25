@@ -10,8 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/luajit2
-  echo "int _dowildcard = 0;" >> src/luajit.c
-  make amalg BUILDMODE=dynamic XCFLAGS=-DLUAJIT_ENABLE_GC64
+  make amalg BUILDMODE=dynamic
 }
 
 package_luajit2-shared-dev() {
