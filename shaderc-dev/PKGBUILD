@@ -19,9 +19,6 @@ build() {
   mv glslang* glslang
   mv SPIRV-Headers* spirv-headers
   mv SPIRV-Tools* spirv-tools
-  # temporaray gcc13 hack
-  sed -i '/namespace/i #include <cstdint>' glslang/glslang/MachineIndependent/SymbolTable.h
-  sed -i 's/-fno-exceptions/-fexceptions/g' glslang/CMakeLists.txt
   cd $srcdir/shaderc
   mv $srcdir/spirv-headers third_party
   mv $srcdir/spirv-tools third_party
