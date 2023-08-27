@@ -117,7 +117,7 @@ jobs:
       id: version    
       uses: actions/github-script@v6
       with:
-        script: |    
+        script: |
           const release = await github.rest.repos.getLatestRelease({
             owner: 'mpv-player',
             repo: 'mpv'
@@ -131,7 +131,7 @@ jobs:
       id: dlp_tag    
       uses: actions/github-script@v6
       with:
-        script: |    
+        script: |
           const release = await github.rest.repos.getLatestRelease({
             owner: 'yt-dlp',
             repo: 'yt-dlp'
@@ -143,16 +143,15 @@ jobs:
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
     - name: Setup Packages      
       shell: msys2 {0}
-      run: |        
+      run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-6.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20230410-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-63-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.36.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mcfgthread-20230823-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
-      run: | 
+      run: |
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
