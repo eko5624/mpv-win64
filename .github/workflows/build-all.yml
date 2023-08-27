@@ -2049,7 +2049,7 @@ jobs:
         key: mcf_20230823_13.2.1_x64-ucrt
     - name: Setup Packages      
       shell: msys2 {0}
-      run: |        
+      run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.36.0-1-x86_64.pkg.tar.xz
@@ -2062,9 +2062,9 @@ jobs:
       shell: bash
 
     - name: Zip Packages    
-      run: | 
+      run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.07.06/yt-dlp.exe
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a static-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
