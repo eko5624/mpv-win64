@@ -50,7 +50,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libaribb24-dev-1.0.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libaribcaption-dev-1.0.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
@@ -139,7 +139,7 @@ jobs:
       run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
     - name: Setup Packages      
       shell: msys2 {0}
-      run: |        
+      run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.36.0-1-x86_64.pkg.tar.xz
@@ -152,7 +152,7 @@ jobs:
       shell: bash
 
     - name: Zip Packages    
-      run: | 
+      run: |
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.07.06/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
