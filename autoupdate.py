@@ -42,7 +42,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
-  'libaribb24',    
+  'libaribcaption',    
   'libass',
   'libbluray',
   'libbs2b',
