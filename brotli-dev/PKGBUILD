@@ -1,5 +1,5 @@
 pkgname=brotli-dev
-pkgver=1.0.9
+pkgver=1.1.0
 pkgrel=1
 pkgdesc='Generic-purpose lossless compression algorithm'
 arch=('x86_64')
