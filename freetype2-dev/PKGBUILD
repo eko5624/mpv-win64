@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=freetype2-dev
-pkgver=2_13_0
+pkgver=2_13_2
 pkgrel=1
 pkgdesc='Font rasterization library'
 arch=('x86_64')
