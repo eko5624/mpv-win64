@@ -739,7 +739,7 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - uses: actions/cache@main
       id: cache
       with:

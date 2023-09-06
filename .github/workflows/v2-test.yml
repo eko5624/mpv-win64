@@ -133,7 +133,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |                  
+      run: |
         cd amf-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release 
       run: |
@@ -167,7 +167,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |                  
+      run: |
         cd angle-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release 
       run: |
@@ -203,7 +203,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |                  
+      run: |
         cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
     - name: Release 
       run: |
@@ -244,7 +244,7 @@ jobs:
       run: |
         pip install meson ninja  
     - name: Build
-      run: | 
+      run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -280,7 +280,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |      
+      run: |
         cd davs2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -703,7 +703,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: | 
+      run: |
         cd libcaca-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -880,7 +880,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |            
+      run: |
         cd libjxl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
     - name: Release 
       run: |
@@ -950,7 +950,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: | 
+      run: |
         ./install-dev.sh zlib-dev                  
         cd libmysofa-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
@@ -1136,7 +1136,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1164,11 +1164,11 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
-    - uses: actions/cache@v3
+    - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
@@ -1181,7 +1181,7 @@ jobs:
       run: |
         pip install meson ninja                
     - name: Build
-      run: | 
+      run: |
         ./install-dev.sh libjpeg-dev libpng-dev zlib-dev
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin       
@@ -1219,7 +1219,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |                  
+      run: |
         cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
       run: |
@@ -1253,7 +1253,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libspeex-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1289,7 +1289,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: | 
+      run: |
         ./install-dev.sh mbedtls-dev                   
         cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
@@ -1327,7 +1327,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |  
+      run: |
         ./install-dev.sh zlib-dev mbedtls-dev                  
         cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
@@ -1362,7 +1362,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libudfread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1396,7 +1396,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |      
+      run: |
         cd libunibreak-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1460,17 +1460,17 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
       shell: bash    
-    - uses: actions/cache@v3
+    - uses: actions/cache@main
       id: cache
       with:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |                
+      run: |
         cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
       run: |
@@ -1504,7 +1504,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libvpx-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1538,7 +1538,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libwebp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1606,7 +1606,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libxvid-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1640,7 +1640,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd libzimg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1710,7 +1710,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |       
+      run: |
         cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
@@ -1753,7 +1753,7 @@ jobs:
       run: |
         pip install Jinja2
     - name: Build
-      run: |                         
+      run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
         cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
@@ -1930,7 +1930,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |            
+      run: |
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release 
       run: |
@@ -1994,10 +1994,10 @@ jobs:
       shell: bash
     - uses: actions/checkout@main  
     - name: Setup Packages      
-      run: |        
+      run: |
         ./install-latest.sh ffmpeg-git mpv-git libmpv-git config
     - name: Zip Packages    
-      run: | 
+      run: |
         $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2022.11.11/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
@@ -2043,7 +2043,7 @@ jobs:
       run: |
         pip install meson ninja        
     - name: Build
-      run: | 
+      run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -2254,7 +2254,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20221123_13.0.0_x64-ucrt
     - name: Build
-      run: |        
+      run: |
         cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release 
       run: |
