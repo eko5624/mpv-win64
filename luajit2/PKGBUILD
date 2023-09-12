@@ -1,5 +1,5 @@
 pkgname=(luajit2-shared-dev luajit2-shared)
-pkgver=2.1_20230410
+pkgver=2.1_20230911
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
