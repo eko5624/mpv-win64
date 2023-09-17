@@ -1148,7 +1148,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1164,6 +1164,7 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.3-1-x86_64.pkg.tar.zst     
@@ -2287,7 +2288,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2303,6 +2304,7 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
