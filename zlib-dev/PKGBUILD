@@ -18,11 +18,11 @@ build() {
     -DZLIB_COMPAT=ON \
     -DZLIB_ENABLE_TESTS=OFF \
     -DZLIBNG_ENABLE_TESTS=OFF
-  $MAKE  
+  $CMAKE --build . 
 }
 
 package() {
   cd $srcdir/zlib-ng/build
-  $MAKE DESTDIR=$pkgdir install
+  $CMAKE --install . --prefix=$pkgdir/opt
   cp libz.a $pkgdir/opt/lib
 }
