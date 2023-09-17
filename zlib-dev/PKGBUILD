@@ -1,22 +1,28 @@
 pkgname=zlib-dev
-pkgver=1.3
+pkgver=2.1.3
 pkgrel=1
-pkgdesc='Compression library implementing the deflate compression method found in gzip and PKZIP'
+pkgdesc='zlib replacement with optimizations for next generation systems'
 arch=('x86_64')
-url="https://github.com/madler/zlib/"
+url="https://github.com/zlib-ng/zlib-ng"
 license=('ZLIB')
-source=("git+https://github.com/madler/zlib.git#tag=v$pkgver"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/zlib-1-win32-static.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/zlib-ng/zlib-ng.git")
+md5sums=('SKIP')
 
 build() {
-  cd $srcdir/zlib
-  patch -p1 -i $srcdir/zlib-1-win32-static.patch
-  ./configure --prefix=/opt --static
-  make
+  cd $srcdir/zlib-ng
+  rm -rf build && mkdir build && cd build
+  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DINSTALL_PKGCONFIG_DIR=/opt/lib/pkgconfig \
+    -DSKIP_INSTALL_LIBRARIES=ON \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DZLIB_COMPAT=ON \
+    -DZLIB_ENABLE_TESTS=OFF \
+    -DZLIBNG_ENABLE_TESTS=OFF
+  $MAKE  
 }
 
 package() {
-  cd $srcdir/zlib
-  make DESTDIR=$pkgdir install
+  cd $srcdir/zlib-ng/build
+  $MAKE DESTDIR=$pkgdir install
+  cp libz.a $pkgdir/opt/lib
 }
