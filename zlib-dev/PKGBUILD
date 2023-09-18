@@ -12,7 +12,6 @@ build() {
   cd $srcdir/zlib-ng
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DINSTALL_PKGCONFIG_DIR=/opt/lib/pkgconfig \
     -DSKIP_INSTALL_LIBRARIES=ON \
     -DBUILD_SHARED_LIBS=OFF \
     -DZLIB_COMPAT=ON \
