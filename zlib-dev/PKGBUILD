@@ -21,8 +21,7 @@ build() {
 }
 
 package() {
-  mkdir -p $pkgdir/opt/lib
   cd $srcdir/zlib-ng/build
   $CMAKE --install . --prefix=$pkgdir/opt
-  cp libz.a $pkgdir/opt/lib/libz.a
+  cp libz.a $pkgdir/opt/lib
 }
