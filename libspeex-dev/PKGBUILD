@@ -5,7 +5,7 @@ pkgdesc='A free codec for free speech'
 arch=('x86_64')
 url="https://speex.org/"
 license=('BSD')
-source=("git+https://gitlab.xiph.org/xiph/speex.git#tag=Speex-$pkgver")
+source=("git+https://github.com/xiph/speex.git#tag=Speex-$pkgver")
 md5sums=('SKIP')
 
 build() {
