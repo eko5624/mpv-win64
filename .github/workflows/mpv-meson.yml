@@ -101,8 +101,8 @@ jobs:
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     
     - name: Delete old libmpv
+      continue-on-error: true
       env:
-        continue-on-error: true
         GH_TOKEN: ${{ github.token }}
       shell: bash 
       run: |
