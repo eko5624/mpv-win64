@@ -88,7 +88,7 @@ pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
 pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
-for t in ['ffmpeg.yml', 'mpv-meson.yml', 'build-all.yml', 'package.yml']:
+for t in ['ffmpeg.yml', 'mpv.yml', 'build-all.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
