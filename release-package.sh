@@ -6,6 +6,12 @@ CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
 # Release assets
 date=$(date +%Y-%m-%d)
 
+$CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+  -X POST \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
+  -d '{"tag_name":"'"$date"'","name":"'"$date"'"}'
+
 release_id=$($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$date | jq -r '.id')
