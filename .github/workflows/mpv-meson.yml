@@ -102,6 +102,7 @@ jobs:
     
     - name: Delete old libmpv
       env:
+        continue-on-error: true
         GH_TOKEN: ${{ github.token }}
       shell: bash 
       run: |
