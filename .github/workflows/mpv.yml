@@ -1,4 +1,4 @@
-name: mpv-meson
+name: mpv
 
 on:
   workflow_dispatch:
