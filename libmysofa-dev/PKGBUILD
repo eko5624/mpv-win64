@@ -6,11 +6,18 @@ arch=('x86_64')
 url="https://github.com/hoene/libmysofa/"
 makedepends=('zlib-dev')
 license=('BSD')
-source=("git+https://github.com/hoene/libmysofa.git")
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 build() { 
-  cd $srcdir/libmysofa
+  cd $srcdir
+  git clone \
+    --depth 1 \
+    --sparse \
+    --filter=tree:0 \
+    https://github.com/hoene/libmysofa.git
+  cd libmysofa
+  git sparse-checkout set --no-cone '/*' '!tests'
   rm -rf build && mkdir build && cd build
   $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
