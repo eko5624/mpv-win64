@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 makedepends=('libjpeg-dev' 'lcms2-dev')
 license=('BSD')
-source=("git+https://github.com/libjxl/libjxl")
+source=("git+https://github.com/libjxl/libjxl#commit=d895ec88f42c1a0031d0e419fcc53d15e2fd92fb")
 md5sums=('SKIP')
 
 build() { 
