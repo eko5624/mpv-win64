@@ -1,8 +1,11 @@
-name: "fallback"
+name: reset-commit
 on: 
   workflow_dispatch:
-  #schedule:
-  #- cron: '30 0 * * MON'
+    inputs:
+      command:
+        description: 'Input commit id'
+        required: true
+        type: string
 
 jobs:
   build:
@@ -23,8 +26,8 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Build
       run: |
-        git reset --hard $commit
+        git reset --hard ${{ github.event.inputs.command }}
     - name: release
       run: |
         git commit -am "Automate" || echo "nothing updated"
-        git push -f 
+        git push -f
