@@ -1,0 +1,9 @@
+libdir=/opt/lib
+includedir=/opt/include
+
+Name: mbedtls
+Description: mbedtls
+Version: _ver
+Libs: -L${libdir} -lmbedtls -lmbedx509 -lmbedcrypto
+Libs.private: -lbcrypt -lws2_32
+Cflags: -I${includedir}
