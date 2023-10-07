@@ -20,7 +20,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20230922_13.2.1_x64-ucrt
+        key: mcf_20231006_13.2.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -41,7 +41,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-shared-dev-6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.0.16.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.2.1-1-x86_64.pkg.tar.zst
