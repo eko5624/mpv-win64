@@ -1,0 +1,45 @@
+From 15d0a29093b621d110eb7191984cb076d1bd8001 Mon Sep 17 00:00:00 2001
+From: shinchiro <shinchiro@users.noreply.github.com>
+Date: Sat, 7 Oct 2023 07:09:00 +0800
+Subject: [PATCH] avoid name collision
+
+also fix libs.private's lib name
+---
+ CMakeLists.txt | 2 +-
+ srtcore/md5.h  | 8 ++++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4611f0c..d569354 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1110,7 +1110,7 @@ if (MICROSOFT)
+ 		set (SRT_LIBS_PRIVATE ${SRT_LIBS_PRIVATE} ws2_32.lib)
+ 	endif()
+ elseif (MINGW)
+-	set (SRT_LIBS_PRIVATE ${SRT_LIBS_PRIVATE} -lwsock32 -lws2_32)
++	set (SRT_LIBS_PRIVATE ${SRT_LIBS_PRIVATE} -lmbedtls -lmbedcrypto -lmbedx509 -lwsock32 -lbcrypt -lws2_32)
+ endif()
+ 
+ # Applying this to public includes is not transitive enough.
+diff --git a/srtcore/md5.h b/srtcore/md5.h
+index 643981c..5cef5e7 100644
+--- a/srtcore/md5.h
++++ b/srtcore/md5.h
+@@ -50,6 +50,14 @@
+ #ifndef md5_INCLUDED
+ #define md5_INCLUDED
+ 
++/*
++ * To avoid the collision with libssh, lets
++ * rename the methods here with some defines
++ */
++#define md5_init srt_md5_init
++#define md5_append srt_md5_append
++#define md5_finish srt_md5_finish
++
+ /*
+  * All symbols have been put under the srt namespace
+  * to avoid potential linkage conflicts.
+-- 
+2.42.0
