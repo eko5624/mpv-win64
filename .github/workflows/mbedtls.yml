@@ -1,0 +1,51 @@
+name: mbedtls
+
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  mbedtls:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231006_13.2.1_x64-ucrt
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install python dependencies
+      run: |
+        pip install Jinja2 jsonschema
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+        CMAKE: /mingw64/bin/cmake
+        MAKE: /mingw64/bin/mingw32-make
+      shell: msys2 {0}
+      run: |
+        pypath=$(cygpath -u $pythonLocation)
+        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
+        cd mbedtls-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh mbedtls-dev mbedtls-dev
