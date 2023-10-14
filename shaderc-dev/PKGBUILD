@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=shaderc-dev
-pkgver=2023.6
+pkgver=2023.7
 pkgrel=1
 pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
