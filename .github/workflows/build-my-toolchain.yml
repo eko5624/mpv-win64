@@ -27,7 +27,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20230929-x64-ucrt.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231005-x64-ucrt.7z
         7z x *.7z -o/d
         mv /d/target /d/ucrt64
               
