@@ -35,5 +35,5 @@ package() {
   $CMAKE --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir/opt/lib
-  cp loader/vulkan.pc $pkgdir/opt/lib/pkgconfig
+  cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc
 }
