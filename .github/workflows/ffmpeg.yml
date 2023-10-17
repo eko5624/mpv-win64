@@ -42,7 +42,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.8.2-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
