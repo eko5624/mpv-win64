@@ -20,7 +20,8 @@ build() {
     --disable-unit-tests \
     --disable-decode-perf-tests \
     --disable-encode-perf-tests \
-    --as=yasm
+    --as=yasm \
+    --enable-vp9-highbitdepth
   make
 }
 
