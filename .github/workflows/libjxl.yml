@@ -1,4 +1,4 @@
-name: build-all
+name: libjxl
 
 on:
   workflow_dispatch:
