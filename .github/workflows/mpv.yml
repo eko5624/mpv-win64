@@ -20,7 +20,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20231006_13.2.1_x64-ucrt
+        key: mcf_20231023_13.2.1_x64-ucrt
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
