@@ -1128,7 +1128,7 @@ jobs:
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
@@ -1909,7 +1909,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-64-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
