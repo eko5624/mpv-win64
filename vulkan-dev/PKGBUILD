@@ -6,8 +6,8 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=sdk-$pkgver"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=sdk-$pkgver")
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=vulkan-sdk-$pkgver"
+        "git+https://github.com/KhronosGroup/Vulkan-Loader#tag=vulkan-sdk-$pkgver")
 md5sums=('SKIP' 'SKIP')
 
 build() {
