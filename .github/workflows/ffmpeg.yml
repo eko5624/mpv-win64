@@ -22,7 +22,7 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20231023_13.2.1_x64-ucrt
+        key: mcf_20231108_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -62,7 +62,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.5.0-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.5.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-shared-dev-65-1-x86_64.pkg.tar.zst
