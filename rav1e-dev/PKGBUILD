@@ -1,5 +1,5 @@
 pkgname=rav1e-dev
-pkgver=v0.6.6
+pkgver=0.6.6
 pkgrel=1
 pkgdesc='The fastest and safest AV1 encoder'
 arch=('x86_64')
