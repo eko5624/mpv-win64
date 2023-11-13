@@ -13,7 +13,7 @@ build() {
   # fix google's shit
   sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
   rm -rf out && mkdir out && cd out
-  cmake .. -G "Ninja" \
+  cmake .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
