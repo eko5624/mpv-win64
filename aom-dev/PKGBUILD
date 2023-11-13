@@ -5,7 +5,7 @@ pkgdesc='AV1 codec library'
 arch=('x86_64')
 url="https://aomedia.org/"
 license=('spdx:BSD-2-Clause')
-source=("https://storage.googleapis.com/aom-releases/libaom-$pkgver.tar.gz)
+source=("https://storage.googleapis.com/aom-releases/libaom-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
