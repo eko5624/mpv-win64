@@ -15,17 +15,15 @@ build() {
   CXXFLAGS+=" -masm=att"
   patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
     -DWITH_OPENMP=OFF \
     -DBUILD_EXAMPLES=OFF 
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
   cd $srcdir/code/build
-  DESTDIR=$pkgdir $CMAKE --install .   
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cmake --install . --prefix=$pkgdir/opt
 }

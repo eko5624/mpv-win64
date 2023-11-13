@@ -19,7 +19,7 @@ build() {
   CXXFLAGS+=" -masm=att"
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,libjpeg-turbo}
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DJPEGXL_STATIC=ON \
@@ -39,14 +39,12 @@ build() {
     -DJPEGXL_ENABLE_SJPEG=OFF \
 	  -DJPEGXL_ENABLE_AVX512=ON \
 	  -DJPEGXL_ENABLE_AVX512_ZEN4=ON
-  $MAKE
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libjxl/build
-  $MAKE DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cmake --install . --prefix=$pkgdir/opt
   mv third_party/brotli/libbrotlicommon.a $pkgdir/opt/lib/libbrotlicommon.a
   mv third_party/brotli/libbrotlidec.a $pkgdir/opt/lib/libbrotlidec.a
   mv third_party/brotli/libbrotlienc.a $pkgdir/opt/lib/libbrotlienc.a

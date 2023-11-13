@@ -11,17 +11,17 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/zlib-ng
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSKIP_INSTALL_LIBRARIES=ON \
     -DBUILD_SHARED_LIBS=OFF \
     -DZLIB_COMPAT=ON \
     -DZLIB_ENABLE_TESTS=OFF \
     -DZLIBNG_ENABLE_TESTS=OFF
-  $CMAKE --build . 
+  cmake --build . 
 }
 
 package() {
   cd $srcdir/zlib-ng/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  cmake --install . --prefix=$pkgdir/opt
   cp libz.a $pkgdir/opt/lib
 }

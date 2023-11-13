@@ -11,11 +11,11 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libjpeg-turbo
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DCMAKE_BUILD_TYPE=Release 
-  $CMAKE --build .
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DCMAKE_BUILD_TYPE=Release 
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libjpeg-turbo/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  cmake --install . --prefix=$pkgdir/opt
 }

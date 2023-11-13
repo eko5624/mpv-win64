@@ -11,18 +11,16 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/openal-soft
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DLIBTYPE=STATIC \
     -DALSOFT_UTILS=OFF \
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
     -DALSOFT_BACKEND_PIPEWIRE=OFF 
-  $MAKE
+  cmake --build .
 }
 
 package() {
   cd $srcdir/openal-soft/build
-  $MAKE DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cmake --install . --prefix=$pkgdir/opt
 }

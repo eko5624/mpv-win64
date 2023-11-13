@@ -13,21 +13,19 @@ build() {
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_PROGRAMS=OFF \
     -DENABLE_TESTING=OFF \
     -DGEN_FILES=ON \
     -DUSE_STATIC_MBEDTLS_LIBRARY=ON \
     -DUSE_SHARED_MBEDTLS_LIBRARY=OFF \
     -DINSTALL_MBEDTLS_HEADERS=ON
-  $MAKE
+  cmake --build .
 }
 
 package() {
   cd $srcdir/mbedtls/build
-  $MAKE DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cmake --install . --prefix=$pkgdir/opt
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../../../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s,_ver,$pkgver," $pkgdir/opt/lib/pkgconfig/*.pc

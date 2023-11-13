@@ -42,7 +42,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -179,7 +179,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -195,8 +195,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
@@ -214,7 +212,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git    
+        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -256,7 +254,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git nasm     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -489,7 +487,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm      
+        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -556,7 +554,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -595,7 +593,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -611,8 +609,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd libaribcaption-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -883,7 +879,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool mingw-w64-x86_64-cmake git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -899,7 +895,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -918,7 +913,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -934,8 +929,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
@@ -990,7 +983,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1006,7 +999,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst      
@@ -1148,7 +1140,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1164,7 +1156,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst     
@@ -1184,7 +1175,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make
+        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1200,8 +1191,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -1266,7 +1255,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1282,7 +1271,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
@@ -1334,7 +1322,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1350,11 +1338,10 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.5.1-1-x86_64.pkg.tar.zst      
-        pacman -U *.zst --noconfirm                   
+        pacman -U *.zst --noconfirm                
         cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
@@ -1371,7 +1358,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make           
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1387,8 +1374,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst     
@@ -1511,7 +1496,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake           
+        install: base-devel autoconf-wrapper automake-wrapper libtool git          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1527,7 +1512,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
@@ -1545,7 +1529,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1780,7 +1764,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1803,8 +1787,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)
@@ -1825,7 +1807,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1967,7 +1949,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git       
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1983,8 +1965,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
@@ -2082,7 +2062,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git              
+        install: base-devel autoconf-wrapper automake-wrapper libtool git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2124,7 +2104,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2140,8 +2120,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -2159,7 +2137,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2175,7 +2153,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
@@ -2193,7 +2170,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2209,8 +2186,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         cd uavs3d-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
@@ -2255,7 +2230,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool mingw-w64-x86_64-cmake git     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2271,7 +2246,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -2289,7 +2263,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2305,7 +2279,6 @@ jobs:
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
       shell: msys2 {0}
       run: |
         cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg

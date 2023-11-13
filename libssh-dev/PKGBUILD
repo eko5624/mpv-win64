@@ -21,14 +21,12 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_STATIC_LIB=ON \
     -DCMAKE_C_FLAGS='-DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD' 
-  $MAKE
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libssh-mirror/build
-  $MAKE DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
+  cmake --install . --prefix=$pkgdir/opt
   echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lbcrypt -lws2_32 -lpthread" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
-  rm -rf $pkgdir/msys64
 }

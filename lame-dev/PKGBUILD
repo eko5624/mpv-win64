@@ -5,7 +5,6 @@ pkgrel=1
 pkgdesc='A high quality MPEG Audio Layer III (MP3) encoder'
 arch=('x86_64')
 url="http://lame.sourceforge.net/"
-makedepends=('nasm')
 license=('LGPL')
 source=("http://downloads.sourceforge.net/lame/lame-$pkgver.tar.gz")
 md5sums=('SKIP')

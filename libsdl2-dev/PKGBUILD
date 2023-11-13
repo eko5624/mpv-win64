@@ -13,17 +13,15 @@ build() {
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSDL_SHARED=OFF \
     -DSDL_STATIC=ON \
     -DSDL_STATIC_PIC=ON \
     -DSDL_TEST=OFF
-  $MAKE
+  cmake
 }
 
 package() {
   cd $srcdir/SDL/build
-  $MAKE DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cmake --install . --prefix=$pkgdir/opt
 }  

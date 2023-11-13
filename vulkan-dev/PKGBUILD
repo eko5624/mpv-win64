@@ -18,21 +18,21 @@ build() {
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
-  $CMAKE --install . --prefix=$srcdir/opt
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
+  cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_STATIC_LOADER=ON -DBUILD_TESTS=OFF -DUSE_MASM=OFF -DENABLE_WERROR=OFF 
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  cmake --install . --prefix=$pkgdir/opt
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir/opt/lib
   cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc

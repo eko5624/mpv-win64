@@ -19,13 +19,13 @@ build() {
   cd libmysofa
   git sparse-checkout set --no-cone '/*' '!tests'
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libmysofa/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  cmake --install . --prefix=$pkgdir/opt
 }
