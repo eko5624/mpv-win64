@@ -10,6 +10,8 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/aom
+  # fix google's shit
+  sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
   rm -rf out && mkdir out && cd out
   cmake .. -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
