@@ -33,6 +33,7 @@ pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
   'amf',
+  'aom',
   'angle',
   'avisynth',
   'brotli',
@@ -73,6 +74,7 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'rav1e',
   'shaderc',
   'uavs3d',
   'vulkan', 

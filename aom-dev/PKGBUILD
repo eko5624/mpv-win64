@@ -1,0 +1,33 @@
+pkgname=aom-dev
+pkgver=3.7.0
+pkgrel=1
+pkgdesc='AV1 codec library'
+arch=('x86_64')
+url="https://aomedia.org/"
+license=('spdx:BSD-2-Clause')
+source=("git+https://aomedia.googlesource.com/aom")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/aom
+  rm -rf out && mkdir out && cd out
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_EXAMPLES=OFF \
+    -DENABLE_DOCS=OFF \
+    -DENABLE_TOOLS=OFF \
+    -DENABLE_NASM=ON \
+    -DENABLE_TESTS=OFF \
+    -DENABLE_TESTDATA=OFF \
+    -DCONFIG_UNIT_TESTS=0 \
+    -DCONFIG_AV1_DECODER=0
+  cmake --build .
+} 
+  
+package() {
+  cd $srcdir/aom/out  
+  DESTDIR=$pkgdir cmake --install .
+}
