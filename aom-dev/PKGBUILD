@@ -5,13 +5,13 @@ pkgdesc='AV1 codec library'
 arch=('x86_64')
 url="https://aomedia.org/"
 license=('spdx:BSD-2-Clause')
-source=("git+https://aomedia.googlesource.com/aom")
+source=("https://storage.googleapis.com/aom-releases/libaom-$pkgver.tar.gz)
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/aom
+  cd $srcdir/libaom-$pkgver
   # fix google's shit
-  sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
+  #sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
   rm -rf out && mkdir out && cd out
   cmake .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
@@ -28,6 +28,6 @@ build() {
 } 
   
 package() {
-  cd $srcdir/aom/out  
+  cd $srcdir/libaom-$pkgver/out  
   DESTDIR=$pkgdir cmake --install .
 }
