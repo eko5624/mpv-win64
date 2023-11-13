@@ -4,11 +4,12 @@ pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
-makedepends=("nasm"
-             "amf-headers-dev"
+makedepends=("amf-headers-dev"
+             "aom-dev"
              "avisynth-dev"
              "dav1d-dev"
              "davs2-dev"
+             "ffnvcodec-dev"
              "gmp-dev"
              "lame-dev"
              "libaribcaption-dev"
@@ -18,14 +19,15 @@ makedepends=("nasm"
              "libmysofa-dev"
              "libogg-dev"
              "libopenmpt-dev"
+             "libplacebo-shared-dev"
              "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
              "libsrt-dev"
              "libssh-dev"
              "libvorbis_aotuv-dev"
-             "libvpx-dev"
              "libvpl-dev"
+             "libvpx-dev"
              "libwebp-dev"
              "libxml2-dev"
              "libxvid-dev"
@@ -33,7 +35,8 @@ makedepends=("nasm"
              "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
-             "ffnvcodec-dev"
+             "rav1e-dev"
+             "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-shared-dev")
 license=('LGPL')
@@ -53,13 +56,30 @@ package_ffmpeg-shared-dev() {
   CXXFLAGS+=" -masm=att"
   ./configure \
     --prefix=/opt \
-    $CARGS \
+    --arch=x86_64 \
+    --target-os=mingw32 \
+    --pkg-config-flags=--static \
+    --disable-debug \
+    --disable-doc \
+    --enable-gpl \
+    --enable-version3 \
+    --enable-nonfree \
+    --enable-pic \
+    --enable-postproc \
+    --disable-ffplay \
+    --disable-ffprobe \
+    --disable-avdevice \
+    --disable-mediafoundation \
+    --enable-shared \
+    --disable-pthreads \
+    --enable-w32threads \
     --extra-libs="-lstdc++ -lssp" \
     --extra-ldflags="-static-libgcc" \
-    --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
+    --enable-lcms2 \
+    --enable-libaom \
     --enable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
@@ -70,6 +90,10 @@ package_ffmpeg-shared-dev() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
+    --enable-libopus \
+    --enable-libplacebo \
+    --enable-librav1e \
+    --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
@@ -82,13 +106,14 @@ package_ffmpeg-shared-dev() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
-    --enable-libopus \
     --enable-mbedtls \
+    --enable-vapoursynth \
+    --enable-zlib \
+    --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
     --disable-encoder=vorbis \
-    --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
