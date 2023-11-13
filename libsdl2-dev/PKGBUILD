@@ -18,7 +18,7 @@ build() {
     -DSDL_STATIC=ON \
     -DSDL_STATIC_PIC=ON \
     -DSDL_TEST=OFF
-  cmake
+  cmake --build .
 }
 
 package() {
