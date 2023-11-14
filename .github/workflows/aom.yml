@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git p7zip          
+        install: base-devel autoconf-wrapper automake-wrapper libtool git p7zip yasm        
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -31,9 +31,9 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0mcf-16.0.6-11.0.1-ucrt-r2/winlibs-x86_64-mcf-seh-gcc-13.2.0-mingw-w64ucrt-11.0.1-r2.7z
-        7z x winlibs*.7z
-        mv mingw64 /d/ucrt64
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231005-x64-ucrt.7z
+        7z x target-gcc-mcf*.7z
+        mv target /d/ucrt64
         cd aom-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
