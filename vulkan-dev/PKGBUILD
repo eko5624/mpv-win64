@@ -17,8 +17,8 @@ build() {
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
-  $CMAKE --install . --prefix=$srcdir/opt
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
+  cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
   # skip rc info and use vulkan-1.dll from your graphic driver
@@ -26,14 +26,16 @@ build() {
   sed -i '/RC_FILE_LOCATION/d' loader/CMakeLists.txt
   sed -i 's/vulkan-1.def/vulkan-1.def)/' loader/CMakeLists.txt
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" -DBUILD_TESTS=OFF -DUSE_MASM=OFF -DENABLE_WERROR=OFF
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
   cd $srcdir/Vulkan-Headers/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
