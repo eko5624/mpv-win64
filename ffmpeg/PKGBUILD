@@ -106,7 +106,7 @@ package_ffmpeg-dev() {
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
-    --disable-encoder=vorbis \
+    --disable-encoder=vorbis
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
