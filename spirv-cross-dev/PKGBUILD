@@ -15,12 +15,12 @@ build() {
   sed -i '/SPVC_EXPORT_SYMBOLS/d'  CMakeLists.txt
   rm -rf build && mkdir build && cd build
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO"
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DSPIRV_CROSS_SHARED=ON -DSPIRV_CROSS_CLI=OFF -DSPIRV_CROSS_ENABLE_TESTS=OFF
-  $CMAKE --build .
+  cmake --build .
 }
 
 package() {
   cd $srcdir/SPIRV-Cross/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
 }

@@ -25,7 +25,7 @@ build() {
 
 package() {
   cd $srcdir/mbedtls/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../../../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s,_ver,$pkgver," $pkgdir/opt/lib/pkgconfig/*.pc

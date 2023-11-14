@@ -26,7 +26,7 @@ build() {
 
 package() {
   cd $srcdir/libssh-mirror/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
   echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lbcrypt -lws2_32 -lpthread" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
 }

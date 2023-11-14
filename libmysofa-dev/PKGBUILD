@@ -27,5 +27,5 @@ build() {
 
 package() {
   cd $srcdir/libmysofa/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
 }

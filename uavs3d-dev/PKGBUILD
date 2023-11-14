@@ -19,5 +19,5 @@ build() {
 
 package() {
   cd $srcdir/uavs3d/build/linux
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
 }

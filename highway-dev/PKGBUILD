@@ -11,7 +11,7 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/highway
   rm -rf build && mkdir build && cd build
-  $CMAKE .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_TESTING=OFF \
     -DCMAKE_GNUtoMS=OFF \
     -DHWY_CMAKE_ARM7=OFF \
@@ -19,10 +19,10 @@ build() {
     -DHWY_ENABLE_EXAMPLES=OFF \
     -DHWY_ENABLE_INSTALL=ON \
     -DHWY_WARNINGS_ARE_ERRORS=OFF 
-  $CMAKE --build .
+  cmake --build .
 }  
   
 package() {
   cd $srcdir/highway/build
-  $CMAKE --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir $CMAKE --install .
 }  

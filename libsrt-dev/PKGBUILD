@@ -28,5 +28,5 @@ build() {
 
 package() {
   cd $srcdir/srt/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
 }

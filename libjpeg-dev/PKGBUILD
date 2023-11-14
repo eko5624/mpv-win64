@@ -17,5 +17,5 @@ build() {
 
 package() {
   cd $srcdir/libjpeg-turbo/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
 }

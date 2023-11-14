@@ -22,6 +22,6 @@ build() {
 
 package() {
   cd $srcdir/zlib-ng/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
   cp libz.a $pkgdir/opt/lib
 }

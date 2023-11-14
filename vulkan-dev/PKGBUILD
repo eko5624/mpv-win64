@@ -32,7 +32,7 @@ build() {
 package() {
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
-  cmake --install . --prefix=$pkgdir/opt
+  DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir/opt/lib
   cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc
