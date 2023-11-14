@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool nasm git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
