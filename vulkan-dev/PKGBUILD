@@ -33,8 +33,8 @@ package() {
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
   DESTDIR=$pkgdir cmake --install .
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  #mv $pkgdir/msys64/* $pkgdir
+  #rm -rf $pkgdir/msys64
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir/opt/lib
   cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc
