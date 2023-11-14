@@ -30,12 +30,13 @@ build() {
 }
 
 package() {
-  mkdir -p $pkgdir/msys64/opt/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
   DESTDIR=$pkgdir cmake --install .
-  cd $srcdir/Vulkan-Loader/build
-  cp loader/libvulkan.a $pkgdir/msys64/opt/lib
-  cp loader/vulkan_own.pc $pkgdir/msys64/opt/lib/pkgconfig/vulkan.pc
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
+  mkdir -p $pkgdir/opt/lib/pkgconfig
+  cd $srcdir/Vulkan-Loader/build
+  cp loader/libvulkan.a $pkgdir/opt/lib
+  cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc
+
 }
