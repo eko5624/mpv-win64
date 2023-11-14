@@ -18,11 +18,11 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - uses: actions/checkout@main
-    #- uses: actions/cache@main
-    #  id: cache
-    #  with:
-    #    path: D:\ucrt64
-    #    key: mcf_20231108_13.2.1_x64-ucrt
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -31,9 +31,9 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231005-x64-ucrt.7z
-        7z x target-gcc-mcf*.7z
-        mv target /d/ucrt64
+        #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231005-x64-ucrt.7z
+        #7z x target-gcc-mcf*.7z
+        #mv target /d/ucrt64
         cd aom-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
