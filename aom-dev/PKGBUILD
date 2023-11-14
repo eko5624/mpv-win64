@@ -13,7 +13,7 @@ build() {
   # fix google's shit
   #sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
   rm -rf out && mkdir out && cd out
-  cmake .. -G "MinGW Makefiles" \
+  /mingw64/bin/cmake .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_FIND_ROOT_PATH=/opt \
     -DCMAKE_BUILD_TYPE=Release \
@@ -25,10 +25,10 @@ build() {
     -DENABLE_TESTDATA=OFF \
     -DCONFIG_UNIT_TESTS=0 \
     -DCONFIG_AV1_DECODER=0
-  cmake --build .
+  /mingw64/bin/cmake --build .
 } 
   
 package() {
   cd $srcdir/libaom-$pkgver/out  
-  DESTDIR=$pkgdir cmake --install .
+  DESTDIR=$pkgdir /mingw64/bin/cmake --install .
 }
