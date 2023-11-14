@@ -20,4 +20,6 @@ build() {
 package() {
   cd $srcdir/uavs3d/build/linux
   DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }

@@ -45,6 +45,8 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
   mv third_party/brotli/libbrotlicommon.a $pkgdir/opt/lib/libbrotlicommon.a
   mv third_party/brotli/libbrotlidec.a $pkgdir/opt/lib/libbrotlidec.a
   mv third_party/brotli/libbrotlienc.a $pkgdir/opt/lib/libbrotlienc.a

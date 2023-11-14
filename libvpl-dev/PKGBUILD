@@ -26,6 +26,8 @@ build() {
 package() {
   cd $srcdir/oneVPL/build
   DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
   rm -rf $pkgdir/opt/etc
   rm -rf $pkgdir/opt/share
 } 

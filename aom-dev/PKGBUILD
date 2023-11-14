@@ -34,4 +34,6 @@ build() {
 package() {
   cd $srcdir/aom/out  
   DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
