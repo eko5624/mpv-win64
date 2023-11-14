@@ -12,6 +12,8 @@ build() {
   cd $srcdir/aom
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
+  # fix google's shit
+  #sed -ri 's;_PREFIX.+CMAKE_INSTALL_BINDIR;_FULL_BINDIR;' build/cmake/aom_install.cmake
   rm -rf out && mkdir out && cd out
   cmake .. -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
