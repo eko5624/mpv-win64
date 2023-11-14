@@ -25,7 +25,7 @@ build() {
 
 package() {
   cd $srcdir/mbedtls/build
-  DESTDIR=$pkgdir cmake --install
+  DESTDIR=$pkgdir cmake --install .
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
   mkdir -p $pkgdir/opt/lib/pkgconfig
