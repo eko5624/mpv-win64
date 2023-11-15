@@ -13,12 +13,17 @@ build() {
   cd $srcdir/Little-CMS
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
-  ./configure prefix=/opt --disable-shared --without-zlib
-  make
+  meson setup build \
+    --prefix=/opt \
+    --libdir=/opt/lib \
+    --buildtype=release \
+    --default-library=static \
+    -Dfastfloat=true \
+    -Dthreaded=true
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/Little-CMS
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+  DESTDIR=$pkgdir meson install -C build
 }

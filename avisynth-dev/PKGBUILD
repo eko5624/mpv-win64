@@ -12,10 +12,12 @@ build() {
   cd $srcdir/AviSynthPlus
   git submodule update --init --recursive
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" \
+  cmake .. \
+    -G "MinGW Makefiles" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
-    -DHEADERS_ONLY=ON 
+    -DBUILD_SHARED_LIBS=OFF \
+    -DHEADERS_ONLY=ON
 }
 
 package() {

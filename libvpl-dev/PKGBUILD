@@ -11,10 +11,13 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/oneVPL
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_DISPATCHER=ON \
     -DBUILD_DEV=ON \
-    -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
     -DBUILD_PREVIEW=OFF \
     -DBUILD_TOOLS=OFF \

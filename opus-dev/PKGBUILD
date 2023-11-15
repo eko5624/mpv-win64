@@ -1,22 +1,30 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=opus-dev
 pkgver=1.4
 pkgrel=1
 pkgdesc="Totally open, royalty-free, highly versatile audio codec"
 arch=('x86_64')
-url="https://www.opus-codec.org/"
+url="https://github.com/xiph/opus"
 license=('BSD')
-source=("https://ftp.osuosl.org/pub/xiph/releases/opus/opus-$pkgver.tar.gz")
+source=("git+https://github.com/xiph/opus.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/opus-$pkgver
-  ./configure prefix=/opt --disable-shared --disable-doc --disable-extra-programs
-  make
+  cd $srcdir/opus
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DOPUS_STACK_PROTECTOR=OFF \
+    -DOPUS_BUILD_PROGRAMS=OFF \
+    -DBUILD_TESTING=OFF \
+    -DCMAKE_C_FLAGS='-D_FORTIFY_SOURCE=0'
+  cmake --build .
 }
 
 package() {
-  cd $srcdir/opus-$pkgver
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/share
+  cd $srcdir/opus/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }

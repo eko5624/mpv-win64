@@ -13,7 +13,10 @@ build() {
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_PROGRAMS=OFF \
     -DENABLE_TESTING=OFF \
     -DGEN_FILES=ON \
