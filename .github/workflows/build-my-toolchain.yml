@@ -28,12 +28,10 @@ jobs:
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231110-x64-ucrt.7z
-        7z x *.7z -o/d
-        mv /d/target /d/ucrt64
-              
-        #windows-default-manifest
-        #cp -f /d/msys64/ucrt64/lib/default-manifest.o /d/ucrt64/lib
-        
+        curl -OL https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
+        7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
+        7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
+        cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
 
