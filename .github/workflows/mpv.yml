@@ -157,7 +157,7 @@ jobs:
     - name: Zip Packages    
       run: |
         $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.exe
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.11.14/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\mpv
         7z a static-mpv-${date}.7z D:\msys64\opt\mpv\*
         7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
