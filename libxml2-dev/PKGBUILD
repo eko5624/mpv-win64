@@ -5,6 +5,7 @@ pkgdesc='XML parsing library, version 2'
 arch=('x86_64')
 url="http://www.xmlsoft.org/"
 license=('spdx:MIT')
+makedepends=('zlib-dev' 'libiconv-dev')
 source=("git+https://github.com/GNOME/libxml2.git")
 md5sums=('SKIP')
 

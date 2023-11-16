@@ -17,6 +17,7 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_FIND_ROOT_PATH=/opt \
     -DBUILD_SHARED_LIBS=OFF \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
