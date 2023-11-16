@@ -6,7 +6,7 @@ arch=('x86_64')
 url="http://www.xmlsoft.org/"
 license=('spdx:MIT')
 #makedepends=('zlib-dev' 'libiconv-dev')
-source=("git+https://github.com/GNOME/libxml2.git#tag=v2.11.4")
+source=("git+https://github.com/GNOME/libxml2.git")
 md5sums=('SKIP')
 
 build() {
@@ -22,8 +22,7 @@ build() {
     -DLIBXML2_WITH_PYTHON=OFF \
     -DLIBXML2_WITH_TESTS=OFF \
     -DLIBXML2_WITH_TREE=ON \
-    -DLIBXML2_WITH_THREADS=ON \
-    -DLIBXML2_WITH_THREAD_ALLOC=ON
+    -DLIBXML2_WITH_THREADS=ON
   cmake --build .
 }
 
