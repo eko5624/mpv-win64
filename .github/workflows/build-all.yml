@@ -585,7 +585,9 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        pypath=$(cygpath -u $pythonLocation)
+        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin        
+        cd lcms2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
