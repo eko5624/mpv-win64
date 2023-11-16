@@ -25,7 +25,7 @@ build() {
     -DLIBXML2_WITH_TESTS=OFF \
     -DLIBXML2_WITH_TREE=ON \
     -DLIBXML2_WITH_THREADS=ON
-  cmake --build .
+  mingw32-make
 }
 
 package() {
