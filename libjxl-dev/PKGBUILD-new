@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
-makedepends=('brotli-dev' 'highway-dev' 'lcms2-dev' 'libjpeg-dev' 'libpng-dev' 'zlib-dev')
+makedepends=('brotli-dev' 'highway-dev' 'lcms2-dev' 'libjpeg-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
