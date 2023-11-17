@@ -29,7 +29,7 @@ build() {
   
 package() {
   cd $srcdir/highway/build
-  DESTDIR=$pkgdir $CMAKE --install .
+  DESTDIR=$pkgdir cmake --install .
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64  
 }  
