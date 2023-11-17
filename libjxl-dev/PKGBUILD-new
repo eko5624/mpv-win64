@@ -7,7 +7,7 @@ url="https://github.com/libjxl/libjxl/"
 makedepends=('libjpeg-dev' 'lcms2-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl.git")
-md5sums=('SKIP' 'SKIP')
+md5sums=('SKIP')
 
 build() { 
   # Fix AVX2 related crash due to unaligned stack memory
