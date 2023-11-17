@@ -5,7 +5,7 @@ pkgdesc='C++ library for SIMD (Single Instruction, Multiple Data)'
 arch=('x86_64')
 url="https://github.com/google/highway/"
 license=('Apache-2.0')
-source=("git+https://github.com/google/highway.git#commit=9c775721c1531fd1cf11cf52bbfde4d076691628")
+source=("git+https://github.com/google/highway.git")
 md5sums=('SKIP')
 
 build() {
