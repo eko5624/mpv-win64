@@ -4,10 +4,10 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
-makedepends=('lcms2-dev')
+makedepends=('libjpeg-dev' lcms2-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl.git")
-md5sums=('SKIP')
+md5sums=('SKIP' 'SKIP')
 
 build() { 
   # Fix AVX2 related crash due to unaligned stack memory
@@ -23,6 +23,7 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_FIND_ROOT_PATH=/opt \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DJPEGXL_STATIC=ON \
