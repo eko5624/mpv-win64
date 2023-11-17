@@ -11,26 +11,21 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libxml2
-  rm -rf build && mkdir build && cd build
-  cmake .. \
-    -G "MinGW Makefiles" \
-    -DCMAKE_INSTALL_PREFIX=/opt \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_FIND_ROOT_PATH=/opt \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DLIBXML2_WITH_ZLIB=ON \
-    -DLIBXML2_WITH_ICONV=ON \
-    -DLIBXML2_WITH_LZMA=OFF \
-    -DLIBXML2_WITH_PYTHON=OFF \
-    -DLIBXML2_WITH_TESTS=OFF \
-    -DLIBXML2_WITH_TREE=ON \
-    -DLIBXML2_WITH_THREADS=ON
-  cmake --build . -v
+  ./autogen.sh
+  ./configure \
+    --prefix=/opt \
+    --disable-shared \
+    --enable-static \
+    --with-iconv \
+    --with-zlib \
+    --with-minimum \
+    --with-threads \
+    --with-tree \
+    --with-thread-alloc
+  make
 }
 
 package() {
-  cd $srcdir/libxml2/build
-  DESTDIR=$pkgdir cmake --install .
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  cd $srcdir/libxml2
+  make DESTDIR=$pkgdir install
 }
