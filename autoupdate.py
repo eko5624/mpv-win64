@@ -78,7 +78,8 @@ for p in [
   'opus',
   'shaderc',
   'uavs3d',
-  'vulkan', 
+  'vulkan',
+  'xxhash',
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
