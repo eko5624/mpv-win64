@@ -1,4 +1,3 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=lcms2-dev
 pkgver=2.15
 pkgrel=1
@@ -13,12 +12,20 @@ build() {
   cd $srcdir/Little-CMS
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
-  ./configure prefix=/opt --disable-shared --without-zlib
-  make
+  meson setup build \
+    --prefix=/opt \
+    --libdir=/opt/lib \
+    --buildtype=release \
+    --default-library=static \
+    -Dfastfloat=true \
+    -Dthreaded=true
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/Little-CMS
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir meson install -C build
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
   rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }

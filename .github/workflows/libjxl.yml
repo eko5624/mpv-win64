@@ -33,8 +33,6 @@ jobs:
         MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
