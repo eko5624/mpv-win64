@@ -34,4 +34,6 @@ jobs:
         7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
         7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
+        rm /d/ucrt64/bin/pkg-config.exe
+        rm /d/ucrt64/bin/x86_64-w64-mingw32-pkg-config.exe
 
