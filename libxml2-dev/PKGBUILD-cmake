@@ -16,7 +16,6 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
     -DLIBXML2_WITH_ZLIB=ON \
     -DLIBXML2_WITH_ICONV=ON \
     -DLIBXML2_WITH_LZMA=OFF \
@@ -25,7 +24,7 @@ build() {
     -DLIBXML2_WITH_TREE=ON \
     -DLIBXML2_WITH_THREADS=ON \
     -DLIBXML2_WITH_THREAD_ALLOC=ON
-  cmake --build .  
+  cmake --build . -v  
 }
 
 package() {
