@@ -13,14 +13,18 @@ md5sums=('SKIP')
 build() { 
   cd $srcdir/libssh-mirror
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. \
+    -G "MinGW Makefiles" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_FIND_ROOT_PATH=/opt \
+    -DBUILD_SHARED_LIBS=OFF \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
     -DMBEDTLS_INCLUDE_DIR='/opt/include' \
     -DWITH_EXAMPLES=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_STATIC_LIB=ON \
-    -DCMAKE_C_FLAGS='-DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD' 
+    -DCMAKE_C_FLAGS='-DHAVE_COMPILER__FUNC__=1 -DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD' 
   cmake --build .
 }
 

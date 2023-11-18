@@ -11,8 +11,12 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/brotli
   rm -rf out && mkdir out && cd out
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF -DBROTLI_EMSCRIPTEN=OFF
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBROTLI_EMSCRIPTEN=OFF
   cmake --build .
 }  
   

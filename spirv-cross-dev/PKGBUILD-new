@@ -15,8 +15,13 @@ build() {
   patch -p1 -i $srcdir/spirv-cross-0001-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO"
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
-    -DSPIRV_CROSS_SHARED=ON -DSPIRV_CROSS_CLI=OFF -DSPIRV_CROSS_ENABLE_TESTS=OFF
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSPIRV_CROSS_SHARED=ON \
+    -DSPIRV_CROSS_CLI=OFF \
+    -DSPIRV_CROSS_ENABLE_TESTS=OFF
   cmake --build .
 }
 

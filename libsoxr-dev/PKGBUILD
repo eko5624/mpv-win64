@@ -15,7 +15,10 @@ build() {
   CXXFLAGS+=" -masm=att"
   patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
     -DWITH_OPENMP=OFF \

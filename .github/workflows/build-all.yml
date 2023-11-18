@@ -6,6 +6,72 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
+  amf:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd amf-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh amf-headers-dev amf-dev
+
+  angle:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd angle-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh angle-headers-dev angle-dev
+
   aom:
     runs-on: windows-2022
     steps:
@@ -31,13 +97,46 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd aom-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd aom-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh aom-dev aom-dev
+
+  avisynth:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd avisynth-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh avisynth-dev avisynth-dev
 
   config:
     runs-on: windows-2022
@@ -135,9 +234,10 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd ffmpeg; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -146,106 +246,8 @@ jobs:
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
 
-  amf:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20231108_13.2.1_x64-ucrt
-    - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd amf-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh amf-headers-dev amf-dev
-
-  angle:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20231108_13.2.1_x64-ucrt
-    - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd angle-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh angle-headers-dev angle-dev
-
-  avisynth:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20231108_13.2.1_x64-ucrt
-    - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd avisynth-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg  
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh avisynth-dev avisynth-dev
-
   dav1d:
+    needs: [xxhash]
     runs-on: windows-2022
     steps:   
     - uses: msys2/setup-msys2@v2
@@ -279,6 +281,8 @@ jobs:
       run: |
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
         cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
@@ -312,7 +316,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd davs2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd davs2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -345,7 +349,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd ffnvcodec-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd ffnvcodec-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -466,7 +470,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd gmp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd gmp-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -518,7 +522,7 @@ jobs:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
-        ./release-dev.sh harfbuzz-dev harfbuzz-dev 
+        ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   lame:
     runs-on: windows-2022
@@ -545,7 +549,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd lame-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd lame-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -570,6 +574,13 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install python dependencies
+      run: |
+        pip install meson ninja
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -578,7 +589,9 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd lcms2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        pypath=$(cygpath -u $pythonLocation)
+        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        cd lcms2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -619,7 +632,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
-        cd libass-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libass-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -651,7 +664,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libaribcaption-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libaribcaption-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
@@ -690,7 +703,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libbluray-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -723,7 +736,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libbs2b-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libbs2b-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -756,7 +769,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libcaca-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libcaca-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -831,7 +844,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libdvdcss-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libdvdcss-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -868,7 +881,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libdvdnav-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -904,13 +917,46 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libdvdread-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh libdvdread-dev libdvdread-dev         
+
+  libiconv:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd libiconv-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: windows-2022
@@ -937,7 +983,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libjpeg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libjpeg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -946,7 +992,7 @@ jobs:
         ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
-    needs: [lcms2, libjpeg]
+    needs: [lcms2, libjpeg, libpng, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -973,8 +1019,10 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
+        cd libjxl-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1007,7 +1055,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libmodplug-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libmodplug-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1043,7 +1091,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libmysofa-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1076,7 +1124,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libogg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libogg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1115,7 +1163,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libopenmpt-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1124,7 +1172,7 @@ jobs:
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
-    needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross]
+    needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -1163,6 +1211,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
         cd libplacebo-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
@@ -1200,7 +1249,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libpng-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1233,7 +1282,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libsdl2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libsdl2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1313,7 +1362,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libsoxr-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libsoxr-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1346,7 +1395,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libspeex-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libspeex-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1382,7 +1431,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.5.1-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
-        cd libsrt-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libsrt-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1419,7 +1468,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst     
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.5.1-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libssh-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1452,7 +1501,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libudfread-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libudfread-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1485,7 +1534,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libunibreak-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libunibreak-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1521,7 +1570,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libvorbis_aotuv-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1554,7 +1603,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libvpl-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libvpl-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1587,7 +1636,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libvpx-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libvpx-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1620,7 +1669,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libwebp-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libwebp-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1629,6 +1678,7 @@ jobs:
         ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
+    needs: [libiconv, zlib]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -1653,7 +1703,10 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libxml2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst        
+        pacman -U *.zst --noconfirm
+        cd libxml2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1686,7 +1739,8 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libxvid-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
+        cd libxvid-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1719,7 +1773,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd libzimg-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libzimg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1756,7 +1810,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libzvbi-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1789,7 +1843,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd luajit2; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd luajit2; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -1934,6 +1988,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
@@ -1976,7 +2031,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd mujs; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd mujs; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2009,7 +2064,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd openal-soft-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd openal-soft-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2024,7 +2079,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2042,7 +2097,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd opus-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd opus-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2210,7 +2265,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd shaderc-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd shaderc-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2243,7 +2298,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd spirv-cross-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        cd spirv-cross-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2276,7 +2331,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd uavs3d-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
+        cd uavs3d-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2303,7 +2358,7 @@ jobs:
     - name: Build
       shell: msys2 {0}
       run: |
-        cd vapoursynth; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
+        cd vapoursynth; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -2336,13 +2391,46 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd vulkan-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd vulkan-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
       shell: bash 
       run: |
         ./release-dev.sh vulkan-dev vulkan-dev
+
+  xxhash:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231108_13.2.1_x64-ucrt
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: UCRT64
+      shell: msys2 {0}
+      run: |
+        cd xxhash-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh xxhash-dev xxhash-dev
         
   zlib:
     runs-on: windows-2022
@@ -2369,7 +2457,7 @@ jobs:
         MSYSTEM: UCRT64
       shell: msys2 {0}
       run: |
-        cd zlib-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd zlib-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    

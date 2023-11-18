@@ -1,0 +1,28 @@
+pkgname=xxhash-dev
+pkgver=0.8.2
+pkgrel=1
+pkgdesc='Extremely fast non-cryptographic hash algorithm'
+arch=('x86_64')
+url="https://github.com/Cyan4973/xxHash"
+license=('BSD')
+source=("git+https://github.com/Cyan4973/xxHash.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/xxHash
+  rm -rf build && mkdir build && cd build
+  cmake ../cmake_unofficial \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DDISPATCH=ON
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/xxHash/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}

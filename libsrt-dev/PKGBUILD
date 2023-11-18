@@ -14,7 +14,11 @@ build() {
   cd $srcdir/srt
   patch -p1 -i $srcdir/libsrt-0001-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release \
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DUSE_STATIC_LIBSTDCXX=ON \

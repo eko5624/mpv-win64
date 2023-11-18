@@ -12,12 +12,18 @@ build() {
   cd $srcdir/libwebp
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
-  ./autogen.sh
-  ./configure --prefix=/opt --disable-shared
-  make 
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF
+  cmake --build .  
 }
 
 package() {
-  cd $srcdir/libwebp
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libwebp/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }

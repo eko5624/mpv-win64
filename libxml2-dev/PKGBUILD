@@ -5,24 +5,32 @@ pkgdesc='XML parsing library, version 2'
 arch=('x86_64')
 url="http://www.xmlsoft.org/"
 license=('spdx:MIT')
+makedepends=('zlib-dev' 'libiconv-dev')
 source=("git+https://github.com/GNOME/libxml2.git")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/libxml2
-  ./autogen.sh
-  ./configure \
-    --prefix=/opt \
-    --disable-shared \
-    --enable-static \
-    --with-minimum \
-    --with-threads \
-    --with-tree \
-    --without-lzma
-  make
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DLIBXML2_WITH_ZLIB=ON \
+    -DLIBXML2_WITH_ICONV=ON \
+    -DLIBXML2_WITH_LZMA=OFF \
+    -DLIBXML2_WITH_PYTHON=OFF \
+    -DLIBXML2_WITH_TESTS=OFF \
+    -DLIBXML2_WITH_TREE=ON \
+    -DLIBXML2_WITH_THREADS=ON \
+    -DLIBXML2_WITH_THREAD_ALLOC=ON
+  cmake --build .
 }
 
 package() {
-  cd $srcdir/libxml2
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libxml2/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }

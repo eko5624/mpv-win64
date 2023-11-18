@@ -11,7 +11,12 @@ md5sums=('SKIP')
 build() {
   cd $srcdir/libjpeg-turbo
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DENABLE_SHARED=OFF -DENABLE_STATIC=ON -DCMAKE_BUILD_TYPE=Release 
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DENABLE_SHARED=OFF \
+    -DENABLE_STATIC=ON 
   cmake --build .
 }
 

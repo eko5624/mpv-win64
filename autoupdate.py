@@ -18,7 +18,7 @@ for t in ['build-toolchain.yml', 'build-my-toolchain.yml']:
     
 pkgs = {} 
 pkgs['libsixel'] = x['libsixel']
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus', 'spirv-cross']:
+for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'spirv-cross']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
   with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
@@ -75,6 +75,7 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'opus',
   'shaderc',
   'uavs3d',
   'vulkan', 
