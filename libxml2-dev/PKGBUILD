@@ -1,5 +1,5 @@
 pkgname=libxml2-dev
-pkgver=2.12.0
+pkgver=2.11.5
 pkgrel=1
 pkgdesc='XML parsing library, version 2'
 arch=('x86_64')
@@ -11,21 +11,26 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libxml2
-  ./autogen.sh
-  ./configure \
-    --prefix=/opt \
-    --disable-shared \
-    --enable-static \
-    --with-iconv \
-    --with-zlib \
-    --with-minimum \
-    --with-threads \
-    --with-tree \
-    --with-thread-alloc
-  make
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DLIBXML2_WITH_ZLIB=ON \
+    -DLIBXML2_WITH_ICONV=ON \
+    -DLIBXML2_WITH_LZMA=OFF \
+    -DLIBXML2_WITH_PYTHON=OFF \
+    -DLIBXML2_WITH_TESTS=OFF \
+    -DLIBXML2_WITH_TREE=ON \
+    -DLIBXML2_WITH_THREADS=ON \
+    -DLIBXML2_WITH_THREAD_ALLOC=ON
+  cmake --build .
 }
 
 package() {
-  cd $srcdir/libxml2
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libxml2/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
