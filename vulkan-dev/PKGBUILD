@@ -17,7 +17,10 @@ build() {
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
-  cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=/opt -DCMAKE_BUILD_TYPE=Release
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release
   cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
