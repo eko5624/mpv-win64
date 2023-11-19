@@ -1,4 +1,4 @@
-name: build-toolchain
+name: build-my-toolchain
 
 on:
   workflow_dispatch:  
@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip
+        install: base-devel autotools p7zip windows-default-manifest
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -27,20 +27,11 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20231108_13.2.1_x64-ucrt_2cb9bb2f0d481b7d69e2ee96786922960155fc05.7z
-        7z x *.7z -o/d
-        curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
-        7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
-        
-    - name: Make Toolchain
-      shell: msys2 {0}
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}   
-      shell: bash
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        ./release-latest.sh mcfgthread mcfgthread
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231119-x64-ucrt.7z
+        #curl -OL https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip
+        #curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
+        7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
+        #7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
+        #7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
+        cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
+
