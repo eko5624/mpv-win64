@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make mingw-w64-x86_64-ninja      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-ucrt-x86_64-binutils mingw-w64-x86_64-cmake mingw-w64-x86_64-make mingw-w64-x86_64-ninja      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -34,10 +34,11 @@ jobs:
         rm /d/ucrt64/bin/cmake.exe
         rm /d/ucrt64/bin/mingw32-make.exe
         rm /d/ucrt64/bin/ninja.exe
+        rm /d/ucrt64/bin/windres.exe
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libxml2-dev; PATH=/mingw64/bin:/usr/bin:/opt/bin:/d/ucrt64/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
