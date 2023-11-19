@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-ucrt-x86_64-pkgconf      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -76,7 +76,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; PATH=/d/ucrt64/bin:/opt/bin:/usr/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd ffmpeg; PATH=/ucrt64/bin:/d/ucrt64/bin:/opt/bin:/usr/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
