@@ -1,4 +1,4 @@
-name: build-all
+name: libsixel
 
 on:
   workflow_dispatch:
