@@ -1,4 +1,4 @@
-name: build-toolchain
+name: build-toolchain-lmhouse
 
 on:
   workflow_dispatch:  
