@@ -7,7 +7,7 @@ x = json.loads(resp.read().decode('utf-8'))
 
 mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 
-for t in ['build-toolchain.yml', 'build-my-toolchain.yml']:
+for t in ['build-toolchain.yml', 'build-toolchain-old.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
