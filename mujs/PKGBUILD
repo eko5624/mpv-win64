@@ -1,5 +1,5 @@
 pkgname=mujs-dev
-pkgver=1.3.3
+pkgver=1.3.4
 pkgrel=1
 pkgdesc='An embeddable Javascript interpreter in C'
 arch=('x86_64')
