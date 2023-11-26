@@ -31,7 +31,7 @@ jobs:
         curl -OL https://github.com/mstorsjo/llvm-mingw/releases/download/20231114/llvm-mingw-20231114-ucrt-x86_64.zip
         #curl -OL https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip
         #curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
-        7z x llvm*.zip -o/d
+        7z x llvm*.zip -o/d && mv /d/llvm* /d/curt64
         ls /d
         #7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
         #7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
