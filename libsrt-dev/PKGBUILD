@@ -7,7 +7,7 @@ url="https://www.srtalliance.org/"
 makedepends=('mbedtls-dev')
 license=('MPL')
 source=("git+https://github.com/Haivision/srt.git"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libsrt-0001-avoid-name-collision.patch")
+        "libsrt-0001-avoid-name-collision.patch")
 md5sums=('SKIP' 'SKIP')
 
 build() { 
