@@ -27,11 +27,10 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-11-27-ucrt-x86_64.7z
-        curl -OL https://github.com/mstorsjo/llvm-mingw/releases/download/20231114/llvm-mingw-20231114-ucrt-x86_64.zip
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-11-27-ucrt-x86_64.7z
         #curl -OL https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip
         #curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
-        7z x llvm*.zip -o/d && mv /d/llvm* /d/ucrt64
+        7z x target*.7z -o/d && mv /d/target /d/ucrt64
         #7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
         #7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
