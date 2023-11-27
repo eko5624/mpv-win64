@@ -14,6 +14,7 @@ pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['mpv', 'ffmpeg', 'luajit2']:
   pkgs['%s' % p] = x[p]
 for p in [
+  'aom',
   'avisynth',
   'brotli',
   'dav1d',
