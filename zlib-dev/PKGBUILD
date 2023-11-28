@@ -1,5 +1,5 @@
 pkgname=zlib-dev
-pkgver=2.1.4
+pkgver=2.1.5
 pkgrel=1
 pkgdesc='zlib replacement with optimizations for next generation systems'
 arch=('x86_64')
