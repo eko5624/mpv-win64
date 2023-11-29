@@ -50,7 +50,7 @@ package() {
   mkdir -p $pkgdir/opt/bin  
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir/opt/bin
-  mv player/mpv.com $pkgdir/opt/bin
+  mv mpv.com $pkgdir/opt/bin
   strip -s $pkgdir/opt/bin/mpv.*
   mv /d/msys64/opt/bin/vulkan-1.dll $pkgdir/opt/bin
 }
