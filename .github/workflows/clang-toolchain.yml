@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip windows-default-manifest
+        install: base-devel autotools p7zip mingw-w64-clang-x86_64-libffi
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -34,3 +34,4 @@ jobs:
         #7z x ninja*.zip && mv ninja.exe /d/ucrt64/bin
         #7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
         cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
+        cp /d/msys64/clang64/bin/libffi-8.dll /d/ucrt64/bin
