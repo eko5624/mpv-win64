@@ -71,6 +71,7 @@ for p in [
   'libwebp',
   'libxml2',
   'libxvid',
+  'libva',
   'libzimg',
   'libzvbi',
   'mbedtls',
