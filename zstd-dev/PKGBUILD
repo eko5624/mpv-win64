@@ -1,0 +1,36 @@
+pkgname=zstd-dev
+pkgver=1.5.5
+pkgrel=1
+pkgdesc='Zstandard - Fast real-time compression algorithm'
+arch=('x86_64')
+url="https://facebook.github.io/zstd/"
+license=('BSD')
+source=("git+https://github.com/facebook/zstd.git")
+md5sums=('SKIP')
+
+build() {  
+  cd $srcdir/zstd
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_FIND_ROOT_PATH=/opt \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DZSTD_BUILD_CONTRIB=OFF \
+    -DZSTD_BUILD_TESTS=OFF \
+    -DZSTD_LEGACY_SUPPORT=OFF \
+    -DZSTD_BUILD_PROGRAMS=OFF \
+    -DZSTD_PROGRAMS_LINK_SHARED=OFF \
+    -DZSTD_BUILD_SHARED=OFF \
+    -DZSTD_BUILD_STATIC=ON \
+    -DZSTD_MULTITHREAD_SUPPORT=ON
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/zstd/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}

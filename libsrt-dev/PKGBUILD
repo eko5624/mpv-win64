@@ -4,15 +4,13 @@ pkgrel=1
 pkgdesc='A transport protocol for ultra low (sub-second) latency live video and audio streaming'
 arch=('x86_64')
 url="https://www.srtalliance.org/"
-makedepends=('mbedtls-dev')
+makedepends=('openssl-dev')
 license=('MPL')
-source=("git+https://github.com/Haivision/srt.git"
-        "libsrt-0001-avoid-name-collision.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/Haivision/srt.git")
+md5sums=('SKIP')
 
 build() { 
   cd $srcdir/srt
-  patch -p1 -i $srcdir/libsrt-0001-avoid-name-collision.patch
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
@@ -23,7 +21,7 @@ build() {
     -DENABLE_STATIC=ON \
     -DUSE_STATIC_LIBSTDCXX=ON \
     -DENABLE_CXX_DEPS=OFF \
-    -DUSE_ENCLIB=mbedtls \
+    -DUSE_ENCLIB=openssl \
     -DENABLE_APPS=OFF \
     -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
     -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' 

@@ -33,7 +33,7 @@ makedepends=("amf-headers-dev"
              "libxvid-dev"
              "libzimg-dev"
              "libzvbi-dev"
-             "mbedtls-dev"
+             "openssl-dev"
              "opus-dev"
              "rav1e-dev"
              "shaderc-dev"
@@ -99,7 +99,7 @@ package_ffmpeg-dev() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
-    --enable-mbedtls \
+    --enable-openssl \
     --enable-vapoursynth \
     --enable-zlib \
     --disable-decoder=libaom_av1 \

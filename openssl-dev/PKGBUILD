@@ -1,0 +1,65 @@
+pkgname=openssl-dev
+pkgver=3.1.4
+pkgrel=1
+pkgdesc='The Open Source toolkit for Secure Sockets Layer and Transport Layer Security'
+arch=('x86_64')
+url="https://www.openssl.org/"
+makedepends=('zlib-dev')
+license=('spdx:Apache-2.0')
+source=("git+https://github.com/openssl/openssl.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/openssl
+  ./Configure \
+    --prefix=/opt \
+    --libdir=lib \
+    --release \
+    no-autoload-config \
+    no-ssl3-method \
+    no-whirlpool \
+    no-filenames \
+    no-camellia \
+    no-capieng \
+    no-shared \
+    no-rmd160 \
+    no-module \
+    no-legacy \
+    no-tests \
+    mingw64 \
+    threads \
+    no-docs \
+    no-apps \
+    no-quic \
+    no-ocsp \
+    no-ssl3 \
+    no-cmac \
+    no-mdc2 \
+    no-idea \
+    no-cast \
+    no-srtp \
+    no-seed \
+    no-aria \
+    no-err \
+    no-dso \
+    no-dsa \
+    no-srp \
+    no-rc2 \
+    no-rc4 \
+    no-sm2 \
+    no-sm3 \
+    no-sm4 \
+    no-md4 \
+    no-cms \
+    no-cmp \
+    no-dh \
+    no-bf \
+    zlib \
+    enable-ec_nistp_64_gcc_128
+  make build_sw
+}
+
+package() {
+  cd $srcdir/openssl
+  make DESTDIR=$pkgdir install_sw
+}
