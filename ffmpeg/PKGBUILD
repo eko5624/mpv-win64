@@ -25,6 +25,7 @@ makedepends=("amf-headers-dev"
              "libspeex-dev"
              "libsrt-dev"
              "libssh-dev"
+             "libva-dev"
              "libvorbis_aotuv-dev"
              "libvpl-dev"
              "libvpx-dev"
@@ -33,7 +34,7 @@ makedepends=("amf-headers-dev"
              "libxvid-dev"
              "libzimg-dev"
              "libzvbi-dev"
-             "mbedtls-dev"
+             "openssl-dev"
              "opus-dev"
              "rav1e-dev"
              "shaderc-dev"
@@ -106,7 +107,8 @@ package_ffmpeg-shared-dev() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
-    --enable-mbedtls \
+    --enable-openssl \
+    --enable-vaapi \
     --enable-vapoursynth \
     --enable-zlib \
     --disable-decoder=libaom_av1 \
