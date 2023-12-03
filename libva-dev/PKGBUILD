@@ -10,6 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libva
+  sed -i "s/shared_library/library/g" va/meson.build
   meson build \
     --prefix=/opt \
     --buildtype=release \
@@ -23,5 +24,6 @@ package() {
   cd $srcdir/libva
   DESTDIR=$pkgdir meson install -C build
   mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/opt/lib/libva*.dll.a
   rm -rf $pkgdir/msys64
 }

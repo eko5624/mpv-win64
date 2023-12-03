@@ -25,6 +25,7 @@ makedepends=("amf-headers-dev"
              "libspeex-dev"
              "libsrt-dev"
              "libssh-dev"
+             "libva-dev"
              "libvorbis_aotuv-dev"
              "libvpl-dev"
              "libvpx-dev"
@@ -100,6 +101,7 @@ package_ffmpeg-dev() {
     --enable-libzimg \
     --enable-libzvbi \
     --enable-openssl \
+    --enable-vaapi \
     --enable-vapoursynth \
     --enable-zlib \
     --disable-decoder=libaom_av1 \
