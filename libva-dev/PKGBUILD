@@ -1,5 +1,5 @@
 pkgname=libva-dev
-pkgver=2.17.0
+pkgver=2.20.0
 pkgrel=1
 pkgdesc='An implementation for VA-API'
 arch=('x86_64')
