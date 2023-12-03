@@ -75,6 +75,7 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'openssl',
   'opus',
   'shaderc',
   'uavs3d',
