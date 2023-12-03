@@ -6,7 +6,7 @@ pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
 url="https://github.com/google/shaderc/"
 license=('Apache')
-source=("git+https://github.com/google/shaderc")
+source=("git+https://github.com/google/shaderc.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
