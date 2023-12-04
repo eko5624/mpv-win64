@@ -35,4 +35,5 @@ package() {
   rm -rf $pkgdir/msys64
   echo "Libs.private: -lwsock32 -lpthread" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
+  echo "Requires.private: libssl" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
 }
