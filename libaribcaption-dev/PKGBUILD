@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='Portable ARIB STD-B24 Caption Decoder/Renderer'
 arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
+makedepends=('openssl-dev')
 license=('MIT')
 source=("git+https://github.com/xqq/libaribcaption.git")
 md5sums=('SKIP')
