@@ -15,7 +15,13 @@ build() {
   cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DARIBCC_BUILD_TESTS=OFF \
+    -DARIBCC_SHARED_LIBRARY=OFF \
+    -DARIBCC_NO_RTTI=ON \
+    -DCMAKE_C_FLAGS='-DHAVE_OPENSSL=1' \
+    -DCMAKE_CXX_FLAGS='-DHAVE_OPENSSL=1'
   cmake --build .
 }
 
