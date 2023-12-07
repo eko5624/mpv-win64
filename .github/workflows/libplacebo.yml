@@ -26,7 +26,7 @@ jobs:
         path: D:\ucrt64
         key: mcf_20231205_13.2.1_x64-ucrt
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
