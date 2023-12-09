@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
-makedepends=('lcms2-dev' 'libjpeg-dev' 'libpng-dev' 'zlib-dev')
+makedepends=('libjpeg-dev' 'libpng-dev' 'zlib-dev')
 license=('BSD')
 source=("git+https://github.com/libjxl/libjxl.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
@@ -63,5 +63,5 @@ package() {
   
   rm $pkgdir/opt/lib/pkgconfig/libjxl_cms.pc
   sed -i 's/libjxl_cms//g' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
-  sed -i 's/-lm/-lm -ladvapi32 -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
+  #sed -i 's/-lm/-lm -ladvapi32 -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
 }

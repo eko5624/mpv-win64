@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-cmake mingw-w64-x86_64-make            
+        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
