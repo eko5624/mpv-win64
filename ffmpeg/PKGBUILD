@@ -10,7 +10,6 @@ makedepends=("amf-headers-dev"
              "dav1d-dev"
              "davs2-dev"
              "ffnvcodec-dev"
-             "gmp-dev"
              "lame-dev"
              "libaribcaption-dev"
              "libbs2b-dev"
@@ -71,7 +70,6 @@ package_ffmpeg-dev() {
     --extra-ldflags="-static-libgcc" \
     --enable-amf \
     --enable-avisynth \
-    --enable-gmp \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
