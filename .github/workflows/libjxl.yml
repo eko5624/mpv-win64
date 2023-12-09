@@ -22,15 +22,13 @@ jobs:
       id: cache
       with:
         path: D:\ucrt64
-        key: mcf_20231108_13.2.1_x64-ucrt
+        key: mcf_20231205_13.2.1_x64-ucrt
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
         MSYSTEM: UCRT64
-        CMAKE: /mingw64/bin/cmake
-        MAKE: /mingw64/bin/mingw32-make
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
