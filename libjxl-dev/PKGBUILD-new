@@ -65,5 +65,5 @@ package() {
   
   rm $pkgdir/opt/lib/pkgconfig/libjxl_cms.pc
   sed -i 's/libjxl_cms//g' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
-  sed -i 's/-lm/-lm -ladvapi32/' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
+  sed -i 's/-lm/-lm -ladvapi32 -lstdc++/' $pkgdir/opt/lib/pkgconfig/libjxl*.pc
 }
