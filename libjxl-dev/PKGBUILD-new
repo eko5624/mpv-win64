@@ -62,6 +62,5 @@ package() {
   mv third_party/brotli/libbrotlicommon.pc $pkgdir/opt/lib/pkgconfig
   mv third_party/brotli/libbrotlidec.pc $pkgdir/opt/lib/pkgconfig
   mv third_party/brotli/libbrotlienc.pc $pkgdir/opt/lib/pkgconfig
-  
-  sed -i 's/-lm/-lm -ljxl_cms/g' $pkgdir/opt/lib/pkgconfig/libjxl.pc
+  sed -i 's/Requires.private:/Requires.private: lcms2/g' $pkgdir/opt/lib/pkgconfig/libjxl_cms.pc
 }
