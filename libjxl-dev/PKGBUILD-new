@@ -18,9 +18,9 @@ build() {
   cd $srcdir/libjxl
   CFLAGS+=" -masm=att"
   CXXFLAGS+=" -masm=att"
-  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,skcms}
+  git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway}
   rm -rf third_party/libjpeg-turbo
-  mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo
+  ln -s $srcdir/libjpeg-turbo third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
