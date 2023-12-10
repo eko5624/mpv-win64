@@ -32,7 +32,6 @@ build() {
     threads \
     no-docs \
     no-apps \
-    no-quic \
     no-ocsp \
     no-ssl3 \
     no-cmac \
