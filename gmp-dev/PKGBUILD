@@ -10,8 +10,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/gmp-$pkgver
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   sed -i 's|__declspec\(__dllimport__\)||g' gmp-h.in
   ./configure \
     --prefix=/opt \

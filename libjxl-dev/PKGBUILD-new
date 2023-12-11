@@ -16,8 +16,6 @@ build() {
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
   
   cd $srcdir/libjxl
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway}
   rm -rf third_party/libjpeg-turbo
   ln -s $srcdir/libjpeg-turbo third_party/libjpeg-turbo

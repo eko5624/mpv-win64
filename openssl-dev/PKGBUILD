@@ -11,8 +11,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/openssl
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   ./Configure \
     --prefix=/opt \
     --libdir=lib \

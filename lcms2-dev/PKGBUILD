@@ -10,8 +10,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/Little-CMS
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   meson setup build \
     --prefix=/opt \
     --libdir=/opt/lib \

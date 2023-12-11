@@ -10,8 +10,6 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/aom
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   rm -rf out && mkdir out && cd out
   cmake .. \
     -G "Ninja" \
