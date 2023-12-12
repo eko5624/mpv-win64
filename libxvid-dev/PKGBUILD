@@ -5,12 +5,14 @@ pkgdesc='XviD is an open source MPEG-4 video codec'
 arch=('x86_64')
 url="https://www.xvid.com/"
 license=('GPL')
-source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2")
-md5sums=('SKIP')
+source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2"
+        "0001-remove-dll-option-clang.patch")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/xvidcore/build/generic
   set -x
+  patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
   sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
   ./configure --prefix=/opt 
   make 

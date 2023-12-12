@@ -10,11 +10,7 @@ source=("git+https://github.com/libjxl/libjxl.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
 md5sums=('SKIP' 'SKIP')
 
-build() { 
-  # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
-  
+build() {  
   cd $srcdir/libjxl
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway}
   rm -rf third_party/libjpeg-turbo

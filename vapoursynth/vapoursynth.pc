@@ -4,4 +4,5 @@ includedir=/opt/include
 Name: vapoursynth
 Description:
 Version: _ver
-Libs: -L${libdir} -lVapourSynth
+
+Libs: -L${libdir} -lVapourSynth -Wl,-delayload=VapourSynth.dll

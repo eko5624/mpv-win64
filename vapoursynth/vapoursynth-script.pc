@@ -4,5 +4,5 @@ includedir=/opt/include
 Name: vapoursynth-script
 Description:
 Version: _ver
-Requires: vapoursynth
-Libs: -L${libdir} -lVSScript
+
+Libs: -L${libdir} -lVSScript -Wl,-delayload=VSScript.dll

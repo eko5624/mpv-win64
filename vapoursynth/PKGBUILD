@@ -14,15 +14,15 @@ package() {
   set -x
   gendef VSScript.dll
   gendef VapourSynth.dll
-  dlltool -d VSScript.def -y libvsscript.a 
-  dlltool -d VapourSynth.def -y libvapoursynth.a 
+  x86_64-w64-mingw32-dlltool -m i386:x86-64 -d VSScript.def -l VSScript.lib
+  x86_64-w64-mingw32-dlltool -m i386:x86-64 -d VapourSynth.def -l VapourSynth.lib 
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include
   mv sdk/include/VapourSynth.h $pkgdir/opt/include
   mv sdk/include/VSScript.h $pkgdir/opt/include
   mv sdk/include/VSHelper.h $pkgdir/opt/include
-  cp libvsscript.a $pkgdir/opt/lib
-  cp libvapoursynth.a $pkgdir/opt/lib   
+  cp VSScript.lib $pkgdir/opt/lib
+  cp VapourSynth.lib $pkgdir/opt/lib  
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
