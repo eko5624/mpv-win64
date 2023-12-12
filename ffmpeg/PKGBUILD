@@ -62,12 +62,13 @@ package_ffmpeg-dev() {
     --disable-ffprobe \
     --disable-avdevice \
     --disable-shared \
-    --disable-pthreads \
-    --enable-w32threads \
-    --extra-libs="-lstdc++ -lssp" \
-    --extra-ldflags="-static-libgcc" \
+    --extra-cflags="-Wno-error=int-conversion" \
+    --extra-libs="-lc++" \
     --enable-amf \
     --enable-avisynth \
+    --enable-cuda-llvm \
+    --enable-cuvid \
+    --enable-hardcoded-tables \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
