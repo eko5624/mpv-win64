@@ -8,8 +8,9 @@ license=('LGPL')
 source=("git+https://github.com/cacalabs/libcaca.git"
         "0001-win32-is-not-msvc-it-could-be.mingw.patch"
         "0002-correct-installation-order.mingw.patch"
-        "0006-no-undefined.all.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+        "0006-no-undefined.all.patch"
+        "0010-missing-include.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   cd $srcdir/libcaca
