@@ -11,6 +11,7 @@ md5sums=('SKIP' 'SKIP')
 
 package() {  
   cd $srcdir/rav1e
+  cp $srcdir/Cargo.lock ./
   cargo vendor --locked --versioned-dirs
   cat >> /d/.cargo/config.toml <<END
 [source.crates-io]
