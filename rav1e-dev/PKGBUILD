@@ -5,11 +5,26 @@ pkgdesc='The fastest and safest AV1 encoder'
 arch=('x86_64')
 url="https://github.com/xiph/rav1e/"
 license=('spdx:BSD-2-Clause')
-source=("git+https://github.com/xiph/rav1e.git")
-md5sums=('SKIP')
+source=("git+https://github.com/xiph/rav1e.git#tag=v$pkgver"
+        "https://github.com/xiph/rav1e/releases/download/v$pkgver/Cargo.lock")
+md5sums=('SKIP' 'SKIP')
 
 package() {  
   cd $srcdir/rav1e
+  cargo vendor --locked --versioned-dirs
+  cat >> /d/.cargo/config.toml <<END
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"
+END
+  
+  sed -i -e 's/"cfg(all(target_arch = \\"\([^\\]\+\)\\", target_env = \\"gnu\\", target_abi = \\"llvm\\", not(windows_raw_dylib)))"/"\1-pc-windows-gnullvm"/g' \
+    "vendor/windows-targets-0.48.0/Cargo.toml"
+  sed -i -e 's/\("Cargo.toml":\)"[^"]\+"/\1"'"$(sha256sum "vendor/windows-targets-0.48.0/Cargo.toml" | cut -d' ' -f1)"'"/' \
+    "vendor/windows-targets-0.48.0/.cargo-checksum.json"
+
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
