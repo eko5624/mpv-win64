@@ -27,7 +27,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-12-11-ucrt-x86_64-no-arm.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-12-12-ucrt-x86_64.7z
         #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-20231128-ucrt-x86_64.7z
         7z x target*.7z -o/d && mv /d/target /d/ucrt64
         #curl -OL https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip
