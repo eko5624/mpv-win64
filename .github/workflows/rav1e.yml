@@ -1,0 +1,54 @@
+name: rav1e
+
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:  
+  rav1e:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\ucrt64
+        key: mcf_20231205_13.2.1_x64-ucrt
+    - name: Install Rust
+      shell: bash
+      run: |
+        rustup self uninstall -y
+        export RUSTUP_HOME="/d/.rustup"
+        export CARGO_HOME="/d/.cargo"
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
+        $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu        
+    - name: Install cargo-c
+      shell: bash
+      run: |
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
+
+    - name: Build
+      env:
+        C_INCLUDE_PATH: /opt/include
+        CPLUS_INCLUDE_PATH: /opt/include
+        LIBRARY_PATH: /opt/lib
+        MSYSTEM: CLANG64        
+      shell: msys2 {0}
+      run: |
+        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}    
+      shell: bash 
+      run: |
+        ./release-dev.sh rav1e-dev rav1e-dev
