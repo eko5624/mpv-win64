@@ -33,9 +33,11 @@ jobs:
         C_INCLUDE_PATH: /opt/include
         CPLUS_INCLUDE_PATH: /opt/include
         LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
+        MSYSTEM: CLANG64
       shell: msys2 {0}
       run: |
+        rm /d/ucrt64/x86_64-w64-mingw32/lib
+        find /d/ucrt64/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
         pypath=$(cygpath -u $pythonLocation)
         PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
