@@ -44,6 +44,7 @@ jobs:
         MSYSTEM: CLANG64        
       shell: msys2 {0}
       run: |
+        cp *.a /d/ucrt64/lib
         cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     - name: Release
       env:
