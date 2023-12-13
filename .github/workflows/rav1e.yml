@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-gcc
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -44,7 +44,9 @@ jobs:
         MSYSTEM: CLANG64        
       shell: msys2 {0}
       run: |
-        cp *.a /d/ucrt64/lib
+        cp /d/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
+        cp /d/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
+        ls /d/ucrt64/lib
         cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     - name: Release
       env:
