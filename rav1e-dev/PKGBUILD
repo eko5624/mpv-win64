@@ -10,6 +10,8 @@ md5sums=('SKIP')
 
 package() {  
   cd $srcdir/rav1e
+  llvm-ar rcs /d/ucrt64/lib/libgcc_eh.a
+  llvm-ar rcs /d/ucrt64/lib/lib/libgcc.a
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
