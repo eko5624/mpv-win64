@@ -15,10 +15,10 @@ package() {
   #cp /d/ucrt64/x86_64-w64-mingw32/lib/libc++.a /d/ucrt64/x86_64-w64-mingw32/lib/libstdc++.a
   cat >> /d/.cargo/config.toml <<END
 [profile.release]
-panic = "abort"
+panic = "unwind"
 
 [profile.dev]
-panic="abort"
+panic="unwind"
 END
 
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
