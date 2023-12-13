@@ -10,21 +10,15 @@ md5sums=('SKIP')
 
 package() {  
   cd $srcdir/rav1e
-  llvm-ar rcs /d/ucrt64/lib/libgcc_eh.a
-  llvm-ar rcs /d/ucrt64/lib/libgcc.a
-  cp /d/ucrt64/x86_64-w64-mingw32/lib/libc++.a /d/ucrt64/x86_64-w64-mingw32/lib/libstdc++.a
+  #llvm-ar rcs /d/ucrt64/lib/libgcc_eh.a
+  #llvm-ar rcs /d/ucrt64/lib/libgcc.a
+  #cp /d/ucrt64/x86_64-w64-mingw32/lib/libc++.a /d/ucrt64/x86_64-w64-mingw32/lib/libstdc++.a
   cat >> /d/.cargo/config.toml <<END
-[net]
-git-fetch-with-cli = true
-
-[target.x86_64-pc-windows-gnu]
-linker = "x86_64-w64-mingw32-gcc"
-ar = "x86_64-w64-mingw32-ar"
-rustflags = ["-C", "target-cpu=x86-64"]
-
 [profile.release]
 panic = "abort"
-strip = true
+
+[profile.dev]
+panic="abort"
 END
 
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
