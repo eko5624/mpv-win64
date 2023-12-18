@@ -13,12 +13,19 @@ md5sums=('SKIP' 'SKIP')
 build() { 
   cd $srcdir/luajit2
   patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
-  make amalg BUILDMODE=static PREFIX=/opt XCFLAGS='-DLUAJIT_ENABLE_GC64'     
+  make amalg BUILDMODE=static PREFIX=/opt \
+    FILE_T=luajit.exe \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT'  
 }
 
 package() {
   cd $srcdir/luajit2
-  make DESTDIR=$pkgdir PREFIX=/opt XCFLAGS='-DLUAJIT_ENABLE_GC64' install
+  make DESTDIR=$pkgdir PREFIX=/opt \
+    FILE_T=luajit.exe \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
+    install
   # cp ../../*.pc $pkgdir/opt/lib/pkgconfig
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/lua
 }
