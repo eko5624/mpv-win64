@@ -15,7 +15,7 @@ build() {
   patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
   make amalg BUILDMODE=static PREFIX=/opt \
     FILE_T=luajit.exe \
-    CFLAGS='-D_WIN32_WINNT=0x0601 -DUNICODE' \
+    CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT'     
 }
 
