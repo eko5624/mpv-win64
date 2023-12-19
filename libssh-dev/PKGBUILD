@@ -20,11 +20,8 @@ build() {
     -DCMAKE_FIND_ROOT_PATH=/opt \
     -DBUILD_SHARED_LIBS=OFF \
     -DWITH_ZLIB=ON \
-    -DWITH_OPENSSL=ON \
-    -DMBEDTLS_INCLUDE_DIR='/opt/include' \
     -DWITH_EXAMPLES=OFF \
-    -DBUILD_STATIC_LIB=ON \
-    -DCMAKE_C_FLAGS='-DHAVE_COMPILER__FUNC__=1' 
+    -DBUILD_STATIC_LIB=ON
   cmake --build .
 }
 
@@ -33,7 +30,7 @@ package() {
   DESTDIR=$pkgdir cmake --install .
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
-  echo "Libs.private: -lwsock32 -lpthread" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
+  echo "Libs.private: -lwsock32 -liphlpapi -lpthread" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
   echo "Requires.private: libssl" >> $pkgdir/opt/lib/pkgconfig/libssh.pc
 }
