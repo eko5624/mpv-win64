@@ -1,4 +1,4 @@
-name: clang-toolchain
+name: build-clang-toolchain
 
 on:
   workflow_dispatch:  
