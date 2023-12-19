@@ -21,8 +21,8 @@ jobs:
     - uses: actions/cache@main
       id: cache
       with:
-        path: D:\ucrt64
-        key: mcf_20231205_13.2.1_x64-ucrt
+        path: D:\clang
+        key: clang-ucrt-x86_64
     - name: Install Rust
       shell: bash
       run: |
@@ -47,10 +47,10 @@ jobs:
         cp /d/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
         cp /d/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
         ls /d/ucrt64/lib
-        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; PATH=/usr/bin:/d/clang/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
+        GH_TOKEN: ${{ github.token }}
       shell: bash 
       run: |
         ./release-dev.sh rav1e-dev rav1e-dev

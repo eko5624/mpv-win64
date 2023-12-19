@@ -18,8 +18,8 @@ jobs:
     - uses: actions/cache@main
       id: cache
       with:
-        path: D:\ucrt64
-        key: mcf_20231205_13.2.1_x64-ucrt
+        path: D:\clang
+        key: clang-ucrt-x86_64
     - name: Setup Packages      
       shell: msys2 {0}
       run: |

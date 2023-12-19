@@ -20,8 +20,8 @@ jobs:
     - uses: actions/cache@main
       id: cache
       with:
-        path: D:\ucrt64
-        key: mcf_20231122_13.2.1_x64-ucrt
+        path: D:\clang
+        key: clang-ucrt-x86_64
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -35,7 +35,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libaribcaption-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
