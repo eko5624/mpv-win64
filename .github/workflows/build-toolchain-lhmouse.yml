@@ -1,4 +1,4 @@
-name: build-toolchain-old
+name: build-toolchain-lhmouse
 
 on:
   workflow_dispatch:  
