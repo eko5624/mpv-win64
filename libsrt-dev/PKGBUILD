@@ -22,9 +22,7 @@ build() {
     -DUSE_STATIC_LIBSTDCXX=ON \
     -DENABLE_CXX_DEPS=OFF \
     -DUSE_ENCLIB=openssl \
-    -DENABLE_APPS=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
-    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' 
+    -DENABLE_APPS=OFF
   cmake --build .
 }
 
