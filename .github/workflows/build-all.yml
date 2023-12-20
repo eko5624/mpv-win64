@@ -753,7 +753,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git            
+        install: base-devel autoconf-wrapper automake-wrapper git p7zip           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2084,7 +2084,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel
+        install: base-devel p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2132,7 +2132,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-gcc
+        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-gcc p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2155,7 +2155,6 @@ jobs:
         curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
         $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu        
     - name: Install cargo-c
-      shell: bash
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
