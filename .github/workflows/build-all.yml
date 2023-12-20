@@ -783,9 +783,9 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd libdovi-dev; PATH=/usr/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg-clang      
+        #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
+        #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
+        cd libdovi-dev; makepkg-clang      
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2166,7 +2166,7 @@ jobs:
       run: |
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd rav1e-dev; PATH=/usr/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg-clang  
+        cd rav1e-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2320,6 +2320,7 @@ jobs:
         install: base-devel git    
     - name: Prepare
       run: git config --global core.autocrlf input
+      shell: bash
     - uses: actions/checkout@main
     - uses: actions/cache@main
       id: cache
