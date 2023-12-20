@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/bin/makepkg --config "/etc/makepkg_cross.conf" "$@"
+/usr/bin/makepkg --config "/etc/makepkg_clang.conf" "$@"
