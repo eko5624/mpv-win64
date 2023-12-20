@@ -28,12 +28,12 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -65,8 +65,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -98,8 +98,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -131,8 +131,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -164,8 +164,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       shell: msys2 {0}
       run: |
@@ -197,8 +197,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -278,8 +278,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -321,8 +321,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -354,8 +354,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -388,8 +388,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -432,8 +432,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -474,8 +474,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -518,8 +518,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -551,8 +551,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -593,8 +593,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -633,8 +633,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -672,8 +672,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -710,8 +710,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -743,8 +743,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -776,8 +776,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Install rust
       run: |
         rustup self uninstall -y
@@ -820,8 +820,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -854,8 +854,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -891,8 +891,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -926,8 +926,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -959,8 +959,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -993,8 +993,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1031,8 +1031,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1065,8 +1065,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1100,8 +1100,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1134,8 +1134,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1173,8 +1173,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1222,8 +1222,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1257,8 +1257,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1291,8 +1291,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1336,8 +1336,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1369,8 +1369,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1403,8 +1403,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1439,8 +1439,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1475,8 +1475,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1508,8 +1508,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1541,8 +1541,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1583,8 +1583,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1618,8 +1618,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1651,8 +1651,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1684,8 +1684,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1718,8 +1718,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1754,8 +1754,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1788,8 +1788,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1822,8 +1822,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1858,8 +1858,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -1892,8 +1892,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -2003,8 +2003,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2036,8 +2036,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2070,8 +2070,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2105,8 +2105,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2139,8 +2139,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Packages      
       shell: msys2 {0}
       run: |
@@ -2189,8 +2189,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Install Rust
       shell: bash
       run: |
@@ -2237,8 +2237,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -2278,8 +2278,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2311,8 +2311,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2344,8 +2344,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2376,8 +2376,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       shell: msys2 {0}
       run: |
@@ -2408,8 +2408,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2441,8 +2441,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
@@ -2474,8 +2474,8 @@ jobs:
         key: clang-ucrt-x86_64
     - name: Setting makepkg etc
       run: |
-        sudo cp pacman-config/makepkg_clang.conf /etc
-        sudo cp pacman-config/makepkg-clang /usr/bin
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         MSYSTEM: UCRT64
