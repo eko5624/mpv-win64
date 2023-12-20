@@ -23,10 +23,10 @@ jobs:
       with:
         path: D:\clang
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
+    #- name: Setting makepkg etc
+    #  run: |
+    #    cp pacman-config/makepkg_clang.conf /etc
+    #    cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
