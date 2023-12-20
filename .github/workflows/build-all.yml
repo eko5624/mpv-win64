@@ -37,7 +37,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd amf-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg  
     - name: Release
@@ -71,7 +70,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd angle-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg  
     - name: Release
@@ -105,7 +103,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd aom-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -139,7 +136,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd avisynth-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg
     - name: Release
@@ -206,7 +202,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -295,7 +290,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -332,7 +326,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd davs2-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -366,7 +359,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd ffnvcodec-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -408,7 +400,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -453,7 +444,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)        
         cd fribidi-dev; PATH=$pypath:$pypath/Scripts makepkg-clang -p PKGBUILD-new
@@ -496,7 +486,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst    
@@ -534,7 +523,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd lame-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -575,7 +563,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)        
         cd lcms2-dev; PATH=$pypath:$pypath/Scripts makepkg-clang
@@ -611,7 +598,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
@@ -652,7 +638,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -692,7 +677,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -731,7 +715,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libbs2b-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -765,7 +748,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libcaca-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -810,7 +792,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libdovi-dev; PATH=/usr/bin:/opt/bin:/c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg-clang  
       
@@ -845,7 +826,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libdvdcss-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -880,7 +860,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
@@ -918,7 +897,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
@@ -954,7 +932,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libiconv-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -988,7 +965,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libjpeg-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1023,7 +999,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
@@ -1062,7 +1037,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libmodplug-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1097,7 +1071,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
@@ -1133,7 +1106,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libogg-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1168,7 +1140,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1215,7 +1186,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)              
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -1258,7 +1228,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
@@ -1294,7 +1263,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libsdl2-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1336,7 +1304,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
@@ -1375,7 +1342,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libsoxr-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang  
     - name: Release
@@ -1409,7 +1375,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libspeex-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1444,7 +1409,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
@@ -1481,7 +1445,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
@@ -1518,7 +1481,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libudfread-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1552,7 +1514,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libunibreak-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1593,7 +1554,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)                
         cd libva-dev; PATH=$pypath:$pypath/Scripts makepkg-clang
@@ -1629,7 +1589,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
@@ -1665,7 +1624,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libvpl-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang  
     - name: Release
@@ -1699,7 +1657,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libvpx-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1733,7 +1690,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libwebp-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1768,7 +1724,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
@@ -1805,7 +1760,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         cd libxvid-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
@@ -1840,7 +1794,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd libzimg-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1875,7 +1828,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
@@ -1912,7 +1864,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd luajit2; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -1954,7 +1905,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
@@ -2059,7 +2009,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd mujs; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -2093,7 +2042,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd openal-soft-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang  
     - name: Release
@@ -2128,7 +2076,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
@@ -2164,7 +2111,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd opus-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -2305,7 +2251,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         pypath=$(cygpath -u $pythonLocation)        
         cd rubberband; PATH=$pypath:$pypath/Scripts makepkg-clang
@@ -2340,7 +2285,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd shaderc-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -2374,7 +2318,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd spirv-cross-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang -p PKGBUILD-new
     - name: Release
@@ -2408,7 +2351,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd uavs3d-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang 
     - name: Release
@@ -2473,7 +2415,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd vulkan-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -2507,7 +2448,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd xxhash-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
@@ -2541,7 +2481,6 @@ jobs:
     - name: Build
       env:
         MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         cd zlib-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin makepkg-clang
     - name: Release
