@@ -21,8 +21,7 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - name: Executable flag setting
       run: |
-        git checkout static
-        chmod +x *.sh
+        chmod +x pacman-config/makepkg-clang
         git add -A
         git commit -am "Executable-flag-setting" || echo "nothing updated"
         git push  
