@@ -38,7 +38,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd amf-dev; PATH=/usr/bin makepkg-clang  
+        cd amf-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -70,7 +70,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd angle-dev; PATH=/usr/bin makepkg-clang  
+        cd angle-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -102,7 +102,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd aom-dev; PATH=/usr/bin makepkg-clang
+        cd aom-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}  
@@ -135,7 +135,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd avisynth-dev; PATH=/usr/bin makepkg-clang
+        cd avisynth-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -245,7 +245,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; PATH=/usr/bin makepkg-clang
+        cd ffmpeg; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -287,10 +287,10 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)        
+        export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        cd dav1d-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -322,7 +322,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd davs2-dev; PATH=/usr/bin makepkg-clang
+        cd davs2-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -355,7 +355,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd ffnvcodec-dev; PATH=/usr/bin makepkg-clang
+        cd ffnvcodec-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -396,11 +396,11 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang -p PKGBUILD-new
+        cd freetype2-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -440,8 +440,8 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)        
-        cd fribidi-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang -p PKGBUILD-new
+        export pypath=$(cygpath -u $pythonLocation)        
+        cd fribidi-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -482,11 +482,11 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)        
+        export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst    
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -518,7 +518,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd lame-dev; PATH=/usr/bin makepkg-clang
+        cd lame-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -558,8 +558,8 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)        
-        cd lcms2-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        export pypath=$(cygpath -u $pythonLocation)        
+        cd lcms2-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -599,7 +599,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
-        cd libass-dev; PATH=/usr/bin makepkg-clang
+        cd libass-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -636,7 +636,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; PATH=/usr/bin makepkg-clang
+        cd libaribcaption-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
@@ -675,7 +675,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; PATH=/usr/bin makepkg-clang
+        cd libbluray-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -707,7 +707,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libbs2b-dev; PATH=/usr/bin makepkg-clang
+        cd libbs2b-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -739,7 +739,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libcaca-dev; PATH=/usr/bin makepkg-clang
+        cd libcaca-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -753,7 +753,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git p7zip           
+        install: base-devel autoconf-wrapper automake-wrapper git mingw-w64-x86_64-gcc p7zip           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -783,6 +783,8 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
         cd libdovi-dev; PATH=/usr/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg-clang      
     - name: Release
       env:
@@ -815,7 +817,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libdvdcss-dev; PATH=/usr/bin makepkg-clang
+        cd libdvdcss-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -851,7 +853,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; PATH=/usr/bin makepkg-clang
+        cd libdvdnav-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -886,7 +888,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; PATH=/usr/bin makepkg-clang
+        cd libdvdread-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -918,7 +920,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libiconv-dev; PATH=/usr/bin makepkg-clang
+        cd libiconv-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -950,7 +952,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libjpeg-dev; PATH=/usr/bin makepkg-clang
+        cd libjpeg-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -988,7 +990,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; PATH=/usr/bin makepkg-clang -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-clang -p PKGBUILD-new 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1020,7 +1022,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libmodplug-dev; PATH=/usr/bin makepkg-clang
+        cd libmodplug-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1055,7 +1057,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; PATH=/usr/bin makepkg-clang  
+        cd libmysofa-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1087,7 +1089,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libogg-dev; PATH=/usr/bin makepkg-clang
+        cd libogg-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1125,7 +1127,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; PATH=/usr/bin makepkg-clang
+        cd libopenmpt-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1166,7 +1168,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)              
+        export pypath=$(cygpath -u $pythonLocation)              
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
@@ -1174,7 +1176,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        cd libplacebo-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1209,7 +1211,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; PATH=/usr/bin makepkg-clang
+        cd libpng-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1241,7 +1243,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libsdl2-dev; PATH=/usr/bin makepkg-clang
+        cd libsdl2-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1282,12 +1284,12 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)       
+        export pypath=$(cygpath -u $pythonLocation)       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang -p PKGBUILD-new
+        cd libsixel; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1319,7 +1321,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libsoxr-dev; PATH=/usr/bin makepkg-clang  
+        cd libsoxr-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1351,7 +1353,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libspeex-dev; PATH=/usr/bin makepkg-clang
+        cd libspeex-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1386,7 +1388,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
-        cd libsrt-dev; PATH=/usr/bin makepkg-clang  
+        cd libsrt-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1422,7 +1424,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; PATH=/usr/bin makepkg-clang  
+        cd libssh-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1454,7 +1456,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libudfread-dev; PATH=/usr/bin makepkg-clang
+        cd libudfread-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1486,7 +1488,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libunibreak-dev; PATH=/usr/bin makepkg-clang
+        cd libunibreak-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1526,8 +1528,8 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)                
-        cd libva-dev; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        export pypath=$(cygpath -u $pythonLocation)                
+        cd libva-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1562,7 +1564,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; PATH=/usr/bin makepkg-clang
+        cd libvorbis_aotuv-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1594,7 +1596,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libvpl-dev; PATH=/usr/bin makepkg-clang  
+        cd libvpl-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1626,7 +1628,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libvpx-dev; PATH=/usr/bin makepkg-clang
+        cd libvpx-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1658,7 +1660,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libwebp-dev; PATH=/usr/bin makepkg-clang
+        cd libwebp-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1694,7 +1696,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; PATH=/usr/bin makepkg-clang
+        cd libxml2-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1727,7 +1729,7 @@ jobs:
         MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; PATH=/usr/bin makepkg-clang
+        cd libxvid-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1759,7 +1761,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd libzimg-dev; PATH=/usr/bin makepkg-clang
+        cd libzimg-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1795,7 +1797,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; PATH=/usr/bin makepkg-clang
+        cd libzvbi-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1827,7 +1829,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd luajit2; PATH=/usr/bin makepkg-clang
+        cd luajit2; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1868,7 +1870,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)         
+        export pypath=$(cygpath -u $pythonLocation)         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -1932,7 +1934,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        cd mpv; makepkg-clang
     - name: Delete old libmpv
       continue-on-error: true
       env:
@@ -1970,7 +1972,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd mujs; PATH=/usr/bin makepkg-clang
+        cd mujs; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2002,7 +2004,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd openal-soft-dev; PATH=/usr/bin makepkg-clang  
+        cd openal-soft-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2037,7 +2039,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; PATH=/usr/bin makepkg-clang  
+        cd openssl-dev; makepkg-clang  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2069,7 +2071,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd opus-dev; PATH=/usr/bin makepkg-clang
+        cd opus-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2204,8 +2206,8 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        pypath=$(cygpath -u $pythonLocation)        
-        cd rubberband; PATH=/usr/bin:$pypath:$pypath/Scripts makepkg-clang
+        export pypath=$(cygpath -u $pythonLocation)        
+        cd rubberband; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2237,7 +2239,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd shaderc-dev; PATH=/usr/bin makepkg-clang
+        cd shaderc-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2269,7 +2271,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd spirv-cross-dev; PATH=/usr/bin makepkg-clang -p PKGBUILD-new
+        cd spirv-cross-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2301,7 +2303,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd uavs3d-dev; PATH=/usr/bin makepkg-clang 
+        cd uavs3d-dev; makepkg-clang 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2315,10 +2317,10 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel    
+        install: base-devel git    
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
+    - uses: actions/checkout@main
     - uses: actions/cache@main
       id: cache
       with:
@@ -2330,7 +2332,7 @@ jobs:
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
-        cd vapoursynth; PATH=/usr/bin makepkg-clang 
+        cd vapoursynth; makepkg-clang 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2362,7 +2364,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd vulkan-dev; PATH=/usr/bin makepkg-clang
+        cd vulkan-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2394,7 +2396,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd xxhash-dev; PATH=/usr/bin makepkg-clang
+        cd xxhash-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2426,7 +2428,7 @@ jobs:
       env:
         MSYSTEM: UCRT64
       run: |
-        cd zlib-dev; PATH=/usr/bin makepkg-clang
+        cd zlib-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
