@@ -35,8 +35,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd amf-dev; makepkg-clang  
     - name: Release
@@ -67,8 +65,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd angle-dev; makepkg-clang  
     - name: Release
@@ -99,8 +95,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd aom-dev; makepkg-clang
     - name: Release
@@ -132,8 +126,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd avisynth-dev; makepkg-clang
     - name: Release
@@ -196,8 +188,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -284,8 +274,6 @@ jobs:
       run: |
         pip install meson ninja
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -319,8 +307,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd davs2-dev; makepkg-clang
     - name: Release
@@ -352,8 +338,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd ffnvcodec-dev; makepkg-clang
     - name: Release
@@ -393,8 +377,6 @@ jobs:
       run: |
         pip install meson ninja
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -437,8 +419,6 @@ jobs:
       run: |
         pip install meson ninja
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
         cd fribidi-dev; makepkg-clang -p PKGBUILD-new
@@ -479,8 +459,6 @@ jobs:
       run: |
         pip install meson ninja
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst    
@@ -515,8 +493,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd lame-dev; makepkg-clang
     - name: Release
@@ -555,8 +531,6 @@ jobs:
       run: |
         pip install meson ninja
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
         cd lcms2-dev; makepkg-clang
@@ -589,8 +563,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
@@ -628,8 +600,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -667,8 +637,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
@@ -704,8 +672,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libbs2b-dev; makepkg-clang
     - name: Release
@@ -736,8 +702,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libcaca-dev; makepkg-clang
     - name: Release
@@ -780,8 +744,6 @@ jobs:
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin       
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
@@ -814,8 +776,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libdvdcss-dev; makepkg-clang
     - name: Release
@@ -847,8 +807,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
@@ -883,8 +841,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
@@ -917,8 +873,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libiconv-dev; makepkg-clang
     - name: Release
@@ -949,8 +903,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libjpeg-dev; makepkg-clang
     - name: Release
@@ -982,8 +934,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
@@ -1019,8 +969,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libmodplug-dev; makepkg-clang
     - name: Release
@@ -1052,8 +1000,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
@@ -1086,8 +1032,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libogg-dev; makepkg-clang
     - name: Release
@@ -1119,8 +1063,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1165,8 +1107,6 @@ jobs:
       run: |
         pip install ninja Jinja2 meson
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)              
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -1206,8 +1146,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
@@ -1240,8 +1178,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libsdl2-dev; makepkg-clang
     - name: Release
@@ -1281,8 +1217,6 @@ jobs:
       run: |
         pip install meson ninja                
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
@@ -1318,8 +1252,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libsoxr-dev; makepkg-clang  
     - name: Release
@@ -1350,8 +1282,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libspeex-dev; makepkg-clang
     - name: Release
@@ -1383,8 +1313,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
@@ -1418,8 +1346,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
@@ -1453,8 +1379,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libudfread-dev; makepkg-clang
     - name: Release
@@ -1485,8 +1409,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libunibreak-dev; makepkg-clang
     - name: Release
@@ -1525,8 +1447,6 @@ jobs:
       run: |
         pip install ninja meson
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)                
         cd libva-dev; makepkg-clang
@@ -1559,8 +1479,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
@@ -1593,8 +1511,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libvpl-dev; makepkg-clang  
     - name: Release
@@ -1625,8 +1541,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libvpx-dev; makepkg-clang
     - name: Release
@@ -1657,8 +1571,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libwebp-dev; makepkg-clang
     - name: Release
@@ -1690,8 +1602,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
@@ -1725,8 +1635,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         cd libxvid-dev; makepkg-clang
@@ -1758,8 +1666,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd libzimg-dev; makepkg-clang
     - name: Release
@@ -1791,8 +1697,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
@@ -1826,8 +1730,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd luajit2; makepkg-clang
     - name: Release
@@ -1867,8 +1769,6 @@ jobs:
       run: |
         pip install meson ninja 
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
@@ -1969,8 +1869,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd mujs; makepkg-clang
     - name: Release
@@ -2001,8 +1899,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd openal-soft-dev; makepkg-clang  
     - name: Release
@@ -2034,8 +1930,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
@@ -2068,8 +1962,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd opus-dev; makepkg-clang
     - name: Release
@@ -2161,8 +2053,6 @@ jobs:
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
@@ -2203,8 +2093,6 @@ jobs:
       run: |
         pip install meson ninja        
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
         cd rubberband; makepkg-clang
@@ -2236,8 +2124,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd shaderc-dev; makepkg-clang
     - name: Release
@@ -2268,8 +2154,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd spirv-cross-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
@@ -2300,8 +2184,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd uavs3d-dev; makepkg-clang 
     - name: Release
@@ -2362,8 +2244,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd vulkan-dev; makepkg-clang
     - name: Release
@@ -2394,8 +2274,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd xxhash-dev; makepkg-clang
     - name: Release
@@ -2426,8 +2304,6 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
       run: |
         cd zlib-dev; makepkg-clang
     - name: Release
