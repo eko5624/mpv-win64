@@ -8,6 +8,10 @@ on:
 jobs:
   libsrt:
     runs-on: windows-2022
+
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
     - uses: msys2/setup-msys2@v2
       with:
@@ -23,10 +27,10 @@ jobs:
       with:
         path: D:\clang
         key: clang-ucrt-x86_64
-    #- name: Setting makepkg etc
-    #  run: |
-    #    cp pacman-config/makepkg_clang.conf /etc
-    #    cp pacman-config/makepkg-clang /usr/bin
+    - name: Setting makepkg etc
+      run: |
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       env:
         C_INCLUDE_PATH: /opt/include
@@ -37,7 +41,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
-        cd libsrt-dev; PATH=/d/clang/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
+        cd libsrt-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
