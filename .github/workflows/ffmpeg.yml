@@ -1,5 +1,7 @@
 name: ffmpeg
-
+defaults:
+  run:
+    shell: msys2 {0}
 on:
   workflow_dispatch:
   #schedule:
@@ -13,7 +15,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-pkgconf     
+        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -23,13 +25,11 @@ jobs:
       with:
         path: D:\clang
         key: clang-ucrt-x86_64
+    - name: Setting makepkg etc
+      run: |
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin        
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -77,12 +77,10 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; PATH=/mingw64/bin:/d/clang/bin:/opt/bin:/usr/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd ffmpeg; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
-        CURL_RETRIES: "--connect-timeout 60 --retry 5 --retry-delay 5"     
-      shell: bash 
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
