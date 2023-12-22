@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
+CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
 
 # Delete assets
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
