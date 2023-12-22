@@ -55,7 +55,7 @@ jobs:
         include:
           - { pkg-path: amf-dev, pkg-name: amf-headers-dev }
           - { pkg-path: angle-dev, pkg-name: angle-headers-dev }
-          - { pkg-path: fribidi-dev, pkg-name: PKGBUILD-new }
+          - { pkg-path: fribidi-dev, pkg-build: PKGBUILD-new }
           - { pkg-path: luajit2, pkg-name: luajit2-dev }
           - { pkg-path: rubberband, pkg-name: rubberband-dev }
           - { pkg-path: spirv-cross-dev, pkg-build: PKGBUILD-new }
@@ -93,27 +93,24 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      if: ${{ matrix.pkg-build }}
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd ${{ matrix.pkg-path }}; makepkg-clang -p ${{ matrix.pkg-build }}
-    - name: Build
-      if: ${{ !matrix.pkg-build }}
-      run: |
-        export pypath=$(cygpath -u $pythonLocation)
-        cd ${{ matrix.pkg-path }}; makepkg-clang 
+        cd ${{ matrix.pkg-path }}
+        if [[ ${{ matrix.pkg-build }} ]]; then
+          makepkg-clang -p ${{ matrix.pkg-build }}
+        else
+          makepkg-clang
+        fi
     - name: Release
       if: ${{ matrix.pkg-name }}
       env:
         GH_TOKEN: ${{ github.token }}    
       run: |
-        ./release-dev.sh ${{ matrix.pkg-name }} ${{ matrix.pkg-path }}
-    - name: Release
-      if: ${{ !matrix.pkg-name }}
-      env:
-        GH_TOKEN: ${{ github.token }}    
-      run: |
-        ./release-dev.sh ${{ matrix.pkg-path }} ${{ matrix.pkg-path }}
+        if [[ ${{ matrix.pkg-name }} ]]; then
+          ./release-dev.sh ${{ matrix.pkg-name }} ${{ matrix.pkg-path }}
+        else
+          ./release-dev.sh ${{ matrix.pkg-path }} ${{ matrix.pkg-path }}
+        fi
 
   ffmpeg:
     needs: [standalone-pkgs, dav1d, libaribcaption, libjxl, libmysofa, libopenmpt, libplacebo, libsrt, libssh, libvorbis_aotuv, libxml2, libxvid, libzvbi, openssl, rav1e]
