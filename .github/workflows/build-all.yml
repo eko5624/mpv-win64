@@ -17,7 +17,6 @@ jobs:
           - angle-dev
           - aom-dev
           - avisynth-dev
-          - mpv-config
           - davs2-dev
           - ffnvcodec-dev
           - fribidi-dev
@@ -114,6 +113,37 @@ jobs:
         else
           ./release-dev.sh $PKG_PATH $PKG_PATH
         fi
+
+  config:
+    runs-on: windows-2022
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autoconf-wrapper automake-wrapper libtool git   
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - uses: actions/checkout@main
+    - uses: actions/cache@main
+      id: cache
+      with:
+        path: D:\clang
+        key: clang-ucrt-x86_64
+    - name: Setting makepkg etc
+      run: |
+        cp pacman-config/makepkg_clang.conf /etc
+        cp pacman-config/makepkg-clang /usr/bin
+    - name: Build
+      shell: msys2 {0}
+      run: |
+        cd mpv-config; makepkg
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [standalone-pkgs, dav1d, libaribcaption, libjxl, libmysofa, libopenmpt, libplacebo, libsrt, libssh, libvorbis_aotuv, libxml2, libxvid, libzvbi, openssl, rav1e]
@@ -972,7 +1002,7 @@ jobs:
         ./release-dev.sh libzvbi-dev libzvbi-dev             
 
   mpv:
-    needs: [libpng, libsixel, ffmpeg, libass, libbluray, libdvdnav, libplacebo, standalone-pkgs]
+    needs: [config, libpng, libsixel, ffmpeg, libass, libbluray, libdvdnav, libplacebo, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
