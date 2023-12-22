@@ -114,9 +114,9 @@ jobs:
         GH_TOKEN: ${{ github.token }}    
       run: |
         ./release-dev.sh ${{ matrix.pkg-path }} ${{ matrix.pkg-path }}
-  
+
   ffmpeg:
-    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
+    needs: [standalone-pkgs, dav1d, libaribcaption, libjxl, libmysofa, libopenmpt, libplacebo, libsrt, libssh, libvorbis_aotuv, libxml2, libxvid, libzvbi, openssl, rav1e]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -194,7 +194,7 @@ jobs:
         ./release-dev.sh ffmpeg-dev ffmpeg
 
   dav1d:
-    needs: [xxhash]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:   
     - uses: msys2/setup-msys2@v2
@@ -236,7 +236,7 @@ jobs:
         ./release-dev.sh dav1d-dev dav1d-dev
 
   freetype2:
-    needs: [libpng, zlib]
+    needs: [libpng, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -322,7 +322,7 @@ jobs:
         ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   libass:
-    needs: [freetype2, fribidi, harfbuzz, libunibreak]
+    needs: [freetype2, harfbuzz, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -396,7 +396,7 @@ jobs:
         ./release-dev.sh libaribcaption-dev libaribcaption-dev       
 
   libbluray:
-    needs: [freetype2, libpng, libudfread, zlib]
+    needs: [freetype2, libpng, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -510,7 +510,7 @@ jobs:
         ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
-    needs: [libdvdcss]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -543,7 +543,7 @@ jobs:
         ./release-dev.sh libdvdread-dev libdvdread-dev
         
   libjxl:
-    needs: [lcms2, libjpeg, libpng, zlib]
+    needs: [libpng, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -579,7 +579,7 @@ jobs:
         ./release-dev.sh libjxl-dev libjxl-dev 
 
   libmysofa:
-    needs: [zlib]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -612,7 +612,7 @@ jobs:
         ./release-dev.sh libmysofa-dev libmysofa-dev
 
   libopenmpt:
-    needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
+    needs: [libvorbis_aotuv, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -648,7 +648,7 @@ jobs:
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
-    needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -695,7 +695,7 @@ jobs:
         ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
-    needs: [zlib]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -728,7 +728,7 @@ jobs:
         ./release-dev.sh libpng-dev libpng-dev
 
   libsixel:
-    needs: [libjpeg, libpng]
+    needs: [libpng, standalone-pkgs]
     runs-on: windows-2022
     steps:    
     - uses: msys2/setup-msys2@v2
@@ -805,7 +805,7 @@ jobs:
         ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
-    needs: [openssl, zlib]
+    needs: [openssl, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -839,7 +839,7 @@ jobs:
         ./release-dev.sh libssh-dev libssh-dev
 
   libvorbis_aotuv:
-    needs: [libogg]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -872,7 +872,7 @@ jobs:
         ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libxml2:
-    needs: [libiconv, zlib]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -906,7 +906,7 @@ jobs:
         ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
-    needs: [zlib]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -938,7 +938,7 @@ jobs:
         ./release-dev.sh libxvid-dev libxvid-dev 
 
   libzvbi:
-    needs: [libpng]
+    needs: [libpng, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -969,40 +969,10 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        ./release-dev.sh libzvbi-dev libzvbi-dev
-
-  luajit2:
-    runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\clang
-        key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
-    - name: Build
-      run: |
-        cd luajit2; makepkg-clang
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}
-      run: |
-        ./release-dev.sh luajit2-dev luajit2              
+        ./release-dev.sh libzvbi-dev libzvbi-dev             
 
   mpv:
-    needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
+    needs: [libpng, libsixel, ffmpeg, libass, libbluray, libdvdnav, libplacebo, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -1111,7 +1081,7 @@ jobs:
         ./release-latest.sh mpv-git mpv
 
   openssl:
-    needs: [zlib]
+    needs: [standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -1144,7 +1114,7 @@ jobs:
         ./release-dev.sh openssl-dev openssl-dev
 
   package:
-    needs: [mpv, config]
+    needs: [mpv, standalone-pkgs]
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
