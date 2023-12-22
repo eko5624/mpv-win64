@@ -107,6 +107,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
+      shell: bash
       run: |
         if [[ -n "$PKG_NAME" ]]; then
           ./release-dev.sh $PKG_NAME $PKG_PATH
