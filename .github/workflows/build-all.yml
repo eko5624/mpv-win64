@@ -60,6 +60,10 @@ jobs:
           - { pkg-path: rubberband, pkg-name: rubberband-dev }
           - { pkg-path: spirv-cross-dev, pkg-build: PKGBUILD-new }
           - { pkg-path: vapoursynth, pkg-name: vapoursynth-dev }
+    env:
+      PKG_PATH: ${{ matrix.pkg-path }}
+      PKG_NAME: ${{ matrix.pkg-name }}
+      PKG_BUILD: ${{ matrix.pkg-build }}
     runs-on: windows-2022
     steps:
     - uses: msys2/setup-msys2@v2
@@ -95,21 +99,20 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd ${{ matrix.pkg-path }}
-        if [[ ${{ matrix.pkg-build }} ]]; then
-          makepkg-clang -p ${{ matrix.pkg-build }}
+        cd $PKG_PATH
+        if [[ -z "$PKG_BUILD" ]]; then
+          makepkg-clang -p $PKG_BUILD
         else
           makepkg-clang
         fi
     - name: Release
-      if: ${{ matrix.pkg-name }}
       env:
         GH_TOKEN: ${{ github.token }}    
       run: |
-        if [[ ${{ matrix.pkg-name }} ]]; then
-          ./release-dev.sh ${{ matrix.pkg-name }} ${{ matrix.pkg-path }}
+        if [[ -z "$PKG_NAME" ]]; then
+          ./release-dev.sh $PKG_NAME $PKG_PATH
         else
-          ./release-dev.sh ${{ matrix.pkg-path }} ${{ matrix.pkg-path }}
+          ./release-dev.sh $PKG_PATH $PKG_PATH
         fi
 
   ffmpeg:
