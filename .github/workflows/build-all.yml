@@ -40,6 +40,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh amf-headers-dev amf-dev
 
@@ -70,6 +71,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh angle-headers-dev angle-dev
 
@@ -131,6 +133,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh avisynth-dev avisynth-dev
 
@@ -156,12 +159,12 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      shell: msys2 {0}
       run: |
         cd mpv-config; makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh config mpv-config
 
@@ -239,6 +242,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
@@ -282,6 +286,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -343,6 +348,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
@@ -386,6 +392,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh freetype2-dev freetype2-dev
 
@@ -425,6 +432,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh fribidi-dev fribidi-dev       
 
@@ -455,7 +463,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install meson ninja
     - name: Build
@@ -468,6 +476,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
@@ -498,6 +507,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh lame-dev lame-dev 
 
@@ -527,7 +537,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install meson ninja
     - name: Build
@@ -537,6 +547,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh lcms2-dev lcms2-dev 
 
@@ -575,6 +586,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libass-dev libass-dev
 
@@ -647,6 +659,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -677,6 +690,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libbs2b-dev libbs2b-dev
 
@@ -707,6 +721,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libcaca-dev libcaca-dev
 
@@ -751,6 +766,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libdovi-dev libdovi-dev                     
 
@@ -781,6 +797,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
@@ -815,6 +832,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -848,6 +866,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libdvdread-dev libdvdread-dev         
 
@@ -878,6 +897,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libiconv-dev libiconv-dev
 
@@ -908,6 +928,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libjpeg-dev libjpeg-dev
         
@@ -944,6 +965,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libjxl-dev libjxl-dev         
 
@@ -974,6 +996,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libmodplug-dev libmodplug-dev 
 
@@ -1007,6 +1030,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
@@ -1037,6 +1061,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libogg-dev libogg-dev 
         
@@ -1073,6 +1098,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -1103,7 +1129,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install ninja Jinja2 meson
     - name: Build
@@ -1120,6 +1146,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libplacebo-dev libplacebo-dev
         
@@ -1153,6 +1180,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libpng-dev libpng-dev      
         
@@ -1183,6 +1211,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libsdl2-dev libsdl2-dev 
 
@@ -1213,7 +1242,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install meson ninja                
     - name: Build
@@ -1227,6 +1256,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libsixel-dev libsixel 
 
@@ -1257,6 +1287,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
@@ -1287,6 +1318,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libspeex-dev libspeex-dev 
 
@@ -1320,6 +1352,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -1354,6 +1387,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libssh-dev libssh-dev 
 
@@ -1384,6 +1418,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libudfread-dev libudfread-dev
 
@@ -1414,6 +1449,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
@@ -1443,7 +1479,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install ninja meson
     - name: Build
@@ -1453,6 +1489,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libva-dev libva-dev
 
@@ -1486,6 +1523,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -1516,6 +1554,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libvpl-dev libvpl-dev         
 
@@ -1546,6 +1585,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libvpx-dev libvpx-dev
 
@@ -1576,6 +1616,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libwebp-dev libwebp-dev
 
@@ -1610,6 +1651,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libxml2-dev libxml2-dev        
         
@@ -1641,6 +1683,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libxvid-dev libxvid-dev  
         
@@ -1671,6 +1714,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libzimg-dev libzimg-dev  
 
@@ -1705,6 +1749,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh libzvbi-dev libzvbi-dev
 
@@ -1735,6 +1780,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh luajit2-dev luajit2              
 
@@ -1765,7 +1811,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install meson ninja 
     - name: Build
@@ -1839,11 +1885,13 @@ jobs:
       continue-on-error: true
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh mpv-git mpv 
 
@@ -1874,6 +1922,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh mujs-dev mujs
 
@@ -1904,6 +1953,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh openal-soft-dev openal-soft-dev              
 
@@ -1937,6 +1987,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh openssl-dev openssl-dev
 
@@ -1967,6 +2018,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh opus-dev opus-dev
 
@@ -1992,8 +2044,7 @@ jobs:
       run: |
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
-    - name: Setup Packages      
-      shell: msys2 {0}
+    - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.1-1-x86_64.pkg.tar.xz
@@ -2016,6 +2067,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-package.sh
 
@@ -2060,6 +2112,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh rav1e-dev rav1e-dev
 
@@ -2089,7 +2142,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      shell: pwsh
+      shell: bash
       run: |
         pip install meson ninja        
     - name: Build
@@ -2099,6 +2152,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh rubberband-dev rubberband        
   
@@ -2129,6 +2183,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh shaderc-dev shaderc-dev
 
@@ -2159,6 +2214,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
@@ -2189,6 +2245,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh uavs3d-dev uavs3d-dev        
 
@@ -2219,6 +2276,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh vapoursynth-dev vapoursynth
 
@@ -2249,6 +2307,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh vulkan-dev vulkan-dev
 
@@ -2279,6 +2338,7 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh xxhash-dev xxhash-dev
         
@@ -2309,5 +2369,6 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh zlib-dev zlib-dev
