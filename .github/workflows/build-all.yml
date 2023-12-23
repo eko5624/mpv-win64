@@ -106,7 +106,7 @@ jobs:
         fi
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}   
+        GH_TOKEN: ${{ github.token }}
       shell: bash
       run: |
         if [[ -n "$PKG_NAME" ]]; then
@@ -505,7 +505,7 @@ jobs:
       run: |
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd libdovi-dev; makepkg-clang   
+        cd libdovi-dev; makepkg-clang
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
