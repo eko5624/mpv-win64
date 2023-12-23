@@ -137,12 +137,12 @@ jobs:
         cp pacman-config/makepkg_clang.conf /etc
         cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      shell: msys2 {0}
       run: |
         cd mpv-config; makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh config mpv-config
 
@@ -219,7 +219,8 @@ jobs:
         cd ffmpeg; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
@@ -262,7 +263,8 @@ jobs:
         cd dav1d-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -305,7 +307,8 @@ jobs:
         cd freetype2-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh freetype2-dev freetype2-dev       
 
@@ -348,7 +351,8 @@ jobs:
         cd harfbuzz-dev; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
@@ -386,7 +390,8 @@ jobs:
         cd libass-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libass-dev libass-dev
 
@@ -458,7 +463,8 @@ jobs:
         cd libbluray-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -499,10 +505,11 @@ jobs:
       run: |
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd libdovi-dev; makepkg-clang      
+        cd libdovi-dev; makepkg-clang   
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libdovi-dev libdovi-dev
 
@@ -536,7 +543,8 @@ jobs:
         cd libdvdnav-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -569,7 +577,8 @@ jobs:
         cd libdvdread-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libdvdread-dev libdvdread-dev
         
@@ -605,7 +614,8 @@ jobs:
         cd libjxl-dev; makepkg-clang -p PKGBUILD-new 
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libjxl-dev libjxl-dev 
 
@@ -638,7 +648,8 @@ jobs:
         cd libmysofa-dev; makepkg-clang  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libmysofa-dev libmysofa-dev
 
@@ -674,7 +685,8 @@ jobs:
         cd libopenmpt-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -721,7 +733,8 @@ jobs:
         cd libplacebo-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libplacebo-dev libplacebo-dev
         
@@ -754,7 +767,8 @@ jobs:
         cd libpng-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libpng-dev libpng-dev
 
@@ -798,7 +812,8 @@ jobs:
         cd libsixel; makepkg-clang -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libsixel-dev libsixel
 
@@ -831,7 +846,8 @@ jobs:
         cd libsrt-dev; makepkg-clang  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -865,7 +881,8 @@ jobs:
         cd libssh-dev; makepkg-clang  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libssh-dev libssh-dev
 
@@ -898,7 +915,8 @@ jobs:
         cd libvorbis_aotuv-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -932,7 +950,8 @@ jobs:
         cd libxml2-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libxml2-dev libxml2-dev        
         
@@ -964,7 +983,8 @@ jobs:
         cd libxvid-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libxvid-dev libxvid-dev 
 
@@ -998,7 +1018,8 @@ jobs:
         cd libzvbi-dev; makepkg-clang
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh libzvbi-dev libzvbi-dev             
 
@@ -1102,12 +1123,14 @@ jobs:
     - name: Delete old libmpv
       continue-on-error: true
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-latest.sh mpv-git mpv
 
@@ -1140,7 +1163,8 @@ jobs:
         cd openssl-dev; makepkg-clang  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-dev.sh openssl-dev openssl-dev
 
@@ -1187,7 +1211,8 @@ jobs:
         7z a git-ffmpeg-$date-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }}   
+      shell: bash
       run: |
         ./release-package.sh
 
@@ -1232,5 +1257,6 @@ jobs:
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-dev.sh rav1e-dev rav1e-dev
