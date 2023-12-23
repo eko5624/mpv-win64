@@ -106,7 +106,7 @@ jobs:
         fi
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
+        GH_TOKEN: ${{ github.token }}   
       shell: bash
       run: |
         if [[ -n "$PKG_NAME" ]]; then
@@ -225,7 +225,7 @@ jobs:
         ./release-dev.sh ffmpeg-dev ffmpeg
 
   dav1d:
-    needs: [standalone-pkgs (xxhash-dev)]
+    needs: [standalone-pkgs(xxhash-dev)]
     runs-on: windows-2022
     steps:   
     - uses: msys2/setup-msys2@v2
