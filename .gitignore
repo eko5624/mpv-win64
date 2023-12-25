@@ -9,3 +9,4 @@
 *.sig
 */src/
 */pkg/
+.DS_Store
