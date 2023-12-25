@@ -22,7 +22,7 @@ curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
   -d '{"tag_name": "latest"}'
   
-release_id=$($CURL -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
+release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest | jq -r '.id')
   
