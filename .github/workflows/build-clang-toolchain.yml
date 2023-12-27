@@ -13,7 +13,7 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip mingw-w64-x86_64-jq
+        install: base-devel autotools p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
     - uses: actions/checkout@main     
@@ -27,9 +27,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-12-15-ucrt-x86_64.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-12-27-ucrt-x86_64.7z
         #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-20231128-ucrt-x86_64.7z
         7z x target*.7z -o/d && mv /d/target /d/clang
         cp /c/Windows/System32/cmd.exe /d/clang/bin
-        cp /d/msys64/mingw64/bin/jq.exe /d/clang/bin
-        cp /d/msys64/mingw64/bin/libjq-1.dll /d/clang/bin
