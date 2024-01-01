@@ -63,8 +63,8 @@ for p in [
   'openssl',
   'openal-soft',
   'opus',
+  'rav1e',
   'rubberband',
-  'rav1e' 
   'shaderc',
   'spirv-cross',
   'uavs3d',
