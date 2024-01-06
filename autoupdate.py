@@ -67,6 +67,7 @@ for p in [
   'libssh',
   'libsrt',
   'libvpl',
+  'libvpx',
   'libwebp',
   'libxml2',
   'libxvid',
