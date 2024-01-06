@@ -6,7 +6,7 @@ pkgdesc='Collection of tools, libraries and tests for shader compilation'
 arch=('x86_64')
 url="https://github.com/google/shaderc/"
 license=('Apache')
-source=("git+https://github.com/google/shaderc.git#tag=v$pkgver")
+source=("git+https://github.com/google/shaderc.git")
 md5sums=('SKIP')
 
 build() {
@@ -20,6 +20,8 @@ build() {
   mv SPIRV-Headers* spirv-headers
   mv SPIRV-Tools* spirv-tools
   cd $srcdir/shaderc
+  sed -i '/(build-version/,+4d' CMakeLists.txt
+  sed -i '/glslc/d' CMakeLists.txt
   mv $srcdir/spirv-headers third_party
   mv $srcdir/spirv-tools third_party
   mv $srcdir/glslang third_party
