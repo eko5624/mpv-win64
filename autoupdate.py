@@ -53,6 +53,7 @@ for p in [
   'libsrt',
   'libva',
   'libvpl',
+  'libvpx',
   'libwebp',
   'libxml2',
   'libxvid',
