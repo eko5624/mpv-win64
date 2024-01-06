@@ -27,7 +27,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        cat /d/a/_tmp/msys2.cmd
+        cat /d/a/_tmp/setup-msys2/msys2.CMD
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231227-x64-ucrt.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
         cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
