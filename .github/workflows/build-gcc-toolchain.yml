@@ -9,25 +9,46 @@ jobs:
   build:
     runs-on: windows-2022
     steps: 
-    - uses: msys2/setup-msys2@v2
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
+      with:
+        path: D:\ucrt64
+        key: gcc-mcf
+    
+    - name: Install msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      uses: msys2/setup-msys2@v2
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip
+        install: base-devel autotools git p7zip
+
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
     
-    - name: Setup Toolchain
-      if: steps.cache.outputs.cache-hit != 'true'
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
-        cat /d/a/_temp/setup-msys2/msys2.CMD
+        cp scripts/msys2.cmd /
+        cp scripts/makepkg_mcf.conf /etc
+        cp scripts/makepkg-mcf /usr/bin
+        
+    - name: Install Toolchain
+      if: steps.gcc-mcf.outputs.cache-hit != 'true'
+      shell: msys2 {0}
+      run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231227-x64-ucrt.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
         cp /c/Windows/System32/cmd.exe /d/ucrt64/bin
