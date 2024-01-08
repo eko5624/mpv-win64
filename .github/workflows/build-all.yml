@@ -1,5 +1,7 @@
 name: build-all
-
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
   #schedule:
@@ -9,188 +11,161 @@ jobs:
   amf:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd amf-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+      run: cd amf-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh amf-headers-dev amf-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd angle-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+      run: cd angle-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh angle-headers-dev angle-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh angle-headers-dev angle-dev
 
   aom:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        cd aom-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd aom-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh aom-dev aom-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh aom-dev aom-dev
 
   avisynth:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd avisynth-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg  
+      run: cd avisynth-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh avisynth-dev avisynth-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh avisynth-dev avisynth-dev
 
   config:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      shell: msys2 {0}
-      run: |
-        cd mpv-config; makepkg
+      run: cd mpv-config; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-latest.sh config mpv-config
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -221,7 +196,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.20.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.13.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.12.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
@@ -238,11 +213,10 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd ffmpeg; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
+        GH_TOKEN: ${{ github.token }}
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
@@ -250,936 +224,803 @@ jobs:
   dav1d:
     needs: [xxhash]
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'        
     - name: Install python dependencies
-      run: |
-        pip install meson ninja  
+      shell: pwsh
+      run: pip install meson ninja  
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd dav1d-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh dav1d-dev dav1d-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        cd davs2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd davs2-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh davs2-dev davs2-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git       
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd ffnvcodec-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd ffnvcodec-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja
+      shell: pwsh
+      run: pip install meson ninja
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        cd freetype2-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh freetype2-dev freetype2-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja     
+      shell: pwsh
+      run: pip install meson ninja     
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd fribidi-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        export pypath=$(cygpath -u $pythonLocation)
+        cd fribidi-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh fribidi-dev fribidi-dev       
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh fribidi-dev fribidi-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja
+      shell: pwsh
+      run: pip install meson ninja
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh harfbuzz-dev harfbuzz-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   lame:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        cd lame-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd lame-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh lame-dev lame-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja
+      shell: pwsh
+      run: pip install meson ninja
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd lcms2-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        export pypath=$(cygpath -u $pythonLocation)
+        cd lcms2-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh lcms2-dev lcms2-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libass-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libass-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libass-dev libass-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libass-dev libass-dev
 
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libaribcaption-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}   
-      shell: bash 
-      run: |
-        ./release-dev.sh libaribcaption-dev libaribcaption-dev       
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libaribcaption-dev libaribcaption-dev       
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libbluray-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libbluray-dev libbluray-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libbs2b-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libbs2b-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libbs2b-dev libbs2b-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libcaca-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libcaca-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libcaca-dev libcaca-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Install rust
       shell: bash
       run: |
-        rm -rf /c/Users/runneradmin/.cargo
-        curl -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --no-modify-path
-        rustup toolchain install stable-x86_64-pc-windows-gnu --profile minimal 
-        rustup update      
+        rustup self uninstall -y
+        export RUSTUP_HOME="/d/.rustup"
+        export CARGO_HOME="/d/.cargo"
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
+        $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu
     - name: Install cargo-c
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        &'C:\Program Files\7-Zip\7z.exe' x cargo-c-windows-gnu.zip -o'C:\Users\runneradmin\.rustup\toolchains\stable-x86_64-pc-windows-gnu\bin'       
+        7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
     - name: Build
-      env:
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libdovi-dev; PATH=/usr/bin:/opt/bin:/c/Users/runneradmin/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+      run: cd libdovi-dev; makepkg-mcf -sLf
       
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libdovi-dev libdovi-dev                     
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libdovi-dev libdovi-dev                     
 
   libdvdcss:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libdvdcss-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libdvdcss-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libdvdcss-dev libdvdcss-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libdvdnav-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libdvdnav-dev libdvdnav-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libdvdread-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libdvdread-dev libdvdread-dev         
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libdvdread-dev libdvdread-dev         
 
   libiconv:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libiconv-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libiconv-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libiconv-dev libiconv-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libjpeg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libjpeg-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libjpeg-dev libjpeg-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-mcf -sLf -p PKGBUILD-new 
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libjxl-dev libjxl-dev         
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libmodplug-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libmodplug-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libmodplug-dev libmodplug-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    steps: 
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libmysofa-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libmysofa-dev libmysofa-dev                           
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libogg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libogg-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libogg-dev libogg-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libopenmpt-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libopenmpt-dev libopenmpt-dev                
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install ninja Jinja2 meson
+      shell: pwsh
+      run: pip install ninja Jinja2 meson
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin      
+        export pypath=$(cygpath -u $pythonLocation)   
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
@@ -1187,721 +1028,610 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libplacebo-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libplacebo-dev libplacebo-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libpng-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libpng-dev libpng-dev      
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libsdl2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libsdl2-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libsdl2-dev libsdl2-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: windows-2022
-    steps:    
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja                
+      shell: pwsh
+      run: pip install meson ninja                
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+        cd libsixel; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libsixel-dev libsixel 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libsoxr-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+      run: cd libsoxr-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libsoxr-dev libsoxr-dev                   
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libspeex-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libspeex-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libspeex-dev libspeex-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [openssl]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
-        pacman -U *.zst --noconfirm                
-        cd libsrt-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        pacman -U *.zst --noconfirm
+        cd libsrt-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libsrt-dev libsrt-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [openssl, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd libssh-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libssh-dev libssh-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libudfread-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libudfread-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libudfread-dev libudfread-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libunibreak-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libunibreak-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libunibreak-dev libunibreak-dev                             
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libva:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install ninja meson
+      shell: pwsh
+      run: pip install ninja meson
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin        
-        cd libva-dev; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        export pypath=$(cygpath -u $pythonLocation)      
+        cd libva-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libva-dev libva-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libva-dev libva-dev
 
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libvorbis_aotuv-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libvpl-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+      run: cd libvpl-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libvpl-dev libvpl-dev         
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        cd libvpx-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libvpx-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libvpx-dev libvpx-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libwebp-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libwebp-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libwebp-dev libwebp-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     needs: [libiconv, zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libxml2-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libxml2-dev libxml2-dev        
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libxvid-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libxvid-dev libxvid-dev  
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libxvid-dev libxvid-dev
         
   libzimg:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd libzimg-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd libzimg-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libzimg-dev libzimg-dev  
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libpng]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel gettext-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
+        pacman -Sy gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd libzvbi-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh libzvbi-dev libzvbi-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd luajit2; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd luajit2; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh luajit2-dev luajit2              
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh luajit2-dev luajit2              
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja 
+      shell: pwsh
+      run: pip install meson ninja 
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin 
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -1944,7 +1674,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.20.0-1-x86_64.pkg.tar.zst             
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.13.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.12.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
@@ -1965,220 +1695,191 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        cd mpv; makepkg-mcf -sLf
     - name: Delete old libmpv
       continue-on-error: true
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-latest.sh libmpv-git
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-latest.sh mpv-git mpv 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-latest.sh mpv-git mpv 
 
   mujs:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd mujs; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd mujs; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh mujs-dev mujs
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git       
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd openal-soft-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+      run: cd openal-soft-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh openal-soft-dev openal-soft-dev              
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   openssl:
     needs: [zlib]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg  
+        cd openssl-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh openssl-dev openssl-dev 
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh openssl-dev openssl-dev 
 
   opus:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd opus-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd opus-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh opus-dev opus-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
-    - name: Setup Packages      
-      shell: msys2 {0}
+        key: gcc-mcf
+    - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.37.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.37.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
-
     - name: Get ffmpeg latest commit sha
-      run: |
-        echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
-      shell: bash
-
+      run: echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV   
     - name: Zip Packages    
       run: |
-        $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
-        mv yt-dlp.exe D:\msys64\opt\mpv
-        7z a static-mpv-${date}.7z D:\msys64\opt\mpv\*
-        7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
+        mv yt-dlp.exe /opt/mpv
+        7z a static-mpv.7z /opt/mpv/*
+        7z a git-libmpv.7z /opt/libmpv\*
+        7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-package.sh
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-package.sh
 
   rav1e:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Install Rust
       shell: bash
       run: |
@@ -2188,289 +1889,238 @@ jobs:
         curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
         $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu        
     - name: Install cargo-c
-      shell: bash
       run: |
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64        
-      shell: msys2 {0}
       run: |
-        cd rav1e-dev; PATH=/usr/bin:/d/ucrt64/bin:/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin makepkg  
+        cd rav1e-dev; makepkg-mcf -sLf  
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh rav1e-dev rav1e-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh rav1e-dev rav1e-dev
 
   rubberband:
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja        
+      shell: pwsh
+      run: pip install meson ninja        
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
-        cd rubberband; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+        export pypath=$(cygpath -u $pythonLocation)
+        cd rubberband; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh rubberband-dev rubberband        
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh rubberband-dev rubberband       
   
   shaderc:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd shaderc-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd shaderc-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh shaderc-dev shaderc-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd spirv-cross-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh spirv-cross-dev spirv-cross-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd uavs3d-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg 
+      run: cd uavs3d-dev; makepkg-mcf -sLf 
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh uavs3d-dev uavs3d-dev        
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel    
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
-    - uses: actions/cache@main
-      id: cache
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main     
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      shell: msys2 {0}
-      run: |
-        cd vapoursynth; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin makepkg 
+      run: cd vapoursynth; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh vapoursynth-dev vapoursynth
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd vulkan-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd vulkan-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh vulkan-dev vulkan-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh vulkan-dev vulkan-dev
 
   xxhash:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd xxhash-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd xxhash-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh xxhash-dev xxhash-dev
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh xxhash-dev xxhash-dev
         
   zlib:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache gcc-mcf
+      uses: actions/cache@main
+      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: mcf_20231222_13.2.1_x64-ucrt
+        key: gcc-mcf
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
-      run: |
-        cd zlib-dev; PATH=/d/ucrt64/bin:/usr/bin:/opt/bin PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
+      run: cd zlib-dev; makepkg-mcf -sLf
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}    
-      shell: bash 
-      run: |
-        ./release-dev.sh zlib-dev zlib-dev
+        GH_TOKEN: ${{ github.token }} 
+      run: ./release-dev.sh zlib-dev zlib-dev
