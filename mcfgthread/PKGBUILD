@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mcfgthread
-pkgver=20231222
+pkgver=20240108
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
