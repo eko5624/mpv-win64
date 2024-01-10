@@ -1,7 +1,7 @@
 name: build-all
 defaults:
   run:
-    shell: msys2 {0}
+    shell: D:\msys64\msys2.cmd {0}
 
 on:
   workflow_dispatch:
@@ -11,28 +11,24 @@ on:
 jobs:
   amf:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    steps:            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd amf-dev; makepkg-clang  
+      run: cd amf-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -42,28 +38,24 @@ jobs:
 
   angle:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    steps:           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd angle-dev; makepkg-clang  
+      run: cd angle-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -73,28 +65,24 @@ jobs:
 
   aom:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd aom-dev; makepkg-clang
+      run: cd aom-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}  
@@ -104,28 +92,24 @@ jobs:
 
   avisynth:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    steps:           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd avisynth-dev; makepkg-clang
+      run: cd avisynth-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -135,28 +119,24 @@ jobs:
 
   config:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git   
+    steps: 
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd mpv-config; makepkg
+      run: cd mpv-config; makepkg
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -167,25 +147,22 @@ jobs:
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
@@ -234,7 +211,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-clang
+        cd ffmpeg; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -246,25 +223,22 @@ jobs:
   dav1d:
     needs: [xxhash]
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:  
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -278,7 +252,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; makepkg-clang
+        cd dav1d-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -288,28 +262,24 @@ jobs:
 
   davs2:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd davs2-dev; makepkg-clang
+      run: cd davs2-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -319,28 +289,24 @@ jobs:
 
   ffnvcodec:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git       
+    steps:      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd ffnvcodec-dev; makepkg-clang
+      run: cd ffnvcodec-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -351,25 +317,22 @@ jobs:
   freetype2:
     needs: [libpng, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    steps:            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -384,7 +347,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-clang -p PKGBUILD-new
+        cd freetype2-dev; makepkg-clang -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -394,25 +357,22 @@ jobs:
 
   fribidi:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -424,7 +384,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd fribidi-dev; makepkg-clang -p PKGBUILD-new
+        cd fribidi-dev; makepkg-clang -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -435,25 +395,22 @@ jobs:
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git             
+    steps:            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -468,7 +425,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst    
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-clang -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-clang -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -478,28 +435,24 @@ jobs:
 
   lame:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd lame-dev; makepkg-clang
+      run: cd lame-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -509,25 +462,22 @@ jobs:
 
   lcms2:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -539,7 +489,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd lcms2-dev; makepkg-clang
+        cd lcms2-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -550,25 +500,22 @@ jobs:
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -578,7 +525,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
-        cd libass-dev; makepkg-clang
+        cd libass-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -589,24 +536,22 @@ jobs:
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    steps:          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -614,7 +559,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; makepkg-clang
+        cd libaribcaption-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
@@ -625,25 +570,22 @@ jobs:
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst        
@@ -651,7 +593,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; makepkg-clang
+        cd libbluray-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -661,28 +603,24 @@ jobs:
 
   libbs2b:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libbs2b-dev; makepkg-clang
+      run: cd libbs2b-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -692,28 +630,24 @@ jobs:
 
   libcaca:
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:             
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libcaca-dev; makepkg-clang
+      run: cd libcaca-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -723,25 +657,22 @@ jobs:
 
   libdovi:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper git mingw-w64-x86_64-gcc p7zip           
+    steps:          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Install rust
       shell: bash
       run: |
@@ -756,9 +687,10 @@ jobs:
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin       
     - name: Build
       run: |
+        pacman -Sy mingw-w64-x86_64-gcc --noconfirm
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd libdovi-dev; makepkg-clang      
+        cd libdovi-dev; makepkg-clang -sLf      
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -768,28 +700,24 @@ jobs:
 
   libdvdcss:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libdvdcss-dev; makepkg-clang
+      run: cd libdvdcss-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -800,31 +728,28 @@ jobs:
   libdvdnav:
     needs: [libdvdread]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; makepkg-clang
+        cd libdvdnav-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -835,30 +760,27 @@ jobs:
   libdvdread:
     needs: [libdvdcss]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; makepkg-clang
+        cd libdvdread-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -868,28 +790,24 @@ jobs:
 
   libiconv:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libiconv-dev; makepkg-clang
+      run: cd libiconv-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -899,28 +817,24 @@ jobs:
 
   libjpeg:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libjpeg-dev; makepkg-clang
+      run: cd libjpeg-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -931,25 +845,22 @@ jobs:
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -957,7 +868,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-clang -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-clang -sLf -p PKGBUILD-new 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -967,28 +878,24 @@ jobs:
 
   libmodplug:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libmodplug-dev; makepkg-clang
+      run: cd libmodplug-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -999,30 +906,27 @@ jobs:
   libmysofa:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    steps:           
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; makepkg-clang  
+        cd libmysofa-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1032,28 +936,24 @@ jobs:
 
   libogg:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libogg-dev; makepkg-clang
+      run: cd libogg-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1064,25 +964,22 @@ jobs:
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
@@ -1090,7 +987,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; makepkg-clang
+        cd libopenmpt-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1101,25 +998,22 @@ jobs:
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:         
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1138,7 +1032,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-clang
+        cd libplacebo-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1149,30 +1043,27 @@ jobs:
   libpng:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; makepkg-clang
+        cd libpng-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1183,27 +1074,23 @@ jobs:
   libsdl2:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libsdl2-dev; makepkg-clang
+      run: cd libsdl2-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1214,25 +1101,22 @@ jobs:
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: windows-2022
-    steps:    
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:              
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1248,7 +1132,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-clang -p PKGBUILD-new
+        cd libsixel; makepkg-clang -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1258,28 +1142,24 @@ jobs:
 
   libsoxr:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:         
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libsoxr-dev; makepkg-clang  
+      run: cd libsoxr-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1289,28 +1169,24 @@ jobs:
 
   libspeex:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libspeex-dev; makepkg-clang
+      run: cd libspeex-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1321,30 +1197,27 @@ jobs:
   libsrt:
     needs: [openssl]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:         
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
-        cd libsrt-dev; makepkg-clang  
+        cd libsrt-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1355,31 +1228,28 @@ jobs:
   libssh:
     needs: [openssl, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:         
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-clang  
+        cd libssh-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1389,28 +1259,24 @@ jobs:
 
   libudfread:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libudfread-dev; makepkg-clang
+      run: cd libudfread-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1420,28 +1286,24 @@ jobs:
 
   libunibreak:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libunibreak-dev; makepkg-clang
+      run: cd libunibreak-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1451,25 +1313,22 @@ jobs:
 
   libva:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1481,7 +1340,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)                
-        cd libva-dev; makepkg-clang
+        cd libva-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1492,30 +1351,27 @@ jobs:
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool      
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; makepkg-clang
+        cd libvorbis_aotuv-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1525,28 +1381,24 @@ jobs:
 
   libvpl:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git          
+    steps:        
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libvpl-dev; makepkg-clang  
+      run: cd libvpl-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1556,28 +1408,24 @@ jobs:
 
   libvpx:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libvpx-dev; makepkg-clang
+      run: cd libvpx-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1587,28 +1435,24 @@ jobs:
 
   libwebp:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libwebp-dev; makepkg-clang
+      run: cd libwebp-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1619,31 +1463,28 @@ jobs:
   libxml2:
     needs: [libiconv, zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; makepkg-clang
+        cd libxml2-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1653,29 +1494,26 @@ jobs:
         
   libxvid:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; makepkg-clang
+        cd libxvid-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1685,28 +1523,24 @@ jobs:
         
   libzimg:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd libzimg-dev; makepkg-clang
+      run: cd libzimg-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1717,31 +1551,28 @@ jobs:
   libzvbi:
     needs: [libpng]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel gettext-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; makepkg-clang
+        cd libzvbi-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1751,28 +1582,24 @@ jobs:
 
   luajit2:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd luajit2; makepkg-clang
+      run: cd luajit2; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1783,25 +1610,22 @@ jobs:
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1876,7 +1700,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-clang
+        cd mpv; makepkg-clang -sLf
     - name: Delete old libmpv
       continue-on-error: true
       env:
@@ -1893,28 +1717,24 @@ jobs:
 
   mujs:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git      
+    steps:    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd mujs; makepkg-clang
+      run: cd mujs; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1924,28 +1744,24 @@ jobs:
 
   openal-soft:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git       
+    steps:     
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd openal-soft-dev; makepkg-clang  
+      run: cd openal-soft-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1956,30 +1772,27 @@ jobs:
   openssl:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git            
+    steps:          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; makepkg-clang  
+        cd openssl-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1989,28 +1802,24 @@ jobs:
 
   opus:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:  
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd opus-dev; makepkg-clang
+      run: cd opus-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2022,24 +1831,21 @@ jobs:
     needs: [mpv, config]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
@@ -2070,24 +1876,21 @@ jobs:
   rav1e:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git mingw-w64-x86_64-gcc p7zip
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Install Rust
       shell: bash
       run: |
@@ -2102,9 +1905,10 @@ jobs:
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
     - name: Build
       run: |
+        pacman -Sy mingw-w64-x86_64-gcc --noconfirm
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd rav1e-dev; makepkg-clang  
+        cd rav1e-dev; makepkg-clang -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2114,25 +1918,22 @@ jobs:
 
   rubberband:
     runs-on: windows-2022
-    steps:   
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git              
+    steps:            
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -2144,38 +1945,34 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd rubberband; makepkg-clang
+        cd rubberband; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
       run: |
-        ./release-dev.sh rubberband-dev rubberband        
+        ./release-dev.sh rubberband-dev rubberband      
   
   shaderc:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:  
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd shaderc-dev; makepkg-clang
+      run: cd shaderc-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2186,27 +1983,23 @@ jobs:
   spirv-cross:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd spirv-cross-dev; makepkg-clang -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-clang -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2216,28 +2009,24 @@ jobs:
 
   uavs3d:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:  
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd uavs3d-dev; makepkg-clang 
+      run: cd uavs3d-dev; makepkg-clang -sLf 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2248,27 +2037,23 @@ jobs:
   vapoursynth:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel git    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd vapoursynth; makepkg-clang 
+      run: cd vapoursynth; makepkg-clang -sLf 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2278,28 +2063,24 @@ jobs:
 
   vulkan:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git     
+    steps:   
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd vulkan-dev; makepkg-clang
+      run: cd vulkan-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2309,28 +2090,24 @@ jobs:
 
   xxhash:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git           
+    steps:         
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd xxhash-dev; makepkg-clang
+      run: cd xxhash-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2340,28 +2117,24 @@ jobs:
         
   zlib:
     runs-on: windows-2022
-    steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git    
+    steps:  
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin
     - name: Build
-      run: |
-        cd zlib-dev; makepkg-clang
+      run: cd zlib-dev; makepkg-clang -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
