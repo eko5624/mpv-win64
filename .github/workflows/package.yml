@@ -70,7 +70,7 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe D:\msys64\opt\bin
         mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
-        7z a shared-mpv-${date}.7z D:\msys64\opt\bin\*
+        7z a shared-mpv.7z D:\msys64\opt\bin\*
     - name: Upload
       uses: svenstaro/upload-release-action@master
       with:
