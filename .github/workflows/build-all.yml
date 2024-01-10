@@ -32,6 +32,7 @@ jobs:
       run: cd amf-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh amf-headers-dev amf-dev
 
@@ -59,6 +60,7 @@ jobs:
       run: cd angle-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh angle-headers-dev angle-dev
 
@@ -87,6 +89,7 @@ jobs:
         cd aom-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh aom-dev aom-dev
 
@@ -114,6 +117,7 @@ jobs:
       run: cd avisynth-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh avisynth-dev avisynth-dev
 
@@ -141,6 +145,7 @@ jobs:
       run: cd mpv-config; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-latest.sh config mpv-config
 
@@ -216,6 +221,7 @@ jobs:
         cd ffmpeg; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
@@ -257,6 +263,7 @@ jobs:
         cd dav1d-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -285,6 +292,7 @@ jobs:
         cd davs2-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh davs2-dev davs2-dev
 
@@ -312,6 +320,7 @@ jobs:
       run: cd ffnvcodec-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
@@ -352,6 +361,7 @@ jobs:
         cd freetype2-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh freetype2-dev freetype2-dev
 
@@ -388,6 +398,7 @@ jobs:
         cd fribidi-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh fribidi-dev fribidi-dev       
 
@@ -428,6 +439,7 @@ jobs:
         cd harfbuzz-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
@@ -456,6 +468,7 @@ jobs:
         cd lame-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh lame-dev lame-dev 
 
@@ -492,6 +505,7 @@ jobs:
         cd lcms2-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh lcms2-dev lcms2-dev 
 
@@ -528,6 +542,7 @@ jobs:
         cd libass-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libass-dev libass-dev
 
@@ -562,6 +577,7 @@ jobs:
         cd libaribcaption-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libaribcaption-dev libaribcaption-dev       
 
@@ -596,6 +612,7 @@ jobs:
         cd libbluray-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -623,6 +640,7 @@ jobs:
       run: cd libbs2b-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
@@ -650,6 +668,7 @@ jobs:
       run: cd libcaca-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libcaca-dev libcaca-dev
 
@@ -690,6 +709,7 @@ jobs:
       
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libdovi-dev libdovi-dev                     
 
@@ -717,6 +737,7 @@ jobs:
       run: cd libdvdcss-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
@@ -749,6 +770,7 @@ jobs:
         cd libdvdnav-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -780,6 +802,7 @@ jobs:
         cd libdvdread-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libdvdread-dev libdvdread-dev         
 
@@ -807,6 +830,7 @@ jobs:
       run: cd libiconv-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libiconv-dev libiconv-dev
 
@@ -834,6 +858,7 @@ jobs:
       run: cd libjpeg-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
@@ -868,6 +893,7 @@ jobs:
         cd libjxl-dev; makepkg-mcf -sLf -p PKGBUILD-new 
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libjxl-dev libjxl-dev         
 
@@ -895,6 +921,7 @@ jobs:
       run: cd libmodplug-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
@@ -926,6 +953,7 @@ jobs:
         cd libmysofa-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
@@ -953,6 +981,7 @@ jobs:
       run: cd libogg-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libogg-dev libogg-dev 
         
@@ -987,6 +1016,7 @@ jobs:
         cd libopenmpt-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -1031,6 +1061,7 @@ jobs:
         cd libplacebo-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
@@ -1062,6 +1093,7 @@ jobs:
         cd libpng-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libpng-dev libpng-dev      
         
@@ -1089,6 +1121,7 @@ jobs:
       run: cd libsdl2-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
@@ -1130,6 +1163,7 @@ jobs:
         cd libsixel; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libsixel-dev libsixel 
 
@@ -1157,6 +1191,7 @@ jobs:
       run: cd libsoxr-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
@@ -1184,6 +1219,7 @@ jobs:
       run: cd libspeex-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libspeex-dev libspeex-dev 
 
@@ -1215,6 +1251,7 @@ jobs:
         cd libsrt-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -1247,6 +1284,7 @@ jobs:
         cd libssh-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libssh-dev libssh-dev 
 
@@ -1274,6 +1312,7 @@ jobs:
       run: cd libudfread-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libudfread-dev libudfread-dev
 
@@ -1301,6 +1340,7 @@ jobs:
       run: cd libunibreak-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
@@ -1337,6 +1377,7 @@ jobs:
         cd libva-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libva-dev libva-dev
 
@@ -1368,6 +1409,7 @@ jobs:
         cd libvorbis_aotuv-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -1395,6 +1437,7 @@ jobs:
       run: cd libvpl-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libvpl-dev libvpl-dev         
 
@@ -1423,6 +1466,7 @@ jobs:
         cd libvpx-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libvpx-dev libvpx-dev
 
@@ -1450,6 +1494,7 @@ jobs:
       run: cd libwebp-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libwebp-dev libwebp-dev
 
@@ -1482,6 +1527,7 @@ jobs:
         cd libxml2-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libxml2-dev libxml2-dev        
         
@@ -1511,6 +1557,7 @@ jobs:
         cd libxvid-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libxvid-dev libxvid-dev
         
@@ -1538,6 +1585,7 @@ jobs:
       run: cd libzimg-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libzimg-dev libzimg-dev  
 
@@ -1571,6 +1619,7 @@ jobs:
         cd libzvbi-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
@@ -1598,6 +1647,7 @@ jobs:
       run: cd luajit2; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh luajit2-dev luajit2              
 
@@ -1699,10 +1749,12 @@ jobs:
     - name: Delete old libmpv
       continue-on-error: true
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-latest.sh mpv-git mpv 
 
@@ -1730,6 +1782,7 @@ jobs:
       run: cd mujs; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh mujs-dev mujs
 
@@ -1757,6 +1810,7 @@ jobs:
       run: cd openal-soft-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
@@ -1788,6 +1842,7 @@ jobs:
         cd openssl-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh openssl-dev openssl-dev 
 
@@ -1815,6 +1870,7 @@ jobs:
       run: cd opus-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh opus-dev opus-dev
 
@@ -1857,6 +1913,7 @@ jobs:
         7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-package.sh
 
@@ -1897,6 +1954,7 @@ jobs:
         cd rav1e-dev; makepkg-mcf -sLf  
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh rav1e-dev rav1e-dev
 
@@ -1933,6 +1991,7 @@ jobs:
         cd rubberband; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh rubberband-dev rubberband       
   
@@ -1960,6 +2019,7 @@ jobs:
       run: cd shaderc-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh shaderc-dev shaderc-dev
 
@@ -1987,6 +2047,7 @@ jobs:
       run: cd spirv-cross-dev; makepkg-mcf -sLf -p PKGBUILD-new
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
@@ -2014,6 +2075,7 @@ jobs:
       run: cd uavs3d-dev; makepkg-mcf -sLf 
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
@@ -2041,6 +2103,7 @@ jobs:
       run: cd vapoursynth; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh vapoursynth-dev vapoursynth
 
@@ -2068,6 +2131,7 @@ jobs:
       run: cd vulkan-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh vulkan-dev vulkan-dev
 
@@ -2095,6 +2159,7 @@ jobs:
       run: cd xxhash-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh xxhash-dev xxhash-dev
         
@@ -2122,5 +2187,6 @@ jobs:
       run: cd zlib-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }} 
       run: ./release-dev.sh zlib-dev zlib-dev
