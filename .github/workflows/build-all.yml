@@ -80,6 +80,7 @@ jobs:
         cd ffmpeg; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
@@ -126,6 +127,7 @@ jobs:
         cd libplacebo-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         ./release-dev.sh libplacebo-shared-dev libplacebo-dev
@@ -154,6 +156,7 @@ jobs:
       run: cd luajit2; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
@@ -227,6 +230,7 @@ jobs:
         cd mpv; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         chmod +x ./release-latest.sh
@@ -293,6 +297,7 @@ jobs:
         7z a shared-mpv.7z /opt/bin/*
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         chmod +x ./release-package.sh
@@ -322,6 +327,7 @@ jobs:
       run: cd vapoursynth; makepkg
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
@@ -349,10 +355,10 @@ jobs:
         path: D:\ucrt64
         key: gcc-mcf
     - name: Build
-      run: |
-        cd vulkan-dev; makepkg-mcf -sLf
+      run: cd vulkan-dev; makepkg-mcf -sLf
     - name: Release
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
         ./release-dev.sh vulkan-shared-dev vulkan-dev        
