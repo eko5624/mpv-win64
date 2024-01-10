@@ -280,8 +280,7 @@ jobs:
             repo: 'yt-dlp'
           })
           core.exportVariable('dlp_tag', String(release.data.tag_name))    
-    - name: Setup Packages      
-      shell: msys2 {0}
+    - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-6.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-65-1-x86_64.pkg.tar.xz
