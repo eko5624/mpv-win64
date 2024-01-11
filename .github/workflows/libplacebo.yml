@@ -16,15 +16,15 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
     - name: Get HASH ENV
       run: echo "random_hash=$(cat HASH)" >> $GITHUB_ENV
-      shell: bash    
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache GCC With MCF
+      uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf_20240108_13.2.1_x64-ucrt
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
