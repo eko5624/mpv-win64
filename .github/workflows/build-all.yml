@@ -710,8 +710,8 @@ jobs:
         MSYSTEM: CLANG64
       run: |
         pacman -Sy mingw-w64-x86_64-gcc --noconfirm
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
         cd libdovi-dev; makepkg-own -sLf      
     - name: Release
       env:
@@ -1623,6 +1623,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
+        pacman -Sy gettext-devel --noconfirm
         cd libzvbi-dev; makepkg-own -sLf
     - name: Release
       env:
@@ -1962,8 +1963,8 @@ jobs:
         MSYSTEM: CLANG64
       run: |
         pacman -Sy mingw-w64-x86_64-gcc --noconfirm
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
-        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
+        cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
         cd rav1e-dev; makepkg-own -sLf  
     - name: Release
       env:
