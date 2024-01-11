@@ -126,6 +126,7 @@ jobs:
         MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: |
+        chmod +x ./release-dev.sh
         ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
   luajit2:
