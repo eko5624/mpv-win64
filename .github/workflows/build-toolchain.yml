@@ -1,4 +1,4 @@
-name: build-gcc-toolchain
+name: build-toolchain
 
 on:
   workflow_dispatch:  
