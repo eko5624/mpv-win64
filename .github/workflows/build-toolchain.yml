@@ -27,7 +27,7 @@ jobs:
       uses: actions/cache@main
       id: clang-ucrt
       with:
-        path: D:\ucrt64
+        path: D:\clang64
         key: clang-ucrt-x86_64
     
     - name: Install msys2
