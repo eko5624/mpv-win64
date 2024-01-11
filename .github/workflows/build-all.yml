@@ -33,8 +33,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh amf-headers-dev amf-dev
+      run: ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
     runs-on: windows-2022
@@ -60,8 +59,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh angle-headers-dev angle-dev
+      run: ./release-dev.sh angle-headers-dev angle-dev
 
   aom:
     runs-on: windows-2022
@@ -87,8 +85,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}  
       shell: bash 
-      run: |
-        ./release-dev.sh aom-dev aom-dev
+      run: ./release-dev.sh aom-dev aom-dev
 
   avisynth:
     runs-on: windows-2022
@@ -114,8 +111,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh avisynth-dev avisynth-dev
+      run: ./release-dev.sh avisynth-dev avisynth-dev
 
   config:
     runs-on: windows-2022
@@ -141,8 +137,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-latest.sh config mpv-config
+      run: ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
@@ -257,8 +252,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh dav1d-dev dav1d-dev
+      run: ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
     runs-on: windows-2022
@@ -284,8 +278,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}    
       shell: bash
-      run: |
-        ./release-dev.sh davs2-dev davs2-dev
+      run: ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
     runs-on: windows-2022
@@ -311,8 +304,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
+      run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
@@ -352,8 +344,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh freetype2-dev freetype2-dev
+      run: ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
     runs-on: windows-2022
@@ -389,8 +380,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh fribidi-dev fribidi-dev       
+      run: ./release-dev.sh fribidi-dev fribidi-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
@@ -430,8 +420,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh harfbuzz-dev harfbuzz-dev
+      run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   lame:
     runs-on: windows-2022
@@ -457,8 +446,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh lame-dev lame-dev 
+      run: ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     runs-on: windows-2022
@@ -494,8 +482,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh lcms2-dev lcms2-dev 
+      run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
@@ -530,8 +517,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libass-dev libass-dev
+      run: ./release-dev.sh libass-dev libass-dev
 
   libaribcaption:
     needs: [freetype2, openssl]
@@ -564,8 +550,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}   
       shell: bash 
-      run: |
-        ./release-dev.sh libaribcaption-dev libaribcaption-dev       
+      run: ./release-dev.sh libaribcaption-dev libaribcaption-dev       
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
@@ -598,8 +583,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libbluray-dev libbluray-dev
+      run: ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
     runs-on: windows-2022
@@ -625,8 +609,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libbs2b-dev libbs2b-dev
+      run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
     runs-on: windows-2022
@@ -652,8 +635,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libcaca-dev libcaca-dev
+      run: ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
     runs-on: windows-2022
@@ -695,8 +677,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libdovi-dev libdovi-dev                     
+      run: ./release-dev.sh libdovi-dev libdovi-dev                     
 
   libdvdcss:
     runs-on: windows-2022
@@ -722,8 +703,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libdvdcss-dev libdvdcss-dev
+      run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
@@ -754,8 +734,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libdvdnav-dev libdvdnav-dev
+      run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
@@ -785,8 +764,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libdvdread-dev libdvdread-dev         
+      run: ./release-dev.sh libdvdread-dev libdvdread-dev         
 
   libiconv:
     runs-on: windows-2022
@@ -812,8 +790,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libiconv-dev libiconv-dev
+      run: ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: windows-2022
@@ -839,8 +816,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libjpeg-dev libjpeg-dev
+      run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
@@ -873,8 +849,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libjxl-dev libjxl-dev         
+      run: ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
     runs-on: windows-2022
@@ -900,8 +875,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libmodplug-dev libmodplug-dev 
+      run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
@@ -931,8 +905,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libmysofa-dev libmysofa-dev                           
+      run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: windows-2022
@@ -958,8 +931,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libogg-dev libogg-dev 
+      run: ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
@@ -992,8 +964,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libopenmpt-dev libopenmpt-dev                
+      run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
@@ -1037,8 +1008,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libplacebo-dev libplacebo-dev
+      run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
@@ -1068,8 +1038,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libpng-dev libpng-dev      
+      run: ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
     runs-on: windows-2022
@@ -1095,8 +1064,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libsdl2-dev libsdl2-dev 
+      run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
@@ -1137,8 +1105,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libsixel-dev libsixel 
+      run: ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
     runs-on: windows-2022
@@ -1164,8 +1131,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libsoxr-dev libsoxr-dev                   
+      run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: windows-2022
@@ -1191,8 +1157,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libspeex-dev libspeex-dev 
+      run: ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [openssl]
@@ -1222,8 +1187,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libsrt-dev libsrt-dev 
+      run: ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [openssl, zlib]
@@ -1254,8 +1218,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libssh-dev libssh-dev 
+      run: ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: windows-2022
@@ -1281,8 +1244,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libudfread-dev libudfread-dev
+      run: ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: windows-2022
@@ -1308,8 +1270,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libunibreak-dev libunibreak-dev                             
+      run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libva:
     runs-on: windows-2022
@@ -1345,8 +1306,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libva-dev libva-dev
+      run: ./release-dev.sh libva-dev libva-dev
 
   libvorbis_aotuv:
     needs: [libogg]
@@ -1376,8 +1336,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
+      run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: windows-2022
@@ -1403,8 +1362,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libvpl-dev libvpl-dev         
+      run: ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
     runs-on: windows-2022
@@ -1430,8 +1388,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libvpx-dev libvpx-dev
+      run: ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: windows-2022
@@ -1457,8 +1414,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libwebp-dev libwebp-dev
+      run: ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     needs: [libiconv, zlib]
@@ -1489,8 +1445,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libxml2-dev libxml2-dev        
+      run: ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
     runs-on: windows-2022
@@ -1518,8 +1473,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libxvid-dev libxvid-dev  
+      run: ./release-dev.sh libxvid-dev libxvid-dev  
         
   libzimg:
     runs-on: windows-2022
@@ -1545,8 +1499,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libzimg-dev libzimg-dev  
+      run: ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libpng]
@@ -1577,8 +1530,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh libzvbi-dev libzvbi-dev
+      run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     runs-on: windows-2022
@@ -1604,8 +1556,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh luajit2-dev luajit2              
+      run: ./release-dev.sh luajit2-dev luajit2              
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
@@ -1706,14 +1657,12 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-latest.sh libmpv-git
+      run: ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-latest.sh mpv-git mpv 
+      run: ./release-latest.sh mpv-git mpv 
 
   mujs:
     runs-on: windows-2022
@@ -1739,8 +1688,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh mujs-dev mujs
+      run: ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: windows-2022
@@ -1766,8 +1714,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh openal-soft-dev openal-soft-dev              
+      run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   openssl:
     needs: [zlib]
@@ -1797,8 +1744,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh openssl-dev openssl-dev
+      run: ./release-dev.sh openssl-dev openssl-dev
 
   opus:
     runs-on: windows-2022
@@ -1824,8 +1770,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh opus-dev opus-dev
+      run: ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
@@ -1870,8 +1815,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-package.sh
+      run: ./release-package.sh
 
   rav1e:
     runs-on: windows-2022
@@ -1913,8 +1857,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh rav1e-dev rav1e-dev
+      run: ./release-dev.sh rav1e-dev rav1e-dev
 
   rubberband:
     runs-on: windows-2022
@@ -1950,8 +1893,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh rubberband-dev rubberband      
+      run: ./release-dev.sh rubberband-dev rubberband      
   
   shaderc:
     runs-on: windows-2022
@@ -1977,8 +1919,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh shaderc-dev shaderc-dev
+      run: ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: windows-2022
@@ -2004,8 +1945,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh spirv-cross-dev spirv-cross-dev
+      run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
     runs-on: windows-2022
@@ -2031,8 +1971,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh uavs3d-dev uavs3d-dev        
+      run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: windows-2022
@@ -2058,8 +1997,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh vapoursynth-dev vapoursynth
+      run: ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: windows-2022
@@ -2085,8 +2023,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh vulkan-dev vulkan-dev
+      run: ./release-dev.sh vulkan-dev vulkan-dev
 
   xxhash:
     runs-on: windows-2022
@@ -2112,8 +2049,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh xxhash-dev xxhash-dev
+      run: ./release-dev.sh xxhash-dev xxhash-dev
         
   zlib:
     runs-on: windows-2022
@@ -2139,5 +2075,4 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       shell: bash
-      run: |
-        ./release-dev.sh zlib-dev zlib-dev
+      run: ./release-dev.sh zlib-dev zlib-dev
