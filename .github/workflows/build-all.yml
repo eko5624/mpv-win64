@@ -22,7 +22,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -99,7 +99,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -141,7 +141,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -171,7 +171,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -242,7 +242,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -305,7 +305,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
@@ -334,7 +334,7 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache gcc-mcf
+    - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64

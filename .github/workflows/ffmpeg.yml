@@ -17,9 +17,10 @@ jobs:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache GCC With MCF
+      uses: actions/cache@main
       with:
         path: D:\ucrt64
         key: mcf-ucrt-x86_64
