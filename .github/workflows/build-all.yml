@@ -28,7 +28,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd amf-dev; makepkg-clang -sLf  
+      run: cd amf-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -55,7 +55,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd angle-dev; makepkg-clang -sLf
+      run: cd angle-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -82,7 +82,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd aom-dev; makepkg-clang -sLf
+      run: cd aom-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}  
@@ -109,7 +109,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd avisynth-dev; makepkg-clang -sLf
+      run: cd avisynth-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -211,7 +211,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-clang -sLf
+        cd ffmpeg; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -252,7 +252,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; makepkg-clang -sLf
+        cd dav1d-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -279,7 +279,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd davs2-dev; makepkg-clang -sLf
+      run: cd davs2-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}    
@@ -306,7 +306,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd ffnvcodec-dev; makepkg-clang -sLf
+      run: cd ffnvcodec-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -347,7 +347,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-clang -sLf -p PKGBUILD-new
+        cd freetype2-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -384,7 +384,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd fribidi-dev; makepkg-clang -sLf -p PKGBUILD-new
+        cd fribidi-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -425,7 +425,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst    
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-clang -sLf -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -452,7 +452,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd lame-dev; makepkg-clang -sLf
+      run: cd lame-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -489,7 +489,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd lcms2-dev; makepkg-clang -sLf
+        cd lcms2-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -525,7 +525,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm 
-        cd libass-dev; makepkg-clang -sLf
+        cd libass-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -559,7 +559,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; makepkg-clang -sLf
+        cd libaribcaption-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}   
@@ -593,7 +593,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; makepkg-clang -sLf
+        cd libbluray-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -620,7 +620,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libbs2b-dev; makepkg-clang -sLf
+      run: cd libbs2b-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -647,7 +647,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libcaca-dev; makepkg-clang -sLf
+      run: cd libcaca-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -690,7 +690,7 @@ jobs:
         pacman -Sy mingw-w64-x86_64-gcc --noconfirm
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd libdovi-dev; makepkg-clang -sLf      
+        cd libdovi-dev; makepkg-own -sLf      
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -717,7 +717,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libdvdcss-dev; makepkg-clang -sLf
+      run: cd libdvdcss-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -749,7 +749,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; makepkg-clang -sLf
+        cd libdvdnav-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -780,7 +780,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; makepkg-clang -sLf
+        cd libdvdread-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -807,7 +807,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libiconv-dev; makepkg-clang -sLf
+      run: cd libiconv-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -834,7 +834,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libjpeg-dev; makepkg-clang -sLf
+      run: cd libjpeg-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -868,7 +868,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-clang -sLf -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-own -sLf -p PKGBUILD-new 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -895,7 +895,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libmodplug-dev; makepkg-clang -sLf
+      run: cd libmodplug-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -926,7 +926,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; makepkg-clang -sLf  
+        cd libmysofa-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -953,7 +953,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libogg-dev; makepkg-clang -sLf
+      run: cd libogg-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -987,7 +987,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; makepkg-clang -sLf
+        cd libopenmpt-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1032,7 +1032,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-clang -sLf
+        cd libplacebo-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1063,7 +1063,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; makepkg-clang -sLf
+        cd libpng-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1090,7 +1090,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libsdl2-dev; makepkg-clang -sLf
+      run: cd libsdl2-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1132,7 +1132,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-clang -sLf -p PKGBUILD-new
+        cd libsixel; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1159,7 +1159,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libsoxr-dev; makepkg-clang -sLf  
+      run: cd libsoxr-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1186,7 +1186,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libspeex-dev; makepkg-clang -sLf
+      run: cd libspeex-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1217,7 +1217,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                
-        cd libsrt-dev; makepkg-clang -sLf  
+        cd libsrt-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1249,7 +1249,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-clang -sLf  
+        cd libssh-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1276,7 +1276,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libudfread-dev; makepkg-clang -sLf
+      run: cd libudfread-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1303,7 +1303,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libunibreak-dev; makepkg-clang -sLf
+      run: cd libunibreak-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1340,7 +1340,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)                
-        cd libva-dev; makepkg-clang -sLf
+        cd libva-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1371,7 +1371,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; makepkg-clang -sLf
+        cd libvorbis_aotuv-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1398,7 +1398,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libvpl-dev; makepkg-clang -sLf  
+      run: cd libvpl-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1425,7 +1425,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libvpx-dev; makepkg-clang -sLf
+      run: cd libvpx-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1452,7 +1452,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libwebp-dev; makepkg-clang -sLf
+      run: cd libwebp-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1484,7 +1484,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; makepkg-clang -sLf
+        cd libxml2-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1513,7 +1513,7 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; makepkg-clang -sLf
+        cd libxvid-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1540,7 +1540,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd libzimg-dev; makepkg-clang -sLf
+      run: cd libzimg-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1572,7 +1572,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; makepkg-clang -sLf
+        cd libzvbi-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1599,7 +1599,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd luajit2; makepkg-clang -sLf
+      run: cd luajit2; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1700,7 +1700,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-clang -sLf
+        cd mpv; makepkg-own -sLf
     - name: Delete old libmpv
       continue-on-error: true
       env:
@@ -1734,7 +1734,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd mujs; makepkg-clang -sLf
+      run: cd mujs; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1761,7 +1761,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd openal-soft-dev; makepkg-clang -sLf  
+      run: cd openal-soft-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1792,7 +1792,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; makepkg-clang -sLf  
+        cd openssl-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1819,7 +1819,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd opus-dev; makepkg-clang -sLf
+      run: cd opus-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1908,7 +1908,7 @@ jobs:
         pacman -Sy mingw-w64-x86_64-gcc --noconfirm
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang/lib
         cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang/lib
-        cd rav1e-dev; makepkg-clang -sLf  
+        cd rav1e-dev; makepkg-own -sLf  
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1945,7 +1945,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd rubberband; makepkg-clang -sLf
+        cd rubberband; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1972,7 +1972,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd shaderc-dev; makepkg-clang -sLf
+      run: cd shaderc-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -1999,7 +1999,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd spirv-cross-dev; makepkg-clang -sLf -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2026,7 +2026,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd uavs3d-dev; makepkg-clang -sLf 
+      run: cd uavs3d-dev; makepkg-own -sLf 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2053,7 +2053,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd vapoursynth; makepkg-clang -sLf 
+      run: cd vapoursynth; makepkg-own -sLf 
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2080,7 +2080,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd vulkan-dev; makepkg-clang -sLf
+      run: cd vulkan-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2107,7 +2107,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd xxhash-dev; makepkg-clang -sLf
+      run: cd xxhash-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
@@ -2134,7 +2134,7 @@ jobs:
         path: D:\ucrt64
         key: clang-ucrt-x86_64
     - name: Build
-      run: cd zlib-dev; makepkg-clang -sLf
+      run: cd zlib-dev; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
