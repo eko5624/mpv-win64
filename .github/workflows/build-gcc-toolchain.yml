@@ -16,14 +16,14 @@ jobs:
         path: D:\msys64
         key: msys2
     
-    - name: Cache gcc with mcf
+    - name: Cache GCC With MCF 
       uses: actions/cache@main
       id: mcf-ucrt
       with:
         path: D:\ucrt64
         key: mcf-ucrt-x86_64
 
-    - name: Cache clang
+    - name: Cache Clang
       uses: actions/cache@main
       id: clang-ucrt
       with:
