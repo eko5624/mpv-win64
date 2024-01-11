@@ -1,7 +1,7 @@
 name: ffmpeg
 defaults:
   run:
-    shell: msys2 {0}
+    shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
   #schedule:
@@ -11,25 +11,24 @@ jobs:
   ffmpeg:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool git
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
-    - uses: actions/checkout@main
-    - uses: actions/cache@main
-      id: cache
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        path: D:\clang
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\clang64
         key: clang-ucrt-x86_64
-    - name: Setting makepkg etc
-      run: |
-        cp pacman-config/makepkg_clang.conf /etc
-        cp pacman-config/makepkg-clang /usr/bin        
     - name: Build
+      env:
+        MSYSTEM: CLANG64
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -77,10 +76,11 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-clang
+        cd ffmpeg; makepkg-own -sLf
     - name: Release
       env:
         GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
