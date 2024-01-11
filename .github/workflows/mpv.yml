@@ -1,5 +1,7 @@
 name: mpv
-
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
 
@@ -7,16 +9,16 @@ jobs:
   mpv:
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel autoconf-wrapper automake-wrapper libtool yasm git      
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - name: Checkout
       uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
     - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
@@ -27,18 +29,11 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install python dependencies
-      run: |
-        pip install meson ninja
+      shell: pwsh
+      run: pip install meson ninja 
     - name: Build
-      env:
-        C_INCLUDE_PATH: /opt/include
-        CPLUS_INCLUDE_PATH: /opt/include
-        LIBRARY_PATH: /opt/lib
-        MSYSTEM: UCRT64
-      shell: msys2 {0}
       run: |
-        pypath=$(cygpath -u $pythonLocation)
-        PATH=/d/ucrt64/bin:$pypath:$pypath/Scripts:/usr/bin:/opt/bin
+        export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
@@ -77,8 +72,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst               
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.20.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.20.0-1-x86_64.pkg.tar.zst             
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.13.1-1-x86_64.pkg.tar.zst
@@ -90,7 +85,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20231117-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst     
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rav1e-dev-0.7.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
@@ -99,73 +94,59 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.268.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; PKG_CONFIG_PATH=/opt/lib/pkgconfig makepkg
-    
+        cd mpv; makepkg-own -sLf
     - name: Delete old libmpv
       continue-on-error: true
       env:
+        MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
-      shell: bash 
-      run: |
-        ./release-latest.sh libmpv-git
-
+      run: ./release-latest.sh libmpv-git
     - name: Release mpv and libmpv
       env:
-        GH_TOKEN: ${{ github.token }}  
-      shell: bash 
-      run: |
-        ./release-latest.sh mpv-git mpv    
+        MSYS2_PATH_TYPE: inherit
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-latest.sh mpv-git mpv   
    
   package:
     needs: [mpv]
     runs-on: windows-2022
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: base-devel
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
     - name: Checkout
       uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
     - name: Cache GCC With MCF
       uses: actions/cache@main
       with:
         path: D:\ucrt64
         key: mcf-ucrt-x86_64
-    - name: Get current timestamp      
-      id: timestamp
-      shell: bash
-      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT    
-    - name: Setup Packages      
-      shell: msys2 {0}
+    - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.1.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.37.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.37.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
-
     - name: Get ffmpeg latest commit sha
-      run: |
-        echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
-      shell: bash
-
+      run: echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV   
     - name: Zip Packages    
       run: |
-        $date = Get-Date -Format "yyyyMMdd"
-        curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.12.30/yt-dlp.exe
-        mv yt-dlp.exe D:\msys64\opt\mpv
-        7z a static-mpv-${date}.7z D:\msys64\opt\mpv\*
-        7z a git-libmpv-${date}.7z D:\msys64\opt\libmpv\*
-        7z a git-ffmpeg-${date}-${{ env.ffmpeg_sha }}.7z D:\msys64\opt\ffmpeg\*
+        curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
+        mv yt-dlp.exe /opt/mpv
+        7z a static-mpv.7z /opt/mpv/*
+        7z a git-libmpv.7z /opt/libmpv\*
+        7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
       env:
-        GH_TOKEN: ${{ github.token }}   
-      shell: bash 
-      run: |
-        ./release-package.sh
+        MSYS2_PATH_TYPE: inherit
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-package.sh
