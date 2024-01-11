@@ -42,8 +42,8 @@ jobs:
       shell: msys2 {0}
       run: |
         cp msys2-config/msys2.cmd /
-        cp msys2-config/makepkg_mcf.conf /etc
-        cp msys2-config/makepkg-mcf /usr/bin
+        cp msys2-config/makepkg_own.conf /etc
+        cp msys2-config/makepkg-own /usr/bin
         
     - name: Install Toolchain
       if: steps.gcc-mcf.outputs.cache-hit != 'true'
