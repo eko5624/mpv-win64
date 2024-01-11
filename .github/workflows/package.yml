@@ -15,7 +15,7 @@ jobs:
 
     - name: Get mpv latest commit sha
       id: get_sha
-      uses: actions/github-script@v6
+      uses: actions/github-script@main
       with:
         script: |
           const commit = await github.rest.repos.getCommit({
