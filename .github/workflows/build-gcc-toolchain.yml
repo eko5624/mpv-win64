@@ -18,10 +18,10 @@ jobs:
     
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
+      id: mcf-ucrt
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     
     - name: Install msys2
       if: steps.msys2.outputs.cache-hit != 'true'
@@ -46,7 +46,7 @@ jobs:
         cp msys2-config/makepkg-own /usr/bin
         
     - name: Install Toolchain
-      if: steps.gcc-mcf.outputs.cache-hit != 'true'
+      if: steps.mcf-ucrt.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231227-x64-ucrt.7z

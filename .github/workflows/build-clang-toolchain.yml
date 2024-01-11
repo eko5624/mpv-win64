@@ -9,26 +9,47 @@ jobs:
   build:
     runs-on: windows-2022
     steps: 
-    - uses: msys2/setup-msys2@v2
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+    
+    - name: Cache clang-ucrt
+      uses: actions/cache@main
+      id: clang-ucrt
+      with:
+        path: D:\ucrt64
+        key: clang-ucrt-x86_64
+    
+    - name: Install msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      uses: msys2/setup-msys2@v2
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip
+        install: base-devel autotools git p7zip
+
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\clang
-        key: clang-ucrt-x86_64
     
-    - name: Setup Toolchain
-      if: steps.cache.outputs.cache-hit != 'true'
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      shell: msys2 {0}
+      run: |
+        cp msys2-config/msys2.cmd /
+        cp msys2-config/makepkg_own.conf /etc
+        cp msys2-config/makepkg-own /usr/bin
+    
+    - name: Install Toolchain
+      if: steps.clang-ucrt.outputs.cache-hit != 'true'
       shell: msys2 {0}
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-2023-12-30-ucrt-x86_64.7z
         #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-20231128-ucrt-x86_64.7z
-        7z x target*.7z -o/d && mv /d/target /d/clang
-        rm -rf /d/target/include/pkgconf
-        cp /c/Windows/System32/cmd.exe /d/clang/bin
+        7z x target*.7z -o/d && mv /d/target /d/clang64
+        cp /c/Windows/System32/cmd.exe /d/clang64/bin

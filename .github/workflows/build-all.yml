@@ -18,18 +18,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd amf-dev; makepkg-mcf -sLf
+      run: cd amf-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -46,18 +44,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd angle-dev; makepkg-mcf -sLf
+      run: cd angle-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -74,19 +70,17 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
-        cd aom-dev; makepkg-mcf -sLf
+        cd aom-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -103,18 +97,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd avisynth-dev; makepkg-mcf -sLf  
+      run: cd avisynth-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -131,18 +123,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd mpv-config; makepkg-mcf -sLf
+      run: cd mpv-config; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -160,16 +150,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
@@ -218,7 +206,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-mcf -sLf
+        cd ffmpeg; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -238,16 +226,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -260,7 +246,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; makepkg-mcf -sLf
+        cd dav1d-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -277,19 +263,17 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
-        cd davs2-dev; makepkg-mcf -sLf
+        cd davs2-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -306,18 +290,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd ffnvcodec-dev; makepkg-mcf -sLf
+      run: cd ffnvcodec-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -335,16 +317,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -358,7 +338,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-mcf -sLf -p PKGBUILD-new
+        cd freetype2-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -375,16 +355,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -395,7 +373,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd fribidi-dev; makepkg-mcf -sLf -p PKGBUILD-new
+        cd fribidi-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -413,16 +391,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -436,7 +412,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-mcf -sLf -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -453,19 +429,17 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
-        cd lame-dev; makepkg-mcf -sLf
+        cd lame-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -482,16 +456,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -502,7 +474,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd lcms2-dev; makepkg-mcf -sLf
+        cd lcms2-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -520,16 +492,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -539,7 +509,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libass-dev; makepkg-mcf -sLf
+        cd libass-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -557,16 +527,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -574,7 +542,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; makepkg-mcf -sLf
+        cd libaribcaption-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -592,16 +560,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -609,7 +575,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; makepkg-mcf -sLf
+        cd libbluray-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -626,18 +592,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libbs2b-dev; makepkg-mcf -sLf
+      run: cd libbs2b-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -654,18 +618,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libcaca-dev; makepkg-mcf -sLf
+      run: cd libcaca-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -682,16 +644,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Install rust
       shell: bash
       run: |
@@ -705,7 +665,7 @@ jobs:
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
     - name: Build
-      run: cd libdovi-dev; makepkg-mcf -sLf
+      run: cd libdovi-dev; makepkg-own -sLf
       
     - name: Release
       env:
@@ -723,18 +683,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libdvdcss-dev; makepkg-mcf -sLf
+      run: cd libdvdcss-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -752,22 +710,20 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; makepkg-mcf -sLf
+        cd libdvdnav-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -785,21 +741,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; makepkg-mcf -sLf
+        cd libdvdread-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -816,18 +770,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libiconv-dev; makepkg-mcf -sLf
+      run: cd libiconv-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -844,18 +796,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libjpeg-dev; makepkg-mcf -sLf
+      run: cd libjpeg-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -873,16 +823,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -890,7 +838,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-mcf -sLf -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-own -sLf -p PKGBUILD-new 
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -907,18 +855,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libmodplug-dev; makepkg-mcf -sLf
+      run: cd libmodplug-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -936,21 +882,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; makepkg-mcf -sLf  
+        cd libmysofa-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -967,18 +911,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libogg-dev; makepkg-mcf -sLf
+      run: cd libogg-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -996,16 +938,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
@@ -1013,7 +953,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; makepkg-mcf -sLf
+        cd libopenmpt-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1031,16 +971,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1058,7 +996,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-mcf -sLf
+        cd libplacebo-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1076,21 +1014,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; makepkg-mcf -sLf
+        cd libpng-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1107,18 +1043,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libsdl2-dev; makepkg-mcf -sLf
+      run: cd libsdl2-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1136,16 +1070,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1160,7 +1092,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-mcf -sLf -p PKGBUILD-new
+        cd libsixel; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1177,18 +1109,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libsoxr-dev; makepkg-mcf -sLf  
+      run: cd libsoxr-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1205,18 +1135,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libspeex-dev; makepkg-mcf -sLf
+      run: cd libspeex-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1234,21 +1162,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm
-        cd libsrt-dev; makepkg-mcf -sLf  
+        cd libsrt-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1266,22 +1192,20 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-mcf -sLf  
+        cd libssh-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1298,18 +1222,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libudfread-dev; makepkg-mcf -sLf
+      run: cd libudfread-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1326,18 +1248,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libunibreak-dev; makepkg-mcf -sLf
+      run: cd libunibreak-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1354,16 +1274,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1374,7 +1292,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)      
-        cd libva-dev; makepkg-mcf -sLf
+        cd libva-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1392,21 +1310,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; makepkg-mcf -sLf
+        cd libvorbis_aotuv-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1423,18 +1339,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libvpl-dev; makepkg-mcf -sLf  
+      run: cd libvpl-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1451,19 +1365,17 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
-        cd libvpx-dev; makepkg-mcf -sLf
+        cd libvpx-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1480,18 +1392,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libwebp-dev; makepkg-mcf -sLf
+      run: cd libwebp-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1509,22 +1419,20 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; makepkg-mcf -sLf
+        cd libxml2-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1541,20 +1449,18 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; makepkg-mcf -sLf
+        cd libxvid-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1571,18 +1477,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd libzimg-dev; makepkg-mcf -sLf
+      run: cd libzimg-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1600,23 +1504,21 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
         pacman -Sy gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; makepkg-mcf -sLf
+        cd libzvbi-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1633,18 +1535,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd luajit2; makepkg-mcf -sLf
+      run: cd luajit2; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1662,16 +1562,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1745,7 +1643,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-mcf -sLf
+        cd mpv; makepkg-own -sLf
     - name: Delete old libmpv
       continue-on-error: true
       env:
@@ -1768,18 +1666,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd mujs; makepkg-mcf -sLf
+      run: cd mujs; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1796,18 +1692,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd openal-soft-dev; makepkg-mcf -sLf  
+      run: cd openal-soft-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1825,21 +1719,19 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.5-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; makepkg-mcf -sLf  
+        cd openssl-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1856,18 +1748,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd opus-dev; makepkg-mcf -sLf
+      run: cd opus-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1885,16 +1775,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
@@ -1927,16 +1815,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Install Rust
       shell: bash
       run: |
@@ -1951,7 +1837,7 @@ jobs:
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
     - name: Build
       run: |
-        cd rav1e-dev; makepkg-mcf -sLf  
+        cd rav1e-dev; makepkg-own -sLf  
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1968,16 +1854,14 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1988,7 +1872,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd rubberband; makepkg-mcf -sLf
+        cd rubberband; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2005,18 +1889,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd shaderc-dev; makepkg-mcf -sLf
+      run: cd shaderc-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2033,18 +1915,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd spirv-cross-dev; makepkg-mcf -sLf -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2061,18 +1941,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd uavs3d-dev; makepkg-mcf -sLf 
+      run: cd uavs3d-dev; makepkg-own -sLf 
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2089,18 +1967,16 @@ jobs:
       uses: actions/checkout@main     
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd vapoursynth; makepkg-mcf -sLf
+      run: cd vapoursynth; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2117,18 +1993,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd vulkan-dev; makepkg-mcf -sLf
+      run: cd vulkan-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2145,18 +2019,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd xxhash-dev; makepkg-mcf -sLf
+      run: cd xxhash-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -2173,18 +2045,16 @@ jobs:
       uses: actions/checkout@main
     - name: Cache msys2
       uses: actions/cache@main
-      id: msys2
       with:
         path: D:\msys64
         key: msys2
     - name: Cache gcc-mcf
       uses: actions/cache@main
-      id: gcc-mcf
       with:
         path: D:\ucrt64
-        key: gcc-mcf
+        key: mcf-ucrt-x86_64
     - name: Build
-      run: cd zlib-dev; makepkg-mcf -sLf
+      run: cd zlib-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
