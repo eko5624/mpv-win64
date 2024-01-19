@@ -1,5 +1,5 @@
 pkgname=libvpx-dev
-pkgver=1.13.1
+pkgver=1.14.0
 pkgrel=1
 pkgdesc='WebM VP8/VP9 Codec SDK'
 arch=('x86_64')
