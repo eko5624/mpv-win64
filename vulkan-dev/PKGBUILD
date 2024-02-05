@@ -6,7 +6,7 @@ pkgdesc='Vulkan Header and Loader'
 arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
-source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
+source=("git+https://github.com/KhronosGroup/Vulkan-Headers#commit=ea45703effcb01df0856628286f8a890dd313ecd"
         "git+https://github.com/KhronosGroup/Vulkan-Loader"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
