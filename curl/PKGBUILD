@@ -1,5 +1,5 @@
 pkgname=curl-dev
-pkgver=8_5_0
+pkgver=8_6_0
 pkgrel=1
 pkgdesc='Command line tool and library for transferring data with URLs'
 arch=('x86_64')
