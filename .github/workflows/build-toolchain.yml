@@ -65,11 +65,12 @@ jobs:
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
-        cd /d/clang64/bin
-        mv x86_64-w64-mingw32-as x86_64-w64-mingw32-as.exe
-        mv x86_64-w64-mingw32-clang x86_64-w64-mingw32-clang.exe
-        mv x86_64-w64-mingw32-clang++ x86_64-w64-mingw32-clang++.exe
-        mv x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc.exe
-        mv x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++.exe
-        mv x86_64-w64-mingw32-ld x86_64-w64-mingw32-ld.exe
+        cd /d/clang64
+        mv bin/x86_64-w64-mingw32-as bin/bin/x86_64-w64-mingw32-as.exe
+        mv bin/x86_64-w64-mingw32-clang bin/x86_64-w64-mingw32-clang.exe
+        mv bin/x86_64-w64-mingw32-clang++ bin/x86_64-w64-mingw32-clang++.exe
+        mv bin/x86_64-w64-mingw32-gcc bin/x86_64-w64-mingw32-gcc.exe
+        mv bin/x86_64-w64-mingw32-g++ bin/x86_64-w64-mingw32-g++.exe
+        mv bin/x86_64-w64-mingw32-ld bin/x86_64-w64-mingw32-ld.exe
+        mv include x86_64-w64-mingw32
 
