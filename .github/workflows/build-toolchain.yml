@@ -80,7 +80,6 @@ jobs:
         cp bin/clang.exe bin/x86_64-w64-mingw32-gcc.exe
         cp bin/clang.exe bin/x86_64-w64-mingw32-as.exe
         cp x86_64-w64-mingw32/bin/libclang_rt.asan_dynamic-x86_64.dll lib/clang/19/lib/windows
-        mv include x86_64-w64-mingw32
         cp bin/clang.exe bin/clang-19.exe
         cp bin/clang++.exe bin/clang++-19.exe
         cp bin/x86_64-w64-mingw32-gcc.exe bin/gcc.exe
