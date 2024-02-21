@@ -66,13 +66,26 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
         cd /d/clang64
+        rm bin/x86_64-w64-mingw32-as
+        rm bin/x86_64-w64-mingw32-c++
+        rm bin/x86_64-w64-mingw32-clang
+        rm bin/x86_64-w64-mingw32-clang++
+        rm bin/x86_64-w64-mingw32-g++
+        rm bin/x86_64-w64-mingw32-gcc
+        rm bin/x86_64-w64-mingw32-ld
+        cp bin/clang.exe bin/x86_64-w64-mingw32-clang.exe
+        cp bin/clang.exe bin/x86_64-w64-mingw32-clang++.exe
+        cp bin/clang.exe bin/x86_64-w64-mingw32-c++.exe
+        cp bin/clang.exe bin/x86_64-w64-mingw32-g++.exe
+        cp bin/clang.exe bin/x86_64-w64-mingw32-gcc.exe
+        cp bin/clang.exe bin/x86_64-w64-mingw32-as.exe
         cp x86_64-w64-mingw32/bin/libclang_rt.asan_dynamic-x86_64.dll lib/clang/19/lib/windows
         mv include x86_64-w64-mingw32
         cp bin/clang.exe bin/clang-19.exe
         cp bin/clang++.exe bin/clang++-19.exe
-        cp bin/x86_64-w64-mingw32-gcc bin/gcc
-        cp bin/x86_64-w64-mingw32-g++ bin/g++
-        cp bin/x86_64-w64-mingw32-c++ bin/c++
+        cp bin/x86_64-w64-mingw32-gcc.exe bin/gcc.exe
+        cp bin/x86_64-w64-mingw32-g++.exe bin/g++.exe
+        cp bin/x86_64-w64-mingw32-c++.exe bin/c++.exe
         cp bin/x86_64-w64-mingw32-addr2line.exe bin/addr2line.exe
         cp bin/x86_64-w64-mingw32-ar.exe bin/ar.exe
         cp bin/x86_64-w64-mingw32-dlltool.exe bin/dlltool.exe
