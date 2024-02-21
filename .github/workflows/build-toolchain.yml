@@ -67,18 +67,11 @@ jobs:
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
         cd /d/clang64
         cp x86_64-w64-mingw32/bin/libclang_rt.asan_dynamic-x86_64.dll lib/clang/19/lib/windows
-        mv bin/x86_64-w64-mingw32-as bin/x86_64-w64-mingw32-as.exe
-        mv bin/x86_64-w64-mingw32-clang bin/x86_64-w64-mingw32-clang.exe
-        mv bin/x86_64-w64-mingw32-clang++ bin/x86_64-w64-mingw32-clang++.exe
-        mv bin/x86_64-w64-mingw32-gcc bin/x86_64-w64-mingw32-gcc.exe
-        mv bin/x86_64-w64-mingw32-g++ bin/x86_64-w64-mingw32-g++.exe
-        mv bin/x86_64-w64-mingw32-c++ bin/x86_64-w64-mingw32-c++.exe
-        mv bin/x86_64-w64-mingw32-ld bin/x86_64-w64-mingw32-ld.exe
         mv include x86_64-w64-mingw32
         cp bin/clang.exe bin/clang-19.exe
         cp bin/clang++.exe bin/clang++-19.exe
-        cp bin/x86_64-w64-mingw32-gcc.exe bin/gcc.exe
-        cp bin/x86_64-w64-mingw32-g++.exe bin/g++.exe
+        cp bin/x86_64-w64-mingw32-gcc bin/gcc
+        cp bin/x86_64-w64-mingw32-g++ bin/g++
         cp bin/x86_64-w64-mingw32-c++.exe bin/c++.exe
         cp bin/x86_64-w64-mingw32-addr2line.exe bin/addr2line.exe
         cp bin/x86_64-w64-mingw32-ar.exe bin/ar.exe
