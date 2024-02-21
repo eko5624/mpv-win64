@@ -72,7 +72,7 @@ jobs:
         cp bin/clang++.exe bin/clang++-19.exe
         cp bin/x86_64-w64-mingw32-gcc bin/gcc
         cp bin/x86_64-w64-mingw32-g++ bin/g++
-        cp bin/x86_64-w64-mingw32-c++.exe bin/c++.exe
+        cp bin/x86_64-w64-mingw32-c++ bin/c++
         cp bin/x86_64-w64-mingw32-addr2line.exe bin/addr2line.exe
         cp bin/x86_64-w64-mingw32-ar.exe bin/ar.exe
         cp bin/x86_64-w64-mingw32-dlltool.exe bin/dlltool.exe
