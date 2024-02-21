@@ -74,4 +74,19 @@ jobs:
         mv bin/x86_64-w64-mingw32-g++ bin/x86_64-w64-mingw32-g++.exe
         mv bin/x86_64-w64-mingw32-ld bin/x86_64-w64-mingw32-ld.exe
         mv include x86_64-w64-mingw32
+        cp clang.exe clang-19.exe
+        cp clang++.exe clang++-19.exe
+        cp x86_64-w64-mingw32-gcc.exe gcc.exe
+        cp x86_64-w64-mingw32-g++.exe g++.exe
+        cp x86_64-w64-mingw32-c++.exe c++.exe
+        cp x86_64-w64-mingw32-addr2line.exe addr2line.exe
+        cp x86_64-w64-mingw32-ar.exe ar.exe
+        cp x86_64-w64-mingw32-dlltool.exe dlltool.exe
+        cp x86_64-w64-mingw32-ranlib.exe ranlib.exe
+        cp x86_64-w64-mingw32-nm.exe nm.exe
+        cp x86_64-w64-mingw32-objcopy.exe objcopy.exe
+        cp x86_64-w64-mingw32-readelf.exe readelf.exe
+        cp x86_64-w64-mingw32-strings.exe strings.exe
+        cp x86_64-w64-mingw32-strip.exe strip.exe
+        cp x86_64-w64-mingw32-windres.exe windres.exe
 
