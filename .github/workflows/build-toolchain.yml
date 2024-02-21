@@ -72,6 +72,7 @@ jobs:
         mv bin/x86_64-w64-mingw32-clang++ bin/x86_64-w64-mingw32-clang++.exe
         mv bin/x86_64-w64-mingw32-gcc bin/x86_64-w64-mingw32-gcc.exe
         mv bin/x86_64-w64-mingw32-g++ bin/x86_64-w64-mingw32-g++.exe
+        mv bin/x86_64-w64-mingw32-c++ bin/x86_64-w64-mingw32-c++.exe
         mv bin/x86_64-w64-mingw32-ld bin/x86_64-w64-mingw32-ld.exe
         mv include x86_64-w64-mingw32
         cp bin/clang.exe bin/clang-19.exe
