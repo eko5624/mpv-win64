@@ -1,4 +1,7 @@
 name: Cache llvm-mingw Toolchain
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
 
 on:
   workflow_dispatch:  
@@ -33,6 +36,7 @@ jobs:
 
     - name: Prepare
       run: git config --global core.autocrlf input
+      shell: bash
     
     - name: Checkout
       uses: actions/checkout@main

@@ -1,4 +1,7 @@
 name: Cache GCC with MCF Toolchain
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
 
 on:
   workflow_dispatch:  
@@ -33,13 +36,13 @@ jobs:
 
     - name: Prepare
       run: git config --global core.autocrlf input
+      shell: bash
     
     - name: Checkout
       uses: actions/checkout@main
 
     - name: Config msys2
       if: steps.msys2.outputs.cache-hit != 'true'
-      shell: msys2 {0}
       run: |
         cp msys2-config/msys2.cmd /
         cp msys2-config/makepkg_own.conf /etc
@@ -47,7 +50,6 @@ jobs:
         
     - name: Install GCC With MCF Toolchain
       if: steps.mcf-ucrt.outputs.cache-hit != 'true'
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
