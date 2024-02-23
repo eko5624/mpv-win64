@@ -1,0 +1,54 @@
+name: Cache llvm-mingw Toolchain
+
+on:
+  workflow_dispatch:  
+  #schedule:
+  #- cron: '05 0 * * MON'  
+ 
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+
+    - name: Cache llvm-mingw
+      uses: actions/cache@main
+      id: clang-ucrt
+      with:
+        path: D:\clang64
+        key: clang-ucrt-x86_64
+    
+    - name: Install msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autotools git p7zip
+
+    - name: Prepare
+      run: git config --global core.autocrlf input
+    
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      shell: msys2 {0}
+      run: |
+        cp msys2-config/msys2.cmd /
+        cp msys2-config/makepkg_own.conf /etc
+        cp msys2-config/makepkg-own /usr/bin
+
+    - name: Install llvm-mingw Toolchain
+      if: steps.clang-ucrt.outputs.cache-hit != 'true'
+      shell: msys2 {0}
+      run: |
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
+        7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
+

@@ -1,4 +1,4 @@
-name: build-toolchain
+name: Cache GCC with MCF Toolchain
 
 on:
   workflow_dispatch:  
@@ -22,13 +22,6 @@ jobs:
       with:
         path: D:\ucrt64
         key: mcf-ucrt-x86_64
-
-    - name: Cache Clang
-      uses: actions/cache@main
-      id: clang-ucrt
-      with:
-        path: D:\clang64
-        key: clang-ucrt-x86_64
     
     - name: Install msys2
       if: steps.msys2.outputs.cache-hit != 'true'
@@ -58,11 +51,4 @@ jobs:
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
-
-    - name: Install Clang Toolchain
-      if: steps.clang-ucrt.outputs.cache-hit != 'true'
-      shell: msys2 {0}
-      run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
-        7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
 
