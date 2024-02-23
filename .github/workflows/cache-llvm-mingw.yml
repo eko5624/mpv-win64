@@ -43,7 +43,6 @@ jobs:
 
     - name: Config msys2
       if: steps.msys2.outputs.cache-hit != 'true'
-      shell: msys2 {0}
       run: |
         cp msys2-config/msys2.cmd /
         cp msys2-config/makepkg_own.conf /etc
@@ -51,7 +50,6 @@ jobs:
 
     - name: Install llvm-mingw Toolchain
       if: steps.clang-ucrt.outputs.cache-hit != 'true'
-      shell: msys2 {0}
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
