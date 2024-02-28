@@ -51,6 +51,6 @@ jobs:
     - name: Install llvm-mingw Toolchain
       if: steps.clang-ucrt.outputs.cache-hit != 'true'
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-20240225-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
 
