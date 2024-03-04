@@ -1,5 +1,5 @@
 pkgname=libopenmpt-dev
-pkgver=0.7.3
+pkgver=0.7.4
 pkgrel=1
 pkgdesc='A cross-platform C++ and C library to decode tracked music files (modules) into a raw PCM audio stream'
 arch=('x86_64')
