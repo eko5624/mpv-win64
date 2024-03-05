@@ -15,7 +15,8 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
-    -DSKIP_INSTALL_LIBRARIES=ON \
+    -DINSTALL_PKGCONFIG_DIR=/opt/lib/pkgconfig \
+    -DSKIP_INSTALL_LIBRARIES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DZLIB_COMPAT=ON \
     -DZLIB_ENABLE_TESTS=OFF \
