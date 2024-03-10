@@ -3,9 +3,9 @@ pkgver=2023.4.0
 pkgrel=1
 pkgdesc='the successor to Intel® Media SDK'
 arch=('x86_64')
-url="https://github.com/oneapi-src/oneVPL"
+url="https://github.com/intel/libvpl"
 license=('MIT')
-source=("git+https://github.com/oneapi-src/oneVPL.git")
+source=("git+https://github.com/intel/libvpl.git")
 md5sums=('SKIP')
 
 build() {
