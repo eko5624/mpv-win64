@@ -1,0 +1,56 @@
+name: rav1e
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:  
+  rav1e:
+    runs-on: windows-2022
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+      with:
+        ref: clang
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache clang
+      uses: actions/cache@main
+      with:
+        path: D:\clang64
+        key: clang-ucrt-x86_64
+    - name: Install Rust
+      shell: bash
+      run: |
+        rustup self uninstall -y
+        export RUSTUP_HOME="/d/.rustup"
+        export CARGO_HOME="/d/.cargo"
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
+        $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu        
+    - name: Install cargo-c
+      run: |
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
+    - name: Build
+      env:
+        MSYSTEM: CLANG64
+      run: |
+        pacman -Sy mingw-w64-x86_64-gcc-libs --noconfirm
+        #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
+        #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
+        cp /mingw64/bin/libgcc_s_seh-1.dll /d/clang64/bin
+        cd rav1e-dev; makepkg-own -sLf
+    - name: Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      shell: bash
+      run: ./release-dev.sh rav1e-dev rav1e-dev
