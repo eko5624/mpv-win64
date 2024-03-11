@@ -1,0 +1,29 @@
+pkgname=libsamplerate-dev
+pkgver=1.1.0
+pkgrel=1
+pkgdesc='An audio sample rate conversion library'
+arch=('x86_64')
+url="https://libsndfile.github.io/libsamplerate/"
+license=('spdx:BSD-2-Clause')
+source=("git+https://github.com/libsndfile/libsamplerate.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libsamplerate
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTING=OFF \
+    -DLIBSAMPLERATE_EXAMPLES=OFF
+  cmake --build .
+}  
+  
+package() {
+  cd $srcdir/libsamplerate/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}

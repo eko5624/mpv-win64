@@ -50,6 +50,7 @@ for p in [
   'libopenmpt',
   'libplacebo',
   'libpng',
+  'libsamplerate',
   'libsdl2',
   'libspeex',
   'libssh',
