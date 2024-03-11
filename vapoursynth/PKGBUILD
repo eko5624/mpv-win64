@@ -6,7 +6,7 @@ pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.zip")
 md5sums=('SKIP')
 
 package() {
