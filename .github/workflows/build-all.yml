@@ -1032,7 +1032,33 @@ jobs:
         MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh libpng-dev libpng-dev      
-        
+
+  libsamplerate:
+    runs-on: windows-2022
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache GCC With MCF
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: mcf-ucrt-x86_64
+    - name: Build
+      run: cd libsamplerate-dev; makepkg-own -sLf
+    - name: Release
+      env:
+        MSYS2_PATH_TYPE: inherit
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
+
   libsdl2:
     runs-on: windows-2022
     steps:
@@ -1611,6 +1637,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.7.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsamplerate-dev-1.4.33-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.30.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
@@ -1845,6 +1872,7 @@ jobs:
       run: ./release-dev.sh rav1e-dev rav1e-dev
 
   rubberband:
+    needs: [libsamplerate]
     runs-on: windows-2022
     steps:
     - name: Prepare
@@ -1872,6 +1900,8 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsamplerate-dev-1.4.33-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
         cd rubberband; makepkg-own -sLf
     - name: Release
       env:
