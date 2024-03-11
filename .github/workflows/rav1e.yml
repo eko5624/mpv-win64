@@ -34,12 +34,18 @@ jobs:
         rustup self uninstall -y
         export RUSTUP_HOME="/d/.rustup"
         export CARGO_HOME="/d/.cargo"
-        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain stable --target x86_64-pc-windows-gnu --no-modify-path
-        $CARGO_HOME/bin/rustup default stable-x86_64-pc-windows-gnu        
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --no-modify-path
+        $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm       
     - name: Install cargo-c
       run: |
-        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
-        7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
+        #curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        #7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
+        $CARGO_HOME/bin/cargo build --profile release-strip
+        mv target/release-strip/cargo-capi.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        mv target/release-strip/cargo-cbuild.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        mv target/release-strip/cargo-cinstall.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        mv target/release-strip/cargo-ctest.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+
     - name: Build
       env:
         MSYSTEM: CLANG64
@@ -47,7 +53,6 @@ jobs:
         pacman -Sy mingw-w64-x86_64-gcc-libs --noconfirm
         #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
         #cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
-        cp /mingw64/bin/libgcc_s_seh-1.dll /d/clang64/bin
         cd rav1e-dev; makepkg-own -sLf
     - name: Release
       env:
