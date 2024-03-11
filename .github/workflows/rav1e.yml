@@ -35,7 +35,9 @@ jobs:
         export RUSTUP_HOME="/d/.rustup"
         export CARGO_HOME="/d/.cargo"
         curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --no-modify-path
-        $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm       
+        $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm
+        $CARGO_HOME/bin/rustup component add rust-src
+
     - name: Install cargo-c
       run: |
         #curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
