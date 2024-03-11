@@ -35,7 +35,7 @@ jobs:
         export RUSTUP_HOME="/d/.rustup"
         export CARGO_HOME="/d/.cargo"
         curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --no-modify-path
-        $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm
+        $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnu
         $CARGO_HOME/bin/rustup component add rust-src
 
     - name: Install cargo-c
@@ -43,10 +43,10 @@ jobs:
         #curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         #7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
         $CARGO_HOME/bin/cargo build --profile release-strip
-        mv target/release-strip/cargo-capi.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
-        mv target/release-strip/cargo-cbuild.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
-        mv target/release-strip/cargo-cinstall.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
-        mv target/release-strip/cargo-ctest.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        mv target/release-strip/cargo-capi.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
+        mv target/release-strip/cargo-cbuild.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
+        mv target/release-strip/cargo-cinstall.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
+        mv target/release-strip/cargo-ctest.exe /d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
 
     - name: Build
       env:
