@@ -1,5 +1,5 @@
 pkgname=libsamplerate-dev
-pkgver=1.1.0
+pkgver=0.2.2
 pkgrel=1
 pkgdesc='An audio sample rate conversion library'
 arch=('x86_64')
