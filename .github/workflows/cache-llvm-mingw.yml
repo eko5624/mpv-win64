@@ -1,7 +1,7 @@
 name: Cache llvm-mingw Toolchain
 defaults:
   run:
-    shell: msys2 {0}
+    shell: D:\msys64\msys2.cmd {0}
 
 on:
   workflow_dispatch:  
@@ -43,10 +43,11 @@ jobs:
 
     - name: Config msys2
       if: steps.msys2.outputs.cache-hit != 'true'
+      shell: bash
       run: |
-        cp msys2-config/msys2.cmd /
-        cp msys2-config/makepkg_own.conf /etc
-        cp msys2-config/makepkg-own /usr/bin
+        cp msys2-config/msys2.cmd /d/msys64
+        cp msys2-config/makepkg_own.conf /d/msys64/etc
+        cp msys2-config/makepkg-own /d/msys64/usr/bin
 
     - name: Install llvm-mingw Toolchain
       if: steps.clang-ucrt.outputs.cache-hit != 'true'
