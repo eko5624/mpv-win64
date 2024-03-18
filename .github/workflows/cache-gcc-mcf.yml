@@ -1,7 +1,7 @@
 name: Cache GCC with MCF Toolchain
 defaults:
   run:
-    shell: D:\msys64\msys2.cmd {0}
+    shell: msys2 {0}
 
 on:
   workflow_dispatch:  

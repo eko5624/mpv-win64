@@ -1,7 +1,7 @@
 name: Cache llvm-mingw Toolchain
 defaults:
   run:
-    shell: D:\msys64\msys2.cmd {0}
+    shell: msys2 {0}
 
 on:
   workflow_dispatch:  
@@ -53,6 +53,5 @@ jobs:
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/clang64
-        #cd /d/clang64
-        #mv include x86_64-w64-mingw32
+
 
