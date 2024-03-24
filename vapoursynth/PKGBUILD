@@ -12,9 +12,9 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  rm *7z* con* ms* vc* MANIFEST* setup.py vs-detect-python.bat VSScriptPython38.dll
-  rm -rf doc
-  rm vapoursynth64/plugins/.keep
+  rm *7z* con* ms* vc* MANIFEST* setup.py portable.vs VSScriptPython38.dll VapourSynth64*.zip
+  bsdtar xvf wheel/*cp312* '*.pyd'
+  rm -rf doc wheel
 }
 
 package_vapoursynth-shared-dev() {
@@ -32,16 +32,16 @@ package_vapoursynth-shared-plugin-core-extra() {
   depends=('vapoursynth')
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir
-  mkdir -p $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mkdir -p $pkgdir/opt/bin/vs-coreplugins
   mv vsgen* $pkgdir/opt/bin
   mv *.exe $pkgdir/opt/bin
   mv vsrepo.py $pkgdir/opt/bin
   mv VSVFW.dll $pkgdir/opt/bin
-  mv vapoursynth64/coreplugins/AvsCompat.dll $pkgdir/opt/bin/vapoursynth64/coreplugins
+  mv vs-coreplugins/AvsCompat.dll $pkgdir/opt/bin/vs-coreplugins
 }
 
 package_vapoursynth-shared() {
-  optdepends=('python-embed>=3.11')
+  optdepends=('python-embed>=3.12')
   rm -rf $srcdir/sdk
   mkdir $pkgdir/opt
   mv $srcdir $pkgdir/opt/bin
