@@ -12,8 +12,7 @@ md5sums=('SKIP')
 package() {
   cd $srcdir
   set -x
-  gendef VSScript.dll
-  gendef VapourSynth.dll
+  cp ../*.def ./
   dlltool -d VSScript.def -y libvsscript.a 
   dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir/opt/lib/pkgconfig
