@@ -83,7 +83,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20231117-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20240314-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst     
