@@ -69,6 +69,7 @@ for p in [
   'rubberband',
   'shaderc',
   'spirv-cross',
+  'svtav1',
   'uavs3d',
   'vulkan',
   'xxhash',
