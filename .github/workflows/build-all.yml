@@ -140,7 +140,7 @@ jobs:
       run: ./release-latest.sh config mpv-config
 
   ffmpeg:
-    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
+    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, svtav1, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
     steps:
     - name: Prepare
@@ -200,6 +200,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-2.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
@@ -1663,7 +1664,8 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-2.0.0-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
@@ -1960,6 +1962,32 @@ jobs:
         MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
+
+  svtav1:
+    runs-on: windows-2022
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache GCC With MCF
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: mcf-ucrt-x86_64
+    - name: Build
+      run: cd svtav1-dev; makepkg-own -sLf
+    - name: Release
+      env:
+        MSYS2_PATH_TYPE: inherit
+        GH_TOKEN: ${{ github.token }}
+      run: ./release-dev.sh svtav1-dev svtav1-dev
 
   uavs3d:
     runs-on: windows-2022

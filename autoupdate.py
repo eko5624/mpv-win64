@@ -81,6 +81,7 @@ for p in [
   'opus',
   'rav1e',
   'shaderc',
+  'svtav1',
   'uavs3d',
   'vulkan',
   'xxhash',

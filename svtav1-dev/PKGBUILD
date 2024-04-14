@@ -1,0 +1,34 @@
+pkgname=svtav1-dev
+pkgver=2.0.0
+pkgrel=1
+pkgdesc='Scalable Video Technology AV1 encoder and decoder'
+arch=('x86_64')
+url="https://gitlab.com/AOMediaCodec/SVT-AV1"
+license=('Apache-2.0')
+source=("git+https://gitlab.com/AOMediaCodec/SVT-AV1.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/SVT-AV1
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_NASM=ON \
+    -DENABLE_AVX512=ON \
+    -DBUILD_DEC=OFF \
+    -DBUILD_TESTING=OFF \
+    -DBUILD_ENC=ON \
+    -DSVT_AV1_LTO=OFF \
+    -DBUILD_APPS=OFF
+  cmake --build .
+}  
+
+package() {
+  cd $srcdir/SVT-AV1/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}
