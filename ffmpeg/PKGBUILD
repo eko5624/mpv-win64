@@ -37,6 +37,7 @@ makedepends=("amf-headers-dev"
              "opus-dev"
              "rav1e-dev"
              "shaderc-dev"
+             "svtav1-dev"
              "uavs3d-dev"
              "vapoursynth-shared-dev")
 license=('LGPL')
@@ -85,6 +86,7 @@ package_ffmpeg-shared-dev() {
     --enable-libopus \
     --enable-libplacebo \
     --enable-librav1e \
+    --enable-libsvtav1 \
     --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
