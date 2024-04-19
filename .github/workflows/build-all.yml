@@ -278,7 +278,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-66-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240314-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.37.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.38.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
