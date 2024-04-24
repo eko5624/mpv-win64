@@ -68,7 +68,6 @@ package_ffmpeg-dev() {
     --enable-avisynth \
     --enable-cuda-llvm \
     --enable-cuvid \
-    --enable-hardcoded-tables \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
