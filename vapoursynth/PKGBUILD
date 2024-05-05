@@ -21,9 +21,9 @@ package() {
   dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include
-  mv sdk/include/VapourSynth.h $pkgdir/opt/include
-  mv sdk/include/VSScript.h $pkgdir/opt/include
-  mv sdk/include/VSHelper.h $pkgdir/opt/include
+  mv sdk/include/vapoursynth/VapourSynth.h $pkgdir/opt/include
+  mv sdk/include/vapoursynth/VSScript.h $pkgdir/opt/include
+  mv sdk/include/vapoursynth/VSHelper.h $pkgdir/opt/include
   cp libvsscript.a $pkgdir/opt/lib
   cp libvapoursynth.a $pkgdir/opt/lib   
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
