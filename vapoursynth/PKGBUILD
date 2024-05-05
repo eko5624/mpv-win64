@@ -20,7 +20,7 @@ build() {
 package_vapoursynth-shared-dev() {
   cd $srcdir
   mkdir -p $pkgdir/opt
-  mv sdk/include $pkgdir/opt
+  mv sdk/include/vapoursynth $pkgdir/opt/include
   mv sdk/lib64 $pkgdir/opt/lib
   mkdir -p $pkgdir/opt/lib/pkgconfig
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
