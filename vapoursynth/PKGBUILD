@@ -12,7 +12,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir
-  rm *7z* con* ms* vc* MANIFEST* setup.py portable.vs VSScriptPython38.dll VapourSynth64*.zip
+  rm *7z* con* ms* vc* MANIFEST* portable.vs VSScriptPython38.dll VapourSynth64*.zip
   bsdtar xvf wheel/*cp312* '*.pyd'
   rm -rf doc wheel
 }
