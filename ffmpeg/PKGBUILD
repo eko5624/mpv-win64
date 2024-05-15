@@ -67,6 +67,7 @@ package_ffmpeg-dev() {
     --disable-shared \
     --disable-pthreads \
     --enable-w32threads \
+    --extra-cflags="-Wno-error=incompatible-pointer-types" \
     --extra-libs="-lstdc++ -lssp" \
     --extra-ldflags="-static-libgcc" \
     --enable-amf \
