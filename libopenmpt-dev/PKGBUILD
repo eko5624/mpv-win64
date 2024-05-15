@@ -10,6 +10,7 @@ source=("https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$pkgver+release
 md5sums=('SKIP')
 
 build() {
+  CXXFLAGS+=" -D_WIN32_WINNT=0x0600"
   cd $srcdir/libopenmpt-$pkgver+release.autotools
   ./configure --prefix=/opt \
     --disable-shared \
