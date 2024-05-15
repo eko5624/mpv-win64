@@ -1,4 +1,4 @@
-name: Cache GCC with MCF Toolchain
+name: Cache GCC Toolchain
 defaults:
   run:
     shell: D:\msys64\msys2.cmd {0}
