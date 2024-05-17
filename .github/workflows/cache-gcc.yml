@@ -56,8 +56,8 @@ jobs:
       shell: bash
       run: |
         cp msys2-config/msys2.cmd /d/msys64
-        cp msys2-config/makepkg_own.conf /d/msys64/etc
-        cp msys2-config/makepkg-own /d/msys64/usr/bin
+        cp msys2-config/makepkg_gcc.conf /d/msys64/etc
+        cp msys2-config/makepkg-gcc /d/msys64/usr/bin
         
     - name: Install GCC With MCF Toolchain
       if: ${{ inputs.toolchain == 'gcc-mcf' }}

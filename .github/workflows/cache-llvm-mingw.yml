@@ -46,8 +46,8 @@ jobs:
       shell: bash
       run: |
         cp msys2-config/msys2.cmd /d/msys64
-        cp msys2-config/makepkg_own.conf /d/msys64/etc
-        cp msys2-config/makepkg-own /d/msys64/usr/bin
+        cp msys2-config/makepkg_clang.conf /d/msys64/etc
+        cp msys2-config/makepkg-clang /d/msys64/usr/bin
 
     - name: Install llvm-mingw Toolchain
       if: steps.clang-ucrt.outputs.cache-hit != 'true'
