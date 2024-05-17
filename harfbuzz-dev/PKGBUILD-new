@@ -1,5 +1,5 @@
 pkgname=harfbuzz-dev
-pkgver=8.5.0
+pkgver=8.3.0
 pkgrel=1
 pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
@@ -11,8 +11,13 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/harfbuzz
-  meson setup build --prefix=/opt --buildtype=release --default-library=static \
-    -Dtests=disabled -Ddocs=disabled -Dbenchmark=disabled
+  meson setup build \
+    --prefix=/opt \
+    --buildtype=release \
+    --default-library=static \
+    -Dtests=disabled \
+    -Ddocs=disabled \
+    -Dbenchmark=disabled
   meson compile -C build
 }
 

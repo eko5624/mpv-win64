@@ -9,9 +9,8 @@ source=("https://ftp.gnu.org/gnu/gmp/gmp-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/gmp-$pkgver
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   sed -i 's|__declspec\(__dllimport__\)||g' gmp-h.in
   ./configure \
     --prefix=/opt \

@@ -5,7 +5,7 @@ pkgdesc='The fastest and safest AV1 encoder'
 arch=('x86_64')
 url="https://github.com/xiph/rav1e/"
 license=('spdx:BSD-2-Clause')
-source=("git+https://github.com/xiph/rav1e.git")
+source=("git+https://github.com/xiph/rav1e.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 package() {  

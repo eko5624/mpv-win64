@@ -1,5 +1,5 @@
 pkgname=libwebp-dev
-pkgver=1.4.0
+pkgver=1.3.2
 pkgrel=1
 pkgdesc='A library to encode and decode images in WebP format'
 arch=('x86_64')
@@ -9,9 +9,8 @@ source=("git+https://chromium.googlesource.com/webm/libwebp.git#tag=v${pkgver//_
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/libwebp
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \

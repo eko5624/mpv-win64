@@ -4,11 +4,29 @@ defaults:
     shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "clang"
+        type: choice
+        options:
+        - clang
+        - gcc
 
 jobs:
   mpv:
     runs-on: windows-2022
     steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -19,11 +37,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -102,20 +120,25 @@ jobs:
         cd mpv; makepkg-own -sLf
     - name: Delete old libmpv
       continue-on-error: true
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-latest.sh libmpv-git
-    - name: Release mpv and libmpv
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+    - name: Release
+      shell: bash
       run: ./release-latest.sh mpv-git mpv   
    
   package:
     needs: [mpv]
     runs-on: windows-2022
     steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -126,11 +149,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
@@ -148,7 +171,5 @@ jobs:
         7z a git-libmpv.7z /opt/libmpv\*
         7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-package.sh

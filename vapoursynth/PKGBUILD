@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=vapoursynth-dev
-pkgver=68
+pkgver=65
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
@@ -17,16 +17,21 @@ package() {
   find . -type f -name "vapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
   gendef VSScript.dll
   gendef VapourSynth.dll
-  dlltool -d VSScript.def -y libvsscript.a 
-  dlltool -d VapourSynth.def -y libvapoursynth.a 
+  eval "${vapoursynth_generate_lib}" 
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include
   mv sdk/include/vapoursynth/VapourSynth.h $pkgdir/opt/include
   mv sdk/include/vapoursynth/VSScript.h $pkgdir/opt/include
   mv sdk/include/vapoursynth/VSHelper.h $pkgdir/opt/include
-  cp libvsscript.a $pkgdir/opt/lib
-  cp libvapoursynth.a $pkgdir/opt/lib   
+  cp ${vsscript_lib} $pkgdir/opt/lib
+  cp ${vapoursynth_lib} $pkgdir/opt/lib  
   cp ../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
+  for i in $pkgdir/opt/lib/pkgconfig/*.pc; do
+    sed -e "s|_ver|$pkgver|g" \
+        -e "s|@vapoursynth_pkgconfig_libs@|${vapoursynth_pkgconfig_libs}|g" \
+        -e "s|@vapoursynth_script_pkgconfig_libs@|${vapoursynth_script_pkgconfig_libs}|g" \
+        -i "$i"
+  done
 }

@@ -9,9 +9,8 @@ source=("git+https://github.com/google/highway.git")
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/highway
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \

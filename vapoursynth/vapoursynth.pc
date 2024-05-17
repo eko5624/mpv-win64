@@ -4,4 +4,7 @@ includedir=/opt/include
 Name: vapoursynth
 Description:
 Version: _ver
-Libs: -L${libdir} -lVapourSynth
+
+Requires.private: zimg
+Libs: -L${libdir} @vapoursynth_pkgconfig_libs@
+Cflags: -I${includedir} -lzimg

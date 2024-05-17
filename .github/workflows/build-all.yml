@@ -4,13 +4,34 @@ defaults:
     shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "gcc"
+        type: choice
+        options:
+        - clang
+        - gcc
   #schedule:
   #- cron: '30 0 * * MON'
     
 jobs:
   amf:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -21,22 +42,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd amf-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -47,22 +74,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd angle-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh angle-headers-dev angle-dev
 
   aom:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -73,23 +106,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         cd aom-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh aom-dev aom-dev
 
   avisynth:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -100,22 +139,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
-      run: cd avisynth-dev; makepkg-own -sLf  
+      run: cd avisynth-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh avisynth-dev avisynth-dev
 
   config:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -126,23 +171,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd mpv-config; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, svtav1, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -153,11 +204,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -209,9 +260,7 @@ jobs:
         pacman -U *.zst --noconfirm
         cd ffmpeg; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg
@@ -219,7 +268,15 @@ jobs:
   dav1d:
     needs: [xxhash]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -230,11 +287,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -249,14 +306,20 @@ jobs:
         pacman -U *.zst --noconfirm
         cd dav1d-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -267,23 +330,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         cd davs2-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -294,23 +363,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd ffnvcodec-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -321,11 +396,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -341,14 +416,20 @@ jobs:
         pacman -U *.zst --noconfirm        
         cd freetype2-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -359,11 +440,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -376,15 +457,21 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         cd fribidi-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh fribidi-dev fribidi-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -395,11 +482,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -415,14 +502,20 @@ jobs:
         pacman -U *.zst --noconfirm         
         cd harfbuzz-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   lame:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -433,23 +526,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         cd lame-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -460,11 +559,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -477,15 +576,21 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         cd lcms2-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -496,11 +601,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -512,15 +617,21 @@ jobs:
         pacman -U *.zst --noconfirm 
         cd libass-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libass-dev libass-dev
 
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -531,11 +642,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -545,15 +656,21 @@ jobs:
         pacman -U *.zst --noconfirm
         cd libaribcaption-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libaribcaption-dev libaribcaption-dev       
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -564,11 +681,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -578,14 +695,20 @@ jobs:
         pacman -U *.zst --noconfirm
         cd libbluray-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -596,22 +719,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libbs2b-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -622,22 +751,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libcaca-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -648,11 +783,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Install rust
       shell: bash
       run: |
@@ -669,14 +804,20 @@ jobs:
       run: cd libdovi-dev; makepkg-own -sLf
       
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libdovi-dev libdovi-dev                     
 
   libdvdcss:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -687,23 +828,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libdvdcss-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -714,11 +861,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
@@ -726,15 +873,21 @@ jobs:
         pacman -U *.zst --noconfirm
         cd libdvdnav-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -745,25 +898,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libdvdread-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libdvdread-dev libdvdread-dev         
 
   libiconv:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -774,22 +933,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libiconv-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -800,23 +965,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libjpeg-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -827,11 +998,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -841,14 +1012,20 @@ jobs:
         pacman -U *.zst --noconfirm        
         cd libjxl-dev; makepkg-own -sLf -p PKGBUILD-new 
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -859,17 +1036,15 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libmodplug-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
@@ -886,25 +1061,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
         cd libmysofa-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -915,23 +1096,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libogg-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -942,11 +1129,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -956,15 +1143,21 @@ jobs:
         pacman -U *.zst --noconfirm         
         cd libopenmpt-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -975,11 +1168,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -999,15 +1192,21 @@ jobs:
         pacman -U *.zst --noconfirm 
         cd libplacebo-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1018,25 +1217,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
         cd libpng-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libpng-dev libpng-dev      
 
   libsamplerate:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1047,22 +1252,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libsamplerate-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
 
   libsdl2:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1073,23 +1284,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libsdl2-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1100,11 +1317,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1121,14 +1338,20 @@ jobs:
         pacman -U *.zst --noconfirm        
         cd libsixel; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1139,22 +1362,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libsoxr-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1165,23 +1394,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libspeex-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [openssl]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1192,26 +1427,32 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm
         cd libsrt-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [openssl, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1222,11 +1463,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
@@ -1234,14 +1475,20 @@ jobs:
         pacman -U *.zst --noconfirm                   
         cd libssh-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1252,22 +1499,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libudfread-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1278,22 +1531,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libunibreak-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libva:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1304,11 +1563,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1321,15 +1580,21 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)      
         cd libva-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libva-dev libva-dev
 
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1340,25 +1605,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libvorbis_aotuv-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1369,22 +1640,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libvpl-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1395,23 +1672,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         cd libvpx-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1422,23 +1705,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libwebp-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     needs: [libiconv, zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1449,11 +1738,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1461,14 +1750,20 @@ jobs:
         pacman -U *.zst --noconfirm
         cd libxml2-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1479,24 +1774,30 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         cd libxvid-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libxvid-dev libxvid-dev
         
   libzimg:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1507,23 +1808,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd libzimg-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libpng]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1534,11 +1841,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1547,14 +1854,20 @@ jobs:
         pacman -U *.zst --noconfirm
         cd libzvbi-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1565,23 +1878,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd luajit2; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh luajit2-dev luajit2              
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1592,11 +1911,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1676,18 +1995,29 @@ jobs:
     - name: Delete old libmpv
       continue-on-error: true
       env:
+        COMPILER: ${{ inputs.compiler }}
         MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-latest.sh libmpv-git
-    - name: Release mpv and libmpv
+    - name: Release
+      shell: bash mpv and libmpv
       env:
+        COMPILER: ${{ inputs.compiler }}
         MSYS2_PATH_TYPE: inherit
         GH_TOKEN: ${{ github.token }}
       run: ./release-latest.sh mpv-git mpv 
 
   mujs:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1698,22 +2028,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd mujs; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1724,23 +2060,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd openal-soft-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   openssl:
     needs: [zlib]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1751,25 +2093,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
         cd openssl-dev; makepkg-own -sLf  
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh openssl-dev openssl-dev 
 
   opus:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1780,23 +2128,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd opus-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1807,11 +2161,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
@@ -1829,14 +2183,22 @@ jobs:
         7z a git-libmpv.7z /opt/libmpv\*
         7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-package.sh
 
   rav1e:
     runs-on: windows-2022
-    steps:
+    env:
+      COMPILER: ${{ inputs.compiler }}
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1847,11 +2209,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Install Rust
       shell: bash
       run: |
@@ -1866,7 +2228,12 @@ jobs:
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin        
     - name: Build
       run: |
-        cd rav1e-dev; makepkg-own -sLf  
+        if [[ $COMPILER == clang ]]; then 
+          pacman -Sy mingw-w64-x86_64-gcc --noconfirm
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
+        fi  
+        cd rav1e-dev; makepkg-own -sLf
     - name: Release
       env:
         MSYS2_PATH_TYPE: inherit
@@ -1876,7 +2243,15 @@ jobs:
   rubberband:
     needs: [libsamplerate]
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1887,11 +2262,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -1906,14 +2281,20 @@ jobs:
         pacman -U *.zst --noconfirm
         cd rubberband; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh rubberband-dev rubberband       
   
   shaderc:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1924,22 +2305,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd shaderc-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1950,22 +2337,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd spirv-cross-dev; makepkg-own -sLf -p PKGBUILD-new
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   svtav1:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1976,22 +2369,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd svtav1-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh svtav1-dev svtav1-dev
 
   uavs3d:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2002,22 +2401,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd uavs3d-dev; makepkg-own -sLf 
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2028,22 +2433,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd vapoursynth; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2054,22 +2465,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd vulkan-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh vulkan-dev vulkan-dev
 
   xxhash:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2080,22 +2497,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd xxhash-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh xxhash-dev xxhash-dev
         
   zlib:
     runs-on: windows-2022
-    steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2106,15 +2529,13 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC Toolchain
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: cd zlib-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }} 
+      shell: bash
       run: ./release-dev.sh zlib-dev zlib-dev

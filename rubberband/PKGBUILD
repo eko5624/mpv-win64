@@ -10,9 +10,8 @@ source=("git+https://github.com/breakfastquay/rubberband.git")
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/rubberband
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   meson setup build \
     --prefix=/opt \
     --libdir=/opt/lib \

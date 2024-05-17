@@ -1,5 +1,5 @@
 pkgname=libjxl-dev
-pkgver=0.10.2
+pkgver=0.10.1
 pkgrel=1
 pkgdesc='JPEG XL image format reference implementation'
 arch=('x86_64')
@@ -10,14 +10,11 @@ source=("git+https://github.com/libjxl/libjxl.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
 md5sums=('SKIP' 'SKIP')
 
-build() { 
+build() {  
   # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
-  
+  eval "${libjxl_unaligned_vector}"
   cd $srcdir/libjxl
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
+  eval "${att_args}"
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway}
   rm -rf third_party/libjpeg-turbo
   ln -s $srcdir/libjpeg-turbo third_party/libjpeg-turbo

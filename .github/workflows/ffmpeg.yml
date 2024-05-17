@@ -4,6 +4,15 @@ defaults:
     shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "clang"
+        type: choice
+        options:
+        - clang
+        - gcc
   #schedule:
   #- cron: '30 0 * * MON'
     
@@ -11,6 +20,15 @@ jobs:
   ffmpeg:
     runs-on: windows-2022
     steps:
+    - name: Init variable
+      run: |
+        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
+        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
+        if [[ $COMPILER == "gcc" ]]; then
+          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
+        elif [[ $COMPILER == "clang" ]]; then
+          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
+        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -21,11 +39,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -77,9 +95,7 @@ jobs:
         pacman -U *.zst --noconfirm
         cd ffmpeg; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
         ./release-dev.sh ffmpeg-dev ffmpeg

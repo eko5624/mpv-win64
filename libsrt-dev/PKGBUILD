@@ -10,6 +10,7 @@ source=("git+https://github.com/Haivision/srt.git")
 md5sums=('SKIP')
 
 build() { 
+  eval "${libsrt_flags}"
   cd $srcdir/srt
   rm -rf build && mkdir build && cd build
   cmake .. \
@@ -22,9 +23,7 @@ build() {
     -DUSE_STATIC_LIBSTDCXX=ON \
     -DENABLE_CXX_DEPS=OFF \
     -DUSE_ENCLIB=openssl \
-    -DENABLE_APPS=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
-    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' 
+    -DENABLE_APPS=OFF
   cmake --build .
 }
 

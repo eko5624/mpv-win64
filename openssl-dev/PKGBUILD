@@ -1,5 +1,5 @@
 pkgname=openssl-dev
-pkgver=3.3.0
+pkgver=3.2.1
 pkgrel=1
 pkgdesc='The Open Source toolkit for Secure Sockets Layer and Transport Layer Security'
 arch=('x86_64')
@@ -10,9 +10,8 @@ source=("git+https://github.com/openssl/openssl.git")
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/openssl
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   ./Configure \
     --prefix=/opt \
     --libdir=lib \

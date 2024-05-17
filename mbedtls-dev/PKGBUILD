@@ -1,5 +1,5 @@
 pkgname=mbedtls-dev
-pkgver=3.6.0
+pkgver=3.5.2
 pkgrel=1
 pkgdesc='Portable cryptographic and SSL/TLS library, aka polarssl'
 arch=('x86_64')
@@ -9,9 +9,8 @@ source=("git+https://github.com/Mbed-TLS/mbedtls.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() { 
+  eval "${att_args}"
   cd $srcdir/mbedtls
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \

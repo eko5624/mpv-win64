@@ -13,9 +13,8 @@ source=("git+https://github.com/cacalabs/libcaca.git"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/libcaca
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
   # wrong result with ucrt
   export ac_cv_func_sprintf_s=yes
   export ac_cv_func_vsnprintf_s=yes
