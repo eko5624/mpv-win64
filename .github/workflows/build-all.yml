@@ -23,15 +23,6 @@ jobs:
       COMPILER: ${{ inputs.compiler }}
       GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -55,15 +46,10 @@ jobs:
 
   angle:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -87,15 +73,10 @@ jobs:
 
   aom:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -120,15 +101,10 @@ jobs:
 
   avisynth:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -152,15 +128,10 @@ jobs:
 
   config:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -185,15 +156,10 @@ jobs:
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, svtav1, uavs3d, vapoursynth, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -263,20 +229,15 @@ jobs:
       shell: bash
       run: |
         ./release-latest.sh ffmpeg-git ffmpeg
-        ./release-dev.sh ffmpeg-dev ffmpeg
+        ./release-dev.sh ffmpeg ffmpeg
 
   dav1d:
     needs: [xxhash]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -311,15 +272,10 @@ jobs:
 
   davs2:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -344,15 +300,10 @@ jobs:
 
   ffnvcodec:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -377,15 +328,10 @@ jobs:
   freetype2:
     needs: [libpng, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -421,15 +367,10 @@ jobs:
 
   fribidi:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -463,15 +404,10 @@ jobs:
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -507,15 +443,10 @@ jobs:
 
   lame:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -540,15 +471,10 @@ jobs:
 
   lcms2:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -582,15 +508,10 @@ jobs:
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -623,15 +544,10 @@ jobs:
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -662,15 +578,10 @@ jobs:
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -700,15 +611,10 @@ jobs:
 
   libbs2b:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -732,15 +638,10 @@ jobs:
 
   libcaca:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -764,15 +665,10 @@ jobs:
 
   libdovi:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -801,7 +697,13 @@ jobs:
         curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
     - name: Build
-      run: cd libdovi-dev; makepkg-own -sLf
+      run: |
+        if [[ $COMPILER == clang ]]; then 
+          pacman -Sy mingw-w64-x86_64-gcc --noconfirm
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
+        fi
+        cd libdovi-dev; makepkg-own -sLf
       
     - name: Release
       shell: bash
@@ -809,15 +711,10 @@ jobs:
 
   libdvdcss:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -842,15 +739,10 @@ jobs:
   libdvdnav:
     needs: [libdvdread]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -879,15 +771,10 @@ jobs:
   libdvdread:
     needs: [libdvdcss]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -914,15 +801,10 @@ jobs:
 
   libiconv:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -946,15 +828,10 @@ jobs:
 
   libjpeg:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -979,15 +856,10 @@ jobs:
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1017,15 +889,10 @@ jobs:
 
   libmodplug:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1050,6 +917,9 @@ jobs:
   libmysofa:
     needs: [zlib]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps: 
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -1077,15 +947,10 @@ jobs:
 
   libogg:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1110,15 +975,10 @@ jobs:
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1149,15 +1009,10 @@ jobs:
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1198,15 +1053,10 @@ jobs:
   libpng:
     needs: [zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1233,15 +1083,10 @@ jobs:
 
   libsamplerate:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1265,15 +1110,10 @@ jobs:
 
   libsdl2:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1298,15 +1138,10 @@ jobs:
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1343,15 +1178,10 @@ jobs:
 
   libsoxr:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1375,15 +1205,10 @@ jobs:
 
   libspeex:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1408,15 +1233,10 @@ jobs:
   libsrt:
     needs: [openssl]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1444,15 +1264,10 @@ jobs:
   libssh:
     needs: [openssl, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1480,15 +1295,10 @@ jobs:
 
   libudfread:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1512,15 +1322,10 @@ jobs:
 
   libunibreak:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1544,15 +1349,10 @@ jobs:
 
   libva:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1586,15 +1386,10 @@ jobs:
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1621,15 +1416,10 @@ jobs:
 
   libvpl:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1653,15 +1443,10 @@ jobs:
 
   libvpx:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1686,15 +1471,10 @@ jobs:
 
   libwebp:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1719,15 +1499,10 @@ jobs:
   libxml2:
     needs: [libiconv, zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1755,15 +1530,10 @@ jobs:
         
   libxvid:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1789,15 +1559,10 @@ jobs:
         
   libzimg:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1822,15 +1587,10 @@ jobs:
   libzvbi:
     needs: [libpng]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1859,15 +1619,10 @@ jobs:
 
   luajit2:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1892,15 +1647,10 @@ jobs:
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -1992,32 +1742,16 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; makepkg-own -sLf
-    - name: Delete old libmpv
-      continue-on-error: true
-      env:
-        COMPILER: ${{ inputs.compiler }}
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
-      run: ./release-latest.sh libmpv-git
-    - name: Release
-      shell: bash mpv and libmpv
-      env:
-        COMPILER: ${{ inputs.compiler }}
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
-      run: ./release-latest.sh mpv-git mpv 
+    - name: Release mpv and libmpv
+      shell: bash
+      run: ./release-latest.sh mpv mpv
 
   mujs:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2041,15 +1775,10 @@ jobs:
 
   openal-soft:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2074,15 +1803,10 @@ jobs:
   openssl:
     needs: [zlib]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2109,15 +1833,10 @@ jobs:
 
   opus:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2142,15 +1861,10 @@ jobs:
   package:
     needs: [mpv, config]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2190,15 +1904,8 @@ jobs:
     runs-on: windows-2022
     env:
       COMPILER: ${{ inputs.compiler }}
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2230,28 +1937,21 @@ jobs:
       run: |
         if [[ $COMPILER == clang ]]; then 
           pacman -Sy mingw-w64-x86_64-gcc --noconfirm
-          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/clang64/lib
-          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/clang64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
         fi  
         cd rav1e-dev; makepkg-own -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: ./release-dev.sh rav1e-dev rav1e-dev
 
   rubberband:
     needs: [libsamplerate]
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2286,15 +1986,10 @@ jobs:
   
   shaderc:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2318,15 +2013,10 @@ jobs:
 
   spirv-cross:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2350,15 +2040,10 @@ jobs:
 
   svtav1:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2382,15 +2067,10 @@ jobs:
 
   uavs3d:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2414,15 +2094,10 @@ jobs:
 
   vapoursynth:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2446,15 +2121,10 @@ jobs:
 
   vulkan:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2478,15 +2148,10 @@ jobs:
 
   xxhash:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -2510,15 +2175,10 @@ jobs:
         
   zlib:
     runs-on: windows-2022
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
