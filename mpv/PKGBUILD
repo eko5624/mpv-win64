@@ -33,7 +33,7 @@ md5sums=('SKIP')
 
 build() {
   eval "${mpv_ldflags}"
-  export LDFLAGS+=" -Wno-unused-command-line-argument -Wno-int-conversion"
+  export CFLAGS+=" -Wno-unused-command-line-argument -Wno-int-conversion"
   cd $srcdir/mpv
   meson setup build \
     --buildtype=release \
