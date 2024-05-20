@@ -23,7 +23,6 @@ jobs:
       COMPILER: ${{ inputs.compiler }}
       GH_TOKEN: ${{ github.token }}
     steps:
-    steps:
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
