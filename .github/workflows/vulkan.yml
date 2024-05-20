@@ -17,10 +17,12 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
+  vulkan:
     runs-on: windows-2022
     env:
       COMPILER: ${{ inputs.compiler }}
       GH_TOKEN: ${{ github.token }}
+    steps:
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
