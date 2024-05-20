@@ -19,16 +19,10 @@ on:
 jobs:
   shaderc:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -45,7 +39,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
-      run: cd shaderc-dev; makepkg-own -sLf
+      run: cd shaderc-dev; makepkg-$COMPILER -sLf
     - name: Release
       shell: bash
       run: ./release-dev.sh shaderc-dev shaderc-dev

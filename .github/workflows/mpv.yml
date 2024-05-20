@@ -17,16 +17,10 @@ on:
 jobs:
   mpv:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -117,28 +111,18 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-own -sLf
-    - name: Delete old libmpv
-      continue-on-error: true
+        cd mpv; makepkg-$COMPILER -sLf
+    - name: Release mpv and libmpv
       shell: bash
-      run: ./release-latest.sh libmpv-git
-    - name: Release
-      shell: bash
-      run: ./release-latest.sh mpv-git mpv   
+      run: ./release-latest.sh mpv mpv   
    
   package:
     needs: [mpv]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi    
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash

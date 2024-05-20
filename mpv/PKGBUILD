@@ -32,6 +32,7 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
+  eval "${mpv_cflags}"
   eval "${mpv_ldflags}"
   cd $srcdir/mpv
   meson setup build \

@@ -19,16 +19,10 @@ on:
 jobs:
   libplacebo:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - name: Init variable
-      run: |
-        echo COMPILER=${{ inputs.compiler }} >> $GITHUB_ENV
-        echo GH_TOKEN=${{ github.token }} >> $GITHUB_ENV
-        if [[ $COMPILER == "gcc" ]]; then
-          echo "MSYSTEM=UCRT64" >> $GITHUB_ENV
-        elif [[ $COMPILER == "clang" ]]; then
-          echo "MSYSTEM=CLNAG64" >> $GITHUB_ENV
-        fi
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -61,7 +55,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-own -sLf
+        cd libplacebo-dev; makepkg-$COMPILER -sLf
     - name: Release
       shell: bash
       run: ./release-dev.sh libplacebo-dev libplacebo-dev
