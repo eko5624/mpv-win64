@@ -24,7 +24,7 @@ makedepends=("libjpeg-dev"
              "luajit2-shared-dev"
              "shaderc-dev"
              "spirv-cross-dev"
-             "vapoursynth-shared-dev"
+             "vapoursynth-dev"
              "vulkan-shared-dev"
              "zlib-dev")
 license=('GPL3')
@@ -33,15 +33,20 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/mpv
-  LDFLAGS="$LDFLAGS -Wl,--allow-multiple-definition -static -lstdc++ -lssp"
-  meson setup build --buildtype=release -Dprefix=/opt \
+  eval "${mpv_cflags}"
+  eval "${mpv_ldflags}"
+  meson setup build \
+    --buildtype=release \
+    -Dprefix=/opt \
     -Dlua=enabled \
     -Dopenal=enabled \
     -Drubberband=enabled \
     -Dsdl2=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
-    -Degl-angle=enabled
+    -Degl-angle=enabled \
+    -Dvapoursynth=enabled \
+    -Dc_args="-Wno-error=int-conversion"
   meson compile -C build
 }
 
@@ -52,5 +57,4 @@ package() {
   mv mpv.exe $pkgdir/opt/bin
   mv mpv.com $pkgdir/opt/bin
   strip -s $pkgdir/opt/bin/mpv.*
-  mv /d/msys64/opt/bin/vulkan-1.dll $pkgdir/opt/bin
 }

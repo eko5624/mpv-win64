@@ -4,13 +4,25 @@ defaults:
     shell: D:\msys64\msys2.cmd {0}
 on:
   workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "gcc"
+        type: choice
+        options:
+        - clang
+        - gcc
   #schedule:
   #- cron: '30 0 * * MON'
     
 jobs:
   ffmpeg:
-    needs: [libplacebo, vapoursynth]
+    needs: [libplacebo]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -22,11 +34,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -42,12 +54,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.7.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.7.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-shared-dev-6.338.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst
@@ -60,7 +72,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.14.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.4.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.12.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.12.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst
@@ -69,18 +81,28 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-2.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-2.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-shared-dev-67-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.283.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-own -sLf
+        cd ffmpeg; makepkg-$COMPILER -sLf
+    - name: Collecting logs
+      if: always()
+      run: |
+        mkdir -p ffmpeg_logs
+        cp -fr $(find ffmpeg -type f -name "*.log") ffmpeg_logs || true
+        7z a logs.7z ffmpeg_logs
+    - name: Uploading logs
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: ffmpeg-logs
+        path: logs.7z    
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
         ./release-latest.sh ffmpeg-shared ffmpeg
@@ -89,6 +111,9 @@ jobs:
   libplacebo:
     needs: [vulkan]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -100,15 +125,15 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.12'
     - name: Install python dependencies
       shell: pwsh
       run: pip install ninja Jinja2 meson
@@ -116,22 +141,26 @@ jobs:
       run: |
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.283.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-own -sLf
+        cd libplacebo-dev; makepkg-$COMPILER -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         chmod +x ./release-dev.sh
         ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
   luajit2:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -143,17 +172,15 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
-      run: cd luajit2; makepkg-own -sLf
+      run: cd luajit2; makepkg-$COMPILER -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         chmod +x ./release-latest.sh ./release-dev.sh
         ./release-latest.sh luajit2-shared luajit2
@@ -162,6 +189,9 @@ jobs:
   mpv:
     needs: [ffmpeg, libplacebo, luajit2]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -173,15 +203,15 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.12'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja
@@ -194,16 +224,16 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.14-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.4.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.5.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                              
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-shared-dev-6.338.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
@@ -218,15 +248,13 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-shared-dev-67-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.283.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-own -sLf
+        cd mpv; makepkg-$COMPILER -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         chmod +x ./release-latest.sh
         ./release-latest.sh mpv-shared mpv
@@ -234,6 +262,9 @@ jobs:
   package:
     needs: [mpv]
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -245,11 +276,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@main
@@ -276,7 +307,6 @@ jobs:
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-67-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240314-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.38.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
@@ -288,44 +318,16 @@ jobs:
         mv /opt/mpv/* /opt/bin
         7z a shared-mpv.7z /opt/bin/*
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
       run: |
         chmod +x ./release-package.sh
         ./release-package.sh
 
   vapoursynth:
     runs-on: windows-2022
-    steps:
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - name: Checkout
-      uses: actions/checkout@main     
-    - name: Cache msys2
-      uses: actions/cache@main
-      with:
-        path: D:\msys64
-        key: msys2
-    - name: Cache GCC With MCF
-      uses: actions/cache@main
-      with:
-        path: D:\ucrt64
-        key: mcf-ucrt-x86_64
-    - name: Build
-      run: cd vapoursynth; makepkg
-    - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
-      run: |
-        chmod +x ./release-latest.sh ./release-dev.sh
-        ./release-latest.sh vapoursynth-shared vapoursynth
-        ./release-dev.sh vapoursynth-shared-dev vapoursynth
-        
-  vulkan:
-    runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -337,16 +339,43 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache GCC With MCF
+    - name: Cache ${{ inputs.compiler }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: mcf-ucrt-x86_64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
-      run: cd vulkan-dev; makepkg-own -sLf
+      run: cd vapoursynth; makepkg-$COMPILER -sLf
     - name: Release
-      env:
-        MSYS2_PATH_TYPE: inherit
-        GH_TOKEN: ${{ github.token }}
+      shell: bash
+      run: |
+        ./release-latest.sh vapoursynth-shared vapoursynth
+        ./release-dev.sh vapoursynth-shared-dev vapoursynth
+
+  vulkan:
+    runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache ${{ inputs.compiler }} Toolchain
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
+    - name: Build
+      run: cd vulkan-dev; makepkg-$COMPILER -sLf
+    - name: Release
+      shell: bash
       run: |
         ./release-dev.sh vulkan-shared-dev vulkan-dev        

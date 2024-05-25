@@ -39,15 +39,14 @@ makedepends=("amf-headers-dev"
              "shaderc-dev"
              "svtav1-dev"
              "uavs3d-dev"
-             "vapoursynth-shared-dev")
+             "vapoursynth-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 package_ffmpeg-shared-dev() {
   cd $srcdir/FFmpeg
-  CFLAGS+=" -masm=att"
-  CXXFLAGS+=" -masm=att"
+  eval "${att_args}"
   ./configure \
     --prefix=/opt \
     --arch=x86_64 \
@@ -64,13 +63,16 @@ package_ffmpeg-shared-dev() {
     --disable-ffprobe \
     --disable-avdevice \
     --disable-mediafoundation \
+    --disable-static \
     --enable-shared \
     --disable-pthreads \
     --enable-w32threads \
-    --extra-libs="-lstdc++ -lssp" \
-    --extra-ldflags="-static-libgcc" \
+    --extra-cflags="${ffmpeg_extra_cflags}" \
+    --extra-libs="${ffmpeg_extra_libs}" \
+    --extra-ldflags="${ffmpeg_extra_ldflags}" \
     --enable-amf \
     --enable-avisynth \
+    --enable-cuvid${ffmpeg_cuda_llvm} \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
@@ -119,4 +121,6 @@ package_ffmpeg-shared() {
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
+  mv /d/msys64/opt/bin/vulkan*.dll $pkgdir/opt/bin
+  mv /d/msys64/opt/bin/libplacebo*.dll $pkgdir/opt/bin
 }

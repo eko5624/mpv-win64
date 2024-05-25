@@ -11,7 +11,6 @@ mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
 pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['python-embed'] = x['Python']
-pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['mpv', 'ffmpeg', 'luajit2']:
   pkgs['%s' % p] = x[p]
 for p in [
@@ -77,7 +76,7 @@ for p in [
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2', 'python-embed', 'vapoursynth']:
+for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2', 'python-embed']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
@@ -93,16 +92,13 @@ pkgs['luajit-dev'] = x['LuaJIT']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
-pkgs['vapoursynth-shared-dev'] = x['VapourSynth'][1:]
-pkgs['vapoursynth-shared'] = x['VapourSynth'][1:]
+pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
 for t in ['ffmpeg.yml', 'mpv.yml', 'build-all.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
-      if (i:=l.find('key: mcf_')) > -1:
-        l = '%s%s\n' % (l[:i+9], mingw)
-      elif (i:=l.find('/dev/')) > -1:
+      if (i:=l.find('/dev/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
         p = l[i+5:rr]

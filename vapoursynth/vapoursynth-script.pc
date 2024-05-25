@@ -1,8 +1,0 @@
-libdir=/opt/lib
-includedir=/opt/include
-
-Name: vapoursynth-script
-Description:
-Version: _ver
-Requires: vapoursynth
-Libs: -L${libdir} -lVSScript

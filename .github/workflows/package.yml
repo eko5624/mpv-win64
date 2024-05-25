@@ -2,17 +2,40 @@ name: package
 
 on:
   workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "gcc"
+        type: choice
+        options:
+        - clang
+        - gcc
+  #schedule:
+  #- cron: '30 0 * * MON'
 
 jobs:    
   package:
     runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-    - uses: msys2/setup-msys2@v2
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
       with:
-        cache: false
-        location: D:\
-        install: base-devel
-
+        path: D:\msys64
+        key: msys2
+    - name: Cache ${{ inputs.compiler }} Toolchain
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@main
@@ -61,7 +84,6 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240314-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/vapoursynth-shared-67-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.38.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
