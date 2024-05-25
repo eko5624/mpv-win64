@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       compiler:
-        description: "Compiler".
+        description: "Compiler"
         required: false
         default: "gcc"
         type: choice
