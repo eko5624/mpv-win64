@@ -45,7 +45,6 @@ source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 package_ffmpeg-shared-dev() {
-  export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   eval "${att_args}"
   ./configure \
@@ -117,6 +116,7 @@ package_ffmpeg-shared-dev() {
 }
 
 package_ffmpeg-shared() {
+  export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
