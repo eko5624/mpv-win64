@@ -11,8 +11,8 @@ on:
         default: "gcc"
         type: choice
         options:
-        - clang
         - gcc
+        - clang
   #schedule:
   #- cron: '30 0 * * MON'
     

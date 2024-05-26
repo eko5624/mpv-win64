@@ -11,8 +11,8 @@ on:
         default: "clang"
         type: choice
         options:
-        - clang
         - gcc
+        - clang
 
 jobs:    
   package:
