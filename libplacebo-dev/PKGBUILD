@@ -15,7 +15,7 @@ build() {
   meson setup build \
     --prefix=/opt \
     --buildtype=release \
-    --default-library=static \
+    --default-library=shared \
     --libdir='/opt/lib' \
     -Ddemos=false \
     -Dvulkan-registry="/opt/share/vulkan/registry/vk.xml"
@@ -27,4 +27,5 @@ package() {
   DESTDIR=$pkgdir meson install -C build
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
+  strip $pkgdir/opt/bin/libplacebo*.dll
 }
