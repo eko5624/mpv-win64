@@ -1,4 +1,4 @@
-pkgname=(ffmpeg-shared-dev ffmpeg-shared)
+pkgname=(ffmpeg-shared ffmpeg-shared-dev)
 pkgver=7.0
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
@@ -44,7 +44,8 @@ license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
-package_ffmpeg-shared-dev() {
+package_ffmpeg-shared() {
+  export PKGEXT='.pkg.tar.xz'
   cd $srcdir/FFmpeg
   eval "${att_args}"
   ./configure \
@@ -112,15 +113,14 @@ package_ffmpeg-shared-dev() {
     --disable-encoder=opus \
     --disable-encoder=vorbis
   make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
-}
-
-package_ffmpeg-shared() {
-  export PKGEXT='.pkg.tar.xz'
-  cd $srcdir/FFmpeg
-  make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
   mv /d/msys64/opt/bin/vulkan*.dll $pkgdir/opt/bin
   mv /d/msys64/opt/bin/libplacebo*.dll $pkgdir/opt/bin
+}
+
+package_ffmpeg-shared-dev() {
+  cd $srcdir/FFmpeg
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
