@@ -17,8 +17,10 @@ for p in [
   'aom',
   'avisynth',
   'brotli',
+  'bzip2',
   'dav1d',
   'davs2',
+  'expat',
   'ffnvcodec',
   'freetype2',
   'fribidi',
@@ -60,6 +62,7 @@ for p in [
   'libxvid',
   'libzimg',
   'libzvbi',
+  'lzo',
   'mbedtls',
   'mujs',
   'openssl',
@@ -73,7 +76,9 @@ for p in [
   'uavs3d',
   'vulkan',
   'xxhash',
+  'xz',
   'zlib',
+  'zstd',
   ]:
   pkgs['%s-dev' % p] = x[p]
 for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2', 'python-embed']:

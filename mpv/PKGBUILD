@@ -46,6 +46,7 @@ build() {
     -Ddvdnav=enabled \
     -Degl-angle=enabled \
     -Dvapoursynth=enabled \
+    -Dlibarchive=enabled \
     -Dc_args="-Wno-error=int-conversion"
   meson compile -C build
 }
