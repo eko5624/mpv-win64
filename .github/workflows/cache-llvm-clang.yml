@@ -1,0 +1,98 @@
+name: Cache LLVM-CLANG Toolchain
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
+
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "gcc-mcf"
+        type: choice
+        options:
+        - mingw64-clang
+        - llvm-mingw
+
+  #schedule:
+  #- cron: '05 0 * * MON'  
+ 
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+
+    - name: Cache Toolchain
+      uses: actions/cache@main
+      id: clang-ucrt
+      with:
+        path: D:\ucrt64
+        key: clang-ucrt-x86_64
+    
+    - name: Install msys2
+      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autotools git p7zip
+
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cp msys2-config/msys2.cmd /d/msys64
+        cp msys2-config/*.conf /d/msys64/etc
+        cp msys2-config/makepkg-* /d/msys64/usr/bin
+
+    - name: Install llvm-mingw Toolchain
+      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
+      run: |
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
+        7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/ucrt64
+
+    - name: Install MinGW-w64-clang Toolchain
+      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: >-
+          base-devel
+          autotools
+          git
+          yasm
+          nasm
+          p7zip
+          mingw-w64-clang-x86_64-gettext-tools
+          mingw-w64-clang-x86_64-gettext-runtime
+          mingw-w64-clang-x86_64-pkgconf
+          mingw-w64-clang-x86_64-clang
+          mingw-w64-clang-x86_64-gcc-compat
+          mingw-w64-clang-x86_64-tools-git
+          mingw-w64-clang-x86_64-meson
+          mingw-w64-clang-x86_64-cmake
+          mingw-w64-clang-x86_64-make
+
+    - name: Remove *.dll.a from MinGW-w64-CLANG Toolchain
+      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+      run: |
+        mv /d/msys64/clang64 /d/ucrt64
+        find /d/ucrt64/lib -type f \( -name "*.dll.a" \) -print0 | xargs -0 -I {} rm {}
+        find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+
+

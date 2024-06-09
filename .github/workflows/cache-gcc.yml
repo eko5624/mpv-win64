@@ -15,6 +15,7 @@ on:
         - gcc-mcf
         - gcc-win32
         - gcc-posix
+        - gcc-mingw64
   #schedule:
   #- cron: '05 0 * * MON'  
  
@@ -37,7 +38,7 @@ jobs:
         key: gcc-ucrt-x86_64
     
     - name: Install msys2
-      if: steps.msys2.outputs.cache-hit != 'true'
+      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix')
       uses: msys2/setup-msys2@v2
       with:
         cache: false
@@ -60,20 +61,47 @@ jobs:
         cp msys2-config/makepkg-* /d/msys64/usr/bin
         
     - name: Install GCC With MCF Toolchain
-      if: ${{ inputs.toolchain == 'gcc-mcf' }}
+      if: if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Install GCC With Win32 Toolchain
-      if: ${{ inputs.toolchain == 'gcc-win32' }}
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-win32-latest-ucrt-x86_64.7z
         7z x target-gcc-win32*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Install GCC With POSIX Toolchain
-      if: ${{ inputs.toolchain == 'gcc-posix' }}
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-posix-latest-ucrt-x86_64.7z
         7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
+
+    - name: Install MinGW-w64-GCC Toolchain
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: >-
+          base-devel
+          autotools
+          git
+          yasm
+          nasm
+          p7zip
+          mingw-w64-ucrt-x86_64-pkgconf
+          mingw-w64-ucrt-x86_64-gcc
+          mingw-w64-ucrt-x86_64-tools-git
+          mingw-w64-ucrt-x86_64-meson
+          mingw-w64-ucrt-x86_64-make
+          mingw-w64-ucrt-x86_64-cmake
+
+    - name: Remove *.dll.a from MinGW-w64-GCC Toolchain
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      run: |
+        mv /d/msys64/ucrt64 /d/ucrt64
+        find /d/ucrt64/lib -type f \( -name "*.dll.a" \) -print0 | xargs -0 -I {} rm {}
+        find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
 
