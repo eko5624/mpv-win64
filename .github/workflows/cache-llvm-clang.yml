@@ -88,10 +88,18 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
         7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/ucrt64
 
-    - name: Remove *.dll.a from MinGW-w64-CLANG Toolchain
+    - name: Install curl
       if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
       run: |
         mv /d/msys64/clang64 /d/ucrt64
+        curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
+        7z x curl*.zip
+        cp curl*/bin/curl-ca-bundle.crt /d/ucrt64/bin
+        cp curl*/bin/curl.exe /d/ucrt64/bin
+
+    - name: Remove *.dll.a from MinGW-w64-CLANG Toolchain
+      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+      run: |
         find /d/ucrt64/lib -type f \( -name "*.dll.a" \) -print0 | xargs -0 -I {} rm {}
         find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
 
