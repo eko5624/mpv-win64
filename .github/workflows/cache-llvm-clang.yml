@@ -9,7 +9,7 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "gcc-mcf"
+        default: "llvm-mingw"
         type: choice
         options:
         - mingw64-clang
