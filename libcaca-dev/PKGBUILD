@@ -27,7 +27,10 @@ build() {
     --prefix=/opt \
     --disable-shared \
     --enable-static \
-    --disable-doc   
+    --disable-ncurses \
+    --disable-csharp \
+    --disable-ruby \
+    --disable-doc 
   make
 }
 
