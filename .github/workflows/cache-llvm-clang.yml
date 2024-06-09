@@ -44,27 +44,6 @@ jobs:
         location: D:\
         install: base-devel autotools git p7zip
 
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    
-    - name: Checkout
-      uses: actions/checkout@main
-
-    - name: Config msys2
-      if: steps.msys2.outputs.cache-hit != 'true'
-      shell: bash
-      run: |
-        cp msys2-config/msys2.cmd /d/msys64
-        cp msys2-config/*.conf /d/msys64/etc
-        cp msys2-config/makepkg-* /d/msys64/usr/bin
-
-    - name: Install llvm-mingw Toolchain
-      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
-      run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
-        7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/ucrt64
-
     - name: Install MinGW-w64-clang Toolchain
       if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
       uses: msys2/setup-msys2@v2
@@ -87,6 +66,27 @@ jobs:
           mingw-w64-clang-x86_64-meson
           mingw-w64-clang-x86_64-cmake
           mingw-w64-clang-x86_64-make
+
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: steps.msys2.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cp msys2-config/msys2.cmd /d/msys64
+        cp msys2-config/*.conf /d/msys64/etc
+        cp msys2-config/makepkg-* /d/msys64/usr/bin
+
+    - name: Install llvm-mingw Toolchain
+      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
+      run: |
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-llvm-mingw-latest-ucrt-x86_64.7z
+        7z x target-llvm-mingw*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Remove *.dll.a from MinGW-w64-CLANG Toolchain
       if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')

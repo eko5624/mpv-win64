@@ -45,6 +45,26 @@ jobs:
         location: D:\
         install: base-devel autotools git p7zip
 
+    - name: Install MinGW-w64-GCC Toolchain
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: >-
+          base-devel
+          autotools
+          git
+          yasm
+          nasm
+          p7zip
+          mingw-w64-ucrt-x86_64-pkgconf
+          mingw-w64-ucrt-x86_64-gcc
+          mingw-w64-ucrt-x86_64-tools-git
+          mingw-w64-ucrt-x86_64-meson
+          mingw-w64-ucrt-x86_64-make
+          mingw-w64-ucrt-x86_64-cmake
+          
     - name: Prepare
       run: git config --global core.autocrlf input
       shell: bash
@@ -77,26 +97,6 @@ jobs:
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-posix-latest-ucrt-x86_64.7z
         7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
-
-    - name: Install MinGW-w64-GCC Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
-      uses: msys2/setup-msys2@v2
-      with:
-        cache: false
-        location: D:\
-        install: >-
-          base-devel
-          autotools
-          git
-          yasm
-          nasm
-          p7zip
-          mingw-w64-ucrt-x86_64-pkgconf
-          mingw-w64-ucrt-x86_64-gcc
-          mingw-w64-ucrt-x86_64-tools-git
-          mingw-w64-ucrt-x86_64-meson
-          mingw-w64-ucrt-x86_64-make
-          mingw-w64-ucrt-x86_64-cmake
 
     - name: Remove *.dll.a from MinGW-w64-GCC Toolchain
       if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
