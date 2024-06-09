@@ -1,0 +1,33 @@
+pkgname=expat-dev
+pkgver=2.6.2
+pkgrel=1
+pkgdesc='An XML parser library'
+arch=('x86_64')
+url="https://libexpat.github.io/"
+license=('spdx:MIT')
+source=("git+https://github.com/libexpat/libexpat.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libexpat
+  rm -rf out && mkdir out && cd out
+  cmake ../expat \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DEXPAT_BUILD_DOCS=OFF \
+    -DEXPAT_BUILD_EXAMPLES=OFF \
+    -DEXPAT_BUILD_FUZZERS=OFF \
+    -DEXPAT_BUILD_TESTS=OFF \
+    -DEXPAT_BUILD_TOOLS=OFF \
+    -DEXPAT_BUILD_PKGCONFIG=ON
+  cmake --build .
+}  
+  
+package() {
+  cd $srcdir/libexpat/out
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+}  

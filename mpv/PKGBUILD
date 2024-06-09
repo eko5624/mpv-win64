@@ -46,7 +46,9 @@ build() {
     -Dsdl2=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
-    -Degl-angle=enabled
+    -Degl-angle=enabled \
+    -Dlibarchive=enabled
+    
   meson compile -C build
   
   # get latest commit sha
@@ -75,5 +77,4 @@ package_mpv-git() {
   mv mpv.com $pkgdir/opt/mpv
   strip -s $pkgdir/opt/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir/opt/mpv
-  #mv /d/msys64/opt/bin/vulkan-1.dll $pkgdir/opt/mpv
 }

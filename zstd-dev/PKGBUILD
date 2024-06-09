@@ -10,12 +10,11 @@ md5sums=('SKIP')
 
 build() {  
   cd $srcdir/zstd
-  rm -rf build && mkdir build && cd build
-  cmake .. \
+  rm -rf out && mkdir out && cd out
+  cmake ../build/cmake \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_FIND_ROOT_PATH=/opt \
     -DBUILD_SHARED_LIBS=OFF \
     -DZSTD_BUILD_CONTRIB=OFF \
     -DZSTD_BUILD_TESTS=OFF \
@@ -29,7 +28,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/zstd/build
+  cd $srcdir/zstd/out
   DESTDIR=$pkgdir cmake --install .
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64

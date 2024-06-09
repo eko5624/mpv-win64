@@ -1,0 +1,31 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=xz-dev
+pkgver=5.6.2
+pkgrel=1
+pkgdesc='Library and command line tools for XZ and LZMA compressed files'
+arch=('x86_64')
+url="https://tukaani.org/xz"
+license=('BSD')
+source=("git+https://github.com/tukaani-project/xz.git#tag=v$pkgver")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/xz
+  ./autogen.sh --no-po4a
+  ./configure \
+    --prefix=/opt \
+    --disable-shared \
+    --disable-xz \
+    --disable-xzdec \
+    --disable-rpath \
+    --disable-lzma-links \
+    --disable-lzmadec \
+    --disable-lzmainfo \
+    --disable-doc
+  make
+}
+
+package() {
+  cd $srcdir/xz
+  make DESTDIR=$pkgdir install
+}

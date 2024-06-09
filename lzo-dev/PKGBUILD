@@ -1,0 +1,22 @@
+pkgname=lzo-dev
+pkgver=2.10
+pkgrel=1
+pkgdesc='Portable lossless data compression library'
+arch=('x86_64')
+url="https://www.oberhumer.com/opensource/lzo"
+license=("GPL")
+source=("https://fossies.org/linux/misc/lzo-$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/lzo-$pkgver
+  ./configure \
+    --prefix=/opt \
+    --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/lzo-$pkgver
+  make DESTDIR=$pkgdir install
+}

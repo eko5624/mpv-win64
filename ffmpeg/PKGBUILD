@@ -6,6 +6,7 @@ arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("amf-headers-dev"
              "aom-dev"
+             "bzip2-dev"
              "avisynth-dev"
              "dav1d-dev"
              "davs2-dev"
