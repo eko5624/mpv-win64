@@ -61,7 +61,7 @@ jobs:
         cp msys2-config/makepkg-* /d/msys64/usr/bin
         
     - name: Install GCC With MCF Toolchain
-      if: if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf')
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
