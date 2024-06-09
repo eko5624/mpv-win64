@@ -103,10 +103,37 @@ jobs:
       with:
         name: ffmpeg-logs
         path: logs.7z
-    - name: Release
-      shell: bash
-      run: |
-        ./release-latest.sh ffmpeg-git ffmpeg
-        ./release-dev.sh ffmpeg ffmpeg
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.BOT }}
+        tag: latest
+        assets: ffmpeg-git*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.BOT }}
+        tag: dev
+        assets: ffmpeg-dev*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@master
+      with:
+        repo_token: ${{ secrets.BOT }}
+        file: ffmpeg/*pkg*.xz
+        tag: latest
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@master
+      with:
+        repo_token: ${{ secrets.BOT }}
+        file: ffmpeg/*.zst
+        tag: dev
+        overwrite: true
+        file_glob: true
 
 
