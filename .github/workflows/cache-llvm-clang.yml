@@ -1,4 +1,4 @@
-name: Cache LLVM Toolchain
+name: Cache clang Toolchain
 defaults:
   run:
     shell: D:\msys64\msys2.cmd {0}
