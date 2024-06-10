@@ -10,6 +10,7 @@ source=("git+https://github.com/tukaani-project/xz.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
+  eval "${att_args}"
   cd $srcdir/xz
   ./autogen.sh --no-po4a
   ./configure \
