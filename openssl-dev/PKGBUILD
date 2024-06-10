@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://www.openssl.org/"
 makedepends=('zlib-dev' 'zstd-dev')
 license=('spdx:Apache-2.0')
-source=("git+https://github.com/openssl/openssl.git#tag=openssl-$pkgdir")
+source=("git+https://github.com/openssl/openssl.git#tag=openssl-$pkgver")
 md5sums=('SKIP')
 
 build() {
