@@ -11,36 +11,28 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libarchive
-  rm -rf out && mkdir out && cd out
-  cmake .. \
-    -G "Ninja" \
-    -DCMAKE_INSTALL_PREFIX=/opt \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DENABLE_LZMA=ON  \
-    -DENABLE_ZLIB=ON \
-    -DENABLE_ZSTD=ON \
-    -DENABLE_OPENSSL=ON \
-    -DENABLE_BZip2=ON \
-    -DENABLE_ICONV=ON \
-    -DENABLE_LIBXML2=ON \
-    -DENABLE_EXPAT=ON \
-    -DENABLE_LZO=ON \
-    -DENABLE_LZ4=OFF \
-    -DENABLE_LIBB2=OFF \
-    -DENABLE_CPIO=OFF \
-    -DENABLE_CNG=OFF \
-    -DENABLE_CAT=OFF \
-    -DENABLE_TAR=OFF \
-    -DENABLE_WERROR=OFF \
-    -DBUILD_TESTING=OFF \
-    -DENABLE_TEST=OFF
-
-  cmake --build .
+  autoreconf -fiv 
+  ./configure \
+    --prefix=/opt \
+    --disable-bsdtar \
+    --disable-bsdcat \
+    --disable-bsdcpio \
+    --without-cng \
+    --without-libb2 \
+    --without-lz4 \
+    --with-bz2lib \
+    --with-expat \
+    --with-iconv \
+    --with-lzma \
+    --with-lzo2 \
+    --with-openssl \
+    --with-xml2 \
+    --with-zlib \
+    --with-zstd
+  make
 }
   
 package() {
-  cd $srcdir/libarchive/out
-  DESTDIR=$pkgdir cmake --install .
-  mv $pkgdir/msys64/* $pkgdir
-}  
+  cd $srcdir/libarchive
+  make DESTDIR=$pkgdir install
+}
