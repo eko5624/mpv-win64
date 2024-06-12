@@ -46,6 +46,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
+  'libarchive',
   'libaribcaption',    
   'libass',
   'libbluray',
