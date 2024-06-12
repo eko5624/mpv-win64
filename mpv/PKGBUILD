@@ -32,12 +32,14 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
+  export LDFLAGS+=' -lz -lbz2 -llzma -llzo2 -lzstd'
   cd $srcdir/mpv
   eval "${mpv_cflags}"
   eval "${mpv_ldflags}"
   meson setup build \
     --buildtype=release \
     -Dprefix=/opt \
+    -Dlibmpv=true \
     -Dlua=enabled \
     -Dopenal=enabled \
     -Drubberband=enabled \
@@ -46,8 +48,7 @@ build() {
     -Ddvdnav=enabled \
     -Degl-angle=enabled \
     -Dvapoursynth=enabled \
-    -Dlibarchive=enabled \
-    -Dc_args="-Wno-error=int-conversion"
+    -Dlibarchive=enabled
   meson compile -C build
 }
 
