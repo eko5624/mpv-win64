@@ -10,6 +10,7 @@ source=("git+https://github.com/haasn/libplacebo.git")
 md5sums=('SKIP')
 
 build() {
+  LDFLAGS+=' -static-libgcc'
   cd $srcdir/libplacebo
   git submodule update --init --recursive  
   meson setup build \
