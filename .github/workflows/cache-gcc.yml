@@ -99,7 +99,7 @@ jobs:
         7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Install curl
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix')
+      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
       run: |
         mv /d/msys64/ucrt64 /d/ucrt64
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
