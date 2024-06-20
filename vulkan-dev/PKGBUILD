@@ -21,7 +21,8 @@ build() {
   cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Release \
+    -DVULKAN_HEADERS_ENABLE_MODULE=OFF
   cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
