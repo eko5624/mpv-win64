@@ -80,7 +80,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.283.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.0-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; makepkg-$COMPILER -sLf
     - name: Delete
