@@ -87,7 +87,6 @@ package_ffmpeg-shared-dev() {
     --enable-libopenmpt \
     --enable-libopus \
     --enable-libplacebo \
-    --enable-librav1e \
     --enable-libsvtav1 \
     --enable-libshaderc \
     --enable-libsoxr \
