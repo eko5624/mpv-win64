@@ -275,7 +275,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst                       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.13.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-shared-dev-2.1_20240314-1-x86_64.pkg.tar.zst         
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-shared-dev-2.1_20240626-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lzo-dev-2.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.3.1-1-x86_64.pkg.tar.zst
@@ -355,7 +355,7 @@ jobs:
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240314-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240626-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.38.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
