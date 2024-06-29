@@ -24,6 +24,8 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 - [User Scripts from Official](https://github.com/mpv-player/mpv/wiki/User-Scripts)
 - [Default MPV Setting](https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf)
 - [Default MPV Key Binding](https://github.com/mpv-player/mpv/blob/master/etc/input.conf)
+### MPV menu plugin
+- [mpv-menu-plugin](https://github.com/tsl0922/mpv-menu-plugin)
 ### Lua Plugin
 - [Autoload](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua)
 - [Play List Manager](https://github.com/jonniek/mpv-playlistmanager)
