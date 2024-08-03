@@ -52,7 +52,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/expat-dev-2_6_2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-shared-dev-7.0.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-shared-dev-7.0.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.15-1-x86_64.pkg.tar.zst
@@ -156,7 +156,7 @@ jobs:
           core.exportVariable('dlp_tag', String(release.data.tag_name))    
     - name: Setup Packages
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.0.2-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20240626-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.38.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
