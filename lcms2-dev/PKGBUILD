@@ -6,7 +6,7 @@ arch=('x86_64')
 url="http://www.littlecms.com/"
 makedepends=('zlib-dev' 'libjpeg-dev')
 license=('MIT')
-source=("git+https://github.com/mm2/Little-CMS.git#commit=1c9021be51ad9fbeabdd4f55d9453c394d8d52ae")
+source=("git+https://github.com/mm2/Little-CMS.git")
 md5sums=('SKIP')
 
 build() {
