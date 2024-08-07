@@ -34,6 +34,7 @@ build() {
     -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
     -DBUILD_STATIC_LOADER=ON \
+    -DUSE_GAS=ON \
     -DBUILD_TESTS=OFF \
     -DUSE_MASM=OFF \
     -DENABLE_WERROR=OFF 
