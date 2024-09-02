@@ -33,6 +33,7 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
+  mv /opt/include/vapoursynth/*.h /opt/include
   eval "${mpv_cflags}"
   eval "${mpv_ldflags}"
   cd $srcdir/mpv
