@@ -1,5 +1,5 @@
 libdir=/opt/lib
-includedir=/opt/include
+includedir=/opt/include/vapoursynth
 
 Name: vapoursynth
 Description:

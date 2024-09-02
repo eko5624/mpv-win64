@@ -1,0 +1,45 @@
+name: vapoursynth
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
+on:
+  workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "gcc"
+        type: choice
+        options:
+        - gcc
+        - clang
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  vapoursynth:
+    runs-on: windows-2022
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      GH_TOKEN: ${{ secrets.BOT }}
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main     
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache ${{ inputs.compiler }} Toolchain
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: ${{ inputs.compiler }}-ucrt-x86_64
+    - name: Build
+      run: cd vapoursynth; makepkg-$COMPILER -sLf
+    - name: Release
+      shell: bash
+      run: ./release-dev.sh vapoursynth-dev vapoursynth
