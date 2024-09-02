@@ -7,4 +7,5 @@ Version: _ver
 
 Requires.private: zimg
 Libs: -L${libdir} @vapoursynth_pkgconfig_libs@
-Cflags: -I${includedir} -lzimg
+Libs.private: -L${libdir} -lzimg
+Cflags: -I${includedir}
