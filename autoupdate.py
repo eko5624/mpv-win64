@@ -6,18 +6,18 @@ resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.js
 x = json.loads(resp.read().decode('utf-8'))
 x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
 
-mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
-
+mingw = x['Mingw-w64-custom'][:x['Mingw-w64-custom'].find('ucrt')+4]
 for t in ['build-toolchain-lhmouse.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
         l = '%s%s\n' % (l[:i+9], mingw)
       elif (i:=l.find('mingw-w64-gcc-mcf_')) > -1:
-        l = '%s%s.7z\n' % (l[:i+18], x['Mingw-w64'])
+        l = '%s%s.7z\n' % (l[:i+18], x['Mingw-w64-custom'])
       f.write(l)
     
-pkgs = {} 
+pkgs = {}
+pkgs['mcfgthread'] = mingw[:8]
 pkgs['libsixel'] = x['libsixel']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'spirv-cross']:
   pkgs['%s-dev' % p] = x[p]
@@ -30,7 +30,6 @@ for p in pkgs:
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
-pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
   'amf',
