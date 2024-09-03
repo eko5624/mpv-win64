@@ -19,7 +19,7 @@ package() {
   gendef VapourSynth.dll
   eval "${vapoursynth_generate_lib}" 
   mkdir -p $pkgdir/opt/lib/pkgconfig
-  mkdir -p $pkgdir/opt/include
+  mkdir -p $pkgdir/opt/include/vapoursynth
   mv sdk/include/vapoursynth/VapourSynth.h $pkgdir/opt/include/vapoursynth
   mv sdk/include/vapoursynth/VapourSynth4.h $pkgdir/opt/include/vapoursynth
   mv sdk/include/vapoursynth/VSScript.h $pkgdir/opt/include/vapoursynth
