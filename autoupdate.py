@@ -17,7 +17,6 @@ for t in ['build-toolchain-lhmouse.yml']:
       f.write(l)
     
 pkgs = {}
-pkgs['mcfgthread'] = mingw[:8]
 pkgs['libsixel'] = x['libsixel']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'spirv-cross']:
   pkgs['%s-dev' % p] = x[p]
@@ -27,6 +26,7 @@ for p in pkgs:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)        
+pkgs['mcfgthread'] = mingw[:8]
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
