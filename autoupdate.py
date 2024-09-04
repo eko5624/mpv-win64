@@ -6,7 +6,7 @@ resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.js
 x = json.loads(resp.read().decode('utf-8'))
 x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
 
-mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
+mingw = x['Mingw-w64-custom'][:x['Mingw-w64-custom'].find('ucrt')+4]
    
 pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
