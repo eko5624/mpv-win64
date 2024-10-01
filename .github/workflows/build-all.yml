@@ -1856,7 +1856,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/expat-dev-2_6_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-7.0.2-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-7.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
@@ -2061,7 +2061,7 @@ jobs:
     - name: Setup Packages
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-7.0.2-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-7.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.39.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.39.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
