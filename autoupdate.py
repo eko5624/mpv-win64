@@ -76,6 +76,7 @@ for p in [
   'svtav1',
   'uavs3d',
   'vulkan',
+  'vvdec',
   'xxhash',
   'xz',
   'zlib',
