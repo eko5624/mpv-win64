@@ -102,7 +102,6 @@ package_ffmpeg-dev() {
     --enable-libuavs3d \
     --enable-libvorbis \
     --enable-libvpx \
-    --enable-libvvdec \
     --enable-libwebp \
     --enable-libxml2 \
     --enable-libxvid \
