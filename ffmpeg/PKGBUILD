@@ -43,7 +43,7 @@ makedepends=("amf-headers-dev"
              "vapoursynth-dev"
              "vvdec-dev")
 license=('LGPL')
-source=("git+https://github.com/FFmpeg/FFmpeg#tag=n7.0.1")
+source=("git+https://github.com/FFmpeg/FFmpeg#tag=n7.1")
 md5sums=('SKIP')
 
 package_ffmpeg-dev() {
@@ -119,7 +119,8 @@ package_ffmpeg-dev() {
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
-    --disable-encoder=vorbis
+    --disable-encoder=vorbis \
+    --disable-inline-asm
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir/opt/bin $pkgdir/opt/share $pkgdir/opt/lib/*.def
 }
