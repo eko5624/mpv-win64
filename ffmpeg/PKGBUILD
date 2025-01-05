@@ -43,7 +43,7 @@ makedepends=("amf-headers-dev"
              "vapoursynth-dev"
              "vvdec-dev")
 license=('LGPL')
-source=("git+https://github.com/FFmpeg/FFmpeg#tag=n7.1")
+source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
 package_ffmpeg-dev() {
