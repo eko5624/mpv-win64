@@ -91,7 +91,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-$COMPILER -sLf
+        cd ffmpeg; makepkg-$COMPILER
     - name: Collecting logs
       if: always()
       run: |
