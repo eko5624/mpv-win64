@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=ffnvcodec-dev
-pkgver=12.2.72.0
+pkgver=13.0.19.0
 pkgrel=1
 pkgdesc='FFmpeg version of headers required to interface with Nvidias codec APIs'
 arch=('x86_64')
