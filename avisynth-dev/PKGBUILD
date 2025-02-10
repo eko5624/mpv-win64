@@ -5,7 +5,7 @@ pkgdesc='A powerful tool for video post-production'
 arch=('x86_64')
 url="https://github.com/AviSynth/AviSynthPlus"
 license=('custom')
-source=("git+https://github.com/AviSynth/AviSynthPlus.git")
+source=("git+https://github.com/AviSynth/AviSynthPlus.git#commit=21fdc997f9724b994896ba5520ddf64d677976b3")
 md5sums=('SKIP')
 
 build() {
