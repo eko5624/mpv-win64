@@ -2006,8 +2006,14 @@ jobs:
       with:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-ucrt-x86_64
+    - name: Setup Python
+      uses: actions/setup-python@main
+      with:
+        python-version: '3.12'
     - name: Build
-      run: cd mujs; makepkg-$COMPILER
+      run: |
+        export pypath=$(cygpath -u $pythonLocation)
+        cd mujs; makepkg-$COMPILER
     - name: Release
       shell: bash
       run: ./release-dev.sh mujs-dev mujs
