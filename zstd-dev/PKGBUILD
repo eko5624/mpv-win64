@@ -1,5 +1,5 @@
 pkgname=zstd-dev
-pkgver=1.5.6
+pkgver=1.5.7
 pkgrel=1
 pkgdesc='Zstandard - Fast real-time compression algorithm'
 arch=('x86_64')
