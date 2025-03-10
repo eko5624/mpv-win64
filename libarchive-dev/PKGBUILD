@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://www.libarchive.org/"
 makedepends=('bzip2-dev' 'expat-dev' 'libxml2-dev' 'lzo-dev' 'openssl-dev' 'xz-dev' 'zlib-dev' 'zstd-dev')
 license=("BSD")
-source=("git+https://github.com/libarchive/libarchive.git")
+source=("git+https://github.com/libarchive/libarchive.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
