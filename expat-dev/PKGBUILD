@@ -1,5 +1,5 @@
 pkgname=expat-dev
-pkgver=2_6_4
+pkgver=2_7_0
 pkgrel=1
 pkgdesc='An XML parser library'
 arch=('x86_64')
