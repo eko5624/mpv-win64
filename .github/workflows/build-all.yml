@@ -366,7 +366,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'        
+        python-version: '3.13'        
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja  
@@ -487,7 +487,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja
@@ -526,7 +526,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja     
@@ -563,7 +563,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja
@@ -632,7 +632,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja
@@ -743,6 +743,10 @@ jobs:
       with:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-ucrt-x86_64
+    - name: Setup Python
+      uses: actions/setup-python@main
+      with:
+        python-version: '3.13'
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
@@ -1213,7 +1217,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install ninja Jinja2 meson
@@ -1344,7 +1348,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja                
@@ -1558,7 +1562,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install ninja meson
@@ -1904,7 +1908,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja 
@@ -2011,7 +2015,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
@@ -2173,7 +2177,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@main
       with:
-        python-version: '3.12'
+        python-version: '3.13'
     - name: Install python dependencies
       shell: pwsh
       run: pip install meson ninja        
