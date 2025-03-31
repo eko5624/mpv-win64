@@ -12,12 +12,27 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libass
-  ./autogen.sh
-  ./configure prefix=/opt --disable-shared
-  make
+  meson setup build \
+    --prefix=/opt \
+    --libdir=/opt/lib \
+    --buildtype=release \
+    --default-library=static \
+    -Dfontconfig=disabled \
+    -Ddirectwrite=enabled \
+    -Dasm=enabled \
+    -Dlibunibreak=enabled \
+    -Dtest=disabled \
+    -Dcompare=disabled \
+    -Dprofile=disabled \
+    -Dfuzz=disabled \
+    -Dcheckasm=disabled
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/libass
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir meson install -C build
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
 }
