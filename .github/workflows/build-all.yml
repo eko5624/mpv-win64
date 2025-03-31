@@ -571,7 +571,8 @@ jobs:
       run: |
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.47-1-x86_64.pkg.tar.zst     
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.47-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.4-1-x86_64.pkg.tar.zst    
         pacman -U *.zst --noconfirm         
         cd harfbuzz-dev; makepkg-$COMPILER -p PKGBUILD-new
     - name: Release
@@ -1796,7 +1797,8 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.47-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.47-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.4-1-x86_64.pkg.tar.zst        
         pacman -Sy gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
         cd libzvbi-dev; makepkg-$COMPILER

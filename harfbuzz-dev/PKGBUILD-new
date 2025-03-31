@@ -15,6 +15,9 @@ build() {
     --prefix=/opt \
     --buildtype=release \
     --default-library=static \
+    -Dicu=disabled \
+    -Dglib=disabled \
+    -Dgobject=disabled \
     -Dtests=disabled \
     -Ddocs=disabled \
     -Dbenchmark=disabled
