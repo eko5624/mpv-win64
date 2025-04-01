@@ -10,6 +10,11 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/vvdec
+  # cast memset with void * to silence nontrivial-memcall warning
+  curl -OL https://raw.githubusercontent.com/m-ab-s/mabs-patches/refs/heads/master/vvdec/0001-TypeDef-cast-mem-cpy-set-this-.-with-void-to-silence.patch
+  curl -OL https://raw.githubusercontent.com/m-ab-s/mabs-patches/refs/heads/master/vvdec/0002-CodingStructure-cast-memset-with-void-to-silence-non.patch
+  git apply 0001-TypeDef-cast-mem-cpy-set-this-.-with-void-to-silence.patch
+  git apply 0002-CodingStructure-cast-memset-with-void-to-silence-non.patch
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \

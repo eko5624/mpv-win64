@@ -52,13 +52,8 @@ package_ffmpeg-dev() {
   curl -OL https://patch-diff.githubusercontent.com/raw/eko5624/FFmpeg/pull/3.patch
   # enable vvdec
   curl -OL https://raw.githubusercontent.com/wiki/fraunhoferhhi/vvdec/data/patch/v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
-  # cast memset with void * to silence nontrivial-memcall warning
-  curl -OL https://raw.githubusercontent.com/m-ab-s/mabs-patches/refs/heads/master/vvdec/0001-TypeDef-cast-mem-cpy-set-this-.-with-void-to-silence.patch
-  curl -OL https://raw.githubusercontent.com/m-ab-s/mabs-patches/refs/heads/master/vvdec/0002-CodingStructure-cast-memset-with-void-to-silence-non.patch
   git apply 3.patch
   git apply v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
-  git apply 0001-TypeDef-cast-mem-cpy-set-this-.-with-void-to-silence.patch
-  git apply 0002-CodingStructure-cast-memset-with-void-to-silence-non.patch
   eval "${att_args}"
   ./configure \
     --prefix=/opt \
