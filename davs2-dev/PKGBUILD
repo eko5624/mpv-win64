@@ -10,7 +10,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/davs2/build/linux
-  ./configure --prefix=/opt --disable-cli
+  ./configure --prefix=/opt --disable-cli --bit-depth=10
   make
 }
 
