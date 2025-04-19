@@ -13,7 +13,7 @@ package() {
   cd $srcdir
   set -x
   #cp ../*.def ./
-  7z x wheel/*cp312*
+  7z x wheel/*cp313*
   find . -type f -name "vapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
   gendef VSScript.dll
   gendef VapourSynth.dll
