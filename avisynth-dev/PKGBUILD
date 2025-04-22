@@ -1,5 +1,5 @@
 pkgname=avisynth-dev
-pkgver=3.7.4
+pkgver=3.7.5
 pkgrel=1
 pkgdesc='A powerful tool for video post-production'
 arch=('x86_64')
