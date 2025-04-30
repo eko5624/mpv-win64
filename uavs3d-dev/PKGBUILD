@@ -16,7 +16,8 @@ build() {
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
-    -DCOMPILE_10BIT=ON
+    -DCOMPILE_10BIT=ON \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
   cmake --build .
 }
 
