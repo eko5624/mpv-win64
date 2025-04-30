@@ -11,12 +11,11 @@ md5sums=('SKIP' 'SKIP')
 
 build() {
   eval "${att_args}"
+  CFLAGS+=" -std=gnu99"
   cd $srcdir/xvidcore
-  set -x
   patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
   cd build/generic
-  sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
-  ./configure --prefix=/opt 
+  ./configure --prefix=/opt --disable-assembly
   make 
 }
 
