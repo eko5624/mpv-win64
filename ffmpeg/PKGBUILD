@@ -66,7 +66,6 @@ package_ffmpeg-shared-dev() {
     --enable-version3 \
     --enable-nonfree \
     --enable-pic \
-    --enable-postproc \
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
