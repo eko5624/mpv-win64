@@ -67,7 +67,6 @@ package_ffmpeg-dev() {
     --enable-version3 \
     --enable-nonfree \
     --enable-pic \
-    --enable-postproc \
     --enable-static \
     --disable-ffplay \
     --disable-ffprobe \
