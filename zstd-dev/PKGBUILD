@@ -10,7 +10,7 @@ md5sums=('SKIP')
 
 build() {  
   cd $srcdir/zstd
-  meson setup build --prefix=/opt --buildtype=release --default-library=static \
+  meson setup work build/meson --prefix=/opt --buildtype=release --default-library=static \
     --libdir=/opt/lib \
     -Dlegacy_level=0 \
     -Ddebug_level=0 \
@@ -18,12 +18,12 @@ build() {
     -Dzlib=disabled \
     -Dlzma=disabled \
     -Dlz4=disabled
-  meson compile -C build      
+  meson compile -C work      
 }
 
 package() {
   cd $srcdir/zstd
-  DESTDIR=$pkgdir meson install -C build
+  DESTDIR=$pkgdir meson install -C work
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }
