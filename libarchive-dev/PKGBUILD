@@ -10,6 +10,7 @@ source=("git+https://github.com/libarchive/libarchive.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
+  CFLAGS+=" -Wno-error=incompatible-pointer-types"
   cd $srcdir/libarchive
   autoreconf -fiv 
   ./configure \
