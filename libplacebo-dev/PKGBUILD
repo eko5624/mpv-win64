@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
 makedepends=('libdovi-dev' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev' 'xxhash-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo.git")
+source=("git+https://github.com/haasn/libplacebo.git#commit=3188549fba13bbdf3a5a98de2a38c2e71f04e21e")
 md5sums=('SKIP')
 
 build() {
