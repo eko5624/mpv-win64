@@ -1,4 +1,4 @@
-name: Cache clang Toolchain
+name: Cache Clang Toolchain
 defaults:
   run:
     shell: D:\msys64\msys2.cmd {0}
