@@ -1,5 +1,5 @@
 pkgname=aom-dev
-pkgver=64
+pkgver=3.12.1
 pkgrel=1
 pkgdesc='AV1 codec library'
 arch=('x86_64')
