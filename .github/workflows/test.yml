@@ -1,4 +1,4 @@
-name: davs2
+name: openal-soft
 defaults:
   run:
     shell: D:\msys64\msys2.cmd {0}
@@ -17,7 +17,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  davs2:
+  openal-soft:
     runs-on: windows-2022
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -39,8 +39,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-ucrt-x86_64
     - name: Build
-      run: |
-        cd davs2-dev; makepkg-$COMPILER
+      run: cd openal-soft-dev; makepkg-$COMPILER  
     - name: Release
       shell: bash
-      run: ./release-dev.sh davs2-dev davs2-dev
+      run: ./release-dev.sh openal-soft-dev openal-soft-dev
