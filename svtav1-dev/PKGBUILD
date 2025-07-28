@@ -1,5 +1,5 @@
 pkgname=svtav1-dev
-pkgver=3.0.2
+pkgver=3.1.0
 pkgrel=1
 pkgdesc='Scalable Video Technology AV1 encoder and decoder'
 arch=('x86_64')
