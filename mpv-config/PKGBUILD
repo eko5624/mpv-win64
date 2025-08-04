@@ -15,5 +15,4 @@ package() {
   cd $srcdir/mpv-config
   mv portable_config $pkgdir/opt/mpv
   mv installer $pkgdir/opt/mpv
-  mv d3dcompiler_43.dll $pkgdir/opt/mpv
 }
