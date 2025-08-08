@@ -88,7 +88,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; makepkg-$COMPILER
