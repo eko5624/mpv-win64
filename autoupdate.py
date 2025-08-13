@@ -105,16 +105,16 @@ pkgs['vulkan-shared-dev'] = x['vulkan']
 for t in ['ffmpeg.yml', 'mpv.yml', 'build-all.yml', 'package.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
-      if (i:=l.find('/dev/')) > -1:
+      if (i:=l.find('/dev-$COMPILER-$BIT/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+5:rr]
+        p = l[i+20:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+5], p, pkgs[p], l[r:])
-      elif (i:=l.find('/latest/')) > -1:
+          l = '%s%s-%s%s' % (l[:i+20], p, pkgs[p], l[r:])
+      elif (i:=l.find('/latest-$COMPILER-$BIT/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+8:rr]
+        p = l[i+23:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+8], p, pkgs[p], l[r:])
+          l = '%s%s-%s%s' % (l[:i+23], p, pkgs[p], l[r:])
       f.write(l)

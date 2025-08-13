@@ -6,7 +6,7 @@ CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 # Delete assets
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest \
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest-$COMPILER-$BIT \
 | jq -r '.assets[] | select(.name | startswith("'"$1"'")) | .id' | tr -d '\r'))
 
 for id in "${asset_id[@]}"; do
@@ -19,7 +19,7 @@ done
 # Release assets  
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest | jq -r '.id')
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/latest-$COMPILER-$BIT | jq -r '.id')
   
 for f in $2/*.xz; do 
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \

@@ -9,17 +9,29 @@ on:
         default: "gcc"
         type: choice
         options:
-        - gcc
-        - clang
+        - gcc-mcf
+        - gcc-win32
+        - gcc-mingw64
+        - clang-mingw64
+        - clang-llvm-mingw
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
   #schedule:
   #- cron: '30 0 * * MON'
 
 jobs:    
   package:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
-      GH_TOKEN: ${{ github.token }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -31,11 +43,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Get mpv latest commit sha
       id: get_sha
       uses: actions/github-script@main
@@ -48,58 +60,32 @@ jobs:
           })
           core.exportVariable('sha', String(commit.data.sha)) 
     - name: Add MPV_SHORT_SHA env 
-      run: echo "MPV_SHORT_SHA=`echo ${{ env.sha }}| cut -c1-7`" >> $GITHUB_ENV         
-      shell: bash 
-    
-    - name: Get mpv latest release
-      id: version    
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const release = await github.rest.repos.getLatestRelease({
-            owner: 'mpv-player',
-            repo: 'mpv'
-          })
-          core.exportVariable('version', String(release.data.tag_name)) 
-    - name: Add MPV_VERSION env 
-      run: echo "MPV_VERSION=`echo ${{ env.version }}| cut -c2-`" >> $GITHUB_ENV 
-      shell: bash
-
+      run: echo "MPV_SHORT_SHA=`echo ${{ env.sha }}| cut -c1-7`" >> $GITHUB_ENV
     - name: Get yt-dlp latest release
       id: dlp_tag    
-      uses: actions/github-script@v6
+      uses: actions/github-script@main
       with:
         script: |
           const release = await github.rest.repos.getLatestRelease({
             owner: 'yt-dlp',
             repo: 'yt-dlp'
           })
-          core.exportVariable('dlp_tag', String(release.data.tag_name)) 
-    - name: Get current timestamp      
-      id: timestamp
-      shell: bash
-      run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT     
-    - name: Setup Packages      
-      shell: msys2 {0}
+          core.exportVariable('dlp_tag', String(release.data.tag_name))    
+    - name: Setup Packages
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-shared-7.1.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/luajit2-shared-2.1_20250529-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-shared-0.40.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-shared-7.1.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/luajit2-shared-2.1_20250529-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-shared-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
       run: |
-        $date = Get-Date -Format "yyyyMMdd"
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
-        mv yt-dlp.exe D:\msys64\opt\bin
-        mv D:\msys64\opt\mpv\* D:\msys64\opt\bin
-        7z a shared-mpv.7z D:\msys64\opt\bin\*
-    - name: Upload
-      uses: svenstaro/upload-release-action@master
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: shared*.7z
-        tag: ${{ steps.timestamp.outputs.date }}
-        release_name: ${{ steps.timestamp.outputs.date }}
-        overwrite: true
-        file_glob: true
+        mv yt-dlp.exe /opt/bin
+        mv /opt/mpv/* /opt/bin
+        7z a shared-mpv-$BIT-$COMPILER.7z /opt/bin/*
+    - name: Release
+      shell: bash
+      run: |
+        chmod +x ./release-package.sh
+        ./release-package.sh
