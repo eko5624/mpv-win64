@@ -1509,8 +1509,17 @@ jobs:
       with:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-ucrt-x86_64
+    - name: Setup Python
+      uses: actions/setup-python@main
+      with:
+        python-version: '3.13'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja  
     - name: Build
-      run: cd libudfread-dev; makepkg-$COMPILER
+      run: |
+        export pypath=$(cygpath -u $pythonLocation)
+        cd libudfread-dev; makepkg-$COMPILER
     - name: Release
       shell: bash
       run: ./release-dev.sh libudfread-dev libudfread-dev
