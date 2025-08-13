@@ -9,18 +9,18 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "mingw64-clang"
+        default: "clang-mingw64-x86_64"
         type: choice
         options:
-        - mingw64-clang
-        - llvm-mingw
+        - clang-mingw64-x86_64
+        - clang-llvm-mingw-x86_64
 
   #schedule:
   #- cron: '05 0 * * MON'  
  
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
     - name: Cache msys2
       uses: actions/cache@main
@@ -29,23 +29,30 @@ jobs:
         path: D:\msys64
         key: msys2
 
-    - name: Cache Toolchain
+    - name: Cache MinGW-w64-Clang Toolchain
       uses: actions/cache@main
-      id: clang-ucrt
+      id: clang-mingw64-x86_64
       with:
         path: D:\ucrt64
-        key: clang-ucrt-x86_64
+        key: clang-mingw64-x86_64
+
+    - name: Cache llvm-mingw Toolchain
+      uses: actions/cache@main
+      id: clang-llvm-mingw-x86_64
+      with:
+        path: D:\ucrt64
+        key: clang-llvm-mingw-x86_64
     
     - name: Install msys2
-      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
+      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-llvm-mingw-x86_64')
       uses: msys2/setup-msys2@v2
       with:
         cache: false
         location: D:\
         install: base-devel autotools git p7zip
 
-    - name: Install MinGW-w64-clang Toolchain
-      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+    - name: Install MinGW-w64-Clang Toolchain
+      if: (steps.clang-mingw64-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-mingw64-x86_64')
       uses: msys2/setup-msys2@v2
       with:
         cache: false
@@ -84,13 +91,13 @@ jobs:
         install -m755 msys2-config/makepkg-* /d/msys64/usr/bin/
 
     - name: Install llvm-mingw Toolchain
-      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'llvm-mingw')
+      if: (steps.clang-llvm-mingw-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-llvm-mingw-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-latest-ucrt-windows-x86_64.tar.xz
-        tar -xvf llvm-mingw*.tar.xz -C /d 2>/dev/null >/dev/null && mv /d/llvm-mingw /d/ucrt64
+        tar -Jxf llvm-mingw*.tar.xz -C /d && mv /d/llvm-mingw /d/ucrt64
 
     - name: Install curl
-      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+      if: (steps.clang-mingw64-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-mingw64-x86_64')
       run: |
         mv /d/msys64/clang64 /d/ucrt64
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
@@ -98,8 +105,8 @@ jobs:
         cp curl*/bin/curl-ca-bundle.crt /d/ucrt64/bin
         cp curl*/bin/curl.exe /d/ucrt64/bin
 
-    - name: Remove "libwinpthread.dll.a libpthread.dll.a libc++.dll.a" from MinGW-w64-CLANG Toolchain
-      if: (steps.clang-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'mingw64-clang')
+    - name: Remove "libwinpthread.dll.a libpthread.dll.a libc++.dll.a" from MinGW-w64-Clang Toolchain
+      if: (steps.clang-mingw64-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-mingw64-x86_64')
       run: |
         find /d/ucrt64/lib -type f \( -name "*pthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
         find /d/ucrt64/lib -type f \( -name "libc++.dll.a" \) -print0 | xargs -0 -I {} rm {}

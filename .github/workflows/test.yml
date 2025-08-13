@@ -1,4 +1,4 @@
-name: openal-soft
+name: test
 defaults:
   run:
     shell: D:\msys64\msys2.cmd {0}
