@@ -104,7 +104,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-$COMPILER
+        cd ffmpeg; makepkg-${COMPILER%%-*}
     - name: Collecting logs
       if: always()
       run: |
@@ -192,7 +192,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-$COMPILER
+        cd libplacebo-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: |
@@ -222,7 +222,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd luajit2; makepkg-$COMPILER
+      run: cd luajit2; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: |
@@ -306,7 +306,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-$COMPILER
+        cd mpv; makepkg-${COMPILER%%-*}
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
@@ -412,7 +412,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vulkan-dev; makepkg-$COMPILER
+      run: cd vulkan-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: |
