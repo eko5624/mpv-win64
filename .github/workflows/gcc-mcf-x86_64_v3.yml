@@ -1,0 +1,66 @@
+name: gcc-mcf-x86_64_v3
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
+
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "gcc-mcf-x86_64_v3"
+        type: choice
+        options:
+        - gcc-mcf-x86_64_v3
+  #schedule:
+  #- cron: '05 0 * * MON'  
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+    steps: 
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+
+    - name: Cache GCC with the MCF(x86_64_v3) Toolchain
+      if: (inputs.toolchain == 'gcc-mcf-x86_64_v3')
+      uses: actions/cache@main
+      id: gcc-mcf-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: gcc-mcf-x86_64_v3
+    
+    - name: Install msys2
+      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64_v3') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64_v3')
+      uses: msys2/setup-msys2@v2
+      with:
+        cache: false
+        location: D:\
+        install: base-devel autotools git p7zip
+          
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      if: (steps.msys2.outputs.cache-hit != 'true')
+      shell: bash
+      run: |
+        cp msys2-config/msys2.cmd /d/msys64
+        install -m644 msys2-config/*.conf /d/msys64/etc/
+        install -m755 msys2-config/makepkg-* /d/msys64/usr/bin/
+
+    - name: Install GCC With MCF(x86_64_v3) Toolchain
+      if: (steps.gcc-mcf-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64_v3')
+      run: |
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64_v3.7z
+        7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
+
