@@ -9,19 +9,20 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "gcc-mcf"
+        default: "gcc-mcf-x86_64"
         type: choice
         options:
-        - gcc-mcf
-        - gcc-win32
-        - gcc-posix
+        - gcc-mcf-x86_64
+        - gcc-mcf-x86_64_v3
+        - gcc-win32-x86_64
+        - gcc-win32-x86_64_v3
         - gcc-mingw64
   #schedule:
   #- cron: '05 0 * * MON'  
  
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps: 
     - name: Cache msys2
       uses: actions/cache@main
@@ -30,15 +31,48 @@ jobs:
         path: D:\msys64
         key: msys2
     
-    - name: Cache GCC 
+    - name: Cache GCC with the MCF(x86_64) Toolchain
+      if: (inputs.toolchain == 'gcc-mcf-x86_64')
       uses: actions/cache@main
-      id: gcc-ucrt
+      id: gcc-mcf-x86_64
       with:
         path: D:\ucrt64
-        key: gcc-ucrt-x86_64
+        key: gcc-mcf-x86_64
+
+    - name: Cache GCC with the MCF(x86_64_v3) Toolchain
+      if: (inputs.toolchain == 'gcc-mcf-x86_64_v3')
+      uses: actions/cache@main
+      id: gcc-mcf-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: gcc-mcf-x86_64_v3
+
+    - name: Cache GCC with the Win32(x86_64) Toolchain
+      if: (inputs.toolchain == 'gcc-win32-x86_64')
+      uses: actions/cache@main
+      id: gcc-win32-x86_64
+      with:
+        path: D:\ucrt64
+        key: gcc-win32-x86_64
+
+    - name: Cache GCC with the Win32(x86_64_v3) Toolchain
+      if: (inputs.toolchain == 'gcc-win32-x86_64_v3')
+      uses: actions/cache@main
+      id: gcc-win32-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: gcc-win32-x86_64_v3
+
+    - name: Cache MinGW-w64-GCC Toolchain
+      if: (inputs.toolchain == 'gcc-mingw64')
+      uses: actions/cache@main
+      id: gcc-mingw64
+      with:
+        path: D:\ucrt64
+        key: gcc-mingw64
     
     - name: Install msys2
-      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix')
+      if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64_v3') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64') || (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64_v3')
       uses: msys2/setup-msys2@v2
       with:
         cache: false
@@ -46,7 +80,7 @@ jobs:
         install: base-devel autotools git p7zip
 
     - name: Install MinGW-w64-GCC Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      if: (steps.gcc-mingw64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
       uses: msys2/setup-msys2@v2
       with:
         cache: false
@@ -80,26 +114,32 @@ jobs:
         install -m644 msys2-config/*.conf /d/msys64/etc/
         install -m755 msys2-config/makepkg-* /d/msys64/usr/bin/
         
-    - name: Install GCC With MCF Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf')
+    - name: Install GCC With MCF(x86_64) Toolchain
+      if: (steps.gcc-mcf-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
 
-    - name: Install GCC With Win32 Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32')
+    - name: Install GCC With MCF(x86_64_v3) Toolchain
+      if: (steps.gcc-mcf-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64_v3')
+      run: |
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64_v3.7z
+        7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
+
+    - name: Install GCC With Win32(x86_64) Toolchain
+      if: (steps.gcc-win32-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-win32-latest-ucrt-x86_64.7z
         7z x target-gcc-win32*.7z -o/d && mv /d/target /d/ucrt64
 
-    - name: Install GCC With POSIX Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix')
+    - name: Install GCC With Win32(x86_64_v3) Toolchain
+      if: (steps.gcc-win32-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64_v3')
       run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-posix-latest-ucrt-x86_64.7z
-        7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
+        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-win32-latest-ucrt-x86_64_v3.7z
+        7z x target-gcc-win32*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Install curl
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      if: (steps.gcc-mingw64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
       run: |
         mv /d/msys64/ucrt64 /d/ucrt64
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
@@ -108,8 +148,7 @@ jobs:
         cp curl*/bin/curl.exe /d/ucrt64/bin
 
     - name: Remove *.dll.a from MinGW-w64-GCC Toolchain
-      if: (steps.gcc-ucrt.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
+      if: (steps.gcc-mingw64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mingw64')
       run: |
         find /d/ucrt64/lib -type f \( -name "*.dll.a" \) -print0 | xargs -0 -I {} rm {}
         find /d/ucrt64/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
-

@@ -11,16 +11,28 @@ on:
         default: "gcc"
         type: choice
         options:
-        - gcc
-        - clang
+        - gcc-mcf
+        - gcc-win32
+        - gcc-mingw64
+        - clang-mingw64
+        - clang-llvm-mingw
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
   #schedule:
   #- cron: '30 0 * * MON'
     
 jobs:
   amf:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -33,21 +45,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd amf-dev; makepkg-$COMPILER
+      run: cd amf-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -60,21 +73,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd angle-dev; makepkg-$COMPILER
+      run: cd angle-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh angle-headers-dev angle-dev
 
   aom:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -87,22 +101,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd aom-dev; makepkg-$COMPILER
+        cd aom-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh aom-dev aom-dev
 
   avisynth:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -115,21 +130,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd avisynth-dev; makepkg-$COMPILER
+      run: cd avisynth-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh avisynth-dev avisynth-dev
 
   bzip2:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -142,21 +158,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd bzip2-dev; makepkg-$COMPILER
+      run: cd bzip2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh bzip2-dev bzip2-dev
 
   config:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -169,13 +186,13 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd mpv-config; makepkg-$COMPILER
+      run: cd mpv-config; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-latest.sh config mpv-config
@@ -222,9 +239,10 @@ jobs:
       - xz
       - zlib
       - zstd
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -237,65 +255,65 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.12.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.5.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.11.1-1-x86_64.pkg.tar.zst                
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.11.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.22.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.15.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.44-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-3.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vvdec-dev-3.0.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/aom-dev-3.12.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/avisynth-dev-3.7.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.5.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.11.1-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsrt-dev-1.5.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.11.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.22.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.15.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzvbi-dev-0.2.44-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-$COMPILER
+        cd ffmpeg; makepkg-${COMPILER%%-*}
     - name: Collecting logs
       if: always()
       run: |
@@ -312,7 +330,7 @@ jobs:
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.BOT }}
-        tag: latest
+        tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
         assets: ffmpeg-git*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -320,7 +338,7 @@ jobs:
       uses: mknejp/delete-release-assets@v1
       with:
         token: ${{ secrets.BOT }}
-        tag: dev
+        tag: dev-${{ inputs.compiler }}-${{ inputs.build_target }}
         assets: ffmpeg-dev*
         fail-if-no-assets: false
         fail-if-no-release: false
@@ -329,7 +347,7 @@ jobs:
       with:
         repo_token: ${{ secrets.BOT }}
         file: ffmpeg/*pkg*.xz
-        tag: latest
+        tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
         overwrite: true
         file_glob: true
     - name: Upload Dev
@@ -337,15 +355,16 @@ jobs:
       with:
         repo_token: ${{ secrets.BOT }}
         file: ffmpeg/*.zst
-        tag: dev
+        tag: dev-${{ inputs.compiler }}-${{ inputs.build_target }}
         overwrite: true
         file_glob: true
 
   dav1d:
     needs: [xxhash]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -358,11 +377,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -373,17 +392,18 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; makepkg-$COMPILER
+        cd dav1d-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -396,22 +416,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd davs2-dev; makepkg-$COMPILER
+        cd davs2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh davs2-dev davs2-dev
 
   expat:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -424,21 +445,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd expat-dev; makepkg-$COMPILER
+      run: cd expat-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh expat-dev expat-dev
 
   ffnvcodec:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -451,22 +473,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd ffnvcodec-dev; makepkg-$COMPILER
+      run: cd ffnvcodec-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -479,11 +502,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -494,18 +517,19 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd freetype2-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -518,11 +542,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -533,16 +557,17 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd fribidi-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd fribidi-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh fribidi-dev fribidi-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -555,11 +580,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -570,19 +595,20 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst    
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst    
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
 
   lame:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -595,23 +621,24 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd lame-dev; makepkg-$COMPILER
+        cd lame-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     needs: [libjpeg, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -624,11 +651,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -639,19 +666,20 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd lcms2-dev; makepkg-$COMPILER
+        cd lcms2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libarchive:
     needs: [bzip2, expat, libxml2, lzo, openssl, xz, zlib, zstd]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -664,33 +692,34 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/expat-dev-2_7_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lzo-dev-2.10-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/expat-dev-2_7_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libarchive-dev; makepkg-$COMPILER
+        cd libarchive-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libarchive-dev libarchive-dev 
 
   libaribcaption:
     needs: [freetype2, openssl]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -703,29 +732,30 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; makepkg-$COMPILER
+        cd libaribcaption-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libaribcaption-dev libaribcaption-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -738,11 +768,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -753,23 +783,24 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libass-dev; makepkg-$COMPILER
+        cd libass-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libass-dev libass-dev      
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -782,27 +813,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst         
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst         
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; makepkg-$COMPILER
+        cd libbluray-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -815,21 +847,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libbs2b-dev; makepkg-$COMPILER
+      run: cd libbs2b-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -842,21 +875,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libcaca-dev; makepkg-$COMPILER
+      run: cd libcaca-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -869,11 +903,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Install rust
       shell: bash
       run: |
@@ -893,16 +927,17 @@ jobs:
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
         fi
-        cd libdovi-dev; makepkg-$COMPILER
+        cd libdovi-dev; makepkg-${COMPILER%%-*}
       
     - name: Release
       shell: bash
       run: ./release-dev.sh libdovi-dev libdovi-dev                     
 
   libdvdcss:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -915,22 +950,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libdvdcss-dev; makepkg-$COMPILER
+      run: cd libdvdcss-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -943,26 +979,27 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; makepkg-$COMPILER
+        cd libdvdnav-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -975,24 +1012,25 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; makepkg-$COMPILER
+        cd libdvdread-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdread-dev libdvdread-dev         
 
   libiconv:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1005,21 +1043,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libiconv-dev; makepkg-$COMPILER
+      run: cd libiconv-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1032,22 +1071,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libjpeg-dev; makepkg-$COMPILER
+      run: cd libjpeg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [lcms2, libjpeg, libpng, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1060,27 +1100,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-$COMPILER -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new 
     - name: Release
       shell: bash
       run: ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1093,22 +1134,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libmodplug-dev; makepkg-$COMPILER
+      run: cd libmodplug-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps: 
     - name: Prepare
@@ -1121,24 +1163,25 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; makepkg-$COMPILER  
+        cd libmysofa-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1151,22 +1194,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libogg-dev; makepkg-$COMPILER
+      run: cd libogg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1179,28 +1223,29 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst 
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; makepkg-$COMPILER
+        cd libopenmpt-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross, xxhash]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1213,11 +1258,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -1228,25 +1273,26 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)   
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-$COMPILER
+        cd libplacebo-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1259,24 +1305,25 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst     
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; makepkg-$COMPILER
+        cd libpng-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libpng-dev libpng-dev      
 
   libsamplerate:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1289,21 +1336,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsamplerate-dev; makepkg-$COMPILER
+      run: cd libsamplerate-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
 
   libsdl2:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1316,22 +1364,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsdl2-dev; makepkg-$COMPILER
+      run: cd libsdl2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1344,11 +1393,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -1359,19 +1408,20 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-$COMPILER -p PKGBUILD-new
+        cd libsixel; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1384,21 +1434,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsoxr-dev; makepkg-$COMPILER  
+      run: cd libsoxr-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1411,22 +1462,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libspeex-dev; makepkg-$COMPILER
+      run: cd libspeex-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [openssl]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1439,27 +1491,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst     
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm
-        cd libsrt-dev; makepkg-$COMPILER  
+        cd libsrt-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [openssl, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1472,26 +1525,27 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-$COMPILER  
+        cd libssh-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1504,21 +1558,31 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
+    - name: Setup Python
+      uses: actions/setup-python@main
+      with:
+        python-version: '3.13'        
+    - name: Install python dependencies
+      shell: pwsh
+      run: pip install meson ninja  
     - name: Build
-      run: cd libudfread-dev; makepkg-$COMPILER
+      run: |
+        export pypath=$(cygpath -u $pythonLocation)
+        cd libudfread-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1531,21 +1595,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libunibreak-dev; makepkg-$COMPILER
+      run: cd libunibreak-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libva:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1558,11 +1623,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -1573,16 +1638,17 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)      
-        cd libva-dev; makepkg-$COMPILER
+        cd libva-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libva-dev libva-dev
 
   libvorbis_aotuv:
     needs: [libogg]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1595,24 +1661,25 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; makepkg-$COMPILER
+        cd libvorbis_aotuv-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1625,21 +1692,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libvpl-dev; makepkg-$COMPILER  
+      run: cd libvpl-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1652,22 +1720,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd libvpx-dev; makepkg-$COMPILER
+        cd libvpx-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1680,22 +1749,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libwebp-dev; makepkg-$COMPILER
+      run: cd libwebp-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     needs: [libiconv, xz, zlib]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1708,26 +1778,27 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; makepkg-$COMPILER
+        cd libxml2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1740,23 +1811,24 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; makepkg-$COMPILER
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        cd libxvid-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libxvid-dev libxvid-dev
         
   libzimg:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1769,22 +1841,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libzimg-dev; makepkg-$COMPILER
+      run: cd libzimg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libpng]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1797,27 +1870,28 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -Sy gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; makepkg-$COMPILER
+        cd libzvbi-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1830,21 +1904,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd luajit2; makepkg-$COMPILER
+      run: cd luajit2; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh luajit2-dev luajit2              
 
   lzo:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1857,13 +1932,13 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd lzo-dev; makepkg-$COMPILER
+      run: cd lzo-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lzo-dev lzo-dev
@@ -1889,9 +1964,10 @@ jobs:
       - rubberband
       - spirv-cross
       - vulkan
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -1904,11 +1980,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -1919,86 +1995,87 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.12.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/avisynth-dev-3.7.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/dav1d-dev-1.5.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/expat-dev-2_7_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libarchive-dev-3.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjxl-dev-0.11.1-1-x86_64.pkg.tar.zst                
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libmysofa-dev-1.3.3-1-x86_64.pkg.tar.zst               
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libopenmpt-dev-0.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsixel-dev-1.10.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsrt-dev-1.5.4-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libssh-dev-0.11.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libva-dev-2.22.0-1-x86_64.pkg.tar.zst             
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvpx-dev-1.15.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libzvbi-dev-0.2.44-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/luajit2-dev-2.1_20250529-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lzo-dev-2.10-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mujs-dev-1.3.7-1-x86_64.pkg.tar.zst                
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst     
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/svtav1-dev-3.1.0-1-x86_64.pkg.tar.zst                
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vvdec-dev-3.0.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/aom-dev-3.12.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/avisynth-dev-3.7.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.5.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/expat-dev-2_7_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffmpeg-dev-7.1.1-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-11.3.3-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libarchive-dev-3.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libass-dev-0.17.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.11.1-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.3-1-x86_64.pkg.tar.zst               
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsixel-dev-1.10.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsrt-dev-1.5.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.11.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.22.0-1-x86_64.pkg.tar.zst             
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.15.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.14.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzvbi-dev-0.2.44-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/luajit2-dev-2.1_20250529-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/mujs-dev-1.3.7-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.5.2-1-x86_64.pkg.tar.zst     
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.321.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.0-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-72-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-$COMPILER
+        cd mpv; makepkg-${COMPILER%%-*}
     - name: Release mpv and libmpv
       shell: bash
       run: ./release-latest.sh mpv mpv
 
   mujs:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2011,11 +2088,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -2023,15 +2100,16 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd mujs; makepkg-$COMPILER
+        cd mujs; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh mujs-dev mujs
 
   openal-soft:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2044,22 +2122,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd openal-soft-dev; makepkg-$COMPILER  
+      run: cd openal-soft-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   openssl:
     needs: [zlib, zstd]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2072,25 +2151,26 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst       
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; makepkg-$COMPILER  
+        cd openssl-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh openssl-dev openssl-dev 
 
   opus:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2103,22 +2183,23 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd opus-dev; makepkg-$COMPILER
+      run: cd opus-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2131,17 +2212,17 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Packages
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-7.1.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.40.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-git-7.1.1-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.40.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Get ffmpeg latest commit sha
       run: echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV   
@@ -2149,18 +2230,19 @@ jobs:
       run: |
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
         mv yt-dlp.exe /opt/mpv
-        7z a static-mpv.7z /opt/mpv/*
-        7z a git-libmpv.7z /opt/libmpv\*
-        7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
+        7z a mpv-$BIT-$COMPILER.7z /opt/mpv/*
+        7z a libmpv-$BIT-$COMPILER.7z /opt/libmpv\*
+        7z a ffmpeg-$BIT-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
     - name: Release
       shell: bash
       run: ./release-package.sh
 
   rubberband:
     needs: [libsamplerate]
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2173,11 +2255,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -2188,17 +2270,18 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd rubberband; makepkg-$COMPILER
+        cd rubberband; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh rubberband-dev rubberband       
   
   shaderc:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2211,21 +2294,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd shaderc-dev; makepkg-$COMPILER
+      run: cd shaderc-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2238,21 +2322,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd spirv-cross-dev; makepkg-$COMPILER -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   svtav1:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2265,21 +2350,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd svtav1-dev; makepkg-$COMPILER
+      run: cd svtav1-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh svtav1-dev svtav1-dev
 
   uavs3d:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2292,21 +2378,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd uavs3d-dev; makepkg-$COMPILER 
+      run: cd uavs3d-dev; makepkg-${COMPILER%%-*} 
     - name: Release
       shell: bash
       run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2319,21 +2406,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vapoursynth; makepkg-$COMPILER
+      run: cd vapoursynth; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2346,21 +2434,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vulkan-dev; makepkg-$COMPILER
+      run: cd vulkan-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vulkan-dev vulkan-dev
 
   vvdec:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2373,21 +2462,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vvdec-dev; makepkg-$COMPILER
+      run: cd vvdec-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vvdec-dev vvdec-dev
 
   xxhash:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2400,21 +2490,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd xxhash-dev; makepkg-$COMPILER
+      run: cd xxhash-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh xxhash-dev xxhash-dev
 
   xz:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2427,23 +2518,24 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
         pacman -Sy gettext-devel --noconfirm
-        cd xz-dev; makepkg-$COMPILER
+        cd xz-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh xz-dev xz-dev
 
   zlib:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2456,21 +2548,22 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd zlib-dev; makepkg-$COMPILER
+      run: cd zlib-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh zlib-dev zlib-dev
 
   zstd:
-    runs-on: windows-2022
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -2483,11 +2576,11 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
       uses: actions/setup-python@main
       with:
@@ -2498,7 +2591,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd zstd-dev; makepkg-$COMPILER
+        cd zstd-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh zstd-dev zstd-dev
