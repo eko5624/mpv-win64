@@ -51,7 +51,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd amf-dev; makepkg-$COMPILER
+      run: cd amf-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh amf-headers-dev amf-dev
@@ -79,7 +79,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd angle-dev; makepkg-$COMPILER
+      run: cd angle-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh angle-headers-dev angle-dev
@@ -108,7 +108,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd aom-dev; makepkg-$COMPILER
+        cd aom-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh aom-dev aom-dev
@@ -136,7 +136,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd avisynth-dev; makepkg-$COMPILER
+      run: cd avisynth-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh avisynth-dev avisynth-dev
@@ -164,7 +164,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd bzip2-dev; makepkg-$COMPILER
+      run: cd bzip2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh bzip2-dev bzip2-dev
@@ -192,7 +192,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd mpv-config; makepkg-$COMPILER
+      run: cd mpv-config; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-latest.sh config mpv-config
@@ -313,7 +313,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-$COMPILER
+        cd ffmpeg; makepkg-${COMPILER%%-*}
     - name: Collecting logs
       if: always()
       run: |
@@ -394,7 +394,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd dav1d-dev; makepkg-$COMPILER
+        cd dav1d-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh dav1d-dev dav1d-dev
@@ -423,7 +423,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd davs2-dev; makepkg-$COMPILER
+        cd davs2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh davs2-dev davs2-dev
@@ -451,7 +451,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd expat-dev; makepkg-$COMPILER
+      run: cd expat-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh expat-dev expat-dev
@@ -479,7 +479,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd ffnvcodec-dev; makepkg-$COMPILER
+      run: cd ffnvcodec-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
@@ -520,7 +520,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd freetype2-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh freetype2-dev freetype2-dev
@@ -557,7 +557,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd fribidi-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd fribidi-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh fribidi-dev fribidi-dev       
@@ -599,7 +599,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst    
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-$COMPILER -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
@@ -628,7 +628,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd lame-dev; makepkg-$COMPILER
+        cd lame-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lame-dev lame-dev 
@@ -669,7 +669,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd lcms2-dev; makepkg-$COMPILER
+        cd lcms2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lcms2-dev lcms2-dev 
@@ -709,7 +709,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libarchive-dev; makepkg-$COMPILER
+        cd libarchive-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libarchive-dev libarchive-dev 
@@ -745,7 +745,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libaribcaption-dev; makepkg-$COMPILER
+        cd libaribcaption-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libaribcaption-dev libaribcaption-dev 
@@ -790,7 +790,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libass-dev; makepkg-$COMPILER
+        cd libass-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libass-dev libass-dev      
@@ -825,7 +825,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libbluray-dev; makepkg-$COMPILER
+        cd libbluray-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libbluray-dev libbluray-dev
@@ -853,7 +853,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libbs2b-dev; makepkg-$COMPILER
+      run: cd libbs2b-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libbs2b-dev libbs2b-dev
@@ -881,7 +881,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libcaca-dev; makepkg-$COMPILER
+      run: cd libcaca-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libcaca-dev libcaca-dev
@@ -927,7 +927,7 @@ jobs:
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
         fi
-        cd libdovi-dev; makepkg-$COMPILER
+        cd libdovi-dev; makepkg-${COMPILER%%-*}
       
     - name: Release
       shell: bash
@@ -956,7 +956,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libdvdcss-dev; makepkg-$COMPILER
+      run: cd libdvdcss-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
@@ -989,7 +989,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdnav-dev; makepkg-$COMPILER
+        cd libdvdnav-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
@@ -1021,7 +1021,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libdvdread-dev; makepkg-$COMPILER
+        cd libdvdread-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libdvdread-dev libdvdread-dev         
@@ -1049,7 +1049,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libiconv-dev; makepkg-$COMPILER
+      run: cd libiconv-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libiconv-dev libiconv-dev
@@ -1077,7 +1077,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libjpeg-dev; makepkg-$COMPILER
+      run: cd libjpeg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libjpeg-dev libjpeg-dev
@@ -1112,7 +1112,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-$COMPILER -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new 
     - name: Release
       shell: bash
       run: ./release-dev.sh libjxl-dev libjxl-dev         
@@ -1140,7 +1140,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libmodplug-dev; makepkg-$COMPILER
+      run: cd libmodplug-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libmodplug-dev libmodplug-dev 
@@ -1172,7 +1172,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
-        cd libmysofa-dev; makepkg-$COMPILER  
+        cd libmysofa-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
@@ -1200,7 +1200,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libogg-dev; makepkg-$COMPILER
+      run: cd libogg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libogg-dev libogg-dev 
@@ -1235,7 +1235,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm         
-        cd libopenmpt-dev; makepkg-$COMPILER
+        cd libopenmpt-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
@@ -1282,7 +1282,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
-        cd libplacebo-dev; makepkg-$COMPILER
+        cd libplacebo-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libplacebo-dev libplacebo-dev
@@ -1314,7 +1314,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
-        cd libpng-dev; makepkg-$COMPILER
+        cd libpng-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libpng-dev libpng-dev      
@@ -1342,7 +1342,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsamplerate-dev; makepkg-$COMPILER
+      run: cd libsamplerate-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
@@ -1370,7 +1370,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsdl2-dev; makepkg-$COMPILER
+      run: cd libsdl2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libsdl2-dev libsdl2-dev 
@@ -1412,7 +1412,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-$COMPILER -p PKGBUILD-new
+        cd libsixel; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh libsixel-dev libsixel 
@@ -1440,7 +1440,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libsoxr-dev; makepkg-$COMPILER  
+      run: cd libsoxr-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
@@ -1468,7 +1468,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libspeex-dev; makepkg-$COMPILER
+      run: cd libspeex-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libspeex-dev libspeex-dev 
@@ -1502,7 +1502,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm
-        cd libsrt-dev; makepkg-$COMPILER  
+        cd libsrt-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libsrt-dev libsrt-dev 
@@ -1536,7 +1536,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-$COMPILER  
+        cd libssh-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libssh-dev libssh-dev 
@@ -1573,7 +1573,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd libudfread-dev; makepkg-$COMPILER
+        cd libudfread-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libudfread-dev libudfread-dev
@@ -1601,7 +1601,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libunibreak-dev; makepkg-$COMPILER
+      run: cd libunibreak-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
@@ -1638,7 +1638,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)      
-        cd libva-dev; makepkg-$COMPILER
+        cd libva-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libva-dev libva-dev
@@ -1670,7 +1670,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd libvorbis_aotuv-dev; makepkg-$COMPILER
+        cd libvorbis_aotuv-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
@@ -1698,7 +1698,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libvpl-dev; makepkg-$COMPILER  
+      run: cd libvpl-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh libvpl-dev libvpl-dev         
@@ -1727,7 +1727,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd libvpx-dev; makepkg-$COMPILER
+        cd libvpx-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libvpx-dev libvpx-dev
@@ -1755,7 +1755,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libwebp-dev; makepkg-$COMPILER
+      run: cd libwebp-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libwebp-dev libwebp-dev
@@ -1789,7 +1789,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
-        cd libxml2-dev; makepkg-$COMPILER
+        cd libxml2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libxml2-dev libxml2-dev        
@@ -1819,7 +1819,7 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
-        cd libxvid-dev; makepkg-$COMPILER
+        cd libxvid-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libxvid-dev libxvid-dev
@@ -1847,7 +1847,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libzimg-dev; makepkg-$COMPILER
+      run: cd libzimg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libzimg-dev libzimg-dev  
@@ -1882,7 +1882,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
         pacman -Sy gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
-        cd libzvbi-dev; makepkg-$COMPILER
+        cd libzvbi-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libzvbi-dev libzvbi-dev
@@ -1910,7 +1910,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd luajit2; makepkg-$COMPILER
+      run: cd luajit2; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh luajit2-dev luajit2              
@@ -1938,7 +1938,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd lzo-dev; makepkg-$COMPILER
+      run: cd lzo-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh lzo-dev lzo-dev
@@ -2066,7 +2066,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-$COMPILER
+        cd mpv; makepkg-${COMPILER%%-*}
     - name: Release mpv and libmpv
       shell: bash
       run: ./release-latest.sh mpv mpv
@@ -2100,7 +2100,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd mujs; makepkg-$COMPILER
+        cd mujs; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh mujs-dev mujs
@@ -2128,7 +2128,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd openal-soft-dev; makepkg-$COMPILER  
+      run: cd openal-soft-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh openal-soft-dev openal-soft-dev              
@@ -2161,7 +2161,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
-        cd openssl-dev; makepkg-$COMPILER  
+        cd openssl-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
       run: ./release-dev.sh openssl-dev openssl-dev 
@@ -2189,7 +2189,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd opus-dev; makepkg-$COMPILER
+      run: cd opus-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh opus-dev opus-dev
@@ -2272,7 +2272,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd rubberband; makepkg-$COMPILER
+        cd rubberband; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh rubberband-dev rubberband       
@@ -2300,7 +2300,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd shaderc-dev; makepkg-$COMPILER
+      run: cd shaderc-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh shaderc-dev shaderc-dev
@@ -2328,7 +2328,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd spirv-cross-dev; makepkg-$COMPILER -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
     - name: Release
       shell: bash
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
@@ -2356,7 +2356,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd svtav1-dev; makepkg-$COMPILER
+      run: cd svtav1-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh svtav1-dev svtav1-dev
@@ -2384,7 +2384,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd uavs3d-dev; makepkg-$COMPILER 
+      run: cd uavs3d-dev; makepkg-${COMPILER%%-*} 
     - name: Release
       shell: bash
       run: ./release-dev.sh uavs3d-dev uavs3d-dev        
@@ -2412,7 +2412,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vapoursynth; makepkg-$COMPILER
+      run: cd vapoursynth; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vapoursynth-dev vapoursynth
@@ -2440,7 +2440,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vulkan-dev; makepkg-$COMPILER
+      run: cd vulkan-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vulkan-dev vulkan-dev
@@ -2468,7 +2468,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd vvdec-dev; makepkg-$COMPILER
+      run: cd vvdec-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh vvdec-dev vvdec-dev
@@ -2496,7 +2496,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd xxhash-dev; makepkg-$COMPILER
+      run: cd xxhash-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh xxhash-dev xxhash-dev
@@ -2526,7 +2526,7 @@ jobs:
     - name: Build
       run: |
         pacman -Sy gettext-devel --noconfirm
-        cd xz-dev; makepkg-$COMPILER
+        cd xz-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh xz-dev xz-dev
@@ -2554,7 +2554,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd zlib-dev; makepkg-$COMPILER
+      run: cd zlib-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh zlib-dev zlib-dev
@@ -2591,7 +2591,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)        
-        cd zstd-dev; makepkg-$COMPILER
+        cd zstd-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh zstd-dev zstd-dev
