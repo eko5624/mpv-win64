@@ -8,7 +8,7 @@ on:
       compiler:
         description: "Compiler"
         required: false
-        default: "gcc"
+        default: "gcc-mcf"
         type: choice
         options:
         - gcc-mcf
