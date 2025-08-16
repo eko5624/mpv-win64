@@ -30,6 +30,7 @@ jobs:
         key: msys2
 
     - name: Cache MinGW-w64-Clang(x86_64) Toolchain
+      if: (inputs.toolchain == 'clang-mingw64-x86_64')
       uses: actions/cache@main
       id: clang-mingw64-x86_64
       with:
@@ -37,6 +38,7 @@ jobs:
         key: clang-mingw64-x86_64
 
     - name: Cache llvm-mingw(x86_64) Toolchain
+      if: (inputs.toolchain == 'clang-llvm-mingw-x86_64')
       uses: actions/cache@main
       id: clang-llvm-mingw-x86_64
       with:
@@ -44,6 +46,7 @@ jobs:
         key: clang-llvm-mingw-x86_64
 
     - name: Cache MinGW-w64-Clang(x86_64_v3) Toolchain
+      if: (inputs.toolchain == 'clang-mingw64-x86_64')
       uses: actions/cache@main
       id: clang-mingw64-x86_64_v3
       with:
@@ -51,6 +54,7 @@ jobs:
         key: clang-mingw64-x86_64_v3
 
     - name: Cache llvm-mingw(x86_64_v3) Toolchain
+      if: (inputs.toolchain == 'clang-llvm-mingw-x86_64')
       uses: actions/cache@main
       id: clang-llvm-mingw-x86_64_v3
       with:
