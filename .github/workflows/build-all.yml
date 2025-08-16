@@ -923,7 +923,7 @@ jobs:
         7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/stable-x86_64-pc-windows-gnu/bin
     - name: Build
       run: |
-        if [[ $COMPILER == clang ]]; then 
+        if [[ ${COMPILER%%-*} == clang ]]; then 
           pacman -Sy mingw-w64-x86_64-gcc --noconfirm
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
