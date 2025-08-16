@@ -94,7 +94,7 @@ jobs:
       if: (steps.clang-llvm-mingw-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-llvm-mingw-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-latest-ucrt-windows-x86_64.tar.xz
-        tar -Jxf llvm-mingw*.tar.xz -C /d && mv /d/llvm-mingw /d/ucrt64
+        tar -Jxf llvm-mingw*.tar.xz -C /d && mv /d/target /d/ucrt64
 
     - name: Install curl
       if: (steps.clang-mingw64-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-mingw64-x86_64')
