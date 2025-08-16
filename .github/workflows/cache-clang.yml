@@ -29,19 +29,33 @@ jobs:
         path: D:\msys64
         key: msys2
 
-    - name: Cache MinGW-w64-Clang Toolchain
+    - name: Cache MinGW-w64-Clang(x86_64) Toolchain
       uses: actions/cache@main
       id: clang-mingw64-x86_64
       with:
         path: D:\ucrt64
         key: clang-mingw64-x86_64
 
-    - name: Cache llvm-mingw Toolchain
+    - name: Cache llvm-mingw(x86_64) Toolchain
       uses: actions/cache@main
       id: clang-llvm-mingw-x86_64
       with:
         path: D:\ucrt64
         key: clang-llvm-mingw-x86_64
+
+    - name: Cache MinGW-w64-Clang(x86_64_v3) Toolchain
+      uses: actions/cache@main
+      id: clang-mingw64-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: clang-mingw64-x86_64_v3
+
+    - name: Cache llvm-mingw(x86_64_v3) Toolchain
+      uses: actions/cache@main
+      id: clang-llvm-mingw-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: clang-llvm-mingw-x86_64_v3
     
     - name: Install msys2
       if: (steps.msys2.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-llvm-mingw-x86_64')
