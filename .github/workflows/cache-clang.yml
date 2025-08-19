@@ -9,7 +9,7 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "clang-mingw64-x86_64"
+        default: "clang-llvm-mingw-x86_64"
         type: choice
         options:
         - clang-mingw64-x86_64
