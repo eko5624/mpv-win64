@@ -8,6 +8,8 @@ on:
 jobs:
   x86_64:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: build_x86_64
         run: |
@@ -18,6 +20,8 @@ jobs:
 
   x86_64_v3:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: build_x86_64_v3
         run: |
