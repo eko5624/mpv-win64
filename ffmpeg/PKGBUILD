@@ -41,7 +41,8 @@ makedepends=("amf-headers-dev"
              "svtav1-dev"
              "uavs3d-dev"
              "vapoursynth-dev"
-             "vvdec-dev")
+             "vvdec-dev"
+             "whisper-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
@@ -116,6 +117,7 @@ package_ffmpeg-dev() {
     --enable-nvenc \
     --enable-vaapi \
     --enable-vapoursynth \
+    --enable-whisper \
     --enable-zlib \
     --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \

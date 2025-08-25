@@ -90,6 +90,7 @@ for p in [
   'uavs3d',
   'vulkan',
   'vvdec',
+  'whisper',
   'xxhash',
   'xz',
   'zlib',

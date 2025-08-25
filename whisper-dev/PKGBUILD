@@ -1,0 +1,49 @@
+pkgname=whisper-dev
+pkgver=1.7.6
+pkgrel=1
+pkgdesc="Port of OpenAI's Whisper model in C/C++"
+arch=('x86_64')
+url="https://github.com/ggml-org/whisper.cpp"
+license=('spdx:MIT')
+source=("git+https://github.com/ggml-org/whisper.cpp.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/whisper.cpp
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX=/opt \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DWHISPER_BUILD_TESTS=OFF \
+    -DWHISPER_BUILD_EXAMPLES=OFF \
+    -DWHISPER_BUILD_SERVER=OFF \
+    -DWHISPER_USE_SYSTEM_GGML=OFF \
+    -DGGML_CCACHE=OFF \
+    -DGGML_OPENCL=ON \
+    -DGGML_VULKAN=ON \
+    -DGGML_NATIVE=OFF \
+    -DGGML_SSE42=ON \
+    -DGGML_AVX=ON \
+    -DGGML_F16C=ON \
+    -DGGML_AVX2=ON \
+    -DGGML_BMI2=ON \
+    -DGGML_FMA=ON
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/whisper.cpp/build
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
+  # For some reason, these lack the lib prefix
+  for f in $pkgdir/opt/lib/ggml*.a; do
+    mv "$f" "$(dirname "$f")/lib$(basename "$f")"
+  done
+  # Linking order is all wrong
+  sed -i -e 's/^\(Libs:\).*$/\1 -L${libdir} -lwhisper/' $pkgdir/opt/lib/pkgconfig/whisper.pc
+  echo "Libs.private: -lggml -lggml-base -lggml-cpu -lggml-vulkan -lggml-opencl -lstdc++" >> $pkgdir/opt/lib/pkgconfig/whisper.pc
+  echo "Requires: vulkan OpenCL" >> $pkgdir/opt/lib/pkgconfig/whisper.pc
+}

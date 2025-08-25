@@ -8,19 +8,32 @@ on:
       compiler:
         description: "Compiler"
         required: false
-        default: "clang"
+        default: "clang-llvm-mingw"
         type: choice
         options:
-        - gcc
-        - clang
+        - gcc-mcf
+        - gcc-win32
+        - gcc-posix
+        - gcc-mingw64
+        - clang-mingw64
+        - clang-llvm-mingw
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
   #schedule:
   #- cron: '30 0 * * MON'
     
 jobs:
-  openal-soft:
-    runs-on: windows-2022
+  whisper:
+    runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
     steps:
     - name: Prepare
@@ -33,13 +46,13 @@ jobs:
       with:
         path: D:\msys64
         key: msys2
-    - name: Cache ${{ inputs.compiler }} Toolchain
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
       uses: actions/cache@main
       with:
         path: D:\ucrt64
-        key: ${{ inputs.compiler }}-ucrt-x86_64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd openal-soft-dev; makepkg-$COMPILER  
+      run: cd whisper-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
-      run: ./release-dev.sh openal-soft-dev openal-soft-dev
+      run: ./release-dev.sh whisper-dev whisper-dev
