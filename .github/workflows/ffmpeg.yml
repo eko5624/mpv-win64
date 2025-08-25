@@ -8,12 +8,23 @@ on:
       compiler:
         description: "Compiler"
         required: false
-        default: "clang"
+        default: "clang-llvm-mingw"
         type: choice
         options:
-        - gcc
-        - clang
-  #schedule:
+        - gcc-mcf
+        - gcc-win32
+        - gcc-posix
+        - gcc-mingw64
+        - clang-mingw64
+        - clang-llvm-mingw
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
   #- cron: '30 0 * * MON'
     
 jobs:
@@ -92,7 +103,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd ffmpeg; makepkg-$COMPILER
+        cd ffmpeg; makepkg-${COMPILER%%-*}
     - name: Collecting logs
       if: always()
       run: |
