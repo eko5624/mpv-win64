@@ -8,7 +8,7 @@ on:
       compiler:
         description: "Compiler"
         required: false
-        default: "gcc"
+        default: "clang-llvm-mingw"
         type: choice
         options:
         - gcc-mcf
