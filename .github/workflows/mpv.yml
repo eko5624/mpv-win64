@@ -103,7 +103,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd mpv; makepkg-$COMPILER
+        cd mpv; makepkg-${COMPILER%%-*}
     - name: Delete
       uses: mknejp/delete-release-assets@v1
       with:
