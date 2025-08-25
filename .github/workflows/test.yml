@@ -29,64 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  libsdl2:
-    runs-on: windows-latest
-    env:
-      COMPILER: ${{ inputs.compiler }}
-      BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }}
-    steps:
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - name: Checkout
-      uses: actions/checkout@main
-    - name: Cache msys2
-      uses: actions/cache@main
-      with:
-        path: D:\msys64
-        key: msys2
-    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
-      uses: actions/cache@main
-      with:
-        path: D:\ucrt64
-        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
-    - name: Build
-      run: cd libsdl2-dev; makepkg-${COMPILER%%-*}
-    - name: Release
-      shell: bash
-      run: ./release-dev.sh libsdl2-dev libsdl2-dev
-
-  vulkan:
-    runs-on: windows-latest
-    env:
-      COMPILER: ${{ inputs.compiler }}
-      BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }}
-    steps:
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - name: Checkout
-      uses: actions/checkout@main
-    - name: Cache msys2
-      uses: actions/cache@main
-      with:
-        path: D:\msys64
-        key: msys2
-    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
-      uses: actions/cache@main
-      with:
-        path: D:\ucrt64
-        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
-    - name: Build
-      run: cd vulkan-dev; makepkg-${COMPILER%%-*}
-    - name: Release
-      shell: bash
-      run: ./release-dev.sh vulkan-dev vulkan-dev
-
   whisper:
-    needs: [libsdl2, vulkan]
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -111,6 +54,7 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.2.20-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd whisper-dev; makepkg-${COMPILER%%-*}  
