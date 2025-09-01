@@ -7,18 +7,21 @@ arch=('x86_64')
 url="https://www.videolan.org/developers/libdvdnav.html"
 makedepends=('libdvdcss-dev' 'libdvdread-dev')
 license=('GPL')
-source=("https://download.videolan.org/pub/videolan/libdvdnav/$pkgver/libdvdnav-$pkgver.tar.bz2")
+source=("git+https://code.videolan.org/videolan/libdvdnav.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libdvdnav-$pkgver
-  ./configure prefix=/opt --disable-shared
-  make
+  cd $srcdir/libdvdnav
+  meson setup work \
+    --prefix=/opt \
+    --buildtype=release \
+    --default-library=static
+  meson compile -C work
 }
 
 package() {
-  cd $srcdir/libdvdnav-$pkgver
-  make DESTDIR=$pkgdir install
-  sed -i 's/Requires.private/Requires/' $pkgdir/opt/lib/pkgconfig/*.pc
-  rm -rf $pkgdir/opt/share
+  cd $srcdir/libdvdnav
+  DESTDIR=$pkgdir meson install -C work
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
