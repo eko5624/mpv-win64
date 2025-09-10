@@ -1,5 +1,5 @@
 pkgname=libxml2-dev
-pkgver=2.14.5
+pkgver=2.14.6
 pkgrel=1
 pkgdesc='XML parsing library, version 2'
 arch=('x86_64')
