@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=harfbuzz-dev
-pkgver=11.4.5
+pkgver=11.5.0
 pkgrel=1
 pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
