@@ -20,7 +20,7 @@ build() {
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
     -DALSOFT_BACKEND_PIPEWIRE=OFF \
-    -DCMAKE_CXX_FLAGS="-I../gsl/include"
+    -DCMAKE_CXX_FLAGS="-I../gsl/include -include cstdlib"
   cmake --build .
 }
 
