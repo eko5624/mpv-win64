@@ -785,7 +785,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-11.5.1-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.0.0-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
@@ -1992,7 +1992,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-13.0.19.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.16-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-11.5.1-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.0.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libarchive-dev-3.8.1-1-x86_64.pkg.tar.zst
