@@ -10,8 +10,13 @@ source=("git+https://github.com/libsixel/libsixel")
 md5sums=('SKIP')
 
 build() { 
+  CFLAGS+=" -Wno-implicit-function-declaration"
   cd $srcdir/libsixel   
-  meson setup build --prefix=/opt --buildtype=release --default-library=static --libdir='/opt/lib' \
+  meson setup build \
+    --prefix=/opt \
+    --buildtype=release \
+    --default-library=static \
+    --libdir='/opt/lib' \
     -Djpeg=enabled \
     -Dpng=enabled \
     -Dimg2sixel=disabled \
