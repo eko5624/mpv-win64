@@ -86,7 +86,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsixel-dev-1.10.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.2.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst                       
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.15.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.15.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/luajit2-shared-dev-2.1_20250826-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
