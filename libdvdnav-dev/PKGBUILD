@@ -1,6 +1,6 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=libdvdnav-dev
-pkgver=6.1.1
+pkgver=7.0.0
 pkgrel=1
 pkgdesc='The library for xine-dvdnav plugin'
 arch=('x86_64')
