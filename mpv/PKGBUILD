@@ -1,5 +1,4 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=(libmpv-git mpv-git)
+pkgname=(mpv-dev libmpv-git mpv-git)
 pkgver=0.40.0
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
@@ -55,6 +54,14 @@ build() {
   # get latest commit sha
   short_sha=$(git rev-parse --short HEAD)
   echo $short_sha > SHORT_SHA
+}
+
+package_mpv-dev() {
+  cd $srcdir/mpv
+  DESTDIR=$pkgdir meson install -C build
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/opt/bin
+  rm -rf $pkgdir/msys64
 }
 
 package_libmpv-git() {

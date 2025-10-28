@@ -132,7 +132,10 @@ jobs:
         cd mpv; makepkg-${COMPILER%%-*}
     - name: Release mpv and libmpv
       shell: bash
-      run: ./release-latest.sh mpv mpv  
+      run: ./release-latest.sh mpv mpv
+    - name: Release mpv-dev
+      shell: bash
+      run: ./release-dev.sh mpv-dev mpv
    
   package:
     needs: [mpv]

@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='context menu, file dialog, clipboard support for mpv'
 arch=('x86_64')
 url="https://github.com/tsl0922/mpv-menu-plugin"
+makedepends=("mpv-dev")
 license=('MIT')
 source=("git+https://github.com/tsl0922/mpv-menu-plugin")
 md5sums=('SKIP')
