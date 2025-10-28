@@ -18,7 +18,6 @@ for t in ['build-toolchain-lhmouse.yml']:
       f.write(l)
     
 pkgs = {}
-pkgs['libsixel'] = x['libsixel']
 for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'spirv-cross']:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:
@@ -29,7 +28,7 @@ for p in pkgs:
       f.write(l)        
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
+for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mpv-menu-plugin', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
@@ -114,6 +113,7 @@ pkgs['ffmpeg-dev'] = x['ffmpeg']
 pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
+pkgs['mpv-dev'] = x['mpv']
 
 for t in ['ffmpeg.yml', 'test.yml', 'mpv.yml', 'build-all.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:

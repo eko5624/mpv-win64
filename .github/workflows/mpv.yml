@@ -163,6 +163,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-git-8.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.40.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-2.4.1-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Get ffmpeg latest commit sha
       run: echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV   
@@ -170,9 +171,17 @@ jobs:
       run: |
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
         mv yt-dlp.exe /opt/mpv
+        mkdir -p /opt/mpv-menu-plugin
+        mv /opt/dialog.lua /opt/mpv-menu-plugin
+        mv /opt/dyn_menu.lua /opt/mpv-menu-plugin
+        mv /opt/menu.dll /opt/mpv-menu-plugin
+        cp /opt/mpv-menu-plugin/dialog.lua /opt/mpv/portable_config/scripts
+        cp /opt/mpv-menu-plugin/dyn_menu.lua /opt/mpv/portable_config/scripts
+        cp /opt/mpv-menu-plugin/menu.dll /opt/mpv/portable_config/scripts
         7z a mpv-$BIT-$COMPILER.7z /opt/mpv/*
         7z a libmpv-$BIT-$COMPILER.7z /opt/libmpv\*
         7z a ffmpeg-$BIT-${{ env.ffmpeg_sha }}.7z /opt/ffmpeg/*
+        7z a mpv-menu-plugin-$BIT.7z /opt/mpv-menu-plugin/*
     - name: Release
       shell: bash
       run: ./release-package.sh
