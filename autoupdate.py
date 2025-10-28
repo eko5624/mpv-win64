@@ -11,7 +11,7 @@ mingw = x['Mingw-w64-custom'][:x['Mingw-w64-custom'].find('ucrt')+4]
 pkgs = {}
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['python-embed'] = x['Python']
-for p in ['mpv', 'ffmpeg', 'luajit2']:
+for p in ['mpv-menu-plugin', 'mpv', 'ffmpeg', 'luajit2']:
   pkgs['%s' % p] = x[p]
 for p in [
   'aom',

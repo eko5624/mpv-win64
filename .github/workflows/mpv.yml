@@ -171,6 +171,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-shared-8.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/luajit2-shared-2.1_20251022-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-shared-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-2.4.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
@@ -178,6 +179,9 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe /opt/bin
         mv /opt/mpv/* /opt/bin
+        mv /opt/dialog.lua /opt/bin/portable_config/scripts
+        mv /opt/dyn_menu.lua /opt/bin/portable_config/scripts
+        mv /opt/menu.dll /opt/bin/portable_config/scripts
         7z a shared-mpv-$BIT-$COMPILER.7z /opt/bin/*
     - name: Release
       shell: bash
