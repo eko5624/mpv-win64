@@ -5,7 +5,7 @@ pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
 url='https://mpv.io/'
 makedepends=("angle-headers-dev"
-             "ffmpeg-dev"
+             "ffmpeg-static-dev"
              "mujs-dev"
              "rubberband-dev"
              "luajit2-dev" 

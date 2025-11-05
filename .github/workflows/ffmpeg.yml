@@ -120,7 +120,7 @@ jobs:
       with:
         token: ${{ secrets.BOT }}
         tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
-        assets: ffmpeg-git*
+        assets: ffmpeg-static*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Delete dev
@@ -128,7 +128,7 @@ jobs:
       with:
         token: ${{ secrets.BOT }}
         tag: dev-${{ inputs.compiler }}-${{ inputs.build_target }}
-        assets: ffmpeg-dev*
+        assets: ffmpeg-static*
         fail-if-no-assets: false
         fail-if-no-release: false
     - name: Upload
