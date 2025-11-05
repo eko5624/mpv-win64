@@ -43,7 +43,7 @@ build() {
     -Dlua=enabled \
     -Dopenal=enabled \
     -Drubberband=enabled \
-    -Dsdl2=enabled \
+    -Dsdl2-gamepad=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
     -Degl-angle=enabled \
