@@ -121,7 +121,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
-        assets: ffmpeg*
+        assets: ffmpeg-shared*
         fail-if-no-assets: false
         fail-if-no-release: false    
     - name: Delete Dev
