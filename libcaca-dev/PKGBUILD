@@ -5,7 +5,7 @@ pkgdesc='Color AsCii Art library'
 arch=('x86_64')
 url="https://github.com/cacalabs/libcaca"
 license=('LGPL')
-source=("git+https://github.com/cacalabs/libcaca.git"
+source=("git+https://github.com/cacalabs/libcaca.git#tag=v$pkgver"
         "0001-win32-is-not-msvc-it-could-be.mingw.patch"
         "0002-correct-installation-order.mingw.patch"
         "0006-no-undefined.all.patch"
