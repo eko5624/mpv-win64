@@ -13,11 +13,8 @@ on:
         type: choice
         options:
         - gcc-mcf-x86_64
-        - gcc-mcf-x86_64_v3
         - gcc-win32-x86_64
-        - gcc-win32-x86_64_v3
         - gcc-posix-x86_64
-        - gcc-posix-x86_64_v3
         - gcc-mingw64
   #schedule:
   #- cron: '05 0 * * MON'  
@@ -42,7 +39,7 @@ jobs:
         key: gcc-mcf-x86_64
 
     - name: Cache GCC with the MCF(x86_64_v3) Toolchain
-      if: (inputs.toolchain == 'gcc-mcf-x86_64_v3')
+      if: (inputs.toolchain == 'gcc-mcf-x86_64')
       uses: actions/cache@main
       id: gcc-mcf-x86_64_v3
       with:
@@ -58,7 +55,7 @@ jobs:
         key: gcc-win32-x86_64
 
     - name: Cache GCC with the Win32(x86_64_v3) Toolchain
-      if: (inputs.toolchain == 'gcc-win32-x86_64_v3')
+      if: (inputs.toolchain == 'gcc-win32-x86_64')
       uses: actions/cache@main
       id: gcc-win32-x86_64_v3
       with:
@@ -74,7 +71,7 @@ jobs:
         key: gcc-posix-x86_64
 
     - name: Cache GCC with the Posix(x86_64_v3) Toolchain
-      if: (inputs.toolchain == 'gcc-posix-x86_64_v3')
+      if: (inputs.toolchain == 'gcc-posix-x86_64')
       uses: actions/cache@main
       id: gcc-posix-x86_64_v3
       with:
@@ -138,34 +135,16 @@ jobs:
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64.7z
         7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
 
-    - name: Install GCC With MCF(x86_64_v3) Toolchain
-      if: (steps.gcc-mcf-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-mcf-x86_64_v3')
-      run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-latest-ucrt-x86_64_v3.7z
-        7z x target-gcc-mcf*.7z -o/d && mv /d/target /d/ucrt64
-
     - name: Install GCC With Win32(x86_64) Toolchain
       if: (steps.gcc-win32-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-win32-latest-ucrt-x86_64.7z
         7z x target-gcc-win32*.7z -o/d && mv /d/target /d/ucrt64
 
-    - name: Install GCC With Win32(x86_64_v3) Toolchain
-      if: (steps.gcc-win32-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-win32-x86_64_v3')
-      run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-win32-latest-ucrt-x86_64_v3.7z
-        7z x target-gcc-win32*.7z -o/d && mv /d/target /d/ucrt64
-
     - name: Install GCC With Posix(x86_64) Toolchain
       if: (steps.gcc-posix-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix-x86_64')
       run: |
         curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-posix-latest-ucrt-x86_64.7z
-        7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
-
-    - name: Install GCC With Posix(x86_64_v3) Toolchain
-      if: (steps.gcc-posix-x86_64_v3.outputs.cache-hit != 'true' && inputs.toolchain == 'gcc-posix-x86_64_v3')
-      run: |
-        curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-posix-latest-ucrt-x86_64_v3.7z
         7z x target-gcc-posix*.7z -o/d && mv /d/target /d/ucrt64
 
     - name: Install curl
