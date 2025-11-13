@@ -2056,7 +2056,7 @@ jobs:
       run: ./release-latest.sh mpv mpv
     - name: Release mpv-dev
       shell: bash
-      run: ./release-latest.sh mpv-dev mpv
+      run: ./release-dev.sh mpv-dev mpv
 
   mpv-menu-plugin:
     needs: [mpv]
