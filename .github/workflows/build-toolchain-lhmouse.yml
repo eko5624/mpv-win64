@@ -1,4 +1,7 @@
-name: build-toolchain-lhmouse
+name: Build GCC-With-MCF
+defaults:
+  run:
+    shell: D:\msys64\msys2.cmd {0}
 
 on:
   workflow_dispatch:  
@@ -7,40 +10,68 @@ on:
  
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps: 
-    - uses: msys2/setup-msys2@v2
+    - name: Cache msys2
+      uses: actions/cache@main
+      id: msys2
+      with:
+        path: D:\msys64
+        key: msys2
+
+    - name: Cache GCC with the MCF(x86_64) Toolchain
+      uses: actions/cache@main
+      id: gcc-mcf-x86_64
+      with:
+        path: D:\ucrt64
+        key: gcc-mcf-x86_64
+
+    - name: Cache GCC with the MCF(x86_64_v3) Toolchain
+      uses: actions/cache@main
+      id: gcc-mcf-x86_64_v3
+      with:
+        path: D:\ucrt64
+        key: gcc-mcf-x86_64_v3
+
+    - name: Install msys2
+      uses: msys2/setup-msys2@v2
       with:
         cache: false
         location: D:\
-        install: base-devel autotools p7zip
+        install: >-
+          base-devel
+          autotools
+          git
+          p7zip
+          mingw-w64-ucrt-x86_64-nasm
+          mingw-w64-ucrt-x86_64-gettext-tools
+          mingw-w64-ucrt-x86_64-gettext-runtime
+          mingw-w64-ucrt-x86_64-tools-git
+
     - name: Prepare
       run: git config --global core.autocrlf input
-    - uses: actions/checkout@main     
-    - uses: actions/cache@main
-      id: cache
-      with:
-        path: D:\ucrt64
-        key: mcf_20240821_14.2.1_x64-ucrt
+      shell: bash
     
-    - name: Setup Toolchain
-      if: steps.cache.outputs.cache-hit != 'true'
-      shell: msys2 {0}
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Config msys2
+      shell: bash
       run: |
-        curl -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20240821_14.2.1_x64-ucrt_09b612f2101afc42acbb996f524895e0e95b35dd.7z
-        7z x *.7z -o/d
+        cp msys2-config/msys2.cmd /d/msys64
+        install -m644 msys2-config/*.conf /d/msys64/etc/
+        install -m755 msys2-config/makepkg-* /d/msys64/usr/bin/
+
+    - name: Install GCC with the MCF Toolchain
+      run: |
+        mv /d/msys64/ucrt64 /d/ucrt64
+        curl --ssl-no-revoke -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20251106_16.0.0_x64-ucrt_cea33f3edb0ec3f8ebde594581e52878c8efa364.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
+        7z x -y *.7z -o/d
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
-        7z e -r curl*.zip -o/d/ucrt64/bin '*.exe' '*.crt'
+        7z x curl*.zip
+        cp -f curl*/bin/curl-ca-bundle.crt /d/ucrt64/bin
+        cp -f curl*/bin/curl.exe /d/ucrt64/bin
         
     - name: Make Toolchain
-      shell: msys2 {0}
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg 
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}   
-      shell: bash
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        ./release-latest.sh mcfgthread mcfgthread
+        cd mcfgthread; PATH=/usr/bin:/opt/bin:/d/ucrt64/bin makepkg

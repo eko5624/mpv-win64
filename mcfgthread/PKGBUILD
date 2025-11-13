@@ -1,6 +1,5 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
 pkgname=mcfgthread
-pkgver=20240821
+pkgver=20251106
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
@@ -12,85 +11,42 @@ md5sums=()
 build() {
   cd /d/ucrt64
   set -ex
-  rm -rf ssl
-  rm -rf share
-  rm -rf sbin
-  rm -rf etc
-  rm -rf libexec
   find ./lib -maxdepth 1 -type f -name "*.dll.a" -exec rm -f {} +
-  find ./bin -type f \( -name "gen*" ! -name "gendef.exe" \) -exec rm -f {} +
   rm -rf include/pkg*
   rm -rf lib/pkg*
-  rm -rf lib/cmake*
 
   #Remove boost
-  rm bin/b2.exe
-  rm bin/bjam.exe
-  rm bin/libboost*
   rm -rf include/boost
   rm lib/libboost*
 
+  #Remove brotli
+  rm -rf include/brotli
+  rm lib/libbrotli*
+
   #Remove bzip2
-  rm bin/bunzip2.exe
   rm include/bzlib.h
   rm lib/libbz2*
 
-  #Remove ca-certificates
-  rm bin/update-ca-trust
-
   #Remove expat
-  rm bin/libexpat*
-  rm bin/xmlwf.exe
   rm include/expat*
   rm lib/libexpat*
 
-  #Remove gcc-fortran
-  rm bin/*gfortran*.exe
-  rm -rf lib/**/f951.exe
-  rm -rf lib/**/finclude
-  rm -rf lib/**/libcaf_single.a
-  rm -rf lib/**/libgfortran.a
-  rm -rf lib/**/libgfortran.spec
-
-  #Remove gcc-objc
-  rm bin/libobjc*
-  rm -rf lib/**/cc1obj*
-  rm -rf lib/**/objc
-  rm -rf lib/**/libobjc.a
-
-  #Remove libgccgit
-  rm bin/libgccjit-0.dll
-  rm -rf include/libgccgit*
-  
-  #Remove gdb and gdb-multiarch
-  rm bin/gdb*
-
   #Remove gettext
-  rm bin/autopoint
-  rm bin/envsubst.exe
-  rm bin/msg*
-  rm bin/recode-sr-latin.exe
   rm include/autosprintf.h
-  rm include/gettext-po.h
   rm include/libintl.h
   rm -rf lib/gettext
   rm lib/libasprintf*
-  rm lib/libgettext*
   rm lib/libintl*
 
-  #Remove iconv
-  rm bin/iconv.exe
-
   #Remove icu  
-  rm bin/*icu*
-  rm bin/derb.exe
-  rm bin/makeconv.exe
-  rm bin/uconv.exe
   rm -rf include/unicode
   rm -rf lib/*icu*
 
+  #Remove libarchive
+  rm include/archive*
+  rm lib/libarchive*
+
   #Remove libffi
-  rm bin/libffi*
   rm include/ffi*
   rm lib/libffi*
 
@@ -106,48 +62,30 @@ build() {
   rm lib/libmangle*
 
   #Remove libsystre
-  rm bin/libsystre*
   rm include/regex.h
   rm lib/libgnurx*
   rm lib/libregex*
   rm lib/libsystre*
 
   #Remove libtasn1
-  rm bin/asn1*
-  rm bin/libtasn1*
   rm include/libtasn1*
   rm lib/libtasn1*
 
   #Remove libtre-git
-  rm bin/libtre*
-  rm bin/x86_64-w64-mingw32-agrep.exe
   rm -rf include/tre
   rm lib/libtre*
 
   #Remove lua and tolua
-  rm bin/*lua*
   rm include/lauxlib.h
   rm -rf include/*lua*
   rm -rf lib/*lua*
 
   #Remove mpdecimal
-  rm bin/libmpdec*
   rm include/decimal.hh
   rm include/mpdecimal.h
   rm lib/libmpdec*
 
   #Remove ncurses
-  rm bin/ncursesw6-config
-  rm bin/x86_64-w64-mingw32-captoinfo.exe
-  rm bin/x86_64-w64-mingw32-clear.exe
-  rm bin/x86_64-w64-mingw32-infocmp.exe
-  rm bin/x86_64-w64-mingw32-infotocap.exe
-  rm bin/x86_64-w64-mingw32-reset.exe
-  rm bin/x86_64-w64-mingw32-tabs.exe
-  rm bin/x86_64-w64-mingw32-tic.exe
-  rm bin/x86_64-w64-mingw32-toe.exe
-  rm bin/x86_64-w64-mingw32-tput.exe
-  rm bin/x86_64-w64-mingw32-tset.exe
   rm -rf include/ncur*
   rm lib/libform*
   rm lib/libmenu*
@@ -156,49 +94,30 @@ build() {
   rm -rf lib/terminfo
 
   #Remove openssl
-  rm bin/libcrypto*
-  rm bin/libssl*
-  rm bin/openssl.exe
   rm -rf include/openssl
   rm -rf lib/engines*
   rm lib/libcrypto*
   rm lib/libssl*
 
   #Remove p11-kit
-  rm bin/*p11*
-  rm bin/trust.exe
   rm -rf lib/*p11*
   rm -rf lib/pkcs11*
   rm -rf include/p11*
 
   #Remove pcre2
-  rm bin/*pcre*
   rm include/pcre2*
   rm lib/*pcre*
 
-  #Remove python
-  rm bin/2to3*
-  rm bin/idle*
-  rm bin/libpython*
-  rm bin/py*
-  rm -rf include/python*
-  rm -rf lib/python*
-
   #Remove readline
-  rm bin/libhistory8.dll
-  rm bin/libreadline*
   rm -rf include/readline
   rm lib/libhistory.a
   rm lib/libreadline.a
 
   #Remove sqlite3
-  rm bin/dbhash.exe
-  rm bin/*sql*
   rm include/*sql*
   rm -rf lib/*sql*
 
   #Remove tcl
-  rm bin/tcl*
   rm include/itcl*
   rm include/*Stubs*
   rm -rf include/tcl*
@@ -215,29 +134,22 @@ build() {
   rm lib/libtermcap*
 
   #Remove tk
-  rm bin/tk*
-  rm bin/wish*
   rm -rf include/tk*
   rm -rf include/X11
   rm -rf lib/*tk*
 
   #Remove wineditline
-  rm bin/edit*
   rm -rf include/editline
   rm lib/libedit*
 
   #Remove xxhash
-  rm bin/*xxh*.exe
   rm include/xxh*
 
   #Remove xz
-  rm bin/*lzma*
-  rm bin/*xz*
   rm -rf include/lzma*
   rm lib/liblzma*
 
   #Remove zstd
-  rm bin/*zstd*.exe
   rm include/zdict.h
   rm include/zstd*
   rm lib/libzstd*
