@@ -6,22 +6,22 @@ pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')
 url="https://github.com/fribidi/fribidi/"
 license=('LGPL')
-source=("git+https://github.com/fribidi/fribidi#tag=v$pkgver")
+source=("git+https://github.com/fribidi/fribidi.git")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/fribidi
-  sed -i "s/libfribidi/libfribidi,extra_cflags:'-DFRIBIDI_LIB_STATIC'/" meson.build
-  mkdir work
-  meson . work --prefix=/opt --buildtype=release --default-library=static \
-    -Dcpp_args='-DFRIBIDI_LIB_STATIC' -Ddocs=false -Dbin=false -Dtests=false
-  cd work
-  ninja
+  meson build --prefix=/opt --buildtype=release --default-library=static \
+    -Dcpp_args='-DFRIBIDI_LIB_STATIC' \
+    -Ddocs=false \
+    -Dbin=false \
+    -Dtests=false
+  meson compile -C build
 }
 
 package() {
-  cd $srcdir/fribidi/work
-  DESTDIR=$pkgdir ninja install
+  cd $srcdir/fribidi
+  DESTDIR=$pkgdir meson install -C build 
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
 }

@@ -37,6 +37,7 @@ makedepends=("amf-headers-dev"
              "openal-soft-dev"
              "openssl-dev"
              "opus-dev"
+             "rubberband-dev"
              "shaderc-dev"
              "svtav1-dev"
              "uavs3d-dev"
@@ -94,6 +95,7 @@ package_ffmpeg-static-dev() {
     --enable-libopenmpt \
     --enable-libopus \
     --enable-libplacebo \
+    --enable-librubberband \
     --enable-libsvtav1 \
     --enable-libshaderc \
     --enable-libsoxr \

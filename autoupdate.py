@@ -17,18 +17,10 @@ for t in ['build-toolchain-lhmouse.yml']:
         l = '%s%s.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"\n' % (l[:i+18], x['Mingw-w64-custom'])
       f.write(l)
     
-pkgs = {}
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'spirv-cross']:
-  pkgs['%s-dev' % p] = x[p]
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)        
+pkgs = {}       
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mpv-menu-plugin', 'mujs', 'rubberband']:
+for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mpv-menu-plugin', 'mujs']:
   pkgs['%s' % p] = x[p]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
@@ -42,6 +34,9 @@ for p in [
   'davs2',
   'expat',
   'ffnvcodec',
+  'freetype2',
+  'fribidi',
+  'harfbuzz',
   'highway',
   'lame',
   'lcms2',
@@ -59,6 +54,7 @@ for p in [
   'libudfread',
   'libunibreak',
   'libjpeg',
+  'libjxl',
   'libmodplug',
   'libmysofa',
   'libogg',
@@ -84,7 +80,9 @@ for p in [
   'openssl',
   'opus',
   'rav1e',
+  'rubberband',
   'shaderc',
+  'spirv-cross',
   'svtav1',
   'uavs3d',
   'vulkan',
@@ -107,7 +105,6 @@ pkgs['libsixel-dev'] = x['libsixel']
 pkgs['luajit-dev'] = x['LuaJIT']      
 pkgs['luajit2-dev'] = x['luajit2']
 pkgs['mujs-dev'] = x['mujs']
-pkgs['rubberband-dev'] = x['rubberband']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-static-dev'] = x['ffmpeg']
 pkgs['ffmpeg-static'] = x['ffmpeg']

@@ -233,6 +233,7 @@ jobs:
       - openal-soft
       - openssl
       - opus
+      - rubberband
       - svtav1
       - uavs3d
       - vapoursynth
@@ -301,6 +302,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.328.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.2-1-x86_64.pkg.tar.zst
@@ -520,7 +522,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
-        cd freetype2-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
+        cd freetype2-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh freetype2-dev freetype2-dev
@@ -557,7 +559,7 @@ jobs:
     - name: Build
       run: |
         export pypath=$(cygpath -u $pythonLocation)
-        cd fribidi-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
+        cd fribidi-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh fribidi-dev fribidi-dev       
@@ -599,7 +601,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst    
         pacman -U *.zst --noconfirm         
-        cd harfbuzz-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
+        cd harfbuzz-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh harfbuzz-dev harfbuzz-dev
@@ -1098,7 +1100,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
-        cd libjxl-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new 
+        cd libjxl-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libjxl-dev libjxl-dev         
@@ -1397,7 +1399,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
-        cd libsixel; makepkg-${COMPILER%%-*} -p PKGBUILD-new
+        cd libsixel; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh libsixel-dev libsixel 
@@ -1946,7 +1948,6 @@ jobs:
       - libplacebo
       - angle
       - mujs
-      - rubberband
       - spirv-cross
       - vulkan
     runs-on: windows-latest
@@ -2425,7 +2426,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd spirv-cross-dev; makepkg-${COMPILER%%-*} -p PKGBUILD-new
+      run: cd spirv-cross-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
