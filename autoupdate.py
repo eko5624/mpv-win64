@@ -14,7 +14,7 @@ for t in ['build-toolchain-lhmouse.yml']:
       if (i:=l.find('key: mcf_')) > -1:
         l = '%s%s\n' % (l[:i+9], mingw)
       elif (i:=l.find('mingw-w64-gcc-mcf_')) > -1:
-        l = '%s%s.7z\n' % (l[:i+18], x['Mingw-w64-custom'])
+        l = '%s%s.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"\n' % (l[:i+18], x['Mingw-w64-custom'])
       f.write(l)
     
 pkgs = {}
