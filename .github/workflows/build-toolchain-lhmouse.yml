@@ -65,7 +65,7 @@ jobs:
     - name: Install GCC with the MCF Toolchain
       run: |
         mv /d/msys64/ucrt64 /d/ucrt64
-        curl --ssl-no-revoke -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20251106_16.0.0_x64-ucrt_cea33f3edb0ec3f8ebde594581e52878c8efa364.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
+        curl --ssl-no-revoke -OL https://gcc-mcf.lhmouse.com/mingw-w64-gcc-mcf_20240821_14.2.1_x64-ucrt_09b612f2101afc42acbb996f524895e0e95b35dd.7z --resolve "gcc-mcf.lhmouse.com:443:204.152.213.15"
         7z x -y *.7z -o/d
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z x curl*.zip

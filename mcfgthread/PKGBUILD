@@ -1,5 +1,5 @@
 pkgname=mcfgthread
-pkgver=20251106
+pkgver=20240821
 pkgrel=1
 pkgdesc='MCF thread model'
 arch=('x86_64')
