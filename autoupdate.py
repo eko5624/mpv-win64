@@ -20,9 +20,10 @@ for t in ['build-toolchain-lhmouse.yml']:
 pkgs = {}       
 pkgs['mcfgthread'] = mingw[:8]
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mpv-menu-plugin', 'mujs']:
-  pkgs['%s' % p] = x[p]
+pkgs['mpv-menu-plugin'] = x['mpv']
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
+for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mujs']:
+  pkgs['%s' % p] = x[p]
 for p in [
   'amf',
   'aom',
