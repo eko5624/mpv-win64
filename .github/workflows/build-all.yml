@@ -2370,7 +2370,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
-        cd rubberband; makepkg-${COMPILER%%-*}
+        cd rubberband-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
       run: ./release-dev.sh rubberband-dev rubberband-dev       
