@@ -1,5 +1,5 @@
 pkgname=(ffmpeg-static-dev ffmpeg-static)
-pkgver=8.0
+pkgver=8.0.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
