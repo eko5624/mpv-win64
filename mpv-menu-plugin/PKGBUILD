@@ -1,5 +1,5 @@
 pkgname=mpv-menu-plugin
-pkgver=0.40.0
+pkgver=0.41.0
 pkgrel=1
 pkgdesc='context menu, file dialog, clipboard support for mpv'
 arch=('x86_64')

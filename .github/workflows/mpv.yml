@@ -84,12 +84,12 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdnav-dev-7.0.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-7.0.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.11.1-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.3-1-x86_64.pkg.tar.zst               
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-7.351.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.53-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
@@ -101,7 +101,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.11.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.2.0-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.22.0-1-x86_64.pkg.tar.zst             
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.23.0-1-x86_64.pkg.tar.zst             
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.15.2-1-x86_64.pkg.tar.zst
@@ -115,17 +115,17 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/mujs-dev-1.3.7-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.24.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.0-1-x86_64.pkg.tar.zst     
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.5-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.328.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.335.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.2-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
@@ -164,9 +164,9 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz        
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-static-8.0.1-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.40.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.40.0-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.41.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.41.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-0.41.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Get ffmpeg latest commit sha
       run: echo "ffmpeg_sha=$(cat /d/msys64/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV   

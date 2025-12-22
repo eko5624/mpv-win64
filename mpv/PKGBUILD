@@ -1,5 +1,5 @@
 pkgname=(mpv-dev libmpv-git mpv-git)
-pkgver=0.40.0
+pkgver=0.41.0
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
 arch=('x86_64')
