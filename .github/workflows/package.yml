@@ -75,7 +75,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-shared-8.0.1-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/luajit2-shared-2.1_20251030-1-x86_64.pkg.tar.xz
-        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-shared-0.40.0-1-x86_64.pkg.tar.xz
+        curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-shared-0.41.0-1-x86_64.pkg.tar.xz
         curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz
         pacman -U *.xz --noconfirm
     - name: Zip Packages    
