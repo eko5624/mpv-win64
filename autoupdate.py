@@ -84,6 +84,7 @@ for p in [
   'rubberband',
   'shaderc',
   'spirv-cross',
+  'subrandr',
   'svtav1',
   'uavs3d',
   'vulkan',

@@ -2042,6 +2042,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.335.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/subrandr-dev-1.0.1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.2-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
@@ -2145,6 +2146,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.335.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/subrandr-dev-1.0.1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-3.1.2-1-x86_64.pkg.tar.zst                
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
@@ -2431,6 +2433,66 @@ jobs:
     - name: Release
       shell: bash
       run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
+
+  subrandr:
+    needs: [freetype2, harfbuzz]
+    runs-on: windows-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }}
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
+    - name: Install rust
+      shell: bash
+      run: |
+        rustup self uninstall -y
+        export RUSTUP_HOME="/d/.rustup"
+        export CARGO_HOME="/d/.cargo"
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --target x86_64-pc-windows-gnullvm,x86_64-pc-windows-gnu --no-modify-path
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then
+          $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm
+        else
+          $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnu
+        fi  
+    - name: Install cargo-c
+      run: |
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then
+          7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        else
+          7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
+        fi   
+    - name: Build
+      run: |
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then 
+          pacman -Sy mingw-w64-x86_64-gcc --noconfirm
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
+        fi  
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.53-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.2.0-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        cd subrandr-dev; makepkg-${COMPILER%%-*}  
+    - name: Release
+      shell: bash
+      run: ./release-dev.sh subrandr-dev subrandr-dev
 
   svtav1:
     runs-on: windows-latest

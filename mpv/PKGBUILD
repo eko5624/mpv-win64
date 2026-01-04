@@ -24,6 +24,7 @@ makedepends=("angle-headers-dev"
              "lcms2-dev"
              "shaderc-dev"
              "spirv-cross-dev"
+             "subrandr-dev"
              "vapoursynth-dev"
              "vulkan-dev"
              "zlib-dev")
@@ -44,6 +45,7 @@ build() {
     -Dopenal=enabled \
     -Drubberband=enabled \
     -Dsdl2-gamepad=enabled \
+    -Dsubrandr=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
     -Degl-angle=enabled \

@@ -1,0 +1,20 @@
+pkgname=subrandr-dev
+pkgver=1.0.1
+pkgrel=1
+pkgdesc='An experimental subtitle rendering library'
+arch=('x86_64')
+url="https://github.com/afishhh/subrandr"
+makedepends=("freetype2-dev" "harfbuzz-dev")
+license=('MPL-2.0')
+source=("git+https://github.com/afishhh/subrandr.git")
+md5sums=('SKIP')
+
+package() {  
+  cd $srcdir/subrandr
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  cargo -Z unstable-options xtask install \
+    --prefix=/opt \
+    --target x86_64-pc-windows-${rust_target} \
+    --static-library true \
+    --shared-library false
+}
