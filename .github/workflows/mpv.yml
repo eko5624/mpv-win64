@@ -96,7 +96,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2025.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.335.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/subrandr-dev-1.0.1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/subrandr-dev-1.0.1-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-73-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-shared-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
