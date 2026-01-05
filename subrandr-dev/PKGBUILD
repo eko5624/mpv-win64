@@ -18,6 +18,8 @@ package() {
     --target x86_64-pc-windows-${rust_target} \
     --static-library true \
     --shared-library false
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
+  mkdir -p $pkgdir/opt
+  mv $pkgdir/include $pkgdir/opt
+  mv $pkgdir/lib $pkgdir/opt
+  mv $pkgdir/bin $pkgdir/opt
 }
