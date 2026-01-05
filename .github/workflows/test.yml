@@ -29,7 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  openal-soft:
+  subrandr:
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -51,8 +51,39 @@ jobs:
       with:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
+    - name: Install rust
+      shell: bash
+      run: |
+        rustup self uninstall -y
+        export RUSTUP_HOME="/d/.rustup"
+        export CARGO_HOME="/d/.cargo"
+        curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain nightly --target x86_64-pc-windows-gnullvm,x86_64-pc-windows-gnu --no-modify-path
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then
+          $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnullvm
+        else
+          $CARGO_HOME/bin/rustup default nightly-x86_64-pc-windows-gnu
+        fi  
+    - name: Install cargo-c
+      run: |
+        curl -OL https://github.com/lu-zero/cargo-c/releases/latest/download/cargo-c-windows-gnu.zip
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then
+          7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/nightly-x86_64-pc-windows-gnullvm/bin
+        else
+          7z x cargo-c-windows-gnu.zip -o/d/.rustup/toolchains/nightly-x86_64-pc-windows-gnu/bin
+        fi   
     - name: Build
-      run: cd openal-soft-dev; makepkg-${COMPILER%%-*}  
+      run: |
+        if [[ "${COMPILER%%-*}" == "clang" ]]; then 
+          pacman -Sy mingw-w64-x86_64-gcc --noconfirm
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc.a /d/ucrt64/lib
+          cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
+        fi  
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.53-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.3.0-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        cd subrandr-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
-      run: ./release-dev.sh openal-soft-dev openal-soft-dev
+      run: ./release-dev.sh subrandr-dev subrandr-dev

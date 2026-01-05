@@ -14,7 +14,10 @@ package() {
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   cargo -Z unstable-options xtask install \
     --prefix=/opt \
+    --destdir=$pkgdir \
     --target x86_64-pc-windows-${rust_target} \
     --static-library true \
     --shared-library false
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
