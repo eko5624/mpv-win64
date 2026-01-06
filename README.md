@@ -58,8 +58,8 @@ All your configurations can be saved within the ***portable_config*** subdirecto
 
 1. Fork this repo
 2. Set your own repository secret, name it as `BOT`
-3. Run `cache-gcc.yml` or `cache-clang.yml`
-4. Run `build-all.yml`
+3. Run `cache-gcc.yml` or `cache-clang.yml`(recommended)
+4. Run `Release.yml`
 5. Wait for the workflow to complete, then done!
 
 **NOTICE**  
