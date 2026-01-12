@@ -21,5 +21,4 @@ package() {
   mkdir -p $pkgdir/opt
   mv $pkgdir/include $pkgdir/opt
   mv $pkgdir/lib $pkgdir/opt
-  mv $pkgdir/bin $pkgdir/opt
 }
