@@ -1,5 +1,5 @@
 pkgname=subrandr-dev
-pkgver=1.0.1
+pkgver=1.1.0
 pkgrel=1
 pkgdesc='An experimental subtitle rendering library'
 arch=('x86_64')
