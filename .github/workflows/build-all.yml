@@ -1868,7 +1868,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst        
-        pacman -Sy gettext-devel --noconfirm
+        pacman -S gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
         cd libzvbi-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -2686,7 +2686,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        pacman -Sy gettext-devel --noconfirm
+        pacman -S gettext-devel --noconfirm
         cd xz-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
