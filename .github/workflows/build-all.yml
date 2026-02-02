@@ -382,9 +382,6 @@ jobs:
         curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.dlp_tag }}/yt-dlp.exe
         mv yt-dlp.exe /opt/bin
         mv /opt/mpv/* /opt/bin
-        mv /opt/dialog.lua /opt/bin/portable_config/scripts
-        mv /opt/dyn_menu.lua /opt/bin/portable_config/scripts
-        mv /opt/menu.dll /opt/bin/portable_config/scripts
         7z a shared-mpv-$BIT-$COMPILER.7z /opt/bin/*
     - name: Release
       shell: bash
