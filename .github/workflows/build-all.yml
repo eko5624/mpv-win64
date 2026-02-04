@@ -313,7 +313,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd ffmpeg; makepkg-${COMPILER%%-*}
@@ -521,7 +521,7 @@ jobs:
       run: |
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm        
         cd freetype2-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -600,7 +600,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst    
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst    
         pacman -U *.zst --noconfirm         
         cd harfbuzz-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -670,7 +670,7 @@ jobs:
       run: |
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd lcms2-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -709,7 +709,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libarchive-dev; makepkg-${COMPILER%%-*}
@@ -745,7 +745,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd libaribcaption-dev; makepkg-${COMPILER%%-*}
@@ -791,7 +791,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.3.2-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst       
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
         cd libass-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -834,7 +834,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst         
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.2.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
         cd libbluray-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1099,7 +1099,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.18-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm        
         cd libjxl-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1159,7 +1159,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst      
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst      
         pacman -U *.zst --noconfirm                   
         cd libmysofa-dev; makepkg-${COMPILER%%-*}  
     - name: Release
@@ -1219,7 +1219,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.4.0-1-x86_64.pkg.tar.zst 
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
@@ -1268,7 +1268,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.341.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm 
         cd libplacebo-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1300,7 +1300,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst     
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm         
         cd libpng-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1398,7 +1398,7 @@ jobs:
         export pypath=$(cygpath -u $pythonLocation)
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst 
         pacman -U *.zst --noconfirm        
         cd libsixel; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1487,7 +1487,7 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst     
         pacman -U *.zst --noconfirm
         cd libsrt-dev; makepkg-${COMPILER%%-*}  
@@ -1521,7 +1521,7 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.1-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm                   
         cd libssh-dev; makepkg-${COMPILER%%-*}  
@@ -1775,7 +1775,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst        
         pacman -U *.zst --noconfirm
         cd libxml2-dev; makepkg-${COMPILER%%-*}
     - name: Release
@@ -1806,7 +1806,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         cd libxvid-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
@@ -1867,7 +1867,7 @@ jobs:
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst        
         pacman -S gettext-devel --noconfirm
         pacman -U *.zst --noconfirm
         cd libzvbi-dev; makepkg-${COMPILER%%-*}
@@ -2050,7 +2050,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.1.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.2-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
         cd mpv; makepkg-${COMPILER%%-*}
@@ -2148,7 +2148,7 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst       
         pacman -U *.zst --noconfirm
         cd openssl-dev; makepkg-${COMPILER%%-*}  
@@ -2374,7 +2374,7 @@ jobs:
           cp /mingw64/lib/gcc/x86_64-w64-mingw32/**/libgcc_eh.a /d/ucrt64/lib
         fi  
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.54-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-12.3.2-1-x86_64.pkg.tar.zst
         pacman -U *.zst --noconfirm
