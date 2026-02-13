@@ -1,5 +1,5 @@
 pkgname=lame-dev
-pkgver=3.100
+pkgver=3.101.r6531
 pkgrel=1
 pkgdesc='A high quality MPEG Audio Layer III (MP3) encoder'
 arch=('x86_64')
