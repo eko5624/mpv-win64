@@ -6,13 +6,14 @@ arch=('x86_64')
 url="https://www.openssl.org/"
 makedepends=('zlib-dev' 'zstd-dev')
 license=('spdx:Apache-2.0')
-source=("git+https://github.com/openssl/openssl.git#tag=openssl-$pkgver"
+source=("git+https://github.com/openssl/openssl.git"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/refs/heads/master/packages/openssl-0001-workaround-missing-flag-in-mingw.patch")
 md5sums=('SKIP'  'SKIP')
 
 build() {
   eval "${att_args}"
   cd $srcdir/openssl
+  mkdir -p apps/include
   patch -p1 -i $srcdir/openssl-0001-workaround-missing-flag-in-mingw.patch
   ./Configure \
     --prefix=/opt \
