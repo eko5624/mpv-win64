@@ -5,7 +5,7 @@ pkgdesc='Software implementation of the OpenAL 3D audio API'
 arch=('x86_64')
 url="https://github.com/kcat/openal-soft/"
 license=('GPL')
-source=("git+https://github.com/kcat/openal-soft#tag=$pkgver")
+source=("git+https://github.com/kcat/openal-soft")
 md5sums=('SKIP')
 
 build() {
@@ -16,6 +16,7 @@ build() {
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DLIBTYPE=STATIC \
+    -DALSOFT_ENABLE_MODULES=OFF \
     -DALSOFT_UTILS=OFF \
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
