@@ -175,7 +175,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@main
       with:
         python-version: '3.13'
     - name: Install python dependencies
@@ -254,7 +254,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@main
       with:
         python-version: '3.13'
     - name: Install python dependencies
