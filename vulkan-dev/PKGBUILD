@@ -36,7 +36,6 @@ build() {
     -DBUILD_STATIC_LOADER=ON \
     -DUSE_GAS=ON \
     -DBUILD_TESTS=OFF \
-    -DUSE_MASM=OFF \
     -DENABLE_WERROR=OFF 
   cmake --build .
 }
