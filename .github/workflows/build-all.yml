@@ -1950,6 +1950,7 @@ jobs:
       - angle
       - mujs
       - spirv-cross
+      - subrandr
       - vulkan
     runs-on: windows-latest
     env:
