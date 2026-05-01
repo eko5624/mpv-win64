@@ -1,5 +1,5 @@
 pkgname=vapoursynth-dev
-pkgver=74
+pkgver=75
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
