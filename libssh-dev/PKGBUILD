@@ -7,7 +7,7 @@ url="https://www.libssh.org/"
 makedepends=('openssl-dev' 'zlib-dev' 'zstd-dev')
 license=('LGPL')
 options=('strip')
-source=("git+https://gitlab.com/libssh/libssh-mirror.git")
+source=("git+https://gitlab.com/libssh/libssh-mirror.git#tag=libssh-$pkgver")
 md5sums=('SKIP')
 
 build() { 
