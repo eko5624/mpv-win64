@@ -29,7 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  libvpx:
+  libssh:
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -53,7 +53,11 @@ jobs:
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
       run: |
-        cd libvpx-dev; makepkg-${COMPILER%%-*}
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm                   
+        cd libssh-dev; makepkg-${COMPILER%%-*}  
     - name: Release
       shell: bash
-      run: ./release-dev.sh libvpx-dev libvpx-dev
+      run: ./release-dev.sh libssh-dev libssh-dev
