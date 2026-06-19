@@ -2,10 +2,7 @@ libdir=/opt/lib
 includedir=/opt/include/vapoursynth
 
 Name: vapoursynth
-Description:
+Description: A frameserver for the 21st century
 Version: _ver
 
-Requires.private: zimg
-Libs: -L${libdir} @vapoursynth_pkgconfig_libs@
-Libs.private: -L${libdir} -lzimg
 Cflags: -I${includedir}

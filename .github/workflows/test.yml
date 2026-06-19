@@ -29,7 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  libssh:
+  vapoursynth:
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -40,7 +40,7 @@ jobs:
       run: git config --global core.autocrlf input
       shell: bash
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@main     
     - name: Cache msys2
       uses: actions/cache@main
       with:
@@ -52,12 +52,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: |
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
-        pacman -U *.zst --noconfirm                   
-        cd libssh-dev; makepkg-${COMPILER%%-*}  
+      run: cd vapoursynth; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
-      run: ./release-dev.sh libssh-dev libssh-dev
+      run: ./release-dev.sh vapoursynth-dev vapoursynth
