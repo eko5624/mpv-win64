@@ -25,6 +25,6 @@ package() {
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
   for i in $pkgdir/opt/lib/pkgconfig/*.pc; do
-    sed -i "s|_ver|$pkgver|g" "$i" 
+    sed -i "s|_ver|$pkgver|g" "$i"
   done
 }
