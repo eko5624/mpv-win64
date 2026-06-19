@@ -20,7 +20,7 @@ package() {
   git sparse-checkout set --no-cone '/include' '!include/cython'
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include/vapoursynth
-  cp -r include $pkgdir/opt/include/vapoursynth
+  cp include/*.h $pkgdir/opt/include/vapoursynth
   cp ../../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
