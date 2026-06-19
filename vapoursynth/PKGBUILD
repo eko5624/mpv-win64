@@ -5,31 +5,26 @@ pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
 url="http://www.vapoursynth.com/"
 license=('LGPL')
-source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.zip")
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 package() {
   cd $srcdir
   set -x
-  #cp ../*.def ./
-  7z x wheel/*cp312*
-  find . -type f -name "libvapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
-  find . -type f -name "vsscript.dll" -print0 | xargs -0 -I {} cp {} ./VSScript.dll
-  gendef VSScript.dll
-  gendef VapourSynth.dll
-  eval "${vapoursynth_generate_lib}" 
+  git clone \
+    --depth 1 \
+    --sparse \
+    --filter=tree:0 \
+    https://github.com/vapoursynth/vapoursynth.git
+  cd vapoursynth
+  git sparse-checkout set --no-cone '/include' '!include/cython'
   mkdir -p $pkgdir/opt/lib/pkgconfig
   mkdir -p $pkgdir/opt/include/vapoursynth
-  find . -type f -name "*.h" -print0 | xargs -0 -I {} cp {} $pkgdir/opt/include/vapoursynth
-  cp ${vsscript_lib} $pkgdir/opt/lib
-  cp ${vapoursynth_lib} $pkgdir/opt/lib
-  cp ../*.pc $pkgdir/opt/lib/pkgconfig
+  cp -r include $pkgdir/opt/include/vapoursynth
+  cp ../../*.pc $pkgdir/opt/lib/pkgconfig
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir/opt/lib/pkgconfig/vapoursynth-script.pc
   for i in $pkgdir/opt/lib/pkgconfig/*.pc; do
-    sed -e "s|_ver|$pkgver|g" \
-        -e "s|@vapoursynth_pkgconfig_libs@|${vapoursynth_pkgconfig_libs}|g" \
-        -e "s|@vapoursynth_script_pkgconfig_libs@|${vapoursynth_script_pkgconfig_libs}|g" \
-        -i "$i"
+    sed -i "s|_ver|$pkgver|g" "$i" 
   done
 }
