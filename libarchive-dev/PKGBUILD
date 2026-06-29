@@ -18,10 +18,10 @@ build() {
     --disable-bsdtar \
     --disable-bsdcat \
     --disable-bsdcpio \
-    --without-cng \
     --without-libb2 \
     --without-lz4 \
     --with-bz2lib \
+    --with-cng \
     --with-expat \
     --with-iconv \
     --with-lzma \
