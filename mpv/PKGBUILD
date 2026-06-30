@@ -33,7 +33,7 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
-  export LDFLAGS+=' -lbz2 -llzma -lzstd -luserenv -lws2_32'
+  export LDFLAGS+=' -lbz2 -llzma -lzstd -lbcrypt -luserenv -lws2_32'
   cd $srcdir/mpv
   eval "${mpv_cflags}"
   eval "${mpv_ldflags}"
