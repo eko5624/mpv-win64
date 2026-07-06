@@ -18,7 +18,8 @@ build() {
     -Denable_tools=false \
     -Dbdj_jar=disabled \
     -Dlibxml2=disabled \
-    -Dfontconfig=disabled
+    -Dfontconfig=disabled \
+    -Dc_args="-Ddec_init=libbluray_dec_init -Ddir_open_default=libbluray_dir_open_default -Dfile_open_default=libbluray_file_open_default"
   meson compile -C work
 }
 
