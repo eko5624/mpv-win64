@@ -17,6 +17,7 @@ package() {
     --branch main \
     https://chromium.googlesource.com/angle/angle
   cd angle
+  git reset --hard 0cb8023c01f92b29f3738ea7472d06f8f059ed84
   git sparse-checkout set include/EGL include/KHR
 
   mkdir -p $pkgdir/opt/include
