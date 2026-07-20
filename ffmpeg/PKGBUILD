@@ -98,7 +98,6 @@ package_ffmpeg-shared-dev() {
     --enable-libplacebo \
     --enable-librubberband \
     --enable-libsvtav1 \
-    --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
