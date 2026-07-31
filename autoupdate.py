@@ -104,7 +104,7 @@ for p in pkgs:
 pkgs['amf-headers-dev'] = x['amf']
 pkgs['angle-headers-dev'] = x['angle']
 pkgs['libsixel-dev'] = x['libsixel']
-pkgs['luajit-dev'] = x['LuaJIT']      
+# pkgs['luajit-dev'] = x['LuaJIT']
 pkgs['luajit2-dev'] = x['luajit2']
 pkgs['mujs-dev'] = x['mujs']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
