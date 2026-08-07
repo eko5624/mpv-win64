@@ -136,6 +136,7 @@ package_ffmpeg-static() {
   rm -rf $pkgdir/opt/bin/*.lib $pkgdir/opt/share $pkgdir/opt/include $pkgdir/opt/lib
   strip $pkgdir/opt/bin/*
   mv $pkgdir/opt/bin/ffmpeg.exe $pkgdir/opt/ffmpeg
+  mv /d/msys64/opt/bin/vulkan*.dll $pkgdir/opt/ffmpeg
   rm -rf $pkgdir/opt/bin
 
   # get latest commit sha

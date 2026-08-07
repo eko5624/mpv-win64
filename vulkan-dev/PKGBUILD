@@ -7,15 +7,10 @@ arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "git+https://github.com/KhronosGroup/Vulkan-Loader")
+md5sums=('SKIP' 'SKIP')
 
 build() {
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -D_WIN32_WINNT=0x0600 -Dparse_number=cjson_parse_number"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600"
-
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   cmake .. \
@@ -26,14 +21,13 @@ build() {
   cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-  patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=/opt \
     -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
-    -DBUILD_STATIC_LOADER=ON \
+    -DBUILD_SHARED_LIBS=OFF \
     -DUSE_GAS=ON \
     -DBUILD_TESTS=OFF \
     -DENABLE_WERROR=OFF 
@@ -43,11 +37,9 @@ build() {
 package() {
   cd $srcdir/Vulkan-Headers/build
   DESTDIR=$pkgdir cmake --install .
+  cd $srcdir/Vulkan-Loader/build
+  DESTDIR=$pkgdir cmake --install .
+  strip $pkgdir/opt/bin/vulkan*.dll
   mv $pkgdir/msys64/* $pkgdir
   rm -rf $pkgdir/msys64
-  mkdir -p $pkgdir/opt/lib/pkgconfig
-  cd $srcdir/Vulkan-Loader/build
-  cp loader/libvulkan.a $pkgdir/opt/lib
-  cp loader/vulkan_own.pc $pkgdir/opt/lib/pkgconfig/vulkan.pc
-
 }
