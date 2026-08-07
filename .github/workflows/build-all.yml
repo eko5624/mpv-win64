@@ -429,34 +429,6 @@ jobs:
       shell: bash
       run: ./release-dev.sh davs2-dev davs2-dev
 
-  expat:
-    runs-on: windows-latest
-    env:
-      COMPILER: ${{ inputs.compiler }}
-      BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }}
-    steps:
-    - name: Prepare
-      run: git config --global core.autocrlf input
-      shell: bash
-    - name: Checkout
-      uses: actions/checkout@main
-    - name: Cache msys2
-      uses: actions/cache@main
-      with:
-        path: D:\msys64
-        key: msys2
-    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
-      uses: actions/cache@main
-      with:
-        path: D:\ucrt64
-        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
-    - name: Build
-      run: cd expat-dev; makepkg-${COMPILER%%-*}
-    - name: Release
-      shell: bash
-      run: ./release-dev.sh expat-dev expat-dev
-
   ffnvcodec:
     runs-on: windows-latest
     env:
@@ -676,7 +648,7 @@ jobs:
       run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libarchive:
-    needs: [bzip2, expat, libxml2, lzo, openssl, xz, zlib, zstd]
+    needs: [bzip2, libxml2, lzo, openssl, xz, zlib, zstd]
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -701,7 +673,6 @@ jobs:
     - name: Build
       run: |
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/expat-dev-2_8_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.19-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.15.3-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
@@ -1958,7 +1929,6 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.5.4-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/expat-dev-2_8_2-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffmpeg-static-dev-9.0-1-x86_64.pkg.tar.zst        
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-13.1.15.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_3-1-x86_64.pkg.tar.zst
