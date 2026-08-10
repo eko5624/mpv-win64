@@ -39,7 +39,7 @@ package() {
   DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
   DESTDIR=$pkgdir cmake --install .
-  strip $pkgdir/opt/bin/vulkan*.dll
   mv $pkgdir/msys64/* $pkgdir
+  strip $pkgdir/opt/bin/vulkan*.dll
   rm -rf $pkgdir/msys64
 }
