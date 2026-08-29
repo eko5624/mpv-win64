@@ -70,7 +70,7 @@ jobs:
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.5-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.8-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.9-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-7.360.1-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.58-1-x86_64.pkg.tar.zst
         curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
