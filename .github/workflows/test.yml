@@ -29,7 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  angle:
+  libzimg:
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -52,7 +52,7 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd angle-dev; makepkg-${COMPILER%%-*}
+      run: cd libzimg-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
-      run: ./release-dev.sh angle-headers-dev angle-dev
+      run: ./release-dev.sh libzimg-dev libzimg-dev
