@@ -29,7 +29,7 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  libzimg:
+  libopenmpt:
     runs-on: windows-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -52,7 +52,135 @@ jobs:
         path: D:\ucrt64
         key: ${{ inputs.compiler }}-${{ inputs.build_target }}
     - name: Build
-      run: cd libzimg-dev; makepkg-${COMPILER%%-*}
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.4.14-1-x86_64.pkg.tar.zst 
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
+        pacman -U *.zst --noconfirm         
+        cd libopenmpt-dev; makepkg-${COMPILER%%-*}
     - name: Release
       shell: bash
-      run: ./release-dev.sh libzimg-dev libzimg-dev
+      run: ./release-dev.sh libopenmpt-dev libopenmpt-dev 
+
+  ffmpeg:
+    needs: [ libopenmpt ]
+    runs-on: windows-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }}
+    steps:
+    - name: Prepare
+      run: git config --global core.autocrlf input
+      shell: bash
+    - name: Checkout
+      uses: actions/checkout@main
+    - name: Cache msys2
+      uses: actions/cache@main
+      with:
+        path: D:\msys64
+        key: msys2
+    - name: Cache ${{ inputs.compiler }}-${{ inputs.build_target }} Toolchain
+      uses: actions/cache@main
+      with:
+        path: D:\ucrt64
+        key: ${{ inputs.compiler }}-${{ inputs.build_target }}
+    - name: Build
+      run: |
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.5.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/aom-dev-3.15.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/avisynth-dev-3.7.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.5.4-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-13.1.15.0-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-4.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.19.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libaribcaption-dev-1.1.2-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.19-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.2.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.12.0-1-x86_64.pkg.tar.zst                
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.5-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.8.9-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-7.360.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.58-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-3.4.14-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsrt-dev-1.5.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.12.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.24.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.17.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libwebp-dev-1.6.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.15.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.6-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzvbi-dev-0.2.45-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.25.2-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.6.4-1-x86_64.pkg.tar.zst        
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.6.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-4.0.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2026.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.4.357.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-4.2.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-79-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.4.309.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-3.2.0-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
+        curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
+        pacman -U *.zst --noconfirm
+        cd ffmpeg; makepkg-${COMPILER%%-*}
+    - name: Collecting logs
+      if: always()
+      run: |
+        mkdir ffmpeg_logs
+        cp -fr $(find ffmpeg -type f -name "*.log") ffmpeg_logs || true
+        7z a logs.7z ffmpeg_logs
+    - name: Uploading logs
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: ffmpeg-logs
+        path: logs.7z
+    - name: Delete
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.BOT }}
+        tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
+        assets: ffmpeg-static*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Delete dev
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.BOT }}
+        tag: dev-${{ inputs.compiler }}-${{ inputs.build_target }}
+        assets: ffmpeg-static*
+        fail-if-no-assets: false
+        fail-if-no-release: false
+    - name: Upload
+      uses: svenstaro/upload-release-action@master
+      with:
+        repo_token: ${{ secrets.BOT }}
+        file: ffmpeg/*pkg*.xz
+        tag: latest-${{ inputs.compiler }}-${{ inputs.build_target }}
+        overwrite: true
+        file_glob: true
+    - name: Upload Dev
+      uses: svenstaro/upload-release-action@master
+      with:
+        repo_token: ${{ secrets.BOT }}
+        file: ffmpeg/*.zst
+        tag: dev-${{ inputs.compiler }}-${{ inputs.build_target }}
+        overwrite: true
+        file_glob: true
