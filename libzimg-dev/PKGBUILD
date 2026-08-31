@@ -7,15 +7,14 @@ url="https://github.com/sekrit-twc/"
 license=('LGPL')
 source=("git+https://github.com/sekrit-twc/zimg.git"
         "git+https://github.com/sekrit-twc/graphengine.git"
-        "0001-libm_wrapper-define.patch")
+        "https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-zimg/0001-zimg-export-def-symbols.patch")
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CXXFLAGS+=" -std=gnu++17"
   cd $srcdir/zimg
   rm -rf graphengine 
   mv $srcdir/graphengine ./
-  patch -p1 -i $srcdir/0001-libm_wrapper-define.patch
+  patch -p1 -i $srcdir/0001-zimg-export-def-symbols.patch
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared --enable-static --with-pic
   make 
