@@ -12,6 +12,8 @@ md5sums=('SKIP')
 build() {
   CXXFLAGS+=" -D_WIN32_WINNT=0x0600"
   cd $srcdir/libopenmpt-$pkgver+release.autotools
+  # autoreconf to get updated libtool files with clang support
+  autoreconf -fiv
   ./configure --prefix=/opt \
     --disable-shared \
     --disable-openmpt123 \
