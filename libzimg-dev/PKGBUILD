@@ -6,15 +6,14 @@ arch=('x86_64')
 url="https://github.com/sekrit-twc/"
 license=('LGPL')
 source=("git+https://github.com/sekrit-twc/zimg.git"
-        "git+https://github.com/sekrit-twc/graphengine.git"
-        "https://github.com/msys2/MINGW-packages/blob/master/mingw-w64-zimg/0001-zimg-export-def-symbols.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP')
+        "git+https://github.com/sekrit-twc/graphengine.git")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/zimg
+  sed -i "s/Windows.h/windows.h/g" src/zimg/common/arm/cpuinfo_arm.cpp
   rm -rf graphengine 
   mv $srcdir/graphengine ./
-  patch -p1 -i $srcdir/0001-zimg-export-def-symbols.patch
   ./autogen.sh
   ./configure --prefix=/opt --disable-shared --enable-static --with-pic
   make 
