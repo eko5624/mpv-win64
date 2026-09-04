@@ -57,9 +57,9 @@ jobs:
           git
           nasm
           p7zip
-          mingw-w64-clang-x86_64-pkgconf
-          mingw-w64-clang-x86_64-meson
-          mingw-w64-clang-x86_64-cmake
+          pkgconf
+          meson
+          cmake
 
     - name: Prepare
       run: git config --global core.autocrlf input
@@ -86,7 +86,6 @@ jobs:
     - name: Install curl
       if: (steps.clang-mingw64-x86_64.outputs.cache-hit != 'true' && inputs.toolchain == 'clang-mingw64-x86_64')
       run: |
-        mv /d/msys64/clang64 /d/ucrt64
         curl -L -o curl-win64-mingw.zip 'https://curl.se/windows/latest.cgi?p=win64-mingw.zip'
         7z x curl*.zip
         cp curl*/bin/curl-ca-bundle.crt /d/ucrt64/bin
