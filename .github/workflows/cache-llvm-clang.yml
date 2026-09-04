@@ -51,7 +51,13 @@ jobs:
       with:
         cache: false
         location: D:\
-        install: base-devel autotools git p7zip mingw-w64-clang-x86_64-pkgconf
+        install: >-
+          base-devel
+          autotools
+          git
+          p7zip
+          mingw-w64-clang-x86_64-pkgconf
+          mingw-w64-clang-x86_64-cmake
 
     - name: Prepare
       run: git config --global core.autocrlf input
