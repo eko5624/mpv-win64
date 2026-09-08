@@ -5,7 +5,7 @@ pkgdesc='Character encoding conversion library and utility'
 arch=('x86_64')
 url="https://www.gnu.org/software/libiconv/"
 license=('spdx:GPL-3.0-or-later')
-source=("https://ftpmirror.gnu.org/gnu/libiconv/libiconv-$pkgver.tar.gz")
+source=("https://ftp.gnu.org/gnu/libiconv/libiconv-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
