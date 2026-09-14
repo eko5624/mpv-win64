@@ -35,7 +35,7 @@ md5sums=('SKIP')
 build() {
   eval "${mpv_cflags}"
   eval "${mpv_ldflags}"
-  LDFLAGS+=" -luserenv"
+  LDFLAGS+=" -luserenv -lsynchronization"
   cd $srcdir/mpv
   meson setup build \
     --buildtype=release \
