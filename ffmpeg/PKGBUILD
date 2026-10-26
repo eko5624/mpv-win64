@@ -110,7 +110,6 @@ package_ffmpeg-static-dev() {
     --enable-libzimg \
     --enable-libzvbi \
     --enable-openal \
-    --enable-opengl \
     --enable-openssl \
     --enable-nvdec \
     --enable-nvenc \
