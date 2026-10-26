@@ -110,7 +110,6 @@ package_ffmpeg-shared-dev() {
     --enable-libzimg \
     --enable-libzvbi \
     --enable-openal \
-    --enable-opengl \
     --enable-openssl \
     --enable-vaapi \
     --enable-vapoursynth \
