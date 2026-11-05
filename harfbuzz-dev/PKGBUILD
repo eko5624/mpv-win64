@@ -1,5 +1,5 @@
 pkgname=harfbuzz-dev
-pkgver=15.0.0
+pkgver=15.1.0
 pkgrel=1
 pkgdesc='OpenType text shaping engine'
 arch=('x86_64')
