@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/afishhh/subrandr"
 makedepends=("freetype2-dev" "harfbuzz-dev")
 license=('MPL-2.0')
-source=("git+https://github.com/afishhh/subrandr.git")
+source=("git+https://github.com/afishhh/subrandr.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 package() {  
